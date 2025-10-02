@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, CalendarDays, MapPin, Pencil, Shield, User } from "lucide-react";
+import { ArrowLeft, CalendarDays, MapPin, Pencil, Shield, Trash2, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export default function ManageProfile() {
@@ -189,8 +189,49 @@ export default function ManageProfile() {
               </div>
             </TabsContent>
 
-            <TabsContent value="skills" className="space-y-2">
-              <h3 className="text-base font-bold">Skills</h3>
+            <TabsContent value="skills" className="space-y-4">
+              <div className="flex items-center justify-between">
+                <h3 className="text-base font-bold">Skills Summary</h3>
+                <Button>Add New Skill</Button>
+              </div>
+              <div className="overflow-hidden rounded-lg border">
+                <Table>
+                  <TableHeader>
+                    <TableRow className="bg-muted/40">
+                      <TableHead className="py-2">Skill Name</TableHead>
+                      <TableHead className="py-2">Experience (Years)</TableHead>
+                      <TableHead className="py-2">Skill Level</TableHead>
+                      <TableHead className="py-2 text-right">Action</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {[
+                      { name: "React", years: 4, level: "Expert" },
+                      { name: "TypeScript", years: 3, level: "Advanced" },
+                      { name: "Node.js", years: 3, level: "Advanced" },
+                      { name: "Python", years: 2, level: "Intermediate" },
+                      { name: "AWS", years: 2, level: "Intermediate" },
+                      { name: "Docker", years: 1, level: "Beginner" },
+                    ].map((s, idx) => (
+                      <TableRow key={s.name} className={idx % 2 ? "bg-muted/20" : ""}>
+                        <TableCell className="py-2">{s.name}</TableCell>
+                        <TableCell className="py-2">{s.years}</TableCell>
+                        <TableCell className="py-2">{s.level}</TableCell>
+                        <TableCell className="py-2 text-right">
+                          <div className="inline-flex items-center gap-1">
+                            <Button variant="ghost" className="h-8 px-2" aria-label={`Edit ${s.name}`}>
+                              <Pencil className="h-4 w-4" />
+                            </Button>
+                            <Button variant="ghost" className="h-8 px-2" aria-label={`Delete ${s.name}`}>
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
             </TabsContent>
 
             <TabsContent value="comp" className="space-y-2">
