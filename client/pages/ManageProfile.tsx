@@ -2,7 +2,6 @@ import { useMemo, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { EMPLOYEES, type Employee } from "@/lib/data/employees";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/local/tabs";
-import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -22,7 +21,7 @@ export default function ManageProfile() {
           <Button variant="ghost" onClick={() => navigate(-1)} className="mb-4">
             <ArrowLeft className="mr-2 h-4 w-4" /> Back
           </Button>
-          <Card className="p-6">Employee not found.</Card>
+          <div className="rounded-lg border p-6">Employee not found.</div>
         </div>
       </div>
     );
@@ -83,8 +82,10 @@ export default function ManageProfile() {
               ))}
             </TabsList>
 
-            <TabsContent value="personal" className="mt-4 grid gap-4">
-              <Card className="p-4">
+            <div className="mt-3 rounded-lg border bg-card p-4 md:p-6">
+
+            <TabsContent value="personal" className="space-y-6">
+              <div>
                 <SectionTitle>Personal Information</SectionTitle>
                 <div className="mt-3 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
                   <Input placeholder="First Name" defaultValue={employee.firstName} />
@@ -97,14 +98,14 @@ export default function ManageProfile() {
                   <Input placeholder="Marital Status" />
                   <Input placeholder="Nationality" />
                 </div>
-              </Card>
+              </div>
 
-              <Card className="p-4">
+              <div>
                 <SectionTitle>Address Information</SectionTitle>
                 <Input className="mt-3" placeholder="Full Address" />
-              </Card>
+              </div>
 
-              <Card className="p-4">
+              <div>
                 <SectionTitle>Emergency Contact Details</SectionTitle>
                 <div className="mt-3 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
                   <Input placeholder="Contact Person" />
@@ -112,11 +113,11 @@ export default function ManageProfile() {
                   <Input placeholder="Home Address" />
                   <Input placeholder="Relationship" />
                 </div>
-              </Card>
+              </div>
             </TabsContent>
 
-            <TabsContent value="work" className="mt-4 grid gap-4 lg:grid-cols-3">
-              <Card className="p-4 lg:col-span-2">
+            <TabsContent value="work" className="space-y-6">
+              <div>
                 <SectionTitle>Current Position Details</SectionTitle>
                 <div className="mt-3 grid grid-cols-1 gap-3 md:grid-cols-2">
                   <Input placeholder="Position Title" defaultValue={employee.role} />
@@ -126,13 +127,12 @@ export default function ManageProfile() {
                   <Input placeholder="Reporting To" />
                   <Input placeholder="Work Location" defaultValue={employee.location} />
                 </div>
-
                 <div className="mt-4">
                   <OrgChartMenu />
                 </div>
-              </Card>
+              </div>
 
-              <Card className="p-4 lg:col-span-1">
+              <div>
                 <SectionTitle>Position History</SectionTitle>
                 <ul className="mt-3 space-y-4">
                   {[
@@ -147,9 +147,9 @@ export default function ManageProfile() {
                     </li>
                   ))}
                 </ul>
-              </Card>
+              </div>
 
-              <Card className="p-4 lg:col-span-3">
+              <div>
                 <SectionTitle>Previous Work History</SectionTitle>
                 <div className="mt-3 overflow-hidden rounded-lg border">
                   <Table>
@@ -177,10 +177,10 @@ export default function ManageProfile() {
                     </TableBody>
                   </Table>
                 </div>
-              </Card>
+              </div>
             </TabsContent>
 
-            <TabsContent value="skills" className="mt-4 grid gap-4">
+            <TabsContent value="skills" className="space-y-4">
               <div className="flex items-center justify-between">
                 <SectionTitle>Skills Summary</SectionTitle>
                 <Button>Add New Skill</Button>
@@ -224,6 +224,7 @@ export default function ManageProfile() {
             <TabsContent value="docs" className="mt-4 text-sm text-muted-foreground">Documents linked to this profile.</TabsContent>
             <TabsContent value="access" className="mt-4 text-sm text-muted-foreground">Access & Security roles and policies.</TabsContent>
             <TabsContent value="log" className="mt-4 text-sm text-muted-foreground">Change Log audit trail.</TabsContent>
+            </div>
           </Tabs>
         </div>
       </div>
