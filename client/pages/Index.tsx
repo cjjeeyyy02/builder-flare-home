@@ -65,6 +65,14 @@ const ORG_TREE: OrgNode[] = [
 
 function OrgListView() {
   const total = 13;
+  const [collapsed, setCollapsed] = useState<Set<string>>(new Set());
+  const toggle = (name: string) =>
+    setCollapsed((prev) => {
+      const next = new Set(prev);
+      if (next.has(name)) next.delete(name);
+      else next.add(name);
+      return next;
+    });
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
@@ -73,25 +81,40 @@ function OrgListView() {
       </div>
       <div className="space-y-2">
         {ORG_TREE.map((node) => (
-          <OrgItem key={node.name} node={node} depth={0} />
+          <OrgItem key={node.name} node={node} depth={0} collapsed={collapsed} onToggle={toggle} />
         ))}
       </div>
     </div>
   );
 }
 
-function OrgItem({ node, depth }: { node: OrgNode; depth: number }) {
+function OrgItem({ node, depth, collapsed, onToggle }: { node: OrgNode; depth: number; collapsed: Set<string>; onToggle: (name: string) => void }) {
   const initials = node.name
     .split(" ")
     .map((n) => n[0])
     .slice(0, 2)
     .join("");
+  const hasChildren = !!node.children?.length;
+  const isRoot = depth === 0;
+  const isCollapsed = collapsed.has(node.name);
   return (
     <div className={cn("space-y-2", depth > 0 && "ml-6 pl-4 border-l") }>
       <div className="flex items-center justify-between rounded-lg border bg-card p-4">
         <div className="flex items-start gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand/10 text-sm font-semibold text-brand">
-            {initials}
+          <div className="flex items-center gap-2">
+            {hasChildren && !isRoot && (
+              <button
+                type="button"
+                aria-label="Toggle direct reports"
+                onClick={() => onToggle(node.name)}
+                className="flex h-6 w-6 items-center justify-center rounded border text-xs text-muted-foreground hover:bg-accent"
+              >
+                {isCollapsed ? "\u203A" : "\u02C5"}
+              </button>
+            )}
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand/10 text-sm font-semibold text-brand">
+              {initials}
+            </div>
           </div>
           <div>
             <div className="font-semibold text-foreground">{node.name}</div>
@@ -105,12 +128,15 @@ function OrgItem({ node, depth }: { node: OrgNode; depth: number }) {
           </div>
         </div>
         <div className="flex items-center gap-2">
+          {isRoot && (
+            <Button variant="outline" className="h-8 px-3">{">"}</Button>
+          )}
           <Button className="h-8 px-3 bg-brand text-brand-foreground hover:bg-brand/90">View Chart</Button>
           <Button className="h-8 px-3 bg-emerald-600 text-white hover:bg-emerald-700">Add Report</Button>
         </div>
       </div>
-      {node.children?.map((child) => (
-        <OrgItem key={child.name} node={child} depth={depth + 1} />
+      {hasChildren && !isCollapsed && node.children?.map((child) => (
+        <OrgItem key={child.name} node={child} depth={depth + 1} collapsed={collapsed} onToggle={onToggle} />
       ))}
     </div>
   );
