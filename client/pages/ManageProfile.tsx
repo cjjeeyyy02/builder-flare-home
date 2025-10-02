@@ -56,7 +56,7 @@ export default function ManageProfile() {
         </div>
 
         <div className="py-4">
-          <Tabs defaultValue="personal">
+          <Tabs defaultValue={initialTab}>
             <TabsList className="flex flex-wrap gap-2">
               {[
                 ["personal", "Personal Info"],
