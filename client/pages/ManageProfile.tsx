@@ -114,68 +114,8 @@ export default function ManageProfile() {
               </div>
             </TabsContent>
 
-            <TabsContent value="work" className="space-y-6">
-              <div>
-                <SectionTitle>Current Position Details</SectionTitle>
-                <div className="mt-3 grid grid-cols-1 gap-3 md:grid-cols-2">
-                  <Input placeholder="Position Title" defaultValue={employee.role} />
-                  <Input placeholder="Department" defaultValue={employee.department} />
-                  <Input placeholder="Employment Type" />
-                  <Input placeholder="Start Date" defaultValue={employee.joiningDate} />
-                  <Input placeholder="Reporting To" />
-                  <Input placeholder="Work Location" defaultValue={employee.location} />
-                </div>
-                <div className="mt-4">
-                  <OrgChartMenu />
-                </div>
-              </div>
-
-              <div>
-                <SectionTitle>Position History</SectionTitle>
-                <ul className="mt-3 space-y-4">
-                  {[
-                    { role: employee.role, range: `${employee.joiningDate} - Present`, reason: "Promotion" },
-                    { role: "Software Engineer", range: "08-01-2021 - 01-14-2023", reason: "Promotion" },
-                    { role: "Junior Software Engineer", range: "01-15-2020 - 07-31-2021", reason: "Transfer" },
-                  ].map((item, i) => (
-                    <li key={i} className="relative pl-6">
-                      <span className="absolute left-0 top-1.5 h-3 w-3 rounded-full bg-brand" />
-                      <div className="text-sm font-semibold">{item.role}</div>
-                      <div className="text-xs text-muted-foreground">{item.range} • {item.reason}</div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div>
-                <SectionTitle>Previous Work History</SectionTitle>
-                <div className="mt-3 overflow-hidden rounded-lg border">
-                  <Table>
-                    <TableHeader>
-                      <TableRow className="bg-muted/40">
-                        <TableHead className="py-2">Company Name</TableHead>
-                        <TableHead className="py-2">Position</TableHead>
-                        <TableHead className="py-2">Duration</TableHead>
-                        <TableHead className="py-2">Location</TableHead>
-                        <TableHead className="py-2">Employment Type</TableHead>
-                        <TableHead className="py-2">Reason for Leaving</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {["Nimbus Labs", "Aster Corp"].map((c, idx) => (
-                        <TableRow key={c} className={idx % 2 ? "bg-muted/20" : ""}>
-                          <TableCell className="py-2">{c}</TableCell>
-                          <TableCell className="py-2">Software Engineer</TableCell>
-                          <TableCell className="py-2">2 years</TableCell>
-                          <TableCell className="py-2">Vancouver, Canada</TableCell>
-                          <TableCell className="py-2">Full-time</TableCell>
-                          <TableCell className="py-2">Career growth</TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </div>
-              </div>
+            <TabsContent value="work" className="space-y-2">
+              <h3 className="text-base font-bold">Work Details</h3>
             </TabsContent>
 
             <TabsContent value="skills" className="space-y-4">
