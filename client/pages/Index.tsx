@@ -66,6 +66,7 @@ const ORG_TREE: OrgNode[] = [
 function OrgListView() {
   const total = 13;
   const [collapsed, setCollapsed] = useState<Set<string>>(() => new Set(ORG_TREE.map((n) => n.name)));
+  const [mode, setMode] = useState<"list" | "chart">("list");
   const toggle = (name: string) =>
     setCollapsed((prev) => {
       const next = new Set(prev);
@@ -114,30 +115,98 @@ function OrgListView() {
     return rows;
   };
 
+  const ChartNode = ({ node }: { node: OrgNode }) => {
+    const hasChildren = !!node.children?.length;
+    const isCollapsed = collapsed.has(node.name);
+    const initials = node.name
+      .split(" ")
+      .map((n) => n[0])
+      .slice(0, 2)
+      .join("");
+    return (
+      <div className="flex flex-col items-center">
+        <div className="flex items-center gap-2 rounded-lg border bg-card px-3 py-2">
+          {hasChildren && (
+            <button
+              type="button"
+              aria-label={isCollapsed ? "Expand direct reports" : "Collapse direct reports"}
+              onClick={() => toggle(node.name)}
+              className="flex h-5 w-5 items-center justify-center rounded border text-[10px] text-muted-foreground hover:bg-accent"
+            >
+              {isCollapsed ? ">" : "˅"}
+            </button>
+          )}
+          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-brand/10 text-xs font-semibold text-brand">
+            {initials}
+          </div>
+          <div className="leading-tight">
+            <div className="text-xs font-semibold text-foreground">{node.name}</div>
+            <div className="text-[11px] text-muted-foreground">{node.title}</div>
+          </div>
+        </div>
+        {hasChildren && !isCollapsed && (
+          <div className="mt-4 flex flex-wrap items-start justify-center gap-4">
+            {node.children!.map((child) => (
+              <ChartNode key={child.name} node={child} />
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  };
+
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between">
-        <h3 className="text-sm font-bold">List View</h3>
+        <div className="flex items-center gap-2">
+          <h3 className="text-sm font-bold">{mode === "list" ? "List View" : "Chart View"}</h3>
+          <div className="ml-2 inline-flex overflow-hidden rounded-md border text-xs">
+            <button
+              type="button"
+              onClick={() => setMode("list")}
+              className={cn("px-2 py-1", mode === "list" ? "bg-foreground text-background" : "text-foreground hover:bg-accent")}
+            >
+              List
+            </button>
+            <button
+              type="button"
+              onClick={() => setMode("chart")}
+              className={cn("px-2 py-1", mode === "chart" ? "bg-foreground text-background" : "text-foreground hover:bg-accent")}
+            >
+              Chart
+            </button>
+          </div>
+        </div>
         <div className="text-xs text-muted-foreground">
           Total Employees: <span className="text-sm font-semibold text-foreground">{total}</span>
         </div>
       </div>
-      <div className="overflow-hidden rounded-lg border">
-        <Table>
-          <TableHeader>
-            <TableRow className="bg-muted/40">
-              <TableHead className="h-9 px-3 text-xs">Name</TableHead>
-              <TableHead className="h-9 px-3 text-xs">Title</TableHead>
-              <TableHead className="h-9 px-3 text-xs">Department</TableHead>
-              <TableHead className="h-9 px-3 text-xs">Reports</TableHead>
-              <TableHead className="h-9 px-3 text-right text-xs">Actions</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {ORG_TREE.flatMap((node) => renderRows(node, 0))}
-          </TableBody>
-        </Table>
-      </div>
+      {mode === "list" ? (
+        <div className="overflow-hidden rounded-lg border">
+          <Table>
+            <TableHeader>
+              <TableRow className="bg-muted/40">
+                <TableHead className="h-9 px-3 text-xs">Name</TableHead>
+                <TableHead className="h-9 px-3 text-xs">Title</TableHead>
+                <TableHead className="h-9 px-3 text-xs">Department</TableHead>
+                <TableHead className="h-9 px-3 text-xs">Reports</TableHead>
+                <TableHead className="h-9 px-3 text-right text-xs">Actions</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {ORG_TREE.flatMap((node) => renderRows(node, 0))}
+            </TableBody>
+          </Table>
+        </div>
+      ) : (
+        <div className="mt-2">
+          {ORG_TREE.map((node) => (
+            <div key={node.name} className="mb-6 flex justify-center">
+              <ChartNode node={node} />
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
