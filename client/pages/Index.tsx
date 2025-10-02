@@ -102,14 +102,14 @@ function OrgItem({ node, depth, collapsed, onToggle }: { node: OrgNode; depth: n
       <div className="flex items-center justify-between rounded-lg border bg-card p-4">
         <div className="flex items-start gap-3">
           <div className="flex items-center gap-2">
-            {hasChildren && !isRoot && (
+            {hasChildren && (
               <button
                 type="button"
-                aria-label="Toggle direct reports"
+                aria-label={isCollapsed ? "Expand direct reports" : "Collapse direct reports"}
                 onClick={() => onToggle(node.name)}
                 className="flex h-6 w-6 items-center justify-center rounded border text-xs text-muted-foreground hover:bg-accent"
               >
-                {isCollapsed ? "\u203A" : "\u02C5"}
+                {isCollapsed ? ">" : "˅"}
               </button>
             )}
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand/10 text-sm font-semibold text-brand">
@@ -128,9 +128,6 @@ function OrgItem({ node, depth, collapsed, onToggle }: { node: OrgNode; depth: n
           </div>
         </div>
         <div className="flex items-center gap-2">
-          {isRoot && (
-            <Button variant="outline" className="h-8 px-3">{">"}</Button>
-          )}
           <Button className="h-8 px-3 bg-brand text-brand-foreground hover:bg-brand/90">View Chart</Button>
           <Button className="h-8 px-3 bg-emerald-600 text-white hover:bg-emerald-700">Add Report</Button>
         </div>
