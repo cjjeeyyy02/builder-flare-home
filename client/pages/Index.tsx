@@ -24,6 +24,7 @@ import {
   EllipsisVertical,
   LayoutGrid,
   Plus,
+  Minus,
   Table as TableIcon,
   User,
   ArrowLeftRight,
@@ -67,6 +68,7 @@ function OrgListView() {
   const total = 13;
   const [collapsed, setCollapsed] = useState<Set<string>>(() => new Set(ORG_TREE.map((n) => n.name)));
   const [mode, setMode] = useState<"list" | "chart">("list");
+  const [zoom, setZoom] = useState<number>(0.8);
   const toggle = (name: string) =>
     setCollapsed((prev) => {
       const next = new Set(prev);
@@ -115,6 +117,19 @@ function OrgListView() {
     return rows;
   };
 
+  const deptColor = (d: string) =>
+    d === "Executive"
+      ? "bg-rose-100 text-rose-700 dark:bg-rose-500/20 dark:text-rose-300"
+      : d === "Engineering"
+        ? "bg-sky-100 text-sky-700 dark:bg-sky-500/20 dark:text-sky-300"
+        : d === "Finance"
+          ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300"
+          : d === "Marketing"
+            ? "bg-amber-100 text-amber-700 dark:bg-amber-500/20 dark:text-amber-300"
+            : d === "Human Resources"
+              ? "bg-fuchsia-100 text-fuchsia-700 dark:bg-fuchsia-500/20 dark:text-fuchsia-300"
+              : "bg-muted text-foreground";
+
   const ChartNode = ({ node }: { node: OrgNode }) => {
     const hasChildren = !!node.children?.length;
     const isCollapsed = collapsed.has(node.name);
@@ -125,31 +140,40 @@ function OrgListView() {
       .join("");
     return (
       <div className="flex flex-col items-center">
-        <div className="flex items-center gap-2 rounded-lg border bg-card px-3 py-2">
-          {hasChildren && (
-            <button
-              type="button"
-              aria-label={isCollapsed ? "Expand direct reports" : "Collapse direct reports"}
-              onClick={() => toggle(node.name)}
-              className="flex h-5 w-5 items-center justify-center rounded border text-[10px] text-muted-foreground hover:bg-accent"
-            >
-              {isCollapsed ? ">" : "˅"}
-            </button>
-          )}
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-brand/10 text-xs font-semibold text-brand">
-            {initials}
+        <div className="rounded-xl border bg-card px-4 py-3 shadow-sm">
+          <div className="flex items-center gap-3">
+            {hasChildren && (
+              <button
+                type="button"
+                aria-label={isCollapsed ? "Expand direct reports" : "Collapse direct reports"}
+                onClick={() => toggle(node.name)}
+                className="flex h-5 w-5 items-center justify-center rounded border text-[10px] text-muted-foreground hover:bg-accent"
+              >
+                {isCollapsed ? ">" : "˅"}
+              </button>
+            )}
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-brand/10 text-xs font-semibold text-brand">
+              {initials}
+            </div>
+            <div className="leading-tight">
+              <div className="text-xs font-semibold text-foreground">{node.name}</div>
+              <div className="text-[11px] text-muted-foreground">{node.title}</div>
+            </div>
           </div>
-          <div className="leading-tight">
-            <div className="text-xs font-semibold text-foreground">{node.name}</div>
-            <div className="text-[11px] text-muted-foreground">{node.title}</div>
-          </div>
+          <div className={cn("mt-2 inline-block rounded-full px-2 py-0.5 text-[10px] font-medium", deptColor(node.department))}>{node.department}</div>
         </div>
         {hasChildren && !isCollapsed && (
-          <div className="mt-4 flex flex-wrap items-start justify-center gap-4">
-            {node.children!.map((child) => (
-              <ChartNode key={child.name} node={child} />
-            ))}
-          </div>
+          <>
+            <div className="my-3 h-px w-24 bg-border" />
+            <div className="flex flex-wrap items-start justify-center gap-6">
+              {node.children!.map((child) => (
+                <div key={child.name} className="flex flex-col items-center">
+                  <div className="h-4 w-px bg-border" />
+                  <ChartNode node={child} />
+                </div>
+              ))}
+            </div>
+          </>
         )}
       </div>
     );
@@ -162,10 +186,7 @@ function OrgListView() {
           <h3 className="text-sm font-bold">{mode === "list" ? "List View" : "Chart View"}</h3>
         </div>
         <div className="flex items-center gap-2 text-xs text-muted-foreground">
-          <span>
-            Total Employees: <span className="text-sm font-semibold text-foreground">{total}</span>
-          </span>
-          <div className="ml-2 inline-flex items-center gap-1">
+          <div className="inline-flex items-center gap-1">
             <button
               type="button"
               aria-label="List view"
@@ -181,6 +202,27 @@ function OrgListView() {
               className={cn("flex h-7 w-7 items-center justify-center rounded-md border", mode === "chart" ? "bg-foreground text-background" : "text-foreground hover:bg-accent")}
             >
               <LayoutGrid className="h-4 w-4" />
+            </button>
+          </div>
+          <span className="ml-2">
+            Zoom: <span className="text-foreground font-semibold">{Math.round(zoom * 100)}%</span> | {total} employees
+          </span>
+          <div className="inline-flex items-center gap-1">
+            <button
+              type="button"
+              aria-label="Zoom out"
+              onClick={() => setZoom((z) => Math.max(0.5, +(z - 0.1).toFixed(2)))}
+              className="flex h-7 w-7 items-center justify-center rounded-md border text-foreground hover:bg-accent"
+            >
+              <Minus className="h-4 w-4" />
+            </button>
+            <button
+              type="button"
+              aria-label="Zoom in"
+              onClick={() => setZoom((z) => Math.min(1.5, +(z + 0.1).toFixed(2)))}
+              className="flex h-7 w-7 items-center justify-center rounded-md border text-foreground hover:bg-accent"
+            >
+              <Plus className="h-4 w-4" />
             </button>
           </div>
         </div>
@@ -203,7 +245,7 @@ function OrgListView() {
           </Table>
         </div>
       ) : (
-        <div className="mt-2">
+        <div className="mt-2 origin-top" style={{ transform: `scale(${zoom})`, transformOrigin: "top center" }}>
           {ORG_TREE.map((node) => (
             <div key={node.name} className="mb-6 flex justify-center">
               <ChartNode node={node} />
