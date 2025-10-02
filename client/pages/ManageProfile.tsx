@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, CalendarDays, MapPin, Pencil, Shield, Trash2, User } from "lucide-react";
+import { ArrowLeft, CalendarDays, MapPin, Pencil, Phone, Shield, Trash2, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export default function ManageProfile() {
@@ -28,6 +28,21 @@ export default function ManageProfile() {
   }
 
   const initialTab = typeof window !== "undefined" && window.location.hash === "#documents" ? "docs" : "personal";
+
+  const isSarah = employee.id === "EMP001";
+  const personalFirstName = employee.firstName;
+  const personalMiddleName = isSarah ? "—" : "—";
+  const personalLastName = employee.lastName;
+  const personalDOB = isSarah ? "03-15-1990" : "—";
+  const personalGender = isSarah ? "Female" : "—";
+  const personalMarital = isSarah ? "Single" : "—";
+  const personalNationality = isSarah ? "United States" : "—";
+  const contactPhone = isSarah ? "+1 (555) 123-4567" : (employee.contactNumber ?? "—");
+  const contactEmail = isSarah ? "sarah.mitchell@company.com" : employee.email;
+  const addressInfo = isSarah ? "123 – 1350 Foothills Blvd, Prince George, British Columbia, Canada" : (employee.location ?? "—");
+  const emergencyPerson = isSarah ? "John Mitchell" : "—";
+  const emergencyNumber = isSarah ? "+1 (555) 987-6543" : "—";
+  const emergencyRelation = isSarah ? "Father" : "—";
 
   return (
     <div className="min-h-screen bg-background">
@@ -68,15 +83,14 @@ export default function ManageProfile() {
                 ["leave", "Leave & Attendance"],
                 ["docs", "Documents"],
                 ["access", "Access & Security"],
-                ["log", "Change Log"],
               ].map(([val, label]) => (
                 <TabsTrigger
                   key={val}
                   value={val as string}
                   className={cn(
-                    "px-4 py-2 text-sm font-medium border-b-2 border-transparent",
-                    "data-[state=active]:text-brand data-[state=active]:font-semibold data-[state=active]:border-brand",
-                    "text-muted-foreground hover:text-foreground",
+                    "rounded-md px-3 py-1.5 text-xs transition-colors",
+                    "data-[state=active]:bg-[#3B82F6] data-[state=active]:text-white data-[state=active]:font-semibold",
+                    "data-[state=inactive]:text-black data-[state=inactive]:hover:bg-[#E0F2FE]",
                   )}
                 >
                   {label}
@@ -87,32 +101,91 @@ export default function ManageProfile() {
 
             <div className="mt-3 rounded-lg border bg-card p-4 md:p-6">
 
-            <TabsContent value="personal" className="space-y-6">
-              <div className="grid gap-6 lg:grid-cols-2">
-                <div>
-                  <h3 className="text-base font-bold">Personal Information</h3>
-                  <div className="mt-3 grid grid-cols-1 gap-3">
-                    <LabeledField label="First Name" value={employee.firstName} />
-                    <LabeledField label="Middle Name" value={""} />
-                    <LabeledField label="Last Name" value={employee.lastName} />
-                    <LabeledField label="Phone" value={employee.contactNumber} />
-                    <LabeledField label="Address Information" value={employee.location} />
-                    <LabeledField label="Email Address" value={employee.email} />
-                    <LabeledField label="Date of Birth" value={""} />
-                    <LabeledField label="Gender" value={""} />
-                    <LabeledField label="Marital Status" value={""} />
-                    <LabeledField label="Nationality" value={""} />
-                  </div>
+            <TabsContent value="personal" className="space-y-4">
+              <section>
+                <h3 className="text-sm font-semibold">Personal Information</h3>
+                <div className="mt-2 overflow-hidden rounded-md border">
+                  <Table className="text-xs">
+                    <TableBody>
+                      <TableRow>
+                        <TableCell className="w-48 py-2 text-muted-foreground">First Name</TableCell>
+                        <TableCell className="py-2">{personalFirstName}</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="py-2 text-muted-foreground">Middle Name</TableCell>
+                        <TableCell className="py-2">{personalMiddleName}</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="py-2 text-muted-foreground">Last Name</TableCell>
+                        <TableCell className="py-2">{personalLastName}</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="py-2 text-muted-foreground">Date of Birth</TableCell>
+                        <TableCell className="py-2">{personalDOB}</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="py-2 text-muted-foreground">Gender</TableCell>
+                        <TableCell className="py-2">{personalGender}</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="py-2 text-muted-foreground">Marital Status</TableCell>
+                        <TableCell className="py-2">{personalMarital}</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="py-2 text-muted-foreground">Nationality</TableCell>
+                        <TableCell className="py-2">{personalNationality}</TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
                 </div>
-                <div>
-                  <h3 className="text-base font-bold">Emergency Contact</h3>
-                  <div className="mt-3 grid grid-cols-1 gap-3">
-                    <LabeledField label="Contact Person" value={""} />
-                    <LabeledField label="Contact Number" value={""} />
-                    <LabeledField label="Relationship" value={""} />
-                  </div>
+              </section>
+
+              <section className="border-t pt-3">
+                <div className="text-[11px] font-semibold text-red-600">Contact Details</div>
+                <div className="mt-2 overflow-hidden rounded-md border">
+                  <Table className="text-xs">
+                    <TableBody>
+                      <TableRow>
+                        <TableCell className="w-48 py-2 text-muted-foreground">Phone</TableCell>
+                        <TableCell className="py-2">
+                          <div className="flex items-center gap-2"><Phone className="h-3 w-3" /> {contactPhone}</div>
+                        </TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="py-2 text-muted-foreground">Email</TableCell>
+                        <TableCell className="py-2">{contactEmail}</TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
                 </div>
-              </div>
+              </section>
+
+              <section className="border-t pt-3">
+                <div className="text-xs font-semibold">Address Information</div>
+                <div className="mt-1 text-xs text-muted-foreground">{addressInfo}</div>
+              </section>
+
+              <section className="border-t pt-3">
+                <div className="text-xs font-semibold">Emergency Contact</div>
+                <div className="mt-2 overflow-hidden rounded-md border">
+                  <Table className="text-xs">
+                    <TableBody>
+                      <TableRow>
+                        <TableCell className="w-48 py-2 text-muted-foreground">Contact Person</TableCell>
+                        <TableCell className="py-2"><div className="flex items-center gap-2"><User className="h-3 w-3" /> {emergencyPerson}</div></TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="py-2 text-muted-foreground">Contact Number</TableCell>
+                        <TableCell className="py-2"><div className="flex items-center gap-2"><Phone className="h-3 w-3" /> {emergencyNumber}</div></TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="py-2 text-muted-foreground">Relationship</TableCell>
+                        <TableCell className="py-2"><div className="flex items-center gap-2"><Shield className="h-3 w-3" /> {emergencyRelation}</div></TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </div>
+              </section>
             </TabsContent>
 
             <TabsContent value="work" className="space-y-6">
@@ -307,9 +380,6 @@ export default function ManageProfile() {
             </TabsContent>
             <TabsContent value="access" className="space-y-2">
               <h3 className="text-base font-bold">Access & Security</h3>
-            </TabsContent>
-            <TabsContent value="log" className="space-y-2">
-              <h3 className="text-base font-bold">Change Log</h3>
             </TabsContent>
             </div>
           </Tabs>
