@@ -205,9 +205,9 @@ export default function Index() {
               <TabsTrigger
                 value="records"
                 className={cn(
-                  "flex-1 rounded-full px-4 py-2 text-sm",
-                  "data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:font-bold",
-                  "data-[state=inactive]:bg-transparent data-[state=inactive]:text-gray-600",
+                  "flex-1 rounded-[12px] px-4 py-2 text-sm transition-colors",
+                  "data-[state=active]:bg-[#3B82F6] data-[state=active]:text-white data-[state=active]:font-bold",
+                  "data-[state=inactive]:bg-transparent data-[state=inactive]:text-black data-[state=inactive]:font-medium data-[state=inactive]:hover:bg-[#E0F2FE]",
                 )}
               >
                 Employee Records
@@ -215,9 +215,9 @@ export default function Index() {
               <TabsTrigger
                 value="org"
                 className={cn(
-                  "flex-1 rounded-full px-4 py-2 text-sm",
-                  "data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:font-bold",
-                  "data-[state=inactive]:bg-transparent data-[state=inactive]:text-gray-600",
+                  "flex-1 rounded-[12px] px-4 py-2 text-sm transition-colors",
+                  "data-[state=active]:bg-[#3B82F6] data-[state=active]:text-white data-[state=active]:font-bold",
+                  "data-[state=inactive]:bg-transparent data-[state=inactive]:text-black data-[state=inactive]:font-medium data-[state=inactive]:hover:bg-[#E0F2FE]",
                 )}
               >
                 Organization Chart
@@ -225,9 +225,9 @@ export default function Index() {
               <TabsTrigger
                 value="docs"
                 className={cn(
-                  "flex-1 rounded-full px-4 py-2 text-sm",
-                  "data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:font-bold",
-                  "data-[state=inactive]:bg-transparent data-[state=inactive]:text-gray-600",
+                  "flex-1 rounded-[12px] px-4 py-2 text-sm transition-colors",
+                  "data-[state=active]:bg-[#3B82F6] data-[state=active]:text-white data-[state=active]:font-bold",
+                  "data-[state=inactive]:bg-transparent data-[state=inactive]:text-black data-[state=inactive]:font-medium data-[state=inactive]:hover:bg-[#E0F2FE]",
                 )}
               >
                 Document Center
@@ -235,9 +235,9 @@ export default function Index() {
               <TabsTrigger
                 value="dept"
                 className={cn(
-                  "flex-1 rounded-full px-4 py-2 text-sm",
-                  "data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:font-bold",
-                  "data-[state=inactive]:bg-transparent data-[state=inactive]:text-gray-600",
+                  "flex-1 rounded-[12px] px-4 py-2 text-sm transition-colors",
+                  "data-[state=active]:bg-[#3B82F6] data-[state=active]:text-white data-[state=active]:font-bold",
+                  "data-[state=inactive]:bg-transparent data-[state=inactive]:text-black data-[state=inactive]:font-medium data-[state=inactive]:hover:bg-[#E0F2FE]",
                 )}
               >
                 Department Management
@@ -245,9 +245,9 @@ export default function Index() {
               <TabsTrigger
                 value="sys"
                 className={cn(
-                  "flex-1 rounded-full px-4 py-2 text-sm",
-                  "data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:font-bold",
-                  "data-[state=inactive]:bg-transparent data-[state=inactive]:text-gray-600",
+                  "flex-1 rounded-[12px] px-4 py-2 text-sm transition-colors",
+                  "data-[state=active]:bg-[#3B82F6] data-[state=active]:text-white data-[state=active]:font-bold",
+                  "data-[state=inactive]:bg-transparent data-[state=inactive]:text-black data-[state=inactive]:font-medium data-[state=inactive]:hover:bg-[#E0F2FE]",
                 )}
               >
                 System Configuration
