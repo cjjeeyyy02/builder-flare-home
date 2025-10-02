@@ -33,6 +33,89 @@ import { cn } from "@/lib/utils";
 import { useNavigate } from "react-router-dom";
 import { EMPLOYEES, type Employee } from "@/lib/data/employees";
 
+type OrgNode = {
+  name: string;
+  title: string;
+  department: string;
+  directReports?: number;
+  children?: OrgNode[];
+};
+
+const ORG_TREE: OrgNode[] = [
+  {
+    name: "Michael Rodriguez",
+    title: "Chief Executive Officer",
+    department: "Executive",
+    directReports: 4,
+    children: [
+      {
+        name: "Sarah Mitchell",
+        title: "Chief Technology Officer",
+        department: "Engineering",
+        directReports: 3,
+        children: [
+          { name: "James Rodriguez", title: "Senior Software Engineer", department: "Engineering" },
+          { name: "Emily Chen", title: "Lead UX Designer", department: "Engineering" },
+          { name: "Marcus Thompson", title: "DevOps Manager", department: "Engineering" },
+        ],
+      },
+    ],
+  },
+];
+
+function OrgListView() {
+  const total = 13;
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center justify-between">
+        <h3 className="text-base font-bold">List View</h3>
+        <div className="text-sm text-muted-foreground">Total Employees: <span className="font-semibold text-foreground">{total}</span></div>
+      </div>
+      <div className="space-y-2">
+        {ORG_TREE.map((node) => (
+          <OrgItem key={node.name} node={node} depth={0} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function OrgItem({ node, depth }: { node: OrgNode; depth: number }) {
+  const initials = node.name
+    .split(" ")
+    .map((n) => n[0])
+    .slice(0, 2)
+    .join("");
+  return (
+    <div className={cn("space-y-2", depth > 0 && "ml-6 pl-4 border-l") }>
+      <div className="flex items-center justify-between rounded-lg border bg-card p-4">
+        <div className="flex items-start gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand/10 text-sm font-semibold text-brand">
+            {initials}
+          </div>
+          <div>
+            <div className="font-semibold text-foreground">{node.name}</div>
+            <div className="text-xs text-muted-foreground">{node.title}</div>
+            <div className="mt-1 flex flex-wrap items-center gap-2 text-xs">
+              <Badge variant="secondary" className="px-2 py-0.5">{node.department}</Badge>
+              {typeof node.directReports === "number" && node.directReports > 0 && (
+                <span className="text-muted-foreground">• {node.directReports} direct reports</span>
+              )}
+            </div>
+          </div>
+        </div>
+        <div className="flex items-center gap-2">
+          <Button className="h-8 px-3 bg-brand text-brand-foreground hover:bg-brand/90">View Chart</Button>
+          <Button className="h-8 px-3 bg-emerald-600 text-white hover:bg-emerald-700">Add Report</Button>
+        </div>
+      </div>
+      {node.children?.map((child) => (
+        <OrgItem key={child.name} node={child} depth={depth + 1} />
+      ))}
+    </div>
+  );
+}
+
 export default function Index() {
   const [search, setSearch] = useState("");
   const [position, setPosition] = useState<string>("all");
