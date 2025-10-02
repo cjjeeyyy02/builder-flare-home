@@ -73,71 +73,75 @@ function OrgListView() {
       else next.add(name);
       return next;
     });
+
+  const renderRows = (node: OrgNode, depth: number): React.ReactNode[] => {
+    const hasChildren = !!node.children?.length;
+    const isCollapsed = collapsed.has(node.name);
+    const rows: React.ReactNode[] = [];
+    rows.push(
+      <TableRow key={node.name}>
+        <TableCell className="py-2 text-sm">
+          <div className="flex items-center gap-2" style={{ marginLeft: depth * 16 }}>
+            {hasChildren && (
+              <button
+                type="button"
+                aria-label={isCollapsed ? "Expand direct reports" : "Collapse direct reports"}
+                onClick={() => toggle(node.name)}
+                className="flex h-5 w-5 items-center justify-center rounded border text-[10px] text-muted-foreground hover:bg-accent"
+              >
+                {isCollapsed ? ">" : "˅"}
+              </button>
+            )}
+            <span className="font-medium text-foreground">{node.name}</span>
+          </div>
+        </TableCell>
+        <TableCell className="py-2 text-xs text-muted-foreground">{node.title}</TableCell>
+        <TableCell className="py-2 text-xs">{node.department}</TableCell>
+        <TableCell className="py-2 text-xs">{typeof node.directReports === "number" ? node.directReports : node.children?.length ?? 0}</TableCell>
+        <TableCell className="py-2 text-right">
+          <div className="flex items-center justify-end gap-2">
+            <Button className="h-7 rounded-md px-2 text-xs bg-brand text-brand-foreground hover:bg-brand/90">View Chart</Button>
+            <Button className="h-7 rounded-md px-2 text-xs bg-emerald-600 text-white hover:bg-emerald-700">Add Report</Button>
+          </div>
+        </TableCell>
+      </TableRow>,
+    );
+    if (hasChildren && !isCollapsed) {
+      node.children?.forEach((child) => {
+        rows.push(...renderRows(child, depth + 1));
+      });
+    }
+    return rows;
+  };
+
   return (
-    <div className="space-y-4">
+    <div className="space-y-3">
       <div className="flex items-center justify-between">
-        <h3 className="text-base font-bold">List View</h3>
-        <div className="text-sm text-muted-foreground">Total Employees: <span className="font-semibold text-foreground">{total}</span></div>
+        <h3 className="text-sm font-bold">List View</h3>
+        <div className="text-xs text-muted-foreground">
+          Total Employees: <span className="text-sm font-semibold text-foreground">{total}</span>
+        </div>
       </div>
-      <div className="space-y-2">
-        {ORG_TREE.map((node) => (
-          <OrgItem key={node.name} node={node} depth={0} collapsed={collapsed} onToggle={toggle} />
-        ))}
+      <div className="overflow-hidden rounded-lg border">
+        <Table>
+          <TableHeader>
+            <TableRow className="bg-muted/40">
+              <TableHead className="h-9 px-3 text-xs">Name</TableHead>
+              <TableHead className="h-9 px-3 text-xs">Title</TableHead>
+              <TableHead className="h-9 px-3 text-xs">Department</TableHead>
+              <TableHead className="h-9 px-3 text-xs">Reports</TableHead>
+              <TableHead className="h-9 px-3 text-right text-xs">Actions</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {ORG_TREE.flatMap((node) => renderRows(node, 0))}
+          </TableBody>
+        </Table>
       </div>
     </div>
   );
 }
 
-function OrgItem({ node, depth, collapsed, onToggle }: { node: OrgNode; depth: number; collapsed: Set<string>; onToggle: (name: string) => void }) {
-  const initials = node.name
-    .split(" ")
-    .map((n) => n[0])
-    .slice(0, 2)
-    .join("");
-  const hasChildren = !!node.children?.length;
-  const isRoot = depth === 0;
-  const isCollapsed = collapsed.has(node.name);
-  return (
-    <div className={cn("space-y-2", depth > 0 && "ml-6 pl-4 border-l") }>
-      <div className="flex items-center justify-between rounded-lg border bg-card p-4">
-        <div className="flex items-start gap-3">
-          <div className="flex items-center gap-2">
-            {hasChildren && (
-              <button
-                type="button"
-                aria-label={isCollapsed ? "Expand direct reports" : "Collapse direct reports"}
-                onClick={() => onToggle(node.name)}
-                className="flex h-6 w-6 items-center justify-center rounded border text-xs text-muted-foreground hover:bg-accent"
-              >
-                {isCollapsed ? ">" : "˅"}
-              </button>
-            )}
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand/10 text-sm font-semibold text-brand">
-              {initials}
-            </div>
-          </div>
-          <div>
-            <div className="font-semibold text-foreground">{node.name}</div>
-            <div className="text-xs text-muted-foreground">{node.title}</div>
-            <div className="mt-1 flex flex-wrap items-center gap-2 text-xs">
-              <Badge variant="secondary" className="px-2 py-0.5">{node.department}</Badge>
-              {typeof node.directReports === "number" && node.directReports > 0 && (
-                <span className="text-muted-foreground">• {node.directReports} direct reports</span>
-              )}
-            </div>
-          </div>
-        </div>
-        <div className="flex items-center gap-2">
-          <Button className="h-8 px-3 bg-brand text-brand-foreground hover:bg-brand/90">View Chart</Button>
-          <Button className="h-8 px-3 bg-emerald-600 text-white hover:bg-emerald-700">Add Report</Button>
-        </div>
-      </div>
-      {hasChildren && !isCollapsed && node.children?.map((child) => (
-        <OrgItem key={child.name} node={child} depth={depth + 1} collapsed={collapsed} onToggle={onToggle} />
-      ))}
-    </div>
-  );
-}
 
 export default function Index() {
   const [search, setSearch] = useState("");
@@ -330,12 +334,12 @@ export default function Index() {
                   <Table>
                     <TableHeader>
                       <TableRow className="bg-muted/40">
-                        <TableHead className="py-3">Employee ID</TableHead>
-                        <TableHead className="py-3">Name</TableHead>
-                        <TableHead className="py-3">Department</TableHead>
-                        <TableHead className="py-3">Company Email</TableHead>
-                        <TableHead className="py-3">Status</TableHead>
-                        <TableHead className="py-3">Joining Date</TableHead>
+                        <TableHead className="py-2 text-xs">Employee ID</TableHead>
+                        <TableHead className="py-2 text-xs">Name</TableHead>
+                        <TableHead className="py-2 text-xs">Department</TableHead>
+                        <TableHead className="py-2 text-xs">Company Email</TableHead>
+                        <TableHead className="py-2 text-xs">Status</TableHead>
+                        <TableHead className="py-2 text-xs">Joining Date</TableHead>
                         <TableHead className="py-3 text-right">Action</TableHead>
                       </TableRow>
                     </TableHeader>
@@ -351,9 +355,9 @@ export default function Index() {
                           <TableCell className="py-3 font-medium text-foreground/90">
                             {e.id}
                           </TableCell>
-                          <TableCell className="py-3">
+                          <TableCell className="py-2 text-sm">
                             <div className="flex flex-col">
-                              <span className="font-semibold text-foreground">
+                              <span className="text-sm font-semibold text-foreground">
                                 {e.firstName} {e.lastName}
                               </span>
                               <span className="text-xs text-muted-foreground">
@@ -361,10 +365,10 @@ export default function Index() {
                               </span>
                             </div>
                           </TableCell>
-                          <TableCell className="py-3">{e.department}</TableCell>
-                          <TableCell className="py-3">{e.email}</TableCell>
-                          <TableCell className="py-3">{e.status}</TableCell>
-                          <TableCell className="py-3">{e.joiningDate}</TableCell>
+                          <TableCell className="py-2 text-sm">{e.department}</TableCell>
+                          <TableCell className="py-2 text-sm">{e.email}</TableCell>
+                          <TableCell className="py-2 text-sm">{e.status}</TableCell>
+                          <TableCell className="py-2 text-sm">{e.joiningDate}</TableCell>
                           <TableCell className="py-3 text-right">
                             <RowActions employee={e} />
                           </TableCell>
@@ -452,7 +456,7 @@ function RowActions({ employee }: { employee: Employee }) {
     <div className="relative inline-block text-left">
       <Button
         variant="ghost"
-        className="h-8 w-8 p-0"
+        className="h-7 w-7 rounded-md p-0"
         onClick={() => setOpen((v) => !v)}
         aria-haspopup="menu"
         aria-expanded={open}
