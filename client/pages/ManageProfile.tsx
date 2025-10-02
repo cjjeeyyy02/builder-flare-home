@@ -56,7 +56,8 @@ export default function ManageProfile() {
 
         <div className="py-4">
           <Tabs defaultValue={initialTab}>
-            <TabsList className="flex flex-wrap gap-1">
+            <div className="sticky top-16 z-10 border-b bg-background/90 py-2 backdrop-blur supports-[backdrop-filter]:bg-background/70">
+              <TabsList className="flex flex-wrap gap-1">
               {[
                 ["personal", "Personal Info"],
                 ["work", "Work Details"],
@@ -81,37 +82,34 @@ export default function ManageProfile() {
                 </TabsTrigger>
               ))}
             </TabsList>
+            </div>
 
             <div className="mt-3 rounded-lg border bg-card p-4 md:p-6">
 
             <TabsContent value="personal" className="space-y-6">
-              <div>
-                <SectionTitle>Personal Information</SectionTitle>
-                <div className="mt-3 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
-                  <Input placeholder="First Name" defaultValue={employee.firstName} />
-                  <Input placeholder="Middle Name" />
-                  <Input placeholder="Last Name" defaultValue={employee.lastName} />
-                  <Input placeholder="Birthdate (MM-DD-YYYY)" />
-                  <Input placeholder="Email Address" defaultValue={employee.email} />
-                  <Input placeholder="Phone Number" defaultValue={employee.contactNumber} />
-                  <Input placeholder="Gender" />
-                  <Input placeholder="Marital Status" />
-                  <Input placeholder="Nationality" />
+              <div className="grid gap-6 lg:grid-cols-2">
+                <div>
+                  <h3 className="text-base font-bold">Personal Information</h3>
+                  <div className="mt-3 grid grid-cols-1 gap-3">
+                    <LabeledInput label="First Name" defaultValue={employee.firstName} />
+                    <LabeledInput label="Middle Name" />
+                    <LabeledInput label="Last Name" defaultValue={employee.lastName} />
+                    <LabeledInput label="Phone" defaultValue={employee.contactNumber} />
+                    <LabeledInput label="Address Information" />
+                    <LabeledInput label="Email Address" defaultValue={employee.email} />
+                    <LabeledInput label="Date of Birth" />
+                    <LabeledInput label="Gender" />
+                    <LabeledInput label="Marital Status" />
+                    <LabeledInput label="Nationality" />
+                  </div>
                 </div>
-              </div>
-
-              <div>
-                <SectionTitle>Address Information</SectionTitle>
-                <Input className="mt-3" placeholder="Full Address" />
-              </div>
-
-              <div>
-                <SectionTitle>Emergency Contact Details</SectionTitle>
-                <div className="mt-3 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
-                  <Input placeholder="Contact Person" />
-                  <Input placeholder="Contact Number" />
-                  <Input placeholder="Home Address" />
-                  <Input placeholder="Relationship" />
+                <div>
+                  <h3 className="text-base font-bold">Emergency Contact</h3>
+                  <div className="mt-3 grid grid-cols-1 gap-3">
+                    <LabeledInput label="Contact Person" />
+                    <LabeledInput label="Contact Number" />
+                    <LabeledInput label="Relationship" />
+                  </div>
                 </div>
               </div>
             </TabsContent>
@@ -228,6 +226,15 @@ export default function ManageProfile() {
           </Tabs>
         </div>
       </div>
+    </div>
+  );
+}
+
+function LabeledInput({ label, defaultValue, placeholder }: { label: string; defaultValue?: string; placeholder?: string }) {
+  return (
+    <div className="grid gap-1.5">
+      <label className="text-xs font-semibold text-foreground">{label}</label>
+      <Input defaultValue={defaultValue} placeholder={placeholder ?? label} />
     </div>
   );
 }
