@@ -42,7 +42,7 @@ export default function ManageProfile() {
                 <div className="text-lg font-bold text-foreground">{employee.firstName} {employee.lastName}</div>
                 <div className="text-sm text-muted-foreground">{employee.email}</div>
                 <div className="text-sm text-muted-foreground">{employee.contactNumber ?? "—"}</div>
-                <div className="text-sm text-muted-foreground">{employee.department} • {employee.location ?? "—"}</div>
+                <div className="text-sm text-muted-foreground">{employee.department} • {employee.location ?? "���"}</div>
               </div>
             </div>
             <div className="text-right text-sm">
@@ -118,41 +118,8 @@ export default function ManageProfile() {
               <h3 className="text-base font-bold">Work Details</h3>
             </TabsContent>
 
-            <TabsContent value="skills" className="space-y-4">
-              <div className="flex items-center justify-between">
-                <SectionTitle>Skills Summary</SectionTitle>
-                <Button>Add New Skill</Button>
-              </div>
-              <div className="overflow-hidden rounded-lg border">
-                <Table>
-                  <TableHeader>
-                    <TableRow className="bg-muted/40">
-                      <TableHead className="py-2">Skill Name</TableHead>
-                      <TableHead className="py-2">Experience</TableHead>
-                      <TableHead className="py-2">Skill Level</TableHead>
-                      <TableHead className="py-2 text-right">Actions</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {[
-                      { name: "React", exp: "6 years", level: "Expert" },
-                      { name: "TypeScript", exp: "5 years", level: "Advanced" },
-                      { name: "Design Systems", exp: "4 years", level: "Intermediate" },
-                    ].map((s, idx) => (
-                      <TableRow key={s.name} className={idx % 2 ? "bg-muted/20" : ""}>
-                        <TableCell className="py-2">{s.name}</TableCell>
-                        <TableCell className="py-2">{s.exp}</TableCell>
-                        <TableCell className="py-2">
-                          <SkillLevel level={s.level as any} />
-                        </TableCell>
-                        <TableCell className="py-2 text-right">
-                          <Button variant="ghost" className="h-8 px-2"><Pencil className="h-4 w-4" /></Button>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </div>
+            <TabsContent value="skills" className="space-y-2">
+              <h3 className="text-base font-bold">Skills</h3>
             </TabsContent>
 
             <TabsContent value="comp" className="mt-4 text-sm text-muted-foreground">Compensation details to be configured.</TabsContent>
