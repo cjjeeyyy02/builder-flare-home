@@ -30,19 +30,29 @@ export default function ManageProfile() {
   const initialTab = typeof window !== "undefined" && window.location.hash === "#documents" ? "docs" : "personal";
 
   const isSarah = employee.id === "EMP001";
-  const personalFirstName = employee.firstName;
-  const personalMiddleName = isSarah ? "—" : "—";
-  const personalLastName = employee.lastName;
-  const personalDOB = isSarah ? "03-15-1990" : "—";
-  const personalGender = isSarah ? "Female" : "—";
-  const personalMarital = isSarah ? "Single" : "—";
-  const personalNationality = isSarah ? "United States" : "—";
-  const contactPhone = isSarah ? "+1 (555) 123-4567" : (employee.contactNumber ?? "—");
-  const contactEmail = isSarah ? "sarah.mitchell@company.com" : employee.email;
-  const addressInfo = isSarah ? "123 – 1350 Foothills Blvd, Prince George, British Columbia, Canada" : (employee.location ?? "—");
-  const emergencyPerson = isSarah ? "John Mitchell" : "—";
-  const emergencyNumber = isSarah ? "+1 (555) 987-6543" : "—";
-  const emergencyRelation = isSarah ? "Father" : "—";
+  // Section 1: Personal Information
+  const piFirstName = isSarah ? "Sarah" : employee.firstName || "—";
+  const piMiddleName = isSarah ? "—" : "—";
+  const piLastName = isSarah ? "Mitchell" : employee.lastName || "—";
+  const piDOB = isSarah ? "03-15-1990" : "—";
+  const piGender = isSarah ? "Female" : "—";
+  const piMarital = isSarah ? "Single" : "—";
+  const piNationality = isSarah ? "United States" : "—";
+  // Section 2: Contact Details
+  const cdPhone = isSarah ? "+1 234 567 890" : employee.contactNumber ?? "—";
+  const cdAltPhone = isSarah ? "+1 987 654 321" : "—";
+  const cdEmail = isSarah ? "sarah.mitchell@email.com" : employee.email;
+  const cdWorkEmail = isSarah ? "sarah.m@company.com" : employee.email;
+  // Section 3: Address Information
+  const addrStreet = isSarah ? "123 Main Street" : "—";
+  const addrCity = isSarah ? "Los Angeles" : "—";
+  const addrState = isSarah ? "California" : "—";
+  const addrZip = isSarah ? "90001" : "—";
+  // Section 4: Emergency Contact
+  const ecName = isSarah ? "John Mitchell" : "—";
+  const ecRelation = isSarah ? "Brother" : "—";
+  const ecPhone = isSarah ? "+1 456 789 123" : "—";
+  const ecAltPhone = isSarah ? "+1 321 654 987" : "—";
 
   return (
     <div className="min-h-screen bg-background">
@@ -101,39 +111,82 @@ export default function ManageProfile() {
 
             <div className="mt-3 rounded-lg border bg-card p-4 md:p-6">
 
-            <TabsContent value="personal" className="space-y-4">
+            <TabsContent value="personal" className="space-y-6">
               <section>
-                <h3 className="text-sm font-semibold text-foreground">Personal Information</h3>
-                <div className="mt-2 space-y-1.5 text-sm">
-                  <div><span className="font-semibold">First Name:</span> {personalFirstName}</div>
-                  <div><span className="font-semibold">Middle Name:</span> {personalMiddleName}</div>
-                  <div><span className="font-semibold">Last Name:</span> {personalLastName}</div>
-                  <div><span className="font-semibold">Date of Birth:</span> {personalDOB}</div>
-                  <div><span className="font-semibold">Gender:</span> {personalGender}</div>
-                  <div><span className="font-semibold">Marital Status:</span> {personalMarital}</div>
-                  <div><span className="font-semibold">Nationality:</span> {personalNationality}</div>
+                <h3 className="text-base font-bold text-foreground">Personal Information</h3>
+                <div className="mt-3 grid grid-cols-1 gap-6 md:grid-cols-2">
+                  <div className="space-y-3">
+                    <div className="text-xs text-muted-foreground">First Name</div>
+                    <div className="text-sm font-semibold text-foreground">{piFirstName}</div>
+                    <div className="text-xs text-muted-foreground">Middle Name</div>
+                    <div className="text-sm font-semibold text-foreground">{piMiddleName}</div>
+                    <div className="text-xs text-muted-foreground">Last Name</div>
+                    <div className="text-sm font-semibold text-foreground">{piLastName}</div>
+                  </div>
+                  <div className="space-y-3">
+                    <div className="text-xs text-muted-foreground">Date of Birth</div>
+                    <div className="text-sm font-semibold text-foreground">{piDOB}</div>
+                    <div className="text-xs text-muted-foreground">Gender</div>
+                    <div className="text-sm font-semibold text-foreground">{piGender}</div>
+                    <div className="text-xs text-muted-foreground">Marital Status</div>
+                    <div className="text-sm font-semibold text-foreground">{piMarital}</div>
+                    <div className="text-xs text-muted-foreground">Nationality</div>
+                    <div className="text-sm font-semibold text-foreground">{piNationality}</div>
+                  </div>
                 </div>
               </section>
 
-              <section className="pt-2">
-                <h3 className="text-sm font-semibold text-foreground">Contact Details</h3>
-                <div className="mt-2 space-y-1.5 text-sm">
-                  <div><span className="font-semibold">Phone:</span> {contactPhone}</div>
-                  <div><span className="font-semibold">Email Address:</span> {contactEmail}</div>
+              <section>
+                <h3 className="text-base font-bold text-foreground">Contact Details</h3>
+                <div className="mt-3 grid grid-cols-1 gap-6 md:grid-cols-2">
+                  <div className="space-y-3">
+                    <div className="text-xs text-muted-foreground">Phone Number</div>
+                    <div className="text-sm font-semibold text-foreground">{cdPhone}</div>
+                    <div className="text-xs text-muted-foreground">Alternate Number</div>
+                    <div className="text-sm font-semibold text-foreground">{cdAltPhone}</div>
+                  </div>
+                  <div className="space-y-3">
+                    <div className="text-xs text-muted-foreground">Email Address</div>
+                    <div className="text-sm font-semibold text-foreground">{cdEmail}</div>
+                    <div className="text-xs text-muted-foreground">Work Email</div>
+                    <div className="text-sm font-semibold text-foreground">{cdWorkEmail}</div>
+                  </div>
                 </div>
               </section>
 
-              <section className="pt-2">
-                <h3 className="text-sm font-semibold text-foreground">Address Information</h3>
-                <div className="mt-2 text-sm">{addressInfo}</div>
+              <section>
+                <h3 className="text-base font-bold text-foreground">Address Information</h3>
+                <div className="mt-3 grid grid-cols-1 gap-6 md:grid-cols-2">
+                  <div className="space-y-3">
+                    <div className="text-xs text-muted-foreground">Street Address</div>
+                    <div className="text-sm font-semibold text-foreground">{addrStreet}</div>
+                    <div className="text-xs text-muted-foreground">City</div>
+                    <div className="text-sm font-semibold text-foreground">{addrCity}</div>
+                  </div>
+                  <div className="space-y-3">
+                    <div className="text-xs text-muted-foreground">State</div>
+                    <div className="text-sm font-semibold text-foreground">{addrState}</div>
+                    <div className="text-xs text-muted-foreground">Zip Code</div>
+                    <div className="text-sm font-semibold text-foreground">{addrZip}</div>
+                  </div>
+                </div>
               </section>
 
-              <section className="pt-2">
-                <h3 className="text-sm font-semibold text-foreground">Emergency Contact</h3>
-                <div className="mt-2 space-y-1.5 text-sm">
-                  <div><span className="font-semibold">Contact Person:</span> {emergencyPerson}</div>
-                  <div><span className="font-semibold">Contact Number:</span> {emergencyNumber}</div>
-                  <div><span className="font-semibold">Relationship:</span> {emergencyRelation}</div>
+              <section>
+                <h3 className="text-base font-bold text-foreground">Emergency Contact</h3>
+                <div className="mt-3 grid grid-cols-1 gap-6 md:grid-cols-2">
+                  <div className="space-y-3">
+                    <div className="text-xs text-muted-foreground">Contact Name</div>
+                    <div className="text-sm font-semibold text-foreground">{ecName}</div>
+                    <div className="text-xs text-muted-foreground">Relationship</div>
+                    <div className="text-sm font-semibold text-foreground">{ecRelation}</div>
+                  </div>
+                  <div className="space-y-3">
+                    <div className="text-xs text-muted-foreground">Contact Number</div>
+                    <div className="text-sm font-semibold text-foreground">{ecPhone}</div>
+                    <div className="text-xs text-muted-foreground">Alternate Number</div>
+                    <div className="text-sm font-semibold text-foreground">{ecAltPhone}</div>
+                  </div>
                 </div>
               </section>
             </TabsContent>
