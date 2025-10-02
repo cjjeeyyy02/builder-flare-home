@@ -42,7 +42,7 @@ export default function ManageProfile() {
                 <div className="text-lg font-bold text-foreground">{employee.firstName} {employee.lastName}</div>
                 <div className="text-sm text-muted-foreground">{employee.email}</div>
                 <div className="text-sm text-muted-foreground">{employee.contactNumber ?? "—"}</div>
-                <div className="text-sm text-muted-foreground">{employee.department} • {employee.location ?? "���"}</div>
+                <div className="text-sm text-muted-foreground">{employee.department} • {employee.location ?? "—"}</div>
               </div>
             </div>
             <div className="text-right text-sm">
@@ -122,13 +122,27 @@ export default function ManageProfile() {
               <h3 className="text-base font-bold">Skills</h3>
             </TabsContent>
 
-            <TabsContent value="comp" className="mt-4 text-sm text-muted-foreground">Compensation details to be configured.</TabsContent>
-            <TabsContent value="perf" className="mt-4 text-sm text-muted-foreground">Performance module integration pending.</TabsContent>
-            <TabsContent value="training" className="mt-4 text-sm text-muted-foreground">Training plans and records here.</TabsContent>
-            <TabsContent value="leave" className="mt-4 text-sm text-muted-foreground">Leave & Attendance configuration.</TabsContent>
-            <TabsContent value="docs" className="mt-4 text-sm text-muted-foreground">Documents linked to this profile.</TabsContent>
-            <TabsContent value="access" className="mt-4 text-sm text-muted-foreground">Access & Security roles and policies.</TabsContent>
-            <TabsContent value="log" className="mt-4 text-sm text-muted-foreground">Change Log audit trail.</TabsContent>
+            <TabsContent value="comp" className="space-y-2">
+              <h3 className="text-base font-bold">Compensation</h3>
+            </TabsContent>
+            <TabsContent value="perf" className="space-y-2">
+              <h3 className="text-base font-bold">Performance</h3>
+            </TabsContent>
+            <TabsContent value="training" className="space-y-2">
+              <h3 className="text-base font-bold">Training</h3>
+            </TabsContent>
+            <TabsContent value="leave" className="space-y-2">
+              <h3 className="text-base font-bold">Leave & Attendance</h3>
+            </TabsContent>
+            <TabsContent value="docs" className="space-y-2">
+              <h3 className="text-base font-bold">Documents</h3>
+            </TabsContent>
+            <TabsContent value="access" className="space-y-2">
+              <h3 className="text-base font-bold">Access & Security</h3>
+            </TabsContent>
+            <TabsContent value="log" className="space-y-2">
+              <h3 className="text-base font-bold">Change Log</h3>
+            </TabsContent>
             </div>
           </Tabs>
         </div>
