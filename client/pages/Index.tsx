@@ -1,5 +1,38 @@
-import { useMemo, useState } from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useMemo, useState, createContext, useContext } from "react";
+// Local simple Tabs implementation (lightweight replacement for Radix Tabs to avoid invalid hook issues)
+const TabsContext = createContext<{ value: string; setValue: (v: string) => void } | null>(null);
+function Tabs({ defaultValue = "records", children, className }: any) {
+  const [value, setValue] = useState(defaultValue);
+  return (
+    <div className={className}>
+      <TabsContext.Provider value={{ value, setValue }}>{children}</TabsContext.Provider>
+    </div>
+  );
+}
+function TabsList({ children, className }: any) {
+  return <div className={className}>{children}</div>;
+}
+function TabsTrigger({ value, children, className, ...props }: any) {
+  const ctx = useContext(TabsContext);
+  if (!ctx) return null;
+  const active = ctx.value === value;
+  return (
+    <button
+      type="button"
+      data-state={active ? "active" : "inactive"}
+      onClick={() => ctx.setValue(value)}
+      className={className}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+}
+function TabsContent({ value, children, className }: any) {
+  const ctx = useContext(TabsContext);
+  if (!ctx) return null;
+  return ctx.value === value ? <div className={className}>{children}</div> : null;
+}
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import {
