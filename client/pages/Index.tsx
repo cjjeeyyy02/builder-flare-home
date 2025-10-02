@@ -144,6 +144,7 @@ export default function Index() {
   const [position, setPosition] = useState<string>("all");
   const [status, setStatus] = useState<string>("all");
   const [view, setView] = useState<"table" | "card">("table");
+  const [tab, setTab] = useState<string>("records");
 
   const totalActive = EMPLOYEES.filter((e) => e.status === "Active").length;
   const onLeave = EMPLOYEES.filter((e) => e.status === "On Leave").length;
@@ -182,40 +183,72 @@ export default function Index() {
           </p>
         </header>
 
-        <Tabs defaultValue="records" className="w-full">
-          <TabsList className="bg-transparent p-0">
-            <div className="flex flex-wrap gap-2">
+        <Tabs value={tab} onValueChange={setTab} className="w-full">
+          {/* Mobile dropdown */}
+          <div className="sm:hidden">
+            <Select value={tab} onValueChange={setTab}>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select section" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="records">Employee Records</SelectItem>
+                <SelectItem value="org">Organization Chart</SelectItem>
+                <SelectItem value="docs">Document Center</SelectItem>
+                <SelectItem value="dept">Department Management</SelectItem>
+                <SelectItem value="sys">System Configuration</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          {/* Desktop single-row tabs */}
+          <TabsList className="hidden sm:block w-full">
+            <div className="flex flex-nowrap items-center gap-2">
               <TabsTrigger
                 value="records"
                 className={cn(
-                  "rounded-full border px-4 py-2 text-sm font-medium",
-                  "data-[state=active]:bg-brand data-[state=active]:text-brand-foreground",
-                  "data-[state=inactive]:bg-background data-[state=inactive]:text-foreground",
+                  "flex-1 rounded-full px-4 py-2 text-sm",
+                  "data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:font-bold",
+                  "data-[state=inactive]:bg-transparent data-[state=inactive]:text-gray-600",
                 )}
               >
                 Employee Records
               </TabsTrigger>
               <TabsTrigger
                 value="org"
-                className="rounded-full border px-4 py-2 text-sm font-medium data-[state=active]:bg-muted"
+                className={cn(
+                  "flex-1 rounded-full px-4 py-2 text-sm",
+                  "data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:font-bold",
+                  "data-[state=inactive]:bg-transparent data-[state=inactive]:text-gray-600",
+                )}
               >
                 Organization Chart
               </TabsTrigger>
               <TabsTrigger
                 value="docs"
-                className="rounded-full border px-4 py-2 text-sm font-medium data-[state=active]:bg-muted"
+                className={cn(
+                  "flex-1 rounded-full px-4 py-2 text-sm",
+                  "data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:font-bold",
+                  "data-[state=inactive]:bg-transparent data-[state=inactive]:text-gray-600",
+                )}
               >
                 Document Center
               </TabsTrigger>
               <TabsTrigger
                 value="dept"
-                className="rounded-full border px-4 py-2 text-sm font-medium data-[state=active]:bg-muted"
+                className={cn(
+                  "flex-1 rounded-full px-4 py-2 text-sm",
+                  "data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:font-bold",
+                  "data-[state=inactive]:bg-transparent data-[state=inactive]:text-gray-600",
+                )}
               >
                 Department Management
               </TabsTrigger>
               <TabsTrigger
                 value="sys"
-                className="rounded-full border px-4 py-2 text-sm font-medium data-[state=active]:bg-muted"
+                className={cn(
+                  "flex-1 rounded-full px-4 py-2 text-sm",
+                  "data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:font-bold",
+                  "data-[state=inactive]:bg-transparent data-[state=inactive]:text-gray-600",
+                )}
               >
                 System Configuration
               </TabsTrigger>
