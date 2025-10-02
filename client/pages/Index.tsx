@@ -363,9 +363,7 @@ export default function Index() {
                           </TableCell>
                           <TableCell className="py-3">{e.department}</TableCell>
                           <TableCell className="py-3">{e.email}</TableCell>
-                          <TableCell className="py-3">
-                            <StatusBadge status={e.status} />
-                          </TableCell>
+                          <TableCell className="py-3">{e.status}</TableCell>
                           <TableCell className="py-3">{e.joiningDate}</TableCell>
                           <TableCell className="py-3 text-right">
                             <RowActions employee={e} />
@@ -395,9 +393,7 @@ export default function Index() {
                     <div className="mt-3 grid grid-cols-2 gap-2 text-sm">
                       <div className="truncate text-muted-foreground">{e.department}</div>
                       <div className="truncate text-muted-foreground">{e.email}</div>
-                      <div>
-                        <StatusBadge status={e.status} />
-                      </div>
+                      <div>{e.status}</div>
                       <div className="text-muted-foreground">{e.joiningDate}</div>
                     </div>
                   </Card>
@@ -448,15 +444,6 @@ function MetricCard({
   );
 }
 
-function StatusBadge({ status }: { status: Employee["status"] }) {
-  const cls =
-    status === "Active"
-      ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300"
-      : status === "On Leave"
-        ? "bg-blue-100 text-blue-700 dark:bg-blue-500/20 dark:text-blue-300"
-        : "bg-zinc-200 text-zinc-700 dark:bg-zinc-700 dark:text-zinc-200";
-  return <Badge className={cn("border-0 px-2.5 py-0.5", cls)}>{status}</Badge>;
-}
 
 function RowActions({ employee }: { employee: Employee }) {
   const [open, setOpen] = useState(false);
