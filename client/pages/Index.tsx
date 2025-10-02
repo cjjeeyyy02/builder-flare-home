@@ -1,38 +1,5 @@
-import { useMemo, useState, createContext, useContext } from "react";
-// Local simple Tabs implementation (lightweight replacement for Radix Tabs to avoid invalid hook issues)
-const TabsContext = createContext<{ value: string; setValue: (v: string) => void } | null>(null);
-function Tabs({ defaultValue = "records", children, className }: any) {
-  const [value, setValue] = useState(defaultValue);
-  return (
-    <div className={className}>
-      <TabsContext.Provider value={{ value, setValue }}>{children}</TabsContext.Provider>
-    </div>
-  );
-}
-function TabsList({ children, className }: any) {
-  return <div className={className}>{children}</div>;
-}
-function TabsTrigger({ value, children, className, ...props }: any) {
-  const ctx = useContext(TabsContext);
-  if (!ctx) return null;
-  const active = ctx.value === value;
-  return (
-    <button
-      type="button"
-      data-state={active ? "active" : "inactive"}
-      onClick={() => ctx.setValue(value)}
-      className={className}
-      {...props}
-    >
-      {children}
-    </button>
-  );
-}
-function TabsContent({ value, children, className }: any) {
-  const ctx = useContext(TabsContext);
-  if (!ctx) return null;
-  return ctx.value === value ? <div className={className}>{children}</div> : null;
-}
+import { useMemo, useState } from "react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/local/tabs";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import {
@@ -60,92 +27,11 @@ import {
   Table as TableIcon,
   User,
   ArrowLeftRight,
+  FileText,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-interface Employee {
-  id: string;
-  firstName: string;
-  lastName: string;
-  role: string;
-  department: string;
-  email: string;
-  status: "Active" | "On Leave" | "Inactive";
-  joiningDate: string; // MM-DD-YYYY
-}
-
-const EMPLOYEES: Employee[] = [
-  {
-    id: "EMP001",
-    firstName: "Sarah",
-    lastName: "Mitchell",
-    role: "Senior Software Engineer",
-    department: "Engineering",
-    email: "sarah.mitchell@company.com",
-    status: "Active",
-    joiningDate: "01-15-2023",
-  },
-  {
-    id: "EMP002",
-    firstName: "Daniel",
-    lastName: "Nguyen",
-    role: "Product Manager",
-    department: "Product",
-    email: "daniel.nguyen@company.com",
-    status: "Active",
-    joiningDate: "06-02-2022",
-  },
-  {
-    id: "EMP003",
-    firstName: "Priya",
-    lastName: "Kumar",
-    role: "UX Designer",
-    department: "Design",
-    email: "priya.kumar@company.com",
-    status: "On Leave",
-    joiningDate: "11-08-2021",
-  },
-  {
-    id: "EMP004",
-    firstName: "Marcus",
-    lastName: "Lee",
-    role: "Data Analyst",
-    department: "Analytics",
-    email: "marcus.lee@company.com",
-    status: "Active",
-    joiningDate: "03-11-2020",
-  },
-  {
-    id: "EMP005",
-    firstName: "Elena",
-    lastName: "Garcia",
-    role: "HR Coordinator",
-    department: "Human Resources",
-    email: "elena.garcia@company.com",
-    status: "Active",
-    joiningDate: "09-23-2019",
-  },
-  {
-    id: "EMP006",
-    firstName: "Omar",
-    lastName: "Hassan",
-    role: "DevOps Engineer",
-    department: "Engineering",
-    email: "omar.hassan@company.com",
-    status: "Active",
-    joiningDate: "05-30-2023",
-  },
-  {
-    id: "EMP007",
-    firstName: "Julia",
-    lastName: "Rossi",
-    role: "QA Engineer",
-    department: "Engineering",
-    email: "julia.rossi@company.com",
-    status: "Active",
-    joiningDate: "02-17-2024",
-  },
-];
+import { useNavigate } from "react-router-dom";
+import { EMPLOYEES, type Employee } from "@/lib/data/employees";
 
 export default function Index() {
   const [search, setSearch] = useState("");
@@ -365,9 +251,7 @@ export default function Index() {
                         </div>
                         <div className="text-xs text-muted-foreground">{e.role}</div>
                       </div>
-                      <Button variant="ghost" className="h-8 w-8 p-0">
-                        <EllipsisVertical className="h-4 w-4" />
-                      </Button>
+                      <RowActions employee={e} />
                     </div>
                     <div className="mt-3 grid grid-cols-2 gap-2 text-sm">
                       <div className="truncate text-muted-foreground">{e.department}</div>
