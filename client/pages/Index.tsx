@@ -267,8 +267,8 @@ export default function Index() {
             )}
           </TabsContent>
 
-          <TabsContent value="org" className="mt-6 text-sm text-muted-foreground">
-            Organization Chart will be set up here. Ask to expand this section if you'd like detailed org mappings, teams, and reporting lines.
+          <TabsContent value="org" className="mt-6">
+            <OrgListView />
           </TabsContent>
           <TabsContent value="docs" className="mt-6 text-sm text-muted-foreground">
             Document Center will appear here. Connect storage or specify categories to populate.
