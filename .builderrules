@@ -1,0 +1,43 @@
+Builder.io AI Project Rules
+Code Standards
+Use TypeScript for all new components
+Follow functional components with hooks pattern
+Use CSS modules or Tailwind utilities only
+No inline styles unless absolutely necessary
+Implement proper error boundaries
+Font System
+Headings: 32px, 24px, 20px, 18px, 16px, 14px
+Body: 16px (base), 14px (small), 12px (caption)
+Use CSS custom properties: --font-size-xl, --font-size-lg, etc.
+Responsive: reduce 10-20% on mobile breakpoints
+Semantic classes: .text-xl, .text-lg, .text-base, .text-sm, .text-xs
+Component Architecture
+One component per file
+Props interface at top of file
+Default props when needed
+Proper prop validation
+Export component as default
+File Organization
+/components - Reusable UI components
+/pages - Page-level components
+/styles - Global styles and variables
+/utils - Helper functions
+/types - TypeScript type definitions
+Performance Rules
+Lazy load non-critical components
+Optimize images (WebP, proper sizing)
+Use React.memo for expensive renders
+Avoid unnecessary re-renders
+Always Apply These When Making Changes:
+Maintain consistent font scaling
+Use semantic HTML elements
+Ensure accessibility (ARIA labels, keyboard navigation)
+Test responsive behavior
+Follow existing naming conventions
+Update related documentation
+Never Do:
+Use arbitrary font sizes outside the defined scale
+Create duplicate utility classes
+Skip TypeScript types
+Use any type
+Ignore console warnings/errors
