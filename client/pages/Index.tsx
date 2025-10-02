@@ -65,7 +65,7 @@ const ORG_TREE: OrgNode[] = [
 
 function OrgListView() {
   const total = 13;
-  const [collapsed, setCollapsed] = useState<Set<string>>(new Set());
+  const [collapsed, setCollapsed] = useState<Set<string>>(() => new Set(ORG_TREE.map((n) => n.name)));
   const toggle = (name: string) =>
     setCollapsed((prev) => {
       const next = new Set(prev);
