@@ -57,7 +57,7 @@ export default function ManageProfile() {
         <div className="py-4">
           <Tabs defaultValue={initialTab}>
             <div className="sticky top-16 z-10 border-b bg-background/90 py-2 backdrop-blur supports-[backdrop-filter]:bg-background/70">
-              <TabsList className="flex flex-wrap gap-1">
+              <TabsList className="flex items-center gap-4 overflow-x-auto">
               {[
                 ["personal", "Personal Info"],
                 ["work", "Work Details"],
@@ -74,8 +74,9 @@ export default function ManageProfile() {
                   key={val}
                   value={val as string}
                   className={cn(
-                    "rounded-full border px-3 py-1.5 text-xs font-medium",
-                    "data-[state=active]:bg-brand data-[state=active]:text-brand-foreground",
+                    "px-4 py-2 text-sm font-medium border-b-2 border-transparent",
+                    "data-[state=active]:text-brand data-[state=active]:font-semibold data-[state=active]:border-brand",
+                    "text-muted-foreground hover:text-foreground",
                   )}
                 >
                   {label}
