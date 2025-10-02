@@ -91,24 +91,24 @@ export default function ManageProfile() {
                 <div>
                   <h3 className="text-base font-bold">Personal Information</h3>
                   <div className="mt-3 grid grid-cols-1 gap-3">
-                    <LabeledInput label="First Name" defaultValue={employee.firstName} />
-                    <LabeledInput label="Middle Name" />
-                    <LabeledInput label="Last Name" defaultValue={employee.lastName} />
-                    <LabeledInput label="Phone" defaultValue={employee.contactNumber} />
-                    <LabeledInput label="Address Information" />
-                    <LabeledInput label="Email Address" defaultValue={employee.email} />
-                    <LabeledInput label="Date of Birth" />
-                    <LabeledInput label="Gender" />
-                    <LabeledInput label="Marital Status" />
-                    <LabeledInput label="Nationality" />
+                    <LabeledField label="First Name" value={employee.firstName} />
+                    <LabeledField label="Middle Name" value={""} />
+                    <LabeledField label="Last Name" value={employee.lastName} />
+                    <LabeledField label="Phone" value={employee.contactNumber} />
+                    <LabeledField label="Address Information" value={employee.location} />
+                    <LabeledField label="Email Address" value={employee.email} />
+                    <LabeledField label="Date of Birth" value={""} />
+                    <LabeledField label="Gender" value={""} />
+                    <LabeledField label="Marital Status" value={""} />
+                    <LabeledField label="Nationality" value={""} />
                   </div>
                 </div>
                 <div>
                   <h3 className="text-base font-bold">Emergency Contact</h3>
                   <div className="mt-3 grid grid-cols-1 gap-3">
-                    <LabeledInput label="Contact Person" />
-                    <LabeledInput label="Contact Number" />
-                    <LabeledInput label="Relationship" />
+                    <LabeledField label="Contact Person" value={""} />
+                    <LabeledField label="Contact Number" value={""} />
+                    <LabeledField label="Relationship" value={""} />
                   </div>
                 </div>
               </div>
@@ -235,6 +235,15 @@ function LabeledInput({ label, defaultValue, placeholder }: { label: string; def
     <div className="grid gap-1.5">
       <label className="text-xs font-semibold text-foreground">{label}</label>
       <Input defaultValue={defaultValue} placeholder={placeholder ?? label} />
+    </div>
+  );
+}
+
+function LabeledField({ label, value }: { label: string; value?: string | null }) {
+  return (
+    <div className="grid gap-0.5">
+      <div className="text-xs font-semibold text-foreground">{label}</div>
+      <div className="text-sm text-muted-foreground">{value && String(value).trim().length ? value : "—"}</div>
     </div>
   );
 }
