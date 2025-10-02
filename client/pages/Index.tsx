@@ -343,9 +343,7 @@ export default function Index() {
                           </TableCell>
                           <TableCell className="py-3">{e.joiningDate}</TableCell>
                           <TableCell className="py-3 text-right">
-                            <Button variant="ghost" className="h-8 w-8 p-0">
-                              <EllipsisVertical className="h-4 w-4" />
-                            </Button>
+                            <RowActions employee={e} />
                           </TableCell>
                         </TableRow>
                       ))}
@@ -435,4 +433,47 @@ function StatusBadge({ status }: { status: Employee["status"] }) {
         ? "bg-blue-100 text-blue-700 dark:bg-blue-500/20 dark:text-blue-300"
         : "bg-zinc-200 text-zinc-700 dark:bg-zinc-700 dark:text-zinc-200";
   return <Badge className={cn("border-0 px-2.5 py-0.5", cls)}>{status}</Badge>;
+}
+
+function RowActions({ employee }: { employee: Employee }) {
+  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+  return (
+    <div className="relative inline-block text-left">
+      <Button
+        variant="ghost"
+        className="h-8 w-8 p-0"
+        onClick={() => setOpen((v) => !v)}
+        aria-haspopup="menu"
+        aria-expanded={open}
+      >
+        <EllipsisVertical className="h-4 w-4" />
+      </Button>
+      {open && (
+        <div
+          className="absolute right-0 z-20 mt-2 w-44 origin-top-right overflow-hidden rounded-md border bg-popover p-1 text-sm shadow-md"
+          role="menu"
+        >
+          <button
+            className="flex w-full items-center gap-2 rounded-sm px-2 py-1.5 text-left hover:bg-accent"
+            onClick={() => {
+              setOpen(false);
+              navigate(`/manage-profile/${employee.id}`);
+            }}
+          >
+            <User className="h-4 w-4" /> Manage Profile
+          </button>
+          <button
+            className="flex w-full items-center gap-2 rounded-sm px-2 py-1.5 text-left hover:bg-accent"
+            onClick={() => {
+              setOpen(false);
+              navigate(`/manage-profile/${employee.id}#documents`);
+            }}
+          >
+            <FileText className="h-4 w-4" /> Documents
+          </button>
+        </div>
+      )}
+    </div>
+  );
 }
