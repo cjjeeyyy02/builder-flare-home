@@ -234,8 +234,64 @@ export default function ManageProfile() {
               </div>
             </TabsContent>
 
-            <TabsContent value="comp" className="space-y-2">
-              <h3 className="text-base font-bold">Compensation</h3>
+            <TabsContent value="comp" className="space-y-6">
+              <div>
+                <h3 className="text-base font-bold">Compensation Information</h3>
+                <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-3">
+                  <div className="rounded-lg border p-4">
+                    <div className="text-xs font-semibold text-foreground">Base Salary</div>
+                    <div className="mt-1 text-lg font-semibold text-foreground">$95,000 per month</div>
+                  </div>
+                  <div className="rounded-lg border p-4">
+                    <div className="text-xs font-semibold text-foreground">Last Review</div>
+                    <div className="mt-1 text-lg font-semibold text-foreground">01-15-2023</div>
+                  </div>
+                  <div className="rounded-lg border p-4">
+                    <div className="text-xs font-semibold text-foreground">Next Review</div>
+                    <div className="mt-1 text-lg font-semibold text-foreground">01-15-2024</div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-base font-bold">Compensation History</h3>
+                <div className="mt-3">
+                  <Table>
+                    <TableHeader>
+                      <TableRow className="bg-muted/40">
+                        <TableHead className="py-2">Date of Change</TableHead>
+                        <TableHead className="py-2">Amount</TableHead>
+                        <TableHead className="py-2">Salary Amount</TableHead>
+                        <TableHead className="py-2">Change Amount</TableHead>
+                        <TableHead className="py-2">Change %</TableHead>
+                        <TableHead className="py-2">Type</TableHead>
+                        <TableHead className="py-2">Source</TableHead>
+                        <TableHead className="py-2">Currency</TableHead>
+                        <TableHead className="py-2">Job Title</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {[
+                        { date: "01-15-2024", amount: "$98,000", salary: "$98,000", change: "+$3,000", pct: "+3.16%", type: "Merit Increase", source: "Annual Review", currency: "USD", title: "Senior Software Engineer" },
+                        { date: "01-15-2023", amount: "$95,000", salary: "$95,000", change: "+$5,000", pct: "+5.56%", type: "Promotion", source: "HR", currency: "USD", title: "Senior Software Engineer" },
+                        { date: "01-15-2022", amount: "$90,000", salary: "$90,000", change: "+$10,000", pct: "+12.50%", type: "Adjustment", source: "Manager", currency: "USD", title: "Software Engineer" },
+                      ].map((r, idx) => (
+                        <TableRow key={r.date + r.title} className={idx % 2 ? "bg-muted/20" : ""}>
+                          <TableCell className="py-2">{r.date}</TableCell>
+                          <TableCell className="py-2">{r.amount}</TableCell>
+                          <TableCell className="py-2">{r.salary}</TableCell>
+                          <TableCell className="py-2">{r.change}</TableCell>
+                          <TableCell className="py-2">{r.pct}</TableCell>
+                          <TableCell className="py-2">{r.type}</TableCell>
+                          <TableCell className="py-2">{r.source}</TableCell>
+                          <TableCell className="py-2">{r.currency}</TableCell>
+                          <TableCell className="py-2">{r.title}</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
+              </div>
             </TabsContent>
             <TabsContent value="perf" className="space-y-2">
               <h3 className="text-base font-bold">Performance</h3>
