@@ -160,25 +160,29 @@ function OrgListView() {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <h3 className="text-sm font-bold">{mode === "list" ? "List View" : "Chart View"}</h3>
-          <div className="ml-2 inline-flex overflow-hidden rounded-md border text-xs">
+        </div>
+        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+          <span>
+            Total Employees: <span className="text-sm font-semibold text-foreground">{total}</span>
+          </span>
+          <div className="ml-2 inline-flex items-center gap-1">
             <button
               type="button"
+              aria-label="List view"
               onClick={() => setMode("list")}
-              className={cn("px-2 py-1", mode === "list" ? "bg-foreground text-background" : "text-foreground hover:bg-accent")}
+              className={cn("flex h-7 w-7 items-center justify-center rounded-md border", mode === "list" ? "bg-foreground text-background" : "text-foreground hover:bg-accent")}
             >
-              List
+              <TableIcon className="h-4 w-4" />
             </button>
             <button
               type="button"
+              aria-label="Chart view"
               onClick={() => setMode("chart")}
-              className={cn("px-2 py-1", mode === "chart" ? "bg-foreground text-background" : "text-foreground hover:bg-accent")}
+              className={cn("flex h-7 w-7 items-center justify-center rounded-md border", mode === "chart" ? "bg-foreground text-background" : "text-foreground hover:bg-accent")}
             >
-              Chart
+              <LayoutGrid className="h-4 w-4" />
             </button>
           </div>
-        </div>
-        <div className="text-xs text-muted-foreground">
-          Total Employees: <span className="text-sm font-semibold text-foreground">{total}</span>
         </div>
       </div>
       {mode === "list" ? (
