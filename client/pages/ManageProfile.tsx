@@ -115,8 +115,78 @@ export default function ManageProfile() {
               </div>
             </TabsContent>
 
-            <TabsContent value="work" className="space-y-2">
-              <h3 className="text-base font-bold">Work Details</h3>
+            <TabsContent value="work" className="space-y-6">
+              <div className="grid gap-6 lg:grid-cols-2">
+                <div>
+                  <h3 className="text-base font-bold">Work Details</h3>
+                  <div className="mt-3 grid grid-cols-1 gap-3">
+                    <LabeledField label="Position" value="Senior Software Engineer" />
+                    <LabeledField label="Department" value="Engineering" />
+                    <LabeledField label="Reporting Manager" value="Michael Rodriguez" />
+                    <LabeledField label="Employment Status" value="Active" />
+                    <LabeledField label="Employment Type" value="Full-Time" />
+                    <LabeledField label="Date Hired" value="01/15/2023" />
+                    <LabeledField label="Probation End Date" value="07-15-2023" />
+                    <LabeledField label="Work Location / Site" value="Head Office" />
+                    <LabeledField label="Shift Schedule" value="Day" />
+                    <LabeledField label="Work Email" value="sarah.mitchell@company.com" />
+                    <LabeledField label="Work Phone / Extension" value="+1 (555) 123-4567 ext. 1234" />
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-base font-bold">Position History</h3>
+                  <ul className="mt-3 space-y-4">
+                    {[
+                      { title: "Senior Analyst", range: "Jan 2022 – Aug 2023", reason: "Promoted" },
+                      { title: "HR Assistant", range: "Jun 2020 – Dec 2021", reason: "Transfer" },
+                    ].map((item, i) => (
+                      <li key={i} className="relative pl-6">
+                        <span className="absolute left-0 top-1.5 h-3 w-3 rounded-full bg-brand" />
+                        <div className="text-sm font-semibold">{item.title}</div>
+                        <div className="text-xs text-muted-foreground">{item.range} • {item.reason}</div>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="mt-5">
+                    <h3 className="text-base font-bold">Organization Chart</h3>
+                    <a href="#" className="mt-2 inline-block text-brand hover:underline">View Organization Chart</a>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-base font-bold">Previous Work History</h3>
+                <div className="mt-3">
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead className="py-2">Company Name</TableHead>
+                        <TableHead className="py-2">Position</TableHead>
+                        <TableHead className="py-2">Duration</TableHead>
+                        <TableHead className="py-2">Location</TableHead>
+                        <TableHead className="py-2">Employment Type</TableHead>
+                        <TableHead className="py-2">Reason for Leaving</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {[
+                        { company: "Nimbus Labs", position: "Software Engineer", duration: "2 years", location: "Vancouver, Canada", type: "Full-time", reason: "Career growth" },
+                        { company: "Aster Corp", position: "Junior Developer", duration: "1.5 years", location: "Seattle, USA", type: "Full-time", reason: "Relocation" },
+                      ].map((r, idx) => (
+                        <TableRow key={r.company + idx} className={idx % 2 ? "bg-muted/20" : ""}>
+                          <TableCell className="py-2">{r.company}</TableCell>
+                          <TableCell className="py-2">{r.position}</TableCell>
+                          <TableCell className="py-2">{r.duration}</TableCell>
+                          <TableCell className="py-2">{r.location}</TableCell>
+                          <TableCell className="py-2">{r.type}</TableCell>
+                          <TableCell className="py-2">{r.reason}</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
+              </div>
             </TabsContent>
 
             <TabsContent value="skills" className="space-y-2">
