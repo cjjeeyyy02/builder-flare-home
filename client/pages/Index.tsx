@@ -29,8 +29,20 @@ import {
   User,
   ArrowLeftRight,
   FileText,
+  Eye,
+  Download,
+  Share,
+  Pencil,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { useNavigate } from "react-router-dom";
 import { EMPLOYEES, type Employee } from "@/lib/data/employees";
 
@@ -264,6 +276,11 @@ export default function Index() {
   const [status, setStatus] = useState<string>("all");
   const [view, setView] = useState<"table" | "card">("table");
   const [tab, setTab] = useState<string>("records");
+  const [dcCategory, setDcCategory] = useState<string>("all");
+  const [dcType, setDcType] = useState<string>("all");
+  const [dcStatus, setDcStatus] = useState<string>("all");
+  const [dcScope, setDcScope] = useState<string>("all");
+  const [dcView, setDcView] = useState<"list" | "grid">("list");
 
   const totalActive = EMPLOYEES.filter((e) => e.status === "Active").length;
   const onLeave = EMPLOYEES.filter((e) => e.status === "On Leave").length;
@@ -521,8 +538,130 @@ export default function Index() {
           <TabsContent value="org" className="mt-6">
             <OrgListView />
           </TabsContent>
-          <TabsContent value="docs" className="mt-6 text-sm text-muted-foreground">
-            Document Center will appear here. Connect storage or specify categories to populate.
+          <TabsContent value="docs" className="mt-6">
+            <div className="rounded-2xl border bg-card p-4 shadow-sm">
+              <div className="mb-3 flex items-center justify-between">
+                <div className="flex flex-wrap items-center gap-2">
+                  <Select value={dcCategory} onValueChange={setDcCategory}>
+                    <SelectTrigger className="w-40"><SelectValue placeholder="All Categories" /></SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Categories</SelectItem>
+                      <SelectItem value="hr">HR Policies</SelectItem>
+                      <SelectItem value="training">Training Records</SelectItem>
+                      <SelectItem value="compliance">Compliance</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <Select value={dcType} onValueChange={setDcType}>
+                    <SelectTrigger className="w-36"><SelectValue placeholder="All Types" /></SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Types</SelectItem>
+                      <SelectItem value="pdf">PDF</SelectItem>
+                      <SelectItem value="docx">DOCX</SelectItem>
+                      <SelectItem value="report">Report</SelectItem>
+                      <SelectItem value="template">Template</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <Select value={dcStatus} onValueChange={setDcStatus}>
+                    <SelectTrigger className="w-40"><SelectValue placeholder="All Status" /></SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Status</SelectItem>
+                      <SelectItem value="active">Active</SelectItem>
+                      <SelectItem value="pending">Pending Review</SelectItem>
+                      <SelectItem value="archived">Archived</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <Select value={dcScope} onValueChange={setDcScope}>
+                    <SelectTrigger className="w-40"><SelectValue placeholder="All Documents" /></SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Documents</SelectItem>
+                      <SelectItem value="employee">Employee Docs</SelectItem>
+                      <SelectItem value="policy">Policies</SelectItem>
+                      <SelectItem value="reports">Reports</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Button variant="outline" className={cn("h-9 w-9 rounded-full p-0", dcView === "list" && "bg-foreground text-background border-transparent")} onClick={() => setDcView("list")}>
+                    <TableIcon className="h-4 w-4" />
+                  </Button>
+                  <Button variant="outline" className={cn("h-9 w-9 rounded-full p-0", dcView === "grid" && "bg-foreground text-background border-transparent")} onClick={() => setDcView("grid")}>
+                    <LayoutGrid className="h-4 w-4" />
+                  </Button>
+                </div>
+              </div>
+
+              {/* List View */}
+              {dcView === "list" && (
+                <div className="overflow-hidden rounded-lg border">
+                  <Table className="text-sm">
+                    <TableHeader>
+                      <TableRow className="bg-muted/40">
+                        <TableHead className="py-2 font-bold uppercase">Title</TableHead>
+                        <TableHead className="py-2 font-bold uppercase">Type</TableHead>
+                        <TableHead className="py-2 font-bold uppercase">Category</TableHead>
+                        <TableHead className="py-2 font-bold uppercase">Department</TableHead>
+                        <TableHead className="py-2 font-bold uppercase">Uploaded</TableHead>
+                        <TableHead className="py-2 font-bold uppercase">File Size</TableHead>
+                        <TableHead className="py-2 font-bold uppercase">Status</TableHead>
+                        <TableHead className="py-2 text-right font-bold uppercase">Action</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {[
+                        ["Employee Handbook 2024","Policy Document","HR Policies","Human Resources","15/01/2024","2.4 MB","active"],
+                        ["Sarah Mitchell - Employment Contract","Employment Contract","Employee Documents","Engineering","10/01/2023","856 KB","active"],
+                        ["Q4 2023 Compliance Report","Compliance Report","Compliance","Finance","28/12/2023","1.8 MB","active"],
+                        ["Safety Training Certificate - Marcus Thompson","Training Certificate","Training Records","Engineering","20/11/2023","1.2 MB","active"],
+                        ["Emergency Contact Information","Emergency Contacts","Employee Records","Design","15/09/2023","324 KB","active"],
+                        ["Performance Review Template 2024","Template","HR Templates","Human Resources","08/01/2024","445 KB","active"],
+                        ["Data Privacy Policy Update","Policy Document","Compliance","Legal","22/08/2023","1.1 MB","pending"],
+                        ["Financial Audit Report 2023","Audit Report","Finance","Finance","15/12/2023","3.2 MB","archived"],
+                      ].map((r, idx) => (
+                        <TableRow key={r[0] as string} className="hover:bg-muted/40">
+                          <TableCell className="py-2">{r[0] as string}</TableCell>
+                          <TableCell className="py-2">{r[1] as string}</TableCell>
+                          <TableCell className="py-2">{r[2] as string}</TableCell>
+                          <TableCell className="py-2">{r[3] as string}</TableCell>
+                          <TableCell className="py-2">{r[4] as string}</TableCell>
+                          <TableCell className="py-2">{r[5] as string}</TableCell>
+                          <TableCell className="py-2">
+                            {r[6] === "active" ? (
+                              <Badge className="border-0 bg-emerald-100 px-2.5 py-0.5 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300">Active</Badge>
+                            ) : r[6] === "pending" ? (
+                              <Badge className="border-0 bg-amber-100 px-2.5 py-0.5 text-amber-700 dark:bg-amber-500/20 dark:text-amber-300">Pending Review</Badge>
+                            ) : (
+                              <Badge className="border-0 bg-zinc-200 px-2.5 py-0.5 text-zinc-700 dark:bg-zinc-700 dark:text-zinc-200">Archived</Badge>
+                            )}
+                          </TableCell>
+                          <TableCell className="py-2 text-right">
+                            <DropdownMenu>
+                              <DropdownMenuTrigger asChild>
+                                <Button variant="ghost" className="h-8 w-8 p-0"><EllipsisVertical className="h-4 w-4" /></Button>
+                              </DropdownMenuTrigger>
+                              <DropdownMenuContent align="end" className="w-44">
+                                <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                                <DropdownMenuItem className="gap-2"><Eye className="h-4 w-4" /> View</DropdownMenuItem>
+                                <DropdownMenuItem className="gap-2"><Download className="h-4 w-4" /> Download</DropdownMenuItem>
+                                <DropdownMenuItem className="gap-2"><Share className="h-4 w-4" /> Share</DropdownMenuItem>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuItem className="gap-2"><Pencil className="h-4 w-4" /> Edit Details</DropdownMenuItem>
+                                <DropdownMenuItem className="gap-2 text-rose-600"><Trash2 className="h-4 w-4" /> Delete</DropdownMenuItem>
+                              </DropdownMenuContent>
+                            </DropdownMenu>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
+              )}
+
+              {dcView === "grid" && (
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                  {[]}
+                </div>
+              )}
+            </div>
           </TabsContent>
           <TabsContent value="dept" className="mt-6 text-sm text-muted-foreground">
             Department Management placeholder. Define departments, heads, and policies to proceed.
