@@ -515,7 +515,6 @@ export default function Index() {
                 <SelectItem value="org">Organization Chart</SelectItem>
                 <SelectItem value="docs">Document Center</SelectItem>
                 <SelectItem value="dept">Department Management</SelectItem>
-                <SelectItem value="sys">System Configuration</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -561,16 +560,6 @@ export default function Index() {
                 )}
               >
                 Department Management
-              </TabsTrigger>
-              <TabsTrigger
-                value="sys"
-                className={cn(
-                  "flex-1 rounded-[12px] px-4 py-2 text-sm transition-colors",
-                  "data-[state=active]:bg-[#3B82F6] data-[state=active]:text-white data-[state=active]:font-bold",
-                  "data-[state=inactive]:bg-transparent data-[state=inactive]:text-black data-[state=inactive]:font-medium data-[state=inactive]:hover:bg-[#E0F2FE]",
-                )}
-              >
-                System Configuration
               </TabsTrigger>
             </div>
           </TabsList>
@@ -848,9 +837,6 @@ export default function Index() {
           </TabsContent>
           <TabsContent value="dept" className="mt-6 text-sm text-muted-foreground">
             Department Management placeholder. Define departments, heads, and policies to proceed.
-          </TabsContent>
-          <TabsContent value="sys" className="mt-6 text-sm text-muted-foreground">
-            System Configuration placeholder. Configure permissions, roles, and system settings here.
           </TabsContent>
         </Tabs>
       </div>
