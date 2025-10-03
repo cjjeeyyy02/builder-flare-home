@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/local/tabs";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
