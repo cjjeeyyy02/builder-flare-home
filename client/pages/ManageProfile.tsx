@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, CalendarDays, Eye, Pencil, Trash2, User } from "lucide-react";
+import { ArrowLeft, CalendarDays, Check, Download, Eye, Pencil, Trash2, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export default function ManageProfile() {
@@ -415,8 +415,103 @@ export default function ManageProfile() {
                 </div>
               </div>
             </TabsContent>
-            <TabsContent value="training" className="space-y-2">
-              <h3 className="text-base font-bold">Training</h3>
+            <TabsContent value="training" className="space-y-4">
+              <div className="flex items-center justify-between">
+                <h3 className="text-base font-bold">Training & Industry Certifications</h3>
+                <Button className="h-8 rounded-md bg-blue-600 px-3 text-xs text-white hover:bg-blue-700">+ Add Training/Certification</Button>
+              </div>
+
+              <div className="rounded-2xl border bg-card p-4 shadow-sm">
+                <div className="mb-2 text-sm font-semibold">Training</div>
+                <div className="overflow-hidden rounded-lg border">
+                  <Table className="text-sm">
+                    <TableHeader>
+                      <TableRow className="bg-muted/40">
+                        <TableHead className="py-2">Training Title</TableHead>
+                        <TableHead className="py-2">Provider / Instructor</TableHead>
+                        <TableHead className="py-2">Date Completed</TableHead>
+                        <TableHead className="py-2">Status</TableHead>
+                        <TableHead className="py-2 text-right">Certificate</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      <TableRow>
+                        <TableCell className="py-2">React Advanced Patterns</TableCell>
+                        <TableCell className="py-2">Tech Academy</TableCell>
+                        <TableCell className="py-2">08/15/2023</TableCell>
+                        <TableCell className="py-2">
+                          <Badge className="border-0 bg-emerald-100 px-2.5 py-0.5 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300">Completed</Badge>
+                        </TableCell>
+                        <TableCell className="py-2 text-right">
+                          <Button variant="ghost" className="h-8 w-8 p-0" aria-label="Download certificate">
+                            <Download className="h-4 w-4" />
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                      <TableRow className="bg-muted/20">
+                        <TableCell className="py-2">AWS Cloud Architecture</TableCell>
+                        <TableCell className="py-2">Amazon Web Services</TableCell>
+                        <TableCell className="py-2">N/A</TableCell>
+                        <TableCell className="py-2">
+                          <Badge className="border-0 bg-amber-100 px-2.5 py-0.5 text-amber-700 dark:bg-amber-500/20 dark:text-amber-300">In Progress</Badge>
+                        </TableCell>
+                        <TableCell className="py-2 text-right">—</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="py-2">Leadership Development Program</TableCell>
+                        <TableCell className="py-2">Corporate University</TableCell>
+                        <TableCell className="py-2">N/A</TableCell>
+                        <TableCell className="py-2">
+                          <Badge className="border-0 bg-zinc-200 px-2.5 py-0.5 text-zinc-700 dark:bg-zinc-700 dark:text-zinc-200">Not Started</Badge>
+                        </TableCell>
+                        <TableCell className="py-2 text-right">—</TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </div>
+              </div>
+
+              <div className="rounded-2xl border bg-card p-4 shadow-sm">
+                <div className="mb-2 flex items-center justify-between">
+                  <div className="text-sm font-semibold">Industry Certifications</div>
+                </div>
+                <div className="grid gap-3 text-sm sm:grid-cols-2">
+                  <div>
+                    <div className="text-xs text-muted-foreground">Certification Name</div>
+                    <div className="font-semibold text-foreground">AWS Certified Solutions Architect</div>
+                  </div>
+                  <div>
+                    <div className="text-xs text-muted-foreground">Certificate ID</div>
+                    <div className="font-semibold text-foreground">AWS-CSA-2023-001234</div>
+                  </div>
+                  <div>
+                    <div className="text-xs text-muted-foreground">Issued Organization</div>
+                    <div className="font-semibold text-foreground">Amazon Web Services</div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div>
+                      <div className="text-xs text-muted-foreground">Certificate Status</div>
+                      <div>
+                        <Badge className="inline-flex items-center gap-1 border-0 bg-emerald-100 px-2.5 py-0.5 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300">
+                          <Check className="h-3 w-3" /> Valid
+                        </Badge>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="text-xs text-muted-foreground">Issued Date</div>
+                    <div className="font-semibold text-foreground">06/15/2023</div>
+                  </div>
+                  <div>
+                    <div className="text-xs text-muted-foreground">Expiry Date</div>
+                    <div className="font-semibold text-foreground">06/15/2026</div>
+                  </div>
+                </div>
+                <div className="mt-4 flex items-center gap-2">
+                  <Button variant="outline" className="h-8 rounded-md px-3 text-xs">View Certificate</Button>
+                  <Button variant="outline" className="h-8 rounded-md px-3 text-xs">Download Certificate</Button>
+                </div>
+              </div>
             </TabsContent>
             <TabsContent value="leave" className="space-y-2">
               <h3 className="text-base font-bold">Leave & Attendance</h3>
