@@ -426,7 +426,7 @@ export default function ManageProfile() {
                 <div className="overflow-hidden rounded-lg border">
                   <Table className="text-sm">
                     <TableHeader>
-                      <TableRow className="bg-muted/40">
+                      <TableRow className="hover:bg-transparent">
                         <TableHead className="py-2">Training Title</TableHead>
                         <TableHead className="py-2">Provider / Instructor</TableHead>
                         <TableHead className="py-2">Date Completed</TableHead>
