@@ -32,7 +32,7 @@ export default function ManageProfile() {
   const isSarah = employee.id === "EMP001";
   // Section 1: Personal Information
   const piFirstName = isSarah ? "Sarah" : employee.firstName || "—";
-  const piMiddleName = isSarah ? "—" : "���";
+  const piMiddleName = isSarah ? "—" : "—";
   const piLastName = isSarah ? "Mitchell" : employee.lastName || "—";
   const piDOB = isSarah ? "03-15-1990" : "—";
   const piGender = isSarah ? "Female" : "—";
@@ -352,7 +352,7 @@ export default function ManageProfile() {
                         { date: "01-15-2023", amount: "$95,000", salary: "$95,000", change: "+$5,000", pct: "+5.56%", type: "Promotion", source: "HR", currency: "USD", title: "Senior Software Engineer" },
                         { date: "01-15-2022", amount: "$90,000", salary: "$90,000", change: "+$10,000", pct: "+12.50%", type: "Adjustment", source: "Manager", currency: "USD", title: "Software Engineer" },
                       ].map((r, idx) => (
-                        <TableRow key={r.date + r.title} className={idx % 2 ? "bg-muted/20" : ""}>
+                        <TableRow key={r.date + r.title} className="hover:bg-transparent">
                           <TableCell className="py-2">{r.date}</TableCell>
                           <TableCell className="py-2">{r.amount}</TableCell>
                           <TableCell className="py-2">{r.salary}</TableCell>
