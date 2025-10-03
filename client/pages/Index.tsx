@@ -321,6 +321,178 @@ export default function Index() {
     });
   }, [search, position, status]);
 
+  // Document Center data and helpers
+  type Doc = {
+    id: string;
+    title: string;
+    employeeName: string;
+    department: string;
+    type: string;
+    category: string;
+    uploadDate: string; // DD/MM/YYYY
+    expirationDate?: string; // DD/MM/YYYY
+    uploadedBy: string;
+  };
+
+  const docColumns: { key: keyof Doc; label: string }[] = [
+    { key: "title", label: "Document Title" },
+    { key: "employeeName", label: "Employee Name" },
+    { key: "department", label: "Department" },
+    { key: "type", label: "Document Type" },
+    { key: "uploadDate", label: "Upload Date" },
+    { key: "expirationDate", label: "Expiration Date" },
+    { key: "uploadedBy", label: "Uploaded By" },
+  ];
+
+  const docCategories = [
+    { value: "employee", label: "Employee Records" },
+    { value: "policies", label: "Policies" },
+    { value: "compliance", label: "Compliance" },
+    { value: "training", label: "Training" },
+    { value: "forms", label: "Forms & Templates" },
+  ];
+
+  const docTypes = ["PDF", "Word", "Excel", "Image"];
+  const departments = Array.from(new Set(EMPLOYEES.map((e) => e.department)));
+
+  const DOCS: Doc[] = [
+    {
+      id: "d1",
+      title: "Employment Contract - Sarah Mitchell",
+      employeeName: "Sarah Mitchell",
+      department: "Engineering",
+      type: "PDF",
+      category: "employee",
+      uploadDate: "10/01/2023",
+      expirationDate: "10/01/2026",
+      uploadedBy: "HR Admin",
+    },
+    {
+      id: "d2",
+      title: "Data Privacy Policy",
+      employeeName: "—",
+      department: "Legal",
+      type: "PDF",
+      category: "policies",
+      uploadDate: "22/08/2023",
+      expirationDate: undefined,
+      uploadedBy: "Compliance",
+    },
+    {
+      id: "d3",
+      title: "Compliance Report Q4 2023",
+      employeeName: "—",
+      department: "Finance",
+      type: "Excel",
+      category: "compliance",
+      uploadDate: "28/12/2023",
+      expirationDate: "28/12/2024",
+      uploadedBy: "Finance Ops",
+    },
+    {
+      id: "d4",
+      title: "Safety Training Certificate - Marcus Thompson",
+      employeeName: "Marcus Thompson",
+      department: "Engineering",
+      type: "PDF",
+      category: "training",
+      uploadDate: "20/11/2023",
+      expirationDate: "20/11/2025",
+      uploadedBy: "Training Team",
+    },
+    {
+      id: "d5",
+      title: "Performance Review Template 2024",
+      employeeName: "—",
+      department: "Human Resources",
+      type: "Word",
+      category: "forms",
+      uploadDate: "08/01/2024",
+      expirationDate: undefined,
+      uploadedBy: "HR Admin",
+    },
+    {
+      id: "d6",
+      title: "Benefits Enrollment Form",
+      employeeName: "Elena Garcia",
+      department: "Human Resources",
+      type: "PDF",
+      category: "employee",
+      uploadDate: "05/01/2024",
+      expirationDate: "05/01/2025",
+      uploadedBy: "HR Admin",
+    },
+  ];
+
+  function parseDMY(input?: string): Date | null {
+    if (!input) return null;
+    const parts = input.split("/");
+    if (parts.length !== 3) return null;
+    const [dd, mm, yyyy] = parts.map((p) => parseInt(p, 10));
+    if (!dd || !mm || !yyyy) return null;
+    return new Date(yyyy, mm - 1, dd);
+  }
+
+  function daysUntil(dateStr?: string): number | null {
+    const d = parseDMY(dateStr);
+    if (!d) return null;
+    const now = new Date();
+    const diff = d.getTime() - now.getTime();
+    return Math.ceil(diff / (1000 * 60 * 60 * 24));
+  }
+
+  const filteredDocs = useMemo(() => {
+    return DOCS.filter((d) => {
+      const matchesSearch = !dcSearch.trim() || d.title.toLowerCase().includes(dcSearch.toLowerCase());
+      const matchesDept = dcDept === "all" || d.department.toLowerCase() === dcDept;
+      const matchesType = dcDocType === "all" || d.type.toLowerCase() === dcDocType;
+      const matchesCat = dcCategory2 === d.category;
+      const days = dcDateFilter === "any" ? null : daysUntil(d.uploadDate);
+      const matchesDate =
+        dcDateFilter === "any" || (typeof days === "number" && days >= 0 && days <= parseInt(dcDateFilter, 10));
+      return matchesSearch && matchesDept && matchesType && matchesCat && matchesDate;
+    });
+  }, [DOCS, dcSearch, dcDept, dcDocType, dcCategory2, dcDateFilter]);
+
+  const sortedDocs = useMemo(() => {
+    const arr = [...filteredDocs];
+    arr.sort((a, b) => {
+      const dir = sortDir === "asc" ? 1 : -1;
+      if (sortKey === "uploadDate" || sortKey === "expirationDate") {
+        const da = parseDMY(a[sortKey] as string | undefined)?.getTime() ?? 0;
+        const db = parseDMY(b[sortKey] as string | undefined)?.getTime() ?? 0;
+        return (da - db) * dir;
+      }
+      const va = String(a[sortKey] ?? "").toLowerCase();
+      const vb = String(b[sortKey] ?? "").toLowerCase();
+      return va < vb ? -1 * dir : va > vb ? 1 * dir : 0;
+    });
+    return arr;
+  }, [filteredDocs, sortKey, sortDir]);
+
+  function handleSort(key: keyof Doc) {
+    if (sortKey === key) {
+      setSortDir((d) => (d === "asc" ? "desc" : "asc"));
+    } else {
+      setSortKey(key);
+      setSortDir("asc");
+    }
+  }
+
+  useEffect(() => {
+    if (tab !== "docs") return;
+    const soon = DOCS.filter((d) => {
+      const n = daysUntil(d.expirationDate);
+      return typeof n === "number" && n <= 30 && n >= 0;
+    });
+    if (soon.length) {
+      toast({
+        title: "Expiring documents",
+        description: `${soon.length} document(s) will expire within 30 days.`,
+      });
+    }
+  }, [tab]);
+
   return (
     <div className="min-h-screen bg-background">
       <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
