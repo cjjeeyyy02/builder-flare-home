@@ -448,7 +448,7 @@ export default function Index() {
                 <div className="overflow-hidden rounded-lg border">
                   <Table>
                     <TableHeader>
-                      <TableRow className="bg-muted/40">
+                      <TableRow className="hover:bg-transparent">
                         <TableHead className="py-2 text-xs">Employee ID</TableHead>
                         <TableHead className="py-2 text-xs">Name</TableHead>
                         <TableHead className="py-2 text-xs">Department</TableHead>
