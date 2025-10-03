@@ -273,7 +273,7 @@ export default function ManageProfile() {
               <div className="overflow-hidden rounded-lg border">
                 <Table>
                   <TableHeader>
-                    <TableRow className="bg-muted/40">
+                    <TableRow className="hover:bg-transparent">
                       <TableHead className="py-2">Skill Name</TableHead>
                       <TableHead className="py-2">Experience (Years)</TableHead>
                       <TableHead className="py-2">Skill Level</TableHead>
@@ -289,7 +289,7 @@ export default function ManageProfile() {
                       { name: "AWS", years: 2, level: "Intermediate" },
                       { name: "Docker", years: 1, level: "Beginner" },
                     ].map((s, idx) => (
-                      <TableRow key={s.name} className={idx % 2 ? "bg-muted/20" : ""}>
+                      <TableRow key={s.name} className="hover:bg-transparent">
                         <TableCell className="py-2">{s.name}</TableCell>
                         <TableCell className="py-2">{s.years}</TableCell>
                         <TableCell className="py-2">{s.level}</TableCell>
@@ -570,7 +570,7 @@ export default function ManageProfile() {
                 <div className="overflow-hidden rounded-lg border">
                   <Table className="text-sm">
                     <TableHeader>
-                      <TableRow className="bg-muted/40">
+                      <TableRow className="hover:bg-transparent">
                         <TableHead className="py-2">Leave Type</TableHead>
                         <TableHead className="py-2">Duration</TableHead>
                         <TableHead className="py-2">Total Days</TableHead>
@@ -579,7 +579,7 @@ export default function ManageProfile() {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      <TableRow>
+                      <TableRow className="hover:bg-transparent">
                         <TableCell className="py-2">Sick Leave</TableCell>
                         <TableCell className="py-2">03-15-2024 – 03-17-2024</TableCell>
                         <TableCell className="py-2">3</TableCell>
@@ -592,7 +592,7 @@ export default function ManageProfile() {
                           </Button>
                         </TableCell>
                       </TableRow>
-                      <TableRow className="bg-muted/20">
+                      <TableRow className="hover:bg-transparent">
                         <TableCell className="py-2">Annual Leave</TableCell>
                         <TableCell className="py-2">01-08-2024 – 01-12-2024</TableCell>
                         <TableCell className="py-2">5</TableCell>
@@ -605,7 +605,7 @@ export default function ManageProfile() {
                           </Button>
                         </TableCell>
                       </TableRow>
-                      <TableRow>
+                      <TableRow className="hover:bg-transparent">
                         <TableCell className="py-2">Personal Leave</TableCell>
                         <TableCell className="py-2">04-22-2024 – 04-22-2024</TableCell>
                         <TableCell className="py-2">1</TableCell>
@@ -618,7 +618,7 @@ export default function ManageProfile() {
                           </Button>
                         </TableCell>
                       </TableRow>
-                      <TableRow>
+                      <TableRow className="hover:bg-transparent">
                         <TableCell className="py-2">Annual Leave</TableCell>
                         <TableCell className="py-2">05-10-2024 – 05-14-2024</TableCell>
                         <TableCell className="py-2">5</TableCell>
