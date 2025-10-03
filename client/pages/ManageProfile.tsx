@@ -513,8 +513,128 @@ export default function ManageProfile() {
                 </div>
               </div>
             </TabsContent>
-            <TabsContent value="leave" className="space-y-2">
-              <h3 className="text-base font-bold">Leave & Attendance</h3>
+            <TabsContent value="leave" className="space-y-4">
+              <div className="flex items-center justify-between">
+                <h3 className="text-base font-bold">Performance Metrics & Leave History</h3>
+                <Button className="h-8 rounded-md bg-blue-600 px-3 text-xs text-white hover:bg-blue-700">Request Leave</Button>
+              </div>
+
+              {/* Metrics */}
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div className="rounded-2xl border bg-card p-4 shadow-sm">
+                  <div className="text-xs font-semibold text-foreground">Attendance Rate</div>
+                  <div className="mt-2 text-sm font-bold">90.9%</div>
+                  <div className="mt-2 h-2 w-full rounded-full bg-muted">
+                    <div className="h-2 rounded-full bg-blue-600" style={{ width: "90.9%" }} />
+                  </div>
+                </div>
+                <div className="rounded-2xl border bg-card p-4 shadow-sm">
+                  <div className="text-xs font-semibold text-foreground">Punctuality Rate</div>
+                  <div className="mt-2 text-sm font-bold">95.5%</div>
+                  <div className="mt-2 h-2 w-full rounded-full bg-muted">
+                    <div className="h-2 rounded-full bg-emerald-600" style={{ width: "95.5%" }} />
+                  </div>
+                </div>
+              </div>
+
+              {/* Leave Summary */}
+              <div className="rounded-2xl border bg-card p-4 shadow-sm">
+                <div className="mb-2 flex items-center gap-2 text-sm font-bold text-foreground">
+                  <CalendarDays className="h-4 w-4" /> Leave Summary (2024)
+                </div>
+                <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+                  <div>
+                    <div className="text-xs text-muted-foreground">Approved Leaves</div>
+                    <div className="text-sm font-bold text-emerald-600">2</div>
+                  </div>
+                  <div>
+                    <div className="text-xs text-muted-foreground">Under Review</div>
+                    <div className="text-sm font-bold text-amber-600">1</div>
+                  </div>
+                  <div>
+                    <div className="text-xs text-muted-foreground">Rejected</div>
+                    <div className="text-sm font-bold text-rose-600">1</div>
+                  </div>
+                  <div>
+                    <div className="text-xs text-muted-foreground">Total Days Taken</div>
+                    <div className="text-sm font-bold text-foreground">8</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Leave History */}
+              <div className="rounded-2xl border bg-card p-4 shadow-sm">
+                <div className="mb-2 flex items-center gap-2 text-sm font-bold text-foreground">
+                  <CalendarDays className="h-4 w-4" /> Leave History
+                </div>
+                <div className="overflow-hidden rounded-lg border">
+                  <Table className="text-sm">
+                    <TableHeader>
+                      <TableRow className="bg-muted/40">
+                        <TableHead className="py-2">Leave Type</TableHead>
+                        <TableHead className="py-2">Duration</TableHead>
+                        <TableHead className="py-2">Total Days</TableHead>
+                        <TableHead className="py-2">Status</TableHead>
+                        <TableHead className="py-2 text-right">Action</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      <TableRow>
+                        <TableCell className="py-2">Sick Leave</TableCell>
+                        <TableCell className="py-2">03-15-2024 – 03-17-2024</TableCell>
+                        <TableCell className="py-2">3</TableCell>
+                        <TableCell className="py-2">
+                          <Badge className="border-0 bg-emerald-100 px-2.5 py-0.5 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300">Approved</Badge>
+                        </TableCell>
+                        <TableCell className="py-2 text-right">
+                          <Button variant="ghost" className="h-8 w-8 p-0" aria-label="View sick leave">
+                            <Eye className="h-4 w-4" />
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                      <TableRow className="bg-muted/20">
+                        <TableCell className="py-2">Annual Leave</TableCell>
+                        <TableCell className="py-2">01-08-2024 – 01-12-2024</TableCell>
+                        <TableCell className="py-2">5</TableCell>
+                        <TableCell className="py-2">
+                          <Badge className="border-0 bg-emerald-100 px-2.5 py-0.5 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300">Approved</Badge>
+                        </TableCell>
+                        <TableCell className="py-2 text-right">
+                          <Button variant="ghost" className="h-8 w-8 p-0" aria-label="View annual leave">
+                            <Eye className="h-4 w-4" />
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="py-2">Personal Leave</TableCell>
+                        <TableCell className="py-2">04-22-2024 – 04-22-2024</TableCell>
+                        <TableCell className="py-2">1</TableCell>
+                        <TableCell className="py-2">
+                          <Badge className="border-0 bg-amber-100 px-2.5 py-0.5 text-amber-700 dark:bg-amber-500/20 dark:text-amber-300">Under Review</Badge>
+                        </TableCell>
+                        <TableCell className="py-2 text-right">
+                          <Button variant="ghost" className="h-8 w-8 p-0" aria-label="View personal leave">
+                            <Eye className="h-4 w-4" />
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="py-2">Annual Leave</TableCell>
+                        <TableCell className="py-2">05-10-2024 – 05-14-2024</TableCell>
+                        <TableCell className="py-2">5</TableCell>
+                        <TableCell className="py-2">
+                          <Badge className="border-0 bg-rose-100 px-2.5 py-0.5 text-rose-700 dark:bg-rose-500/20 dark:text-rose-300">Rejected</Badge>
+                        </TableCell>
+                        <TableCell className="py-2 text-right">
+                          <Button variant="ghost" className="h-8 w-8 p-0" aria-label="View annual leave">
+                            <Eye className="h-4 w-4" />
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </div>
+              </div>
             </TabsContent>
             <TabsContent value="docs" className="space-y-2">
               <h3 className="text-base font-bold">Documents</h3>
