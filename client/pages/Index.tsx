@@ -275,16 +275,24 @@ function OrgListView() {
 
 
 export default function Index() {
+  const { toast } = useToast();
   const [search, setSearch] = useState("");
   const [position, setPosition] = useState<string>("all");
   const [status, setStatus] = useState<string>("all");
   const [view, setView] = useState<"table" | "card">("table");
   const [tab, setTab] = useState<string>("records");
-  const [dcCategory, setDcCategory] = useState<string>("all");
-  const [dcType, setDcType] = useState<string>("all");
-  const [dcStatus, setDcStatus] = useState<string>("all");
-  const [dcScope, setDcScope] = useState<string>("all");
-  const [dcView, setDcView] = useState<"list" | "grid">("list");
+
+  // Role-based permissions (admin | hr | employee)
+  const currentRole: "admin" | "hr" | "employee" = "admin";
+
+  // Document Center state
+  const [dcSearch, setDcSearch] = useState("");
+  const [dcDept, setDcDept] = useState<string>("all");
+  const [dcDocType, setDcDocType] = useState<string>("all");
+  const [dcDateFilter, setDcDateFilter] = useState<string>("any");
+  const [dcCategory2, setDcCategory2] = useState<string>("employee");
+  const [sortKey, setSortKey] = useState<keyof Doc>("uploadDate");
+  const [sortDir, setSortDir] = useState<"asc" | "desc">("desc");
 
   const totalActive = EMPLOYEES.filter((e) => e.status === "Active").length;
   const onLeave = EMPLOYEES.filter((e) => e.status === "On Leave").length;
