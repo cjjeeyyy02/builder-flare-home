@@ -406,10 +406,10 @@ export default function Index() {
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   placeholder="Search by name, email, position, status"
-                  className="h-10 max-w-md"
+                  className="h-8 text-xs max-w-md"
                 />
                 <Select value={position} onValueChange={setPosition}>
-                  <SelectTrigger className="w-40">
+                  <SelectTrigger className="h-8 w-32 text-xs">
                     <SelectValue placeholder="All Positions" />
                   </SelectTrigger>
                   <SelectContent>
@@ -421,7 +421,7 @@ export default function Index() {
                   </SelectContent>
                 </Select>
                 <Select value={status} onValueChange={setStatus}>
-                  <SelectTrigger className="w-36">
+                  <SelectTrigger className="h-8 w-28 text-xs">
                     <SelectValue placeholder="All Status" />
                   </SelectTrigger>
                   <SelectContent>
@@ -464,16 +464,16 @@ export default function Index() {
             {view === "table" ? (
               <section className="mt-4">
                 <div className="overflow-hidden rounded-lg border">
-                  <Table>
+                  <Table className="text-xs leading-tight">
                     <TableHeader>
                       <TableRow className="hover:bg-transparent">
-                        <TableHead className="py-2 text-xs font-bold uppercase">Employee ID</TableHead>
-                        <TableHead className="py-2 text-xs font-bold uppercase">Name</TableHead>
-                        <TableHead className="py-2 text-xs font-bold uppercase">Department</TableHead>
-                        <TableHead className="py-2 text-xs font-bold uppercase">Company Email</TableHead>
-                        <TableHead className="py-2 text-xs font-bold uppercase">Status</TableHead>
-                        <TableHead className="py-2 text-xs font-bold uppercase">Joining Date</TableHead>
-                        <TableHead className="py-3 text-right font-bold uppercase">Action</TableHead>
+                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Employee ID</TableHead>
+                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Name</TableHead>
+                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Department</TableHead>
+                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Company Email</TableHead>
+                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Status</TableHead>
+                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Joining Date</TableHead>
+                        <TableHead className="px-2 py-1 text-right text-xs font-semibold uppercase leading-tight">Action</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -482,12 +482,12 @@ export default function Index() {
                           key={e.id}
                           className={cn("hover:bg-transparent")}
                         >
-                          <TableCell className="py-3 font-medium text-foreground/90">
+                          <TableCell className="px-2 py-1 text-xs leading-tight font-medium text-foreground/90">
                             {e.id}
                           </TableCell>
-                          <TableCell className="py-2 text-sm">
-                            <div className="flex flex-col">
-                              <span className="text-sm font-semibold text-foreground">
+                          <TableCell className="px-2 py-1 text-xs leading-tight">
+                            <div className="flex flex-col leading-tight text-xs">
+                              <span className="text-xs font-semibold text-foreground">
                                 {e.firstName} {e.lastName}
                               </span>
                               <span className="text-xs text-muted-foreground">
@@ -495,11 +495,11 @@ export default function Index() {
                               </span>
                             </div>
                           </TableCell>
-                          <TableCell className="py-2 text-sm">{e.department}</TableCell>
-                          <TableCell className="py-2 text-sm">{e.email}</TableCell>
-                          <TableCell className="py-2 text-sm">{e.status}</TableCell>
-                          <TableCell className="py-2 text-sm">{e.joiningDate}</TableCell>
-                          <TableCell className="py-3 text-right">
+                          <TableCell className="px-2 py-1 text-xs leading-tight">{e.department}</TableCell>
+                          <TableCell className="px-2 py-1 text-xs leading-tight">{e.email}</TableCell>
+                          <TableCell className="px-2 py-1 text-xs leading-tight">{e.status}</TableCell>
+                          <TableCell className="px-2 py-1 text-xs leading-tight">{e.joiningDate}</TableCell>
+                          <TableCell className="px-2 py-1 text-right text-xs leading-tight">
                             <RowActions employee={e} />
                           </TableCell>
                         </TableRow>
@@ -539,131 +539,7 @@ export default function Index() {
           <TabsContent value="org" className="mt-6">
             <OrgListView />
           </TabsContent>
-          <TabsContent value="docs" className="mt-6">
-            <div className="rounded-2xl border bg-card p-4 shadow-sm">
-              <div className="mb-3 flex items-center justify-between">
-                <div className="flex flex-wrap items-center gap-2 text-xs leading-tight">
-                  <Select value={dcCategory} onValueChange={setDcCategory}>
-                    <SelectTrigger className="h-8 w-32 text-xs"><SelectValue placeholder="All Categories" /></SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">All Categories</SelectItem>
-                      <SelectItem value="hr">HR Policies</SelectItem>
-                      <SelectItem value="training">Training Records</SelectItem>
-                      <SelectItem value="compliance">Compliance</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <Select value={dcType} onValueChange={setDcType}>
-                    <SelectTrigger className="h-8 w-28 text-xs"><SelectValue placeholder="All Types" /></SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">All Types</SelectItem>
-                      <SelectItem value="pdf">PDF</SelectItem>
-                      <SelectItem value="docx">DOCX</SelectItem>
-                      <SelectItem value="report">Report</SelectItem>
-                      <SelectItem value="template">Template</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <Select value={dcStatus} onValueChange={setDcStatus}>
-                    <SelectTrigger className="h-8 w-32 text-xs"><SelectValue placeholder="All Status" /></SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">All Status</SelectItem>
-                      <SelectItem value="active">Active</SelectItem>
-                      <SelectItem value="pending">Pending Review</SelectItem>
-                      <SelectItem value="archived">Archived</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <Select value={dcScope} onValueChange={setDcScope}>
-                    <SelectTrigger className="h-8 w-32 text-xs"><SelectValue placeholder="All Documents" /></SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">All Documents</SelectItem>
-                      <SelectItem value="employee">Employee Docs</SelectItem>
-                      <SelectItem value="policy">Policies</SelectItem>
-                      <SelectItem value="reports">Reports</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Button variant="outline" className={cn("h-9 w-9 rounded-full p-0", dcView === "list" && "bg-foreground text-background border-transparent")} onClick={() => setDcView("list")}>
-                    <TableIcon className="h-4 w-4" />
-                  </Button>
-                  <Button variant="outline" className={cn("h-9 w-9 rounded-full p-0", dcView === "grid" && "bg-foreground text-background border-transparent")} onClick={() => setDcView("grid")}>
-                    <LayoutGrid className="h-4 w-4" />
-                  </Button>
-                </div>
-              </div>
-
-              {/* List View */}
-              {dcView === "list" && (
-                <div className="overflow-hidden rounded-lg border">
-                  <Table className="text-xs leading-tight">
-                    <TableHeader>
-                      <TableRow className="bg-muted/40">
-                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Title</TableHead>
-                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Type</TableHead>
-                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Category</TableHead>
-                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Department</TableHead>
-                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Uploaded</TableHead>
-                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">File Size</TableHead>
-                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Status</TableHead>
-                        <TableHead className="px-2 py-1 text-right text-xs font-semibold uppercase leading-tight">Action</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {[
-                        ["Employee Handbook 2024","Policy Document","HR Policies","Human Resources","15/01/2024","2.4 MB","active"],
-                        ["Sarah Mitchell - Employment Contract","Employment Contract","Employee Documents","Engineering","10/01/2023","856 KB","active"],
-                        ["Q4 2023 Compliance Report","Compliance Report","Compliance","Finance","28/12/2023","1.8 MB","active"],
-                        ["Safety Training Certificate - Marcus Thompson","Training Certificate","Training Records","Engineering","20/11/2023","1.2 MB","active"],
-                        ["Emergency Contact Information","Emergency Contacts","Employee Records","Design","15/09/2023","324 KB","active"],
-                        ["Performance Review Template 2024","Template","HR Templates","Human Resources","08/01/2024","445 KB","active"],
-                        ["Data Privacy Policy Update","Policy Document","Compliance","Legal","22/08/2023","1.1 MB","pending"],
-                        ["Financial Audit Report 2023","Audit Report","Finance","Finance","15/12/2023","3.2 MB","archived"],
-                      ].map((r, idx) => (
-                        <TableRow key={r[0] as string} className="hover:bg-muted/40">
-                          <TableCell className="px-2 py-1 text-xs leading-tight">{r[0] as string}</TableCell>
-                          <TableCell className="px-2 py-1 text-xs leading-tight">{r[1] as string}</TableCell>
-                          <TableCell className="px-2 py-1 text-xs leading-tight">{r[2] as string}</TableCell>
-                          <TableCell className="px-2 py-1 text-xs leading-tight">{r[3] as string}</TableCell>
-                          <TableCell className="px-2 py-1 text-xs leading-tight">{r[4] as string}</TableCell>
-                          <TableCell className="px-2 py-1 text-xs leading-tight">{r[5] as string}</TableCell>
-                          <TableCell className="px-2 py-1 text-xs leading-tight">
-                            {r[6] === "active" ? (
-                              <Badge className="border-0 bg-emerald-100 px-2 py-0.5 text-xs text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300">Active</Badge>
-                            ) : r[6] === "pending" ? (
-                              <Badge className="border-0 bg-amber-100 px-2 py-0.5 text-xs text-amber-700 dark:bg-amber-500/20 dark:text-amber-300">Pending Review</Badge>
-                            ) : (
-                              <Badge className="border-0 bg-zinc-200 px-2 py-0.5 text-xs text-zinc-700 dark:bg-zinc-700 dark:text-zinc-200">Archived</Badge>
-                            )}
-                          </TableCell>
-                          <TableCell className="px-2 py-1 text-right text-xs leading-tight">
-                            <DropdownMenu>
-                              <DropdownMenuTrigger asChild>
-                                <Button variant="ghost" className="h-7 w-7 p-0"><EllipsisVertical className="h-4 w-4" /></Button>
-                              </DropdownMenuTrigger>
-                              <DropdownMenuContent align="end" className="w-44">
-                                <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                                <DropdownMenuItem className="gap-2"><Eye className="h-4 w-4" /> View</DropdownMenuItem>
-                                <DropdownMenuItem className="gap-2"><Download className="h-4 w-4" /> Download</DropdownMenuItem>
-                                <DropdownMenuItem className="gap-2"><Share className="h-4 w-4" /> Share</DropdownMenuItem>
-                                <DropdownMenuSeparator />
-                                <DropdownMenuItem className="gap-2"><Pencil className="h-4 w-4" /> Edit Details</DropdownMenuItem>
-                                <DropdownMenuItem className="gap-2 text-rose-600"><Trash2 className="h-4 w-4" /> Delete</DropdownMenuItem>
-                              </DropdownMenuContent>
-                            </DropdownMenu>
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </div>
-              )}
-
-              {dcView === "grid" && (
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                  {[]}
-                </div>
-              )}
-            </div>
-          </TabsContent>
+          <TabsContent value="docs" className="mt-6"></TabsContent>
           <TabsContent value="dept" className="mt-6 text-sm text-muted-foreground">
             Department Management placeholder. Define departments, heads, and policies to proceed.
           </TabsContent>
