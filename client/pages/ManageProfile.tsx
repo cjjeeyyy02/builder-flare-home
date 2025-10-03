@@ -376,19 +376,19 @@ export default function ManageProfile() {
                   <Table className="text-sm border-collapse table-fixed">
                     <TableHeader>
                       <TableRow className="hover:bg-transparent">
-                        <TableHead className="py-3 border border-border font-semibold">Review Period</TableHead>
-                        <TableHead className="py-3 border border-border font-semibold">Reviewer Name</TableHead>
-                        <TableHead className="py-3 border border-border font-semibold">Rating</TableHead>
-                        <TableHead className="py-3 border border-border font-semibold">Comments / Notes</TableHead>
-                        <TableHead className="py-3 border border-border text-right font-semibold">Action</TableHead>
+                        <TableHead className="py-3 border-y border-border font-semibold">Review Period</TableHead>
+                        <TableHead className="py-3 border-y border-border font-semibold">Reviewer Name</TableHead>
+                        <TableHead className="py-3 border-y border-border font-semibold">Rating</TableHead>
+                        <TableHead className="py-3 border-y border-border font-semibold">Comments / Notes</TableHead>
+                        <TableHead className="py-3 border-y border-border text-right font-semibold">Action</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
                       <TableRow className="hover:bg-transparent">
-                        <TableCell className="py-3 border border-border">Q3 2023</TableCell>
-                        <TableCell className="py-3 border border-border">—</TableCell>
-                        <TableCell className="py-3 border border-border">4.5/5</TableCell>
-                        <TableCell className="py-3 border border-border">
+                        <TableCell className="py-3 border-y border-border">Q3 2023</TableCell>
+                        <TableCell className="py-3 border-y border-border">—</TableCell>
+                        <TableCell className="py-3 border-y border-border">4.5/5</TableCell>
+                        <TableCell className="py-3 border-y border-border">
                           <div className="max-w-[520px] truncate">Sarah has consistently delivered exceptional work this quarter. Her technical le...</div>
                         </TableCell>
                         <TableCell className="py-3 border border-border text-right">
@@ -398,10 +398,10 @@ export default function ManageProfile() {
                         </TableCell>
                       </TableRow>
                       <TableRow className="hover:bg-transparent">
-                        <TableCell className="py-3 border border-border">Q2 2023</TableCell>
-                        <TableCell className="py-3 border border-border">—</TableCell>
-                        <TableCell className="py-3 border border-border">4.4/5</TableCell>
-                        <TableCell className="py-3 border border-border">
+                        <TableCell className="py-3 border-y border-border">Q2 2023</TableCell>
+                        <TableCell className="py-3 border-y border-border">—</TableCell>
+                        <TableCell className="py-3 border-y border-border">4.4/5</TableCell>
+                        <TableCell className="py-3 border-y border-border">
                           <div className="max-w-[520px] truncate">Excellent performance in Q2. Sarah successfully optimized our application perfor...</div>
                         </TableCell>
                         <TableCell className="py-3 border border-border text-right">
