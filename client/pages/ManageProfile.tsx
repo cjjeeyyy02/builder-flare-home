@@ -238,12 +238,12 @@ export default function ManageProfile() {
                   <Table>
                     <TableHeader>
                       <TableRow>
-                        <TableHead className="py-2">Company Name</TableHead>
-                        <TableHead className="py-2">Position</TableHead>
-                        <TableHead className="py-2">Duration</TableHead>
-                        <TableHead className="py-2">Location</TableHead>
-                        <TableHead className="py-2">Employment Type</TableHead>
-                        <TableHead className="py-2">Reason for Leaving</TableHead>
+                        <TableHead className="py-2 font-bold uppercase">Company Name</TableHead>
+                        <TableHead className="py-2 font-bold uppercase">Position</TableHead>
+                        <TableHead className="py-2 font-bold uppercase">Duration</TableHead>
+                        <TableHead className="py-2 font-bold uppercase">Location</TableHead>
+                        <TableHead className="py-2 font-bold uppercase">Employment Type</TableHead>
+                        <TableHead className="py-2 font-bold uppercase">Reason for Leaving</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -275,10 +275,10 @@ export default function ManageProfile() {
                 <Table>
                   <TableHeader>
                     <TableRow className="hover:bg-transparent">
-                      <TableHead className="py-2">Skill Name</TableHead>
-                      <TableHead className="py-2">Experience (Years)</TableHead>
-                      <TableHead className="py-2">Skill Level</TableHead>
-                      <TableHead className="py-2 text-right">Action</TableHead>
+                      <TableHead className="py-2 font-bold uppercase">Skill Name</TableHead>
+                      <TableHead className="py-2 font-bold uppercase">Experience (Years)</TableHead>
+                      <TableHead className="py-2 font-bold uppercase">Skill Level</TableHead>
+                      <TableHead className="py-2 text-right font-bold uppercase">Action</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -336,15 +336,15 @@ export default function ManageProfile() {
                   <Table>
                     <TableHeader>
                       <TableRow className="hover:bg-transparent">
-                        <TableHead className="py-2">Date of Change</TableHead>
-                        <TableHead className="py-2">Amount</TableHead>
-                        <TableHead className="py-2">Salary Amount</TableHead>
-                        <TableHead className="py-2">Change Amount</TableHead>
-                        <TableHead className="py-2">Change %</TableHead>
-                        <TableHead className="py-2">Type</TableHead>
-                        <TableHead className="py-2">Source</TableHead>
-                        <TableHead className="py-2">Currency</TableHead>
-                        <TableHead className="py-2">Job Title</TableHead>
+                        <TableHead className="py-2 font-bold uppercase">Date of Change</TableHead>
+                        <TableHead className="py-2 font-bold uppercase">Amount</TableHead>
+                        <TableHead className="py-2 font-bold uppercase">Salary Amount</TableHead>
+                        <TableHead className="py-2 font-bold uppercase">Change Amount</TableHead>
+                        <TableHead className="py-2 font-bold uppercase">Change %</TableHead>
+                        <TableHead className="py-2 font-bold uppercase">Type</TableHead>
+                        <TableHead className="py-2 font-bold uppercase">Source</TableHead>
+                        <TableHead className="py-2 font-bold uppercase">Currency</TableHead>
+                        <TableHead className="py-2 font-bold uppercase">Job Title</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -377,11 +377,11 @@ export default function ManageProfile() {
                   <Table className="text-sm border-collapse table-fixed">
                     <TableHeader>
                       <TableRow className="hover:bg-transparent">
-                        <TableHead className="py-3 border-y border-border font-semibold">Review Period</TableHead>
-                        <TableHead className="py-3 border-y border-border font-semibold">Reviewer Name</TableHead>
-                        <TableHead className="py-3 border-y border-border font-semibold">Rating</TableHead>
-                        <TableHead className="py-3 border-y border-border font-semibold">Comments / Notes</TableHead>
-                        <TableHead className="py-3 border-y border-border text-right font-semibold">Action</TableHead>
+                        <TableHead className="py-3 border-y border-border font-bold uppercase">Review Period</TableHead>
+                        <TableHead className="py-3 border-y border-border font-bold uppercase">Reviewer Name</TableHead>
+                        <TableHead className="py-3 border-y border-border font-bold uppercase">Rating</TableHead>
+                        <TableHead className="py-3 border-y border-border font-bold uppercase">Comments / Notes</TableHead>
+                        <TableHead className="py-3 border-y border-border text-right font-bold uppercase">Action</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -428,11 +428,11 @@ export default function ManageProfile() {
                   <Table className="text-sm">
                     <TableHeader>
                       <TableRow className="hover:bg-transparent">
-                        <TableHead className="py-2">Training Title</TableHead>
-                        <TableHead className="py-2">Provider / Instructor</TableHead>
-                        <TableHead className="py-2">Date Completed</TableHead>
-                        <TableHead className="py-2">Status</TableHead>
-                        <TableHead className="py-2 text-right">Certificate</TableHead>
+                        <TableHead className="py-2 font-bold uppercase">Training Title</TableHead>
+                        <TableHead className="py-2 font-bold uppercase">Provider / Instructor</TableHead>
+                        <TableHead className="py-2 font-bold uppercase">Date Completed</TableHead>
+                        <TableHead className="py-2 font-bold uppercase">Status</TableHead>
+                        <TableHead className="py-2 text-right font-bold uppercase">Certificate</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -572,11 +572,11 @@ export default function ManageProfile() {
                   <Table className="text-sm">
                     <TableHeader>
                       <TableRow className="hover:bg-transparent">
-                        <TableHead className="py-2">Leave Type</TableHead>
-                        <TableHead className="py-2">Duration</TableHead>
-                        <TableHead className="py-2">Total Days</TableHead>
-                        <TableHead className="py-2">Status</TableHead>
-                        <TableHead className="py-2 text-right">Action</TableHead>
+                        <TableHead className="py-2 font-bold uppercase">Leave Type</TableHead>
+                        <TableHead className="py-2 font-bold uppercase">Duration</TableHead>
+                        <TableHead className="py-2 font-bold uppercase">Total Days</TableHead>
+                        <TableHead className="py-2 font-bold uppercase">Status</TableHead>
+                        <TableHead className="py-2 text-right font-bold uppercase">Action</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -647,11 +647,11 @@ export default function ManageProfile() {
                   <Table className="text-sm">
                     <TableHeader>
                       <TableRow className="bg-muted/40">
-                        <TableHead className="py-2">Document Title</TableHead>
-                        <TableHead className="py-2">File Type</TableHead>
-                        <TableHead className="py-2">File Size</TableHead>
-                        <TableHead className="py-2">Upload Date</TableHead>
-                        <TableHead className="py-2 text-right">Action</TableHead>
+                        <TableHead className="py-2 font-bold uppercase">Document Title</TableHead>
+                        <TableHead className="py-2 font-bold uppercase">File Type</TableHead>
+                        <TableHead className="py-2 font-bold uppercase">File Size</TableHead>
+                        <TableHead className="py-2 font-bold uppercase">Upload Date</TableHead>
+                        <TableHead className="py-2 text-right font-bold uppercase">Action</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
