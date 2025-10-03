@@ -34,7 +34,7 @@ export default function ManageProfile() {
   const piFirstName = isSarah ? "Sarah" : employee.firstName || "—";
   const piMiddleName = isSarah ? "—" : "—";
   const piLastName = isSarah ? "Mitchell" : employee.lastName || "—";
-  const piDOB = isSarah ? "03-15-1990" : "—";
+  const piDOB = isSarah ? "03-15-1990" : "��";
   const piGender = isSarah ? "Female" : "—";
   const piMarital = isSarah ? "Single" : "—";
   const piNationality = isSarah ? "United States" : "—";
@@ -457,7 +457,7 @@ export default function ManageProfile() {
                         </TableCell>
                         <TableCell className="py-2 text-right">—</TableCell>
                       </TableRow>
-                      <TableRow>
+                      <TableRow className="hover:bg-transparent">
                         <TableCell className="py-2">Leadership Development Program</TableCell>
                         <TableCell className="py-2">Corporate University</TableCell>
                         <TableCell className="py-2">N/A</TableCell>
