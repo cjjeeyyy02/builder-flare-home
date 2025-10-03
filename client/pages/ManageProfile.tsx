@@ -35,7 +35,7 @@ export default function ManageProfile() {
   const piMiddleName = isSarah ? "—" : "—";
   const piLastName = isSarah ? "Mitchell" : employee.lastName || "—";
   const piDOB = isSarah ? "03-15-1990" : "—";
-  const piGender = isSarah ? "Female" : "��";
+  const piGender = isSarah ? "Female" : "—";
   const piMarital = isSarah ? "Single" : "—";
   const piNationality = isSarah ? "United States" : "—";
   // Section 2: Contact Details
@@ -435,7 +435,7 @@ export default function ManageProfile() {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      <TableRow>
+                      <TableRow className="hover:bg-transparent">
                         <TableCell className="py-2">React Advanced Patterns</TableCell>
                         <TableCell className="py-2">Tech Academy</TableCell>
                         <TableCell className="py-2">08/15/2023</TableCell>
