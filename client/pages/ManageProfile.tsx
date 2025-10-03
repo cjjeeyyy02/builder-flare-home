@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, CalendarDays, Pencil, Trash2, User } from "lucide-react";
+import { ArrowLeft, CalendarDays, Eye, Pencil, Trash2, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export default function ManageProfile() {
@@ -370,7 +370,50 @@ export default function ManageProfile() {
               </div>
             </TabsContent>
             <TabsContent value="perf" className="space-y-2">
-              <h3 className="text-base font-bold">Performance</h3>
+              <div className="rounded-2xl border bg-card p-4 shadow-sm">
+                <div className="mb-3 text-sm font-bold text-foreground">Performance Reviews</div>
+                <div className="overflow-hidden rounded-lg border">
+                  <Table className="text-sm">
+                    <TableHeader>
+                      <TableRow className="bg-muted/40">
+                        <TableHead className="py-3">Review Period</TableHead>
+                        <TableHead className="py-3">Reviewer Name</TableHead>
+                        <TableHead className="py-3">Rating</TableHead>
+                        <TableHead className="py-3">Comments / Notes</TableHead>
+                        <TableHead className="py-3 text-right">Action</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      <TableRow className="hover:bg-muted/40">
+                        <TableCell className="py-3">Q3 2023</TableCell>
+                        <TableCell className="py-3">—</TableCell>
+                        <TableCell className="py-3">4.5/5</TableCell>
+                        <TableCell className="py-3">
+                          <div className="max-w-[520px] truncate">Sarah has consistently delivered exceptional work this quarter. Her technical le...</div>
+                        </TableCell>
+                        <TableCell className="py-3 text-right">
+                          <Button variant="ghost" className="h-8 w-8 p-0" aria-label="View review Q3 2023">
+                            <Eye className="h-4 w-4" />
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                      <TableRow className="bg-muted/20 hover:bg-muted/40">
+                        <TableCell className="py-3">Q2 2023</TableCell>
+                        <TableCell className="py-3">—</TableCell>
+                        <TableCell className="py-3">4.4/5</TableCell>
+                        <TableCell className="py-3">
+                          <div className="max-w-[520px] truncate">Excellent performance in Q2. Sarah successfully optimized our application perfor...</div>
+                        </TableCell>
+                        <TableCell className="py-3 text-right">
+                          <Button variant="ghost" className="h-8 w-8 p-0" aria-label="View review Q2 2023">
+                            <Eye className="h-4 w-4" />
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </div>
+              </div>
             </TabsContent>
             <TabsContent value="training" className="space-y-2">
               <h3 className="text-base font-bold">Training</h3>
