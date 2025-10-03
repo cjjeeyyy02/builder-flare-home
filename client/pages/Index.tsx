@@ -594,17 +594,17 @@ export default function Index() {
               {/* List View */}
               {dcView === "list" && (
                 <div className="overflow-hidden rounded-lg border">
-                  <Table className="text-sm">
+                  <Table className="text-xs leading-tight">
                     <TableHeader>
                       <TableRow className="bg-muted/40">
-                        <TableHead className="py-2 font-bold uppercase">Title</TableHead>
-                        <TableHead className="py-2 font-bold uppercase">Type</TableHead>
-                        <TableHead className="py-2 font-bold uppercase">Category</TableHead>
-                        <TableHead className="py-2 font-bold uppercase">Department</TableHead>
-                        <TableHead className="py-2 font-bold uppercase">Uploaded</TableHead>
-                        <TableHead className="py-2 font-bold uppercase">File Size</TableHead>
-                        <TableHead className="py-2 font-bold uppercase">Status</TableHead>
-                        <TableHead className="py-2 text-right font-bold uppercase">Action</TableHead>
+                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Title</TableHead>
+                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Type</TableHead>
+                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Category</TableHead>
+                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Department</TableHead>
+                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Uploaded</TableHead>
+                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">File Size</TableHead>
+                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Status</TableHead>
+                        <TableHead className="px-2 py-1 text-right text-xs font-semibold uppercase leading-tight">Action</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -619,25 +619,25 @@ export default function Index() {
                         ["Financial Audit Report 2023","Audit Report","Finance","Finance","15/12/2023","3.2 MB","archived"],
                       ].map((r, idx) => (
                         <TableRow key={r[0] as string} className="hover:bg-muted/40">
-                          <TableCell className="py-2">{r[0] as string}</TableCell>
-                          <TableCell className="py-2">{r[1] as string}</TableCell>
-                          <TableCell className="py-2">{r[2] as string}</TableCell>
-                          <TableCell className="py-2">{r[3] as string}</TableCell>
-                          <TableCell className="py-2">{r[4] as string}</TableCell>
-                          <TableCell className="py-2">{r[5] as string}</TableCell>
-                          <TableCell className="py-2">
+                          <TableCell className="px-2 py-1 text-xs leading-tight">{r[0] as string}</TableCell>
+                          <TableCell className="px-2 py-1 text-xs leading-tight">{r[1] as string}</TableCell>
+                          <TableCell className="px-2 py-1 text-xs leading-tight">{r[2] as string}</TableCell>
+                          <TableCell className="px-2 py-1 text-xs leading-tight">{r[3] as string}</TableCell>
+                          <TableCell className="px-2 py-1 text-xs leading-tight">{r[4] as string}</TableCell>
+                          <TableCell className="px-2 py-1 text-xs leading-tight">{r[5] as string}</TableCell>
+                          <TableCell className="px-2 py-1 text-xs leading-tight">
                             {r[6] === "active" ? (
-                              <Badge className="border-0 bg-emerald-100 px-2.5 py-0.5 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300">Active</Badge>
+                              <Badge className="border-0 bg-emerald-100 px-2 py-0.5 text-xs text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300">Active</Badge>
                             ) : r[6] === "pending" ? (
-                              <Badge className="border-0 bg-amber-100 px-2.5 py-0.5 text-amber-700 dark:bg-amber-500/20 dark:text-amber-300">Pending Review</Badge>
+                              <Badge className="border-0 bg-amber-100 px-2 py-0.5 text-xs text-amber-700 dark:bg-amber-500/20 dark:text-amber-300">Pending Review</Badge>
                             ) : (
-                              <Badge className="border-0 bg-zinc-200 px-2.5 py-0.5 text-zinc-700 dark:bg-zinc-700 dark:text-zinc-200">Archived</Badge>
+                              <Badge className="border-0 bg-zinc-200 px-2 py-0.5 text-xs text-zinc-700 dark:bg-zinc-700 dark:text-zinc-200">Archived</Badge>
                             )}
                           </TableCell>
-                          <TableCell className="py-2 text-right">
+                          <TableCell className="px-2 py-1 text-right text-xs leading-tight">
                             <DropdownMenu>
                               <DropdownMenuTrigger asChild>
-                                <Button variant="ghost" className="h-8 w-8 p-0"><EllipsisVertical className="h-4 w-4" /></Button>
+                                <Button variant="ghost" className="h-7 w-7 p-0"><EllipsisVertical className="h-4 w-4" /></Button>
                               </DropdownMenuTrigger>
                               <DropdownMenuContent align="end" className="w-44">
                                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
