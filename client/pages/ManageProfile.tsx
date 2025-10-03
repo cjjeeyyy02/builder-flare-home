@@ -636,8 +636,93 @@ export default function ManageProfile() {
                 </div>
               </div>
             </TabsContent>
-            <TabsContent value="docs" className="space-y-2">
-              <h3 className="text-base font-bold">Documents</h3>
+            <TabsContent value="docs" className="space-y-4">
+              <div className="rounded-2xl border bg-card p-4 shadow-sm">
+                <div className="mb-3 flex items-center justify-between">
+                  <div className="text-sm font-bold text-foreground">Employee Documents</div>
+                  <Button className="h-8 rounded-md bg-blue-600 px-3 text-xs text-white hover:bg-blue-700">+ Upload Document</Button>
+                </div>
+                <div className="overflow-hidden rounded-lg border">
+                  <Table className="text-sm">
+                    <TableHeader>
+                      <TableRow className="bg-muted/40">
+                        <TableHead className="py-2">Document Title</TableHead>
+                        <TableHead className="py-2">File Type</TableHead>
+                        <TableHead className="py-2">File Size</TableHead>
+                        <TableHead className="py-2">Upload Date</TableHead>
+                        <TableHead className="py-2 text-right">Action</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      <TableRow>
+                        <TableCell className="py-2">Employment Contract</TableCell>
+                        <TableCell className="py-2">PDF</TableCell>
+                        <TableCell className="py-2">2.4 MB</TableCell>
+                        <TableCell className="py-2">01/15/2023</TableCell>
+                        <TableCell className="py-2 text-right">
+                          <div className="inline-flex items-center gap-1">
+                            <Button variant="ghost" className="h-8 w-8 p-0" aria-label="View Employment Contract"><Eye className="h-4 w-4" /></Button>
+                            <Button variant="ghost" className="h-8 w-8 p-0" aria-label="Download Employment Contract"><Download className="h-4 w-4" /></Button>
+                            <Button variant="ghost" className="h-8 w-8 p-0 text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-500/10" aria-label="Delete Employment Contract"><Trash2 className="h-4 w-4" /></Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="py-2">Tax Forms (W-2)</TableCell>
+                        <TableCell className="py-2">PDF</TableCell>
+                        <TableCell className="py-2">1.8 MB</TableCell>
+                        <TableCell className="py-2">12/31/2023</TableCell>
+                        <TableCell className="py-2 text-right">
+                          <div className="inline-flex items-center gap-1">
+                            <Button variant="ghost" className="h-8 w-8 p-0" aria-label="View Tax Forms (W-2)"><Eye className="h-4 w-4" /></Button>
+                            <Button variant="ghost" className="h-8 w-8 p-0" aria-label="Download Tax Forms (W-2)"><Download className="h-4 w-4" /></Button>
+                            <Button variant="ghost" className="h-8 w-8 p-0 text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-500/10" aria-label="Delete Tax Forms (W-2)"><Trash2 className="h-4 w-4" /></Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="py-2">Performance Review 2023</TableCell>
+                        <TableCell className="py-2">DOCX</TableCell>
+                        <TableCell className="py-2">856 KB</TableCell>
+                        <TableCell className="py-2">11/20/2023</TableCell>
+                        <TableCell className="py-2 text-right">
+                          <div className="inline-flex items-center gap-1">
+                            <Button variant="ghost" className="h-8 w-8 p-0" aria-label="View Performance Review 2023"><Eye className="h-4 w-4" /></Button>
+                            <Button variant="ghost" className="h-8 w-8 p-0" aria-label="Download Performance Review 2023"><Download className="h-4 w-4" /></Button>
+                            <Button variant="ghost" className="h-8 w-8 p-0 text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-500/10" aria-label="Delete Performance Review 2023"><Trash2 className="h-4 w-4" /></Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="py-2">Benefits Enrollment</TableCell>
+                        <TableCell className="py-2">PDF</TableCell>
+                        <TableCell className="py-2">3.1 MB</TableCell>
+                        <TableCell className="py-2">03/10/2023</TableCell>
+                        <TableCell className="py-2 text-right">
+                          <div className="inline-flex items-center gap-1">
+                            <Button variant="ghost" className="h-8 w-8 p-0" aria-label="View Benefits Enrollment"><Eye className="h-4 w-4" /></Button>
+                            <Button variant="ghost" className="h-8 w-8 p-0" aria-label="Download Benefits Enrollment"><Download className="h-4 w-4" /></Button>
+                            <Button variant="ghost" className="h-8 w-8 p-0 text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-500/10" aria-label="Delete Benefits Enrollment"><Trash2 className="h-4 w-4" /></Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="py-2">Training Certificate</TableCell>
+                        <TableCell className="py-2">PDF</TableCell>
+                        <TableCell className="py-2">1.2 MB</TableCell>
+                        <TableCell className="py-2">08/15/2023</TableCell>
+                        <TableCell className="py-2 text-right">
+                          <div className="inline-flex items-center gap-1">
+                            <Button variant="ghost" className="h-8 w-8 p-0" aria-label="View Training Certificate"><Eye className="h-4 w-4" /></Button>
+                            <Button variant="ghost" className="h-8 w-8 p-0" aria-label="Download Training Certificate"><Download className="h-4 w-4" /></Button>
+                            <Button variant="ghost" className="h-8 w-8 p-0 text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-500/10" aria-label="Delete Training Certificate"><Trash2 className="h-4 w-4" /></Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </div>
+              </div>
             </TabsContent>
             <TabsContent value="access" className="space-y-2">
               <h3 className="text-base font-bold">Access & Security</h3>
