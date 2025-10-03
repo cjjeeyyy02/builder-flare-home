@@ -542,7 +542,130 @@ export default function Index() {
           <TabsContent value="org" className="mt-6">
             <OrgListView />
           </TabsContent>
-          <TabsContent value="docs" className="mt-6"></TabsContent>
+          <TabsContent value="docs" className="mt-6">
+            <div className="rounded-2xl border bg-card p-4 shadow-sm">
+              <div className="mb-3 flex items-center justify-between gap-3">
+                <h3 className="text-base font-semibold">Document Center</h3>
+                <div className="flex items-center gap-2">
+                  <Input
+                    value={dcSearch}
+                    onChange={(e) => setDcSearch(e.target.value)}
+                    placeholder="Search documents..."
+                    className="h-8 w-56 text-xs"
+                  />
+                  {(currentRole === "admin" || currentRole === "hr") ? (
+                    <label className="inline-flex items-center">
+                      <input
+                        type="file"
+                        className="hidden"
+                        accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,image/*"
+                        onChange={() => toast({ title: "Upload started", description: "Your document is uploading." })}
+                      />
+                      <Button type="button" className="h-8 gap-1 px-2 text-xs">
+                        <Upload className="h-4 w-4" /> Upload Document
+                      </Button>
+                    </label>
+                  ) : (
+                    <label className="inline-flex items-center">
+                      <input
+                        type="file"
+                        className="hidden"
+                        accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,image/*"
+                        onChange={() => toast({ title: "Upload started", description: "Uploading your document." })}
+                      />
+                      <Button type="button" className="h-8 gap-1 px-2 text-xs">
+                        <Upload className="h-4 w-4" /> Upload My Document
+                      </Button>
+                    </label>
+                  )}
+                </div>
+              </div>
+
+              <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+                <div className="flex flex-wrap items-center gap-1 text-xs">
+                  {docCategories.map((c) => (
+                    <Button
+                      key={c.value}
+                      variant={dcCategory2 === c.value ? "default" : "outline"}
+                      className={cn("h-7 px-2 text-xs", dcCategory2 === c.value ? "bg-brand text-brand-foreground border-transparent" : "")}
+                      onClick={() => setDcCategory2(c.value)}
+                    >
+                      {c.label}
+                    </Button>
+                  ))}
+                </div>
+                <div className="flex flex-wrap items-center gap-2">
+                  <Select value={dcDept} onValueChange={setDcDept}>
+                    <SelectTrigger className="h-8 w-40 text-xs"><SelectValue placeholder="All Departments" /></SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Departments</SelectItem>
+                      {departments.map((d) => (
+                        <SelectItem key={d} value={d.toLowerCase()}>{d}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <Select value={dcDocType} onValueChange={setDcDocType}>
+                    <SelectTrigger className="h-8 w-36 text-xs"><SelectValue placeholder="All Types" /></SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Types</SelectItem>
+                      {docTypes.map((t) => (
+                        <SelectItem key={t} value={t.toLowerCase()}>{t}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <Select value={dcDateFilter} onValueChange={setDcDateFilter}>
+                    <SelectTrigger className="h-8 w-36 text-xs"><SelectValue placeholder="Date" /></SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="any">Any Date</SelectItem>
+                      <SelectItem value="30">Last 30 days</SelectItem>
+                      <SelectItem value="90">Last 90 days</SelectItem>
+                      <SelectItem value="365">Last year</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+
+              <div className="overflow-hidden rounded-lg border">
+                <Table className="text-xs leading-tight">
+                  <TableHeader>
+                    <TableRow className="bg-muted/40">
+                      {docColumns.map((col) => (
+                        <TableHead key={col.key as string} className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
+                          <button className="inline-flex items-center gap-1" onClick={() => handleSort(col.key)}>
+                            <span>{col.label}</span>
+                            <ArrowUpDown className="h-3.5 w-3.5 opacity-60" />
+                          </button>
+                        </TableHead>
+                      ))}
+                      <TableHead className="px-2 py-1 text-right text-xs font-semibold uppercase leading-tight">Actions</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {sortedDocs.map((d) => (
+                      <TableRow key={d.id} className="hover:bg-muted/40">
+                        <TableCell className="px-2 py-1 text-xs leading-tight">{d.title}</TableCell>
+                        <TableCell className="px-2 py-1 text-xs leading-tight">{d.employeeName}</TableCell>
+                        <TableCell className="px-2 py-1 text-xs leading-tight">{d.department}</TableCell>
+                        <TableCell className="px-2 py-1 text-xs leading-tight">{d.type}</TableCell>
+                        <TableCell className="px-2 py-1 text-xs leading-tight">{d.uploadDate}</TableCell>
+                        <TableCell className="px-2 py-1 text-xs leading-tight">{d.expirationDate ?? "—"}</TableCell>
+                        <TableCell className="px-2 py-1 text-xs leading-tight">{d.uploadedBy}</TableCell>
+                        <TableCell className="px-2 py-1 text-right text-xs leading-tight">
+                          <div className="flex items-center justify-end gap-2">
+                            <Button variant="ghost" className="h-7 w-7 p-0" aria-label="View"><Eye className="h-4 w-4" /></Button>
+                            <Button variant="ghost" className="h-7 w-7 p-0" aria-label="Download"><Download className="h-4 w-4" /></Button>
+                            {(currentRole === "admin" || currentRole === "hr") && (
+                              <Button variant="ghost" className="h-7 w-7 p-0" aria-label="Edit"><Pencil className="h-4 w-4" /></Button>
+                            )}
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
+            </div>
+          </TabsContent>
           <TabsContent value="dept" className="mt-6 text-sm text-muted-foreground">
             Department Management placeholder. Define departments, heads, and policies to proceed.
           </TabsContent>
