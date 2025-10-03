@@ -391,7 +391,7 @@ export default function ManageProfile() {
                         <TableCell className="py-3 border-y border-border">
                           <div className="max-w-[520px] truncate">Sarah has consistently delivered exceptional work this quarter. Her technical le...</div>
                         </TableCell>
-                        <TableCell className="py-3 border border-border text-right">
+                        <TableCell className="py-3 border-y border-border text-right">
                           <Button className="h-8 w-8 p-0 hover:bg-transparent" aria-label="View review Q3 2023">
                             <Eye className="h-4 w-4" />
                           </Button>
@@ -404,7 +404,7 @@ export default function ManageProfile() {
                         <TableCell className="py-3 border-y border-border">
                           <div className="max-w-[520px] truncate">Excellent performance in Q2. Sarah successfully optimized our application perfor...</div>
                         </TableCell>
-                        <TableCell className="py-3 border border-border text-right">
+                        <TableCell className="py-3 border-y border-border text-right">
                           <Button className="h-8 w-8 p-0 hover:bg-transparent" aria-label="View review Q2 2023">
                             <Eye className="h-4 w-4" />
                           </Button>
