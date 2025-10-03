@@ -449,13 +449,13 @@ export default function Index() {
                   <Table>
                     <TableHeader>
                       <TableRow className="hover:bg-transparent">
-                        <TableHead className="py-2 text-xs">Employee ID</TableHead>
-                        <TableHead className="py-2 text-xs">Name</TableHead>
-                        <TableHead className="py-2 text-xs">Department</TableHead>
-                        <TableHead className="py-2 text-xs">Company Email</TableHead>
-                        <TableHead className="py-2 text-xs">Status</TableHead>
-                        <TableHead className="py-2 text-xs">Joining Date</TableHead>
-                        <TableHead className="py-3 text-right">Action</TableHead>
+                        <TableHead className="py-2 text-xs font-bold uppercase">Employee ID</TableHead>
+                        <TableHead className="py-2 text-xs font-bold uppercase">Name</TableHead>
+                        <TableHead className="py-2 text-xs font-bold uppercase">Department</TableHead>
+                        <TableHead className="py-2 text-xs font-bold uppercase">Company Email</TableHead>
+                        <TableHead className="py-2 text-xs font-bold uppercase">Status</TableHead>
+                        <TableHead className="py-2 text-xs font-bold uppercase">Joining Date</TableHead>
+                        <TableHead className="py-3 text-right font-bold uppercase">Action</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
