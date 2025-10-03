@@ -32,7 +32,7 @@ export default function ManageProfile() {
   const isSarah = employee.id === "EMP001";
   // Section 1: Personal Information
   const piFirstName = isSarah ? "Sarah" : employee.firstName || "—";
-  const piMiddleName = isSarah ? "—" : "—";
+  const piMiddleName = isSarah ? "—" : "���";
   const piLastName = isSarah ? "Mitchell" : employee.lastName || "—";
   const piDOB = isSarah ? "03-15-1990" : "—";
   const piGender = isSarah ? "Female" : "—";
@@ -334,7 +334,7 @@ export default function ManageProfile() {
                 <div className="mt-3">
                   <Table>
                     <TableHeader>
-                      <TableRow className="bg-muted/40">
+                      <TableRow className="hover:bg-transparent">
                         <TableHead className="py-2">Date of Change</TableHead>
                         <TableHead className="py-2">Amount</TableHead>
                         <TableHead className="py-2">Salary Amount</TableHead>
