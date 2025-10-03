@@ -462,10 +462,7 @@ export default function Index() {
                       {filtered.map((e, idx) => (
                         <TableRow
                           key={e.id}
-                          className={cn(
-                            idx % 2 === 0 ? "bg-background" : "bg-muted/20",
-                            "hover:bg-muted/50",
-                          )}
+                          className={cn("hover:bg-transparent")}
                         >
                           <TableCell className="py-3 font-medium text-foreground/90">
                             {e.id}
