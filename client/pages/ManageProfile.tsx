@@ -4,9 +4,10 @@ import { EMPLOYEES, type Employee } from "@/lib/data/employees";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/local/tabs";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, CalendarDays, Check, Download, Eye, Pencil, Trash2, User } from "lucide-react";
+import { ArrowLeft, CalendarDays, Check, Download, Eye, Pencil, Shield, ShieldCheck, Trash2, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export default function ManageProfile() {
@@ -724,8 +725,58 @@ export default function ManageProfile() {
                 </div>
               </div>
             </TabsContent>
-            <TabsContent value="access" className="space-y-2">
-              <h3 className="text-base font-bold">Access & Security</h3>
+            <TabsContent value="access" className="space-y-4">
+              <div className="rounded-2xl border bg-card p-4 shadow-sm">
+                <div className="mb-3 flex items-center gap-2 text-sm font-bold text-foreground">
+                  <Shield className="h-4 w-4" /> Account Settings
+                </div>
+                <div className="space-y-3 text-sm">
+                  <div className="flex items-center justify-between">
+                    <div className="text-muted-foreground">Account Active</div>
+                    <Switch defaultChecked aria-label="Account Active" />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div className="text-muted-foreground">HR Access</div>
+                    <Switch aria-label="HR Access" />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div className="text-muted-foreground">Admin Rights</div>
+                    <Switch aria-label="Admin Rights" />
+                  </div>
+                </div>
+              </div>
+
+              <div className="rounded-2xl border bg-card p-4 shadow-sm">
+                <div className="mb-3 flex items-center gap-2 text-sm font-bold text-foreground">
+                  <Shield className="h-4 w-4" /> Security Actions
+                </div>
+                <div className="flex items-center justify-end gap-2">
+                  <Button variant="outline" className="h-8 rounded-md border-amber-500 px-3 text-xs text-amber-600">Reset Password</Button>
+                  <Button variant="outline" className="h-8 rounded-md border-blue-600 px-3 text-xs text-blue-600">Generate New User ID</Button>
+                </div>
+              </div>
+
+              <div className="rounded-2xl border bg-card p-4 shadow-sm">
+                <div className="mb-3 flex items-center gap-2 text-sm font-bold text-foreground">
+                  <ShieldCheck className="h-4 w-4" /> Current Security Status
+                </div>
+                <div className="grid gap-3 text-sm sm:grid-cols-3">
+                  <div>
+                    <div className="text-xs text-muted-foreground">Account Status</div>
+                    <div>
+                      <span className="inline-flex items-center rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300">Active</span>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="text-xs text-muted-foreground">HR Access</div>
+                    <div className="text-foreground/70">Disabled</div>
+                  </div>
+                  <div>
+                    <div className="text-xs text-muted-foreground">Admin Rights</div>
+                    <div className="text-foreground/70">Not Granted</div>
+                  </div>
+                </div>
+              </div>
             </TabsContent>
             </div>
           </Tabs>
