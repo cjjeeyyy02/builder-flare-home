@@ -370,42 +370,42 @@ export default function ManageProfile() {
               </div>
             </TabsContent>
             <TabsContent value="perf" className="space-y-2">
-              <div className="rounded-2xl border bg-card p-4 shadow-sm">
-                <div className="mb-3 text-sm font-bold text-foreground">Performance Reviews</div>
-                <div className="overflow-hidden rounded-lg border">
-                  <Table className="text-sm">
+              <div className="rounded-none p-0 shadow-none">
+                <div className="mb-2 text-sm font-bold text-foreground">Performance Reviews</div>
+                <div className="overflow-x-auto">
+                  <Table className="text-sm border-collapse table-fixed">
                     <TableHeader>
-                      <TableRow className="bg-muted/40">
-                        <TableHead className="py-3">Review Period</TableHead>
-                        <TableHead className="py-3">Reviewer Name</TableHead>
-                        <TableHead className="py-3">Rating</TableHead>
-                        <TableHead className="py-3">Comments / Notes</TableHead>
-                        <TableHead className="py-3 text-right">Action</TableHead>
+                      <TableRow className="hover:bg-transparent">
+                        <TableHead className="py-3 border border-border font-semibold">Review Period</TableHead>
+                        <TableHead className="py-3 border border-border font-semibold">Reviewer Name</TableHead>
+                        <TableHead className="py-3 border border-border font-semibold">Rating</TableHead>
+                        <TableHead className="py-3 border border-border font-semibold">Comments / Notes</TableHead>
+                        <TableHead className="py-3 border border-border text-right font-semibold">Action</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      <TableRow className="hover:bg-muted/40">
-                        <TableCell className="py-3">Q3 2023</TableCell>
-                        <TableCell className="py-3">—</TableCell>
-                        <TableCell className="py-3">4.5/5</TableCell>
-                        <TableCell className="py-3">
+                      <TableRow className="hover:bg-transparent">
+                        <TableCell className="py-3 border border-border">Q3 2023</TableCell>
+                        <TableCell className="py-3 border border-border">—</TableCell>
+                        <TableCell className="py-3 border border-border">4.5/5</TableCell>
+                        <TableCell className="py-3 border border-border">
                           <div className="max-w-[520px] truncate">Sarah has consistently delivered exceptional work this quarter. Her technical le...</div>
                         </TableCell>
-                        <TableCell className="py-3 text-right">
-                          <Button variant="ghost" className="h-8 w-8 p-0" aria-label="View review Q3 2023">
+                        <TableCell className="py-3 border border-border text-right">
+                          <Button className="h-8 w-8 p-0 hover:bg-transparent" aria-label="View review Q3 2023">
                             <Eye className="h-4 w-4" />
                           </Button>
                         </TableCell>
                       </TableRow>
-                      <TableRow className="bg-muted/20 hover:bg-muted/40">
-                        <TableCell className="py-3">Q2 2023</TableCell>
-                        <TableCell className="py-3">—</TableCell>
-                        <TableCell className="py-3">4.4/5</TableCell>
-                        <TableCell className="py-3">
+                      <TableRow className="hover:bg-transparent">
+                        <TableCell className="py-3 border border-border">Q2 2023</TableCell>
+                        <TableCell className="py-3 border border-border">—</TableCell>
+                        <TableCell className="py-3 border border-border">4.4/5</TableCell>
+                        <TableCell className="py-3 border border-border">
                           <div className="max-w-[520px] truncate">Excellent performance in Q2. Sarah successfully optimized our application perfor...</div>
                         </TableCell>
-                        <TableCell className="py-3 text-right">
-                          <Button variant="ghost" className="h-8 w-8 p-0" aria-label="View review Q2 2023">
+                        <TableCell className="py-3 border border-border text-right">
+                          <Button className="h-8 w-8 p-0 hover:bg-transparent" aria-label="View review Q2 2023">
                             <Eye className="h-4 w-4" />
                           </Button>
                         </TableCell>
