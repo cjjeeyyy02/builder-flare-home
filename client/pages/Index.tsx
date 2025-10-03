@@ -542,9 +542,9 @@ export default function Index() {
           <TabsContent value="docs" className="mt-6">
             <div className="rounded-2xl border bg-card p-4 shadow-sm">
               <div className="mb-3 flex items-center justify-between">
-                <div className="flex flex-wrap items-center gap-2">
+                <div className="flex flex-wrap items-center gap-2 text-xs leading-tight">
                   <Select value={dcCategory} onValueChange={setDcCategory}>
-                    <SelectTrigger className="w-40"><SelectValue placeholder="All Categories" /></SelectTrigger>
+                    <SelectTrigger className="h-8 w-32 text-xs"><SelectValue placeholder="All Categories" /></SelectTrigger>
                     <SelectContent>
                       <SelectItem value="all">All Categories</SelectItem>
                       <SelectItem value="hr">HR Policies</SelectItem>
@@ -553,7 +553,7 @@ export default function Index() {
                     </SelectContent>
                   </Select>
                   <Select value={dcType} onValueChange={setDcType}>
-                    <SelectTrigger className="w-36"><SelectValue placeholder="All Types" /></SelectTrigger>
+                    <SelectTrigger className="h-8 w-28 text-xs"><SelectValue placeholder="All Types" /></SelectTrigger>
                     <SelectContent>
                       <SelectItem value="all">All Types</SelectItem>
                       <SelectItem value="pdf">PDF</SelectItem>
@@ -563,7 +563,7 @@ export default function Index() {
                     </SelectContent>
                   </Select>
                   <Select value={dcStatus} onValueChange={setDcStatus}>
-                    <SelectTrigger className="w-40"><SelectValue placeholder="All Status" /></SelectTrigger>
+                    <SelectTrigger className="h-8 w-32 text-xs"><SelectValue placeholder="All Status" /></SelectTrigger>
                     <SelectContent>
                       <SelectItem value="all">All Status</SelectItem>
                       <SelectItem value="active">Active</SelectItem>
@@ -572,7 +572,7 @@ export default function Index() {
                     </SelectContent>
                   </Select>
                   <Select value={dcScope} onValueChange={setDcScope}>
-                    <SelectTrigger className="w-40"><SelectValue placeholder="All Documents" /></SelectTrigger>
+                    <SelectTrigger className="h-8 w-32 text-xs"><SelectValue placeholder="All Documents" /></SelectTrigger>
                     <SelectContent>
                       <SelectItem value="all">All Documents</SelectItem>
                       <SelectItem value="employee">Employee Docs</SelectItem>
