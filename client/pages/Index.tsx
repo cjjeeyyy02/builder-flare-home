@@ -207,16 +207,15 @@ function OrgListView() {
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <h3 className={cn("text-sm font-bold", mode === "manage" && "font-poppins")}>{mode === "list" ? "List View" : mode === "chart" ? "Chart View" : "Manage Department"}</h3>
-        </div>
-        {mode === "manage" ? (
-          <div className="flex items-center gap-3 font-poppins">
+        <div className={cn("flex items-center gap-3", mode === "manage" && "font-poppins")}>
+          {mode === "manage" && (
             <Button type="button" variant="outline" onClick={() => setMode("list")} className="h-8 rounded-lg px-4 text-xs font-medium bg-white text-[#111827] border border-[#d1d5db] hover:bg-gray-50">
               ← Back
             </Button>
-          </div>
-        ) : (
+          )}
+          <h3 className={cn("text-sm font-bold", mode === "manage" && "font-poppins")}>{mode === "list" ? "List View" : mode === "chart" ? "Chart View" : "Manage Department"}</h3>
+        </div>
+        {mode === "manage" ? null : (
           <div className="flex items-center gap-3 text-xs text-muted-foreground">
             <Button type="button" onClick={() => setMode("manage")} className="h-8 rounded-lg px-4 text-xs font-medium bg-[#2563eb] text-white hover:bg-[#1e40af]">
               <Building2 className="mr-1.5 h-4 w-4" /> Manage Department
