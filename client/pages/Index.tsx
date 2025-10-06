@@ -39,6 +39,8 @@ import {
   Upload,
   ArrowUpDown,
   Building2,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
@@ -419,6 +421,17 @@ export default function Index() {
     });
   }, [search, position, status]);
 
+  // Pagination for Employee Records table
+  const pageSize = 10;
+  const [page, setPage] = useState(0);
+  const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
+  const start = Math.min(page * pageSize, Math.max(0, filtered.length - (filtered.length % pageSize || pageSize)));
+  const end = Math.min(start + pageSize, filtered.length);
+  const pageItems = filtered.slice(start, end);
+  useEffect(() => {
+    setPage(0);
+  }, [search, position, status]);
+
   // Document Center data and helpers
   type Doc = {
     id: string;
@@ -745,7 +758,7 @@ export default function Index() {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {filtered.map((e, idx) => (
+                      {pageItems.map((e, idx) => (
                         <TableRow
                           key={e.id}
                           className={cn("hover:bg-transparent")}
@@ -770,6 +783,27 @@ export default function Index() {
                       ))}
                     </TableBody>
                   </Table>
+                  <div className="flex items-center justify-end gap-2 border-t px-2 py-2 text-xs">
+                    <span className="text-muted-foreground">{start + 1}-{end} of {filtered.length}</span>
+                    <Button
+                      variant="outline"
+                      className="h-7 w-7 rounded-md p-0"
+                      onClick={() => setPage((p) => Math.max(0, p - 1))}
+                      disabled={page === 0}
+                      aria-label="Previous page"
+                    >
+                      <ChevronLeft className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      variant="outline"
+                      className="h-7 w-7 rounded-md p-0"
+                      onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
+                      disabled={page >= totalPages - 1}
+                      aria-label="Next page"
+                    >
+                      <ChevronRight className="h-4 w-4" />
+                    </Button>
+                  </div>
                 </div>
               </section>
             ) : (
