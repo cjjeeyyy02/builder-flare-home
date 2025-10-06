@@ -94,7 +94,7 @@ function OrgListView() {
   const [collapsed, setCollapsed] = useState<Set<string>>(() => new Set(ORG_TREE.map((n) => n.name)));
   const [mode, setMode] = useState<"list" | "chart" | "manage">("list");
   const [orgName, setOrgName] = useState("");
-  const [orgPos, setOrgPos] = useState<string>("all");
+  const [orgDept, setOrgDept] = useState<string>("all");
   const [orgPage, setOrgPage] = useState(0);
   const [zoom, setZoom] = useState<number>(0.8);
   const toggle = (name: string) =>
@@ -109,9 +109,10 @@ function OrgListView() {
     const hasChildren = !!node.children?.length;
     const isCollapsed = collapsed.has(node.name);
     const rows: React.ReactNode[] = [];
-    const matchesName = !orgName.trim() || node.name.toLowerCase().includes(orgName.toLowerCase());
-    const matchesPos = orgPos === "all" || node.title.toLowerCase().includes(orgPos);
-    if (matchesName && matchesPos) {
+    const q = orgName.toLowerCase().trim();
+    const matchesQuery = !q || node.name.toLowerCase().includes(q) || node.title.toLowerCase().includes(q);
+    const matchesDept = orgDept === "all" || node.department.toLowerCase() === orgDept;
+    if (matchesQuery && matchesDept) {
       rows.push(
         <TableRow key={node.name}>
           <TableCell className="py-2 text-sm">
@@ -162,7 +163,7 @@ function OrgListView() {
               ? "bg-fuchsia-100 text-fuchsia-700 dark:bg-fuchsia-500/20 dark:text-fuchsia-300"
               : "bg-muted text-foreground";
 
-  useEffect(() => { setOrgPage(0); }, [orgName, orgPos]);
+  useEffect(() => { setOrgPage(0); }, [orgName, orgDept]);
 
   const DEPT_SUMMARY = [
     { department: "Design", manager: "Ava Thompson", members: 1, location: "New York" },
@@ -359,12 +360,12 @@ function OrgListView() {
       ) : mode === "list" ? (
         <div className="overflow-hidden rounded-lg border">
           <div className="flex items-center gap-2 border-b p-2">
-            <Input value={orgName} onChange={(e) => setOrgName(e.target.value)} placeholder="Search by name" className="h-8 w-56 text-xs" />
-            <Select value={orgPos} onValueChange={setOrgPos}>
-              <SelectTrigger className="h-8 w-44 text-xs"><SelectValue placeholder="All Positions" /></SelectTrigger>
+            <Input value={orgName} onChange={(e) => setOrgName(e.target.value)} placeholder="Search by name or position" className="h-8 w-56 text-xs" />
+            <Select value={orgDept} onValueChange={setOrgDept}>
+              <SelectTrigger className="h-8 w-44 text-xs"><SelectValue placeholder="All Departments" /></SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All Positions</SelectItem>
-                {(() => { const set = new Set<string>(); const walk = (n: OrgNode) => { set.add(n.title.toLowerCase()); n.children?.forEach(walk); }; ORG_TREE.forEach(walk); return Array.from(set).map((p) => (<SelectItem key={p} value={p}>{p.charAt(0).toUpperCase()+p.slice(1)}</SelectItem>)); })()}
+                <SelectItem value="all">All Departments</SelectItem>
+                {(() => { const set = new Set<string>(); const walk = (n: OrgNode) => { set.add(n.department.toLowerCase()); n.children?.forEach(walk); }; ORG_TREE.forEach(walk); return Array.from(set).map((d) => (<SelectItem key={d} value={d}>{d.charAt(0).toUpperCase()+d.slice(1)}</SelectItem>)); })()}
               </SelectContent>
             </Select>
           </div>
