@@ -93,6 +93,9 @@ function OrgListView() {
   const total = 13;
   const [collapsed, setCollapsed] = useState<Set<string>>(() => new Set(ORG_TREE.map((n) => n.name)));
   const [mode, setMode] = useState<"list" | "chart" | "manage">("list");
+  const [orgName, setOrgName] = useState("");
+  const [orgPos, setOrgPos] = useState<string>("all");
+  const [orgPage, setOrgPage] = useState(0);
   const [zoom, setZoom] = useState<number>(0.8);
   const toggle = (name: string) =>
     setCollapsed((prev) => {
