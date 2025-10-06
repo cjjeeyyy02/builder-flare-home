@@ -846,7 +846,7 @@ export default function Index() {
                                 <TooltipProvider>
                                   <Tooltip>
                                     <TooltipTrigger asChild>
-                                      <span className="cursor-help underline decoration-dotted underline-offset-2">{display}</span>
+                                      <span className="cursor-help">{display}</span>
                                     </TooltipTrigger>
                                     <TooltipContent>
                                       <div className="max-w-xs text-xs">
