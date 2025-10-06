@@ -327,10 +327,10 @@ function OrgListView() {
                     <TableCell className="px-3 py-2">{d.location}</TableCell>
                     <TableCell className="px-3 py-2">
                       <div className="flex items-center justify-end gap-2">
-                        <Button type="button" className="h-7 rounded-md px-3 text-xs bg-[#2563eb] text-white hover:bg-[#1e40af]">
+                        <Button type="button" className="h-7 rounded-md px-3 text-xs bg-white text-[#111827] border border-[#d1d5db] hover:bg-gray-50">
                           <Pencil className="mr-1.5 h-4 w-4" /> Edit
                         </Button>
-                        <Button type="button" className="h-7 rounded-md px-3 text-xs bg-[#dc2626] text-white hover:bg-[#b91c1c]">
+                        <Button type="button" className="h-7 rounded-md px-3 text-xs bg-white text-[#111827] border border-[#d1d5db] hover:bg-gray-50">
                           <Trash2 className="mr-1.5 h-4 w-4" /> Delete
                         </Button>
                       </div>
