@@ -17,7 +17,7 @@ export default function ManageProfile() {
 
   if (!employee) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background font-poppins">
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
           <Button variant="ghost" onClick={() => navigate(-1)} className="mb-4">
             <ArrowLeft className="mr-2 h-4 w-4" /> Back
@@ -56,10 +56,10 @@ export default function ManageProfile() {
   const ecAltPhone = isSarah ? "+1 321 654 987" : "—";
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background font-poppins">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="sticky top-0 z-10 bg-background/90 py-4 backdrop-blur supports-[backdrop-filter]:bg-background/70">
-          <div className="flex items-start justify-between gap-4">
+          <div className="flex items-start justify-between gap-4 rounded-2xl border bg-white p-4 shadow-sm">
             <div className="flex items-center gap-4">
               <div className="flex h-14 w-14 items-center justify-center rounded-full bg-brand/10 text-lg font-semibold text-brand">
                 {employee.firstName.charAt(0)}{employee.lastName.charAt(0)}
@@ -83,7 +83,7 @@ export default function ManageProfile() {
         <div className="py-4">
           <Tabs defaultValue={initialTab}>
             <div className="sticky top-16 z-10 border-b bg-background/90 py-2 backdrop-blur supports-[backdrop-filter]:bg-background/70">
-              <TabsList className="flex items-center gap-4 overflow-x-auto">
+              <TabsList className="flex items-center gap-2 overflow-x-auto">
               {[
                 ["personal", "Personal Info"],
                 ["work", "Work Details"],
@@ -99,8 +99,9 @@ export default function ManageProfile() {
                   key={val}
                   value={val as string}
                   className={cn(
-                    "px-2 py-1 text-xs font-medium border-b-2 border-transparent",
-                    "data-[state=active]:text-foreground data-[state=active]:border-foreground",
+                    "relative rounded-t-md px-3 py-2 text-sm font-medium transition-colors",
+                    "after:absolute after:left-0 after:right-0 after:-bottom-0.5 after:h-0.5 after:origin-left after:scale-x-0 after:bg-[#2563eb] after:transition-transform hover:after:scale-x-100",
+                    "data-[state=active]:bg-[#2563eb] data-[state=active]:text-white data-[state=active]:after:scale-x-0",
                     "data-[state=inactive]:text-muted-foreground hover:text-foreground",
                   )}
                 >
@@ -117,45 +118,45 @@ export default function ManageProfile() {
                 <h3 className="text-base font-bold text-foreground">Personal Information</h3>
                 <div className="mt-3 grid grid-cols-1 gap-6 md:grid-cols-2">
                   <div className="space-y-3">
-                    <div className="text-xs text-muted-foreground">First Name</div>
-                    <div className="text-sm font-semibold text-foreground">{piFirstName}</div>
-                    <div className="text-xs text-muted-foreground">Middle Name</div>
-                    <div className="text-sm font-semibold text-foreground">{piMiddleName}</div>
-                    <div className="text-xs text-muted-foreground">Last Name</div>
-                    <div className="text-sm font-semibold text-foreground">{piLastName}</div>
+                    <div className="text-xs font-semibold text-foreground">First Name</div>
+                    <div className="text-sm text-muted-foreground">{piFirstName}</div>
+                    <div className="text-xs font-semibold text-foreground">Middle Name</div>
+                    <div className="text-sm text-muted-foreground">{piMiddleName}</div>
+                    <div className="text-xs font-semibold text-foreground">Last Name</div>
+                    <div className="text-sm text-muted-foreground">{piLastName}</div>
                   </div>
                   <div className="space-y-3">
-                    <div className="text-xs text-muted-foreground">Date of Birth</div>
-                    <div className="text-sm font-semibold text-foreground">{piDOB}</div>
-                    <div className="text-xs text-muted-foreground">Gender</div>
-                    <div className="text-sm font-semibold text-foreground">{piGender}</div>
-                    <div className="text-xs text-muted-foreground">Marital Status</div>
-                    <div className="text-sm font-semibold text-foreground">{piMarital}</div>
-                    <div className="text-xs text-muted-foreground">Nationality</div>
-                    <div className="text-sm font-semibold text-foreground">{piNationality}</div>
+                    <div className="text-xs font-semibold text-foreground">Date of Birth</div>
+                    <div className="text-sm text-muted-foreground">{piDOB}</div>
+                    <div className="text-xs font-semibold text-foreground">Gender</div>
+                    <div className="text-sm text-muted-foreground">{piGender}</div>
+                    <div className="text-xs font-semibold text-foreground">Marital Status</div>
+                    <div className="text-sm text-muted-foreground">{piMarital}</div>
+                    <div className="text-xs font-semibold text-foreground">Nationality</div>
+                    <div className="text-sm text-muted-foreground">{piNationality}</div>
                   </div>
                 </div>
               </section>
 
-              <section>
+              <section className="border-t pt-6">
                 <h3 className="text-base font-bold text-foreground">Contact Details</h3>
                 <div className="mt-3 grid grid-cols-1 gap-6 md:grid-cols-2">
                   <div className="space-y-3">
-                    <div className="text-xs text-muted-foreground">Phone Number</div>
-                    <div className="text-sm font-semibold text-foreground">{cdPhone}</div>
-                    <div className="text-xs text-muted-foreground">Alternate Number</div>
-                    <div className="text-sm font-semibold text-foreground">{cdAltPhone}</div>
+                    <div className="text-xs font-semibold text-foreground">Phone Number</div>
+                    <div className="text-sm text-muted-foreground">{cdPhone}</div>
+                    <div className="text-xs font-semibold text-foreground">Alternate Number</div>
+                    <div className="text-sm text-muted-foreground">{cdAltPhone}</div>
                   </div>
                   <div className="space-y-3">
-                    <div className="text-xs text-muted-foreground">Email Address</div>
-                    <div className="text-sm font-semibold text-foreground">{cdEmail}</div>
-                    <div className="text-xs text-muted-foreground">Work Email</div>
-                    <div className="text-sm font-semibold text-foreground">{cdWorkEmail}</div>
+                    <div className="text-xs font-semibold text-foreground">Email Address</div>
+                    <div className="text-sm text-muted-foreground">{cdEmail}</div>
+                    <div className="text-xs font-semibold text-foreground">Work Email</div>
+                    <div className="text-sm text-muted-foreground">{cdWorkEmail}</div>
                   </div>
                 </div>
               </section>
 
-              <section>
+              <section className="border-t pt-6">
                 <h3 className="text-base font-bold text-foreground">Address Information</h3>
                 <div className="mt-3 grid grid-cols-1 gap-6 md:grid-cols-2">
                   <div className="space-y-3">
@@ -173,7 +174,7 @@ export default function ManageProfile() {
                 </div>
               </section>
 
-              <section>
+              <section className="border-t pt-6">
                 <h3 className="text-base font-bold text-foreground">Emergency Contact</h3>
                 <div className="mt-3 grid grid-cols-1 gap-6 md:grid-cols-2">
                   <div className="space-y-3">
