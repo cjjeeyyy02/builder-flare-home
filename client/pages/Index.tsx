@@ -557,7 +557,7 @@ export default function Index() {
             <section className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
               <MetricCard label="Total Active Employee" value={totalActive} icon={<User className="h-5 w-5" />} />
               <MetricCard label="New Hires This Month" value={newHiresThisMonth} icon={<Plus className="h-5 w-5" />} />
-              <MetricCard label="Pending Offboarding / Exits" value={pendingOffboarding} icon={<ArrowLeftRight className="h-5 w-5" />} />
+              <MetricCard label="Pending Offboarding" value={pendingOffboarding} icon={<ArrowLeftRight className="h-5 w-5" />} />
               <MetricCard label="On Leave" value={onLeave} icon={<CalendarDays className="h-5 w-5" />} />
             </section>
 
