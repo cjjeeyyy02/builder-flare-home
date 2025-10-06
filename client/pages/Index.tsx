@@ -387,11 +387,25 @@ function OrgListView() {
               </TableBody>
             </Table>
             <div className="flex items-center justify-end gap-2 border-t px-2 py-2 text-xs">
-              <Button variant="outline" className="h-7 rounded-md px-2" onClick={() => setOrgPage((p)=> Math.max(0, p-1))} disabled={orgPage===0}>Previous</Button>
-              {Array.from({length: totalPages}, (_, i) => (
-                <Button key={i} variant={i===orgPage ? 'default' : 'outline'} className="h-7 rounded-md px-2" onClick={() => setOrgPage(i)}>{i+1}</Button>
-              ))}
-              <Button variant="outline" className="h-7 rounded-md px-2" onClick={() => setOrgPage((p)=> Math.min(totalPages-1, p+1))} disabled={orgPage>=totalPages-1}>Next</Button>
+              <span className="text-muted-foreground">{start + 1}-{end} of {rows.length}</span>
+              <Button
+                variant="outline"
+                className="h-7 w-7 rounded-md p-0"
+                onClick={() => setOrgPage((p) => Math.max(0, p - 1))}
+                disabled={orgPage === 0}
+                aria-label="Previous page"
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </Button>
+              <Button
+                variant="outline"
+                className="h-7 w-7 rounded-md p-0"
+                onClick={() => setOrgPage((p) => Math.min(totalPages - 1, p + 1))}
+                disabled={orgPage >= totalPages - 1}
+                aria-label="Next page"
+              >
+                <ChevronRight className="h-4 w-4" />
+              </Button>
             </div>
             </>
             ); })()}
