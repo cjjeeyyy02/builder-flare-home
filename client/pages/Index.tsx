@@ -208,52 +208,60 @@ function OrgListView() {
     <div className="space-y-3">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <h3 className="text-sm font-bold">{mode === "list" ? "List View" : mode === "chart" ? "Chart View" : "Manage Department"}</h3>
+          <h3 className={cn("text-sm font-bold", mode === "manage" && "font-poppins")}>{mode === "list" ? "List View" : mode === "chart" ? "Chart View" : "Manage Department"}</h3>
         </div>
-        <div className="flex items-center gap-3 text-xs text-muted-foreground">
-          <Button type="button" onClick={() => setMode("manage")} className="h-8 rounded-lg px-4 text-xs font-medium bg-[#2563eb] text-white hover:bg-[#1e40af]">
-            <Building2 className="mr-1.5 h-4 w-4" /> Manage Department
-          </Button>
-          <div className="inline-flex items-center gap-1">
-            <button
-              type="button"
-              aria-label="List view"
-              onClick={() => setMode("list")}
-              className={cn("flex h-7 w-7 items-center justify-center rounded-md border", mode === "list" ? "bg-foreground text-background" : "text-foreground hover:bg-accent")}
-            >
-              <TableIcon className="h-4 w-4" />
-            </button>
-            <button
-              type="button"
-              aria-label="Chart view"
-              onClick={() => setMode("chart")}
-              className={cn("flex h-7 w-7 items-center justify-center rounded-md border", mode === "chart" ? "bg-foreground text-background" : "text-foreground hover:bg-accent")}
-            >
-              <LayoutGrid className="h-4 w-4" />
-            </button>
+        {mode === "manage" ? (
+          <div className="flex items-center gap-3 font-poppins">
+            <Button type="button" variant="outline" onClick={() => setMode("list")} className="h-8 rounded-lg px-4 text-xs font-medium bg-white text-[#111827] border border-[#d1d5db] hover:bg-gray-50">
+              ← Back
+            </Button>
           </div>
-          <span className="ml-2">
-            Zoom: <span className="text-foreground font-semibold">{Math.round(zoom * 100)}%</span> | {total} employees
-          </span>
-          <div className="inline-flex items-center gap-1">
-            <button
-              type="button"
-              aria-label="Zoom out"
-              onClick={() => setZoom((z) => Math.max(0.5, +(z - 0.1).toFixed(2)))}
-              className="flex h-7 w-7 items-center justify-center rounded-md border text-foreground hover:bg-accent"
-            >
-              <Minus className="h-4 w-4" />
-            </button>
-            <button
-              type="button"
-              aria-label="Zoom in"
-              onClick={() => setZoom((z) => Math.min(1.5, +(z + 0.1).toFixed(2)))}
-              className="flex h-7 w-7 items-center justify-center rounded-md border text-foreground hover:bg-accent"
-            >
-              <Plus className="h-4 w-4" />
-            </button>
+        ) : (
+          <div className="flex items-center gap-3 text-xs text-muted-foreground">
+            <Button type="button" onClick={() => setMode("manage")} className="h-8 rounded-lg px-4 text-xs font-medium bg-[#2563eb] text-white hover:bg-[#1e40af]">
+              <Building2 className="mr-1.5 h-4 w-4" /> Manage Department
+            </Button>
+            <div className="inline-flex items-center gap-1">
+              <button
+                type="button"
+                aria-label="List view"
+                onClick={() => setMode("list")}
+                className={cn("flex h-7 w-7 items-center justify-center rounded-md border", mode === "list" ? "bg-foreground text-background" : "text-foreground hover:bg-accent")}
+              >
+                <TableIcon className="h-4 w-4" />
+              </button>
+              <button
+                type="button"
+                aria-label="Chart view"
+                onClick={() => setMode("chart")}
+                className={cn("flex h-7 w-7 items-center justify-center rounded-md border", mode === "chart" ? "bg-foreground text-background" : "text-foreground hover:bg-accent")}
+              >
+                <LayoutGrid className="h-4 w-4" />
+              </button>
+            </div>
+            <span className="ml-2">
+              Zoom: <span className="text-foreground font-semibold">{Math.round(zoom * 100)}%</span> | {total} employees
+            </span>
+            <div className="inline-flex items-center gap-1">
+              <button
+                type="button"
+                aria-label="Zoom out"
+                onClick={() => setZoom((z) => Math.max(0.5, +(z - 0.1).toFixed(2)))}
+                className="flex h-7 w-7 items-center justify-center rounded-md border text-foreground hover:bg-accent"
+              >
+                <Minus className="h-4 w-4" />
+              </button>
+              <button
+                type="button"
+                aria-label="Zoom in"
+                onClick={() => setZoom((z) => Math.min(1.5, +(z + 0.1).toFixed(2)))}
+                className="flex h-7 w-7 items-center justify-center rounded-md border text-foreground hover:bg-accent"
+              >
+                <Plus className="h-4 w-4" />
+              </button>
+            </div>
           </div>
-        </div>
+        )}
       </div>
       {mode === "manage" ? (
         <div className="mt-2 font-poppins">
