@@ -630,6 +630,7 @@ export default function Index() {
                       <TableRow className="hover:bg-transparent">
                         <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Employee ID</TableHead>
                         <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Name</TableHead>
+                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Position</TableHead>
                         <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Department</TableHead>
                         <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Company Email</TableHead>
                         <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Status</TableHead>
@@ -647,15 +648,11 @@ export default function Index() {
                             {e.id}
                           </TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">
-                            <div className="flex flex-col leading-tight text-xs">
-                              <span className="text-xs font-semibold text-foreground">
-                                {e.firstName} {e.lastName}
-                              </span>
-                              <span className="text-xs text-muted-foreground">
-                                {e.role}
-                              </span>
-                            </div>
+                            <span className="text-xs font-semibold text-foreground">
+                              {e.firstName} {e.lastName}
+                            </span>
                           </TableCell>
+                          <TableCell className="px-2 py-1 text-xs leading-tight">{e.role}</TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">{e.department}</TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">{e.email}</TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">{e.status}</TableCell>
