@@ -236,9 +236,9 @@ export default function ManageProfile() {
               <div>
                 <h3 className="text-base font-bold">Previous Work History</h3>
                 <div className="mt-3">
-                  <Table>
+                  <Table className="text-[13px]">
                     <TableHeader>
-                      <TableRow>
+                      <TableRow className="bg-[#f9fafb]">
                         <TableHead className="py-2 font-bold uppercase">Company Name</TableHead>
                         <TableHead className="py-2 font-bold uppercase">Position</TableHead>
                         <TableHead className="py-2 font-bold uppercase">Duration</TableHead>
