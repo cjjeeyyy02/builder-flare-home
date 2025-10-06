@@ -17,7 +17,7 @@ export default function ManageProfile() {
 
   if (!employee) {
     return (
-      <div className="min-h-screen bg-background font-poppins">
+      <div className="min-h-screen bg-background font-poppins text-[13px] leading-[1.4]">
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
           <Button variant="ghost" onClick={() => navigate(-1)} className="mb-4">
             <ArrowLeft className="mr-2 h-4 w-4" /> Back
@@ -56,10 +56,10 @@ export default function ManageProfile() {
   const ecAltPhone = isSarah ? "+1 321 654 987" : "—";
 
   return (
-    <div className="min-h-screen bg-background font-poppins">
+    <div className="min-h-screen bg-background font-poppins text-[13px] leading-[1.4]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="sticky top-0 z-10 bg-background/90 py-4 backdrop-blur supports-[backdrop-filter]:bg-background/70">
-          <div className="flex items-start justify-between gap-4 rounded-2xl border bg-white p-4 shadow-sm">
+          <div className="flex items-start justify-between gap-4 rounded-2xl border bg-white p-3 shadow-sm">
             <div className="flex items-center gap-4">
               <div className="flex h-14 w-14 items-center justify-center rounded-full bg-brand/10 text-lg font-semibold text-brand">
                 {employee.firstName.charAt(0)}{employee.lastName.charAt(0)}
@@ -99,9 +99,9 @@ export default function ManageProfile() {
                   key={val}
                   value={val as string}
                   className={cn(
-                    "relative rounded-t-md px-3 py-2 text-sm font-medium transition-colors",
+                    "relative rounded-t-md px-3 py-1.5 text-[13px] font-medium transition-colors",
                     "after:absolute after:left-0 after:right-0 after:-bottom-0.5 after:h-0.5 after:origin-left after:scale-x-0 after:bg-[#2563eb] after:transition-transform hover:after:scale-x-100",
-                    "data-[state=active]:bg-[#2563eb] data-[state=active]:text-white data-[state=active]:after:scale-x-0",
+                    "data-[state=active]:text-[#2563eb] data-[state=active]:after:scale-x-100",
                     "data-[state=inactive]:text-muted-foreground hover:text-foreground",
                   )}
                 >
@@ -111,13 +111,13 @@ export default function ManageProfile() {
             </TabsList>
             </div>
 
-            <div className="mt-3 rounded-lg border bg-card p-4 md:p-6">
+            <div className="mt-3 rounded-lg border bg-card p-3 md:p-4">
 
             <TabsContent value="personal" className="space-y-6">
               <section>
                 <h3 className="text-base font-bold text-foreground">Personal Information</h3>
-                <div className="mt-3 grid grid-cols-1 gap-6 md:grid-cols-2">
-                  <div className="space-y-3">
+                <div className="mt-3 grid grid-cols-1 gap-4 md:grid-cols-2">
+                  <div className="space-y-2">
                     <div className="text-xs font-semibold text-foreground">First Name</div>
                     <div className="text-sm text-muted-foreground">{piFirstName}</div>
                     <div className="text-xs font-semibold text-foreground">Middle Name</div>
@@ -125,7 +125,7 @@ export default function ManageProfile() {
                     <div className="text-xs font-semibold text-foreground">Last Name</div>
                     <div className="text-sm text-muted-foreground">{piLastName}</div>
                   </div>
-                  <div className="space-y-3">
+                  <div className="space-y-2">
                     <div className="text-xs font-semibold text-foreground">Date of Birth</div>
                     <div className="text-sm text-muted-foreground">{piDOB}</div>
                     <div className="text-xs font-semibold text-foreground">Gender</div>
@@ -140,14 +140,14 @@ export default function ManageProfile() {
 
               <section className="border-t pt-6">
                 <h3 className="text-base font-bold text-foreground">Contact Details</h3>
-                <div className="mt-3 grid grid-cols-1 gap-6 md:grid-cols-2">
-                  <div className="space-y-3">
+                <div className="mt-3 grid grid-cols-1 gap-4 md:grid-cols-2">
+                  <div className="space-y-2">
                     <div className="text-xs font-semibold text-foreground">Phone Number</div>
                     <div className="text-sm text-muted-foreground">{cdPhone}</div>
                     <div className="text-xs font-semibold text-foreground">Alternate Number</div>
                     <div className="text-sm text-muted-foreground">{cdAltPhone}</div>
                   </div>
-                  <div className="space-y-3">
+                  <div className="space-y-2">
                     <div className="text-xs font-semibold text-foreground">Email Address</div>
                     <div className="text-sm text-muted-foreground">{cdEmail}</div>
                     <div className="text-xs font-semibold text-foreground">Work Email</div>
@@ -158,14 +158,14 @@ export default function ManageProfile() {
 
               <section className="border-t pt-6">
                 <h3 className="text-base font-bold text-foreground">Address Information</h3>
-                <div className="mt-3 grid grid-cols-1 gap-6 md:grid-cols-2">
-                  <div className="space-y-3">
+                <div className="mt-3 grid grid-cols-1 gap-4 md:grid-cols-2">
+                  <div className="space-y-2">
                     <div className="text-xs text-muted-foreground">Street Address</div>
                     <div className="text-sm font-semibold text-foreground">{addrStreet}</div>
                     <div className="text-xs text-muted-foreground">City</div>
                     <div className="text-sm font-semibold text-foreground">{addrCity}</div>
                   </div>
-                  <div className="space-y-3">
+                  <div className="space-y-2">
                     <div className="text-xs text-muted-foreground">State</div>
                     <div className="text-sm font-semibold text-foreground">{addrState}</div>
                     <div className="text-xs text-muted-foreground">Zip Code</div>
@@ -176,14 +176,14 @@ export default function ManageProfile() {
 
               <section className="border-t pt-6">
                 <h3 className="text-base font-bold text-foreground">Emergency Contact</h3>
-                <div className="mt-3 grid grid-cols-1 gap-6 md:grid-cols-2">
-                  <div className="space-y-3">
+                <div className="mt-3 grid grid-cols-1 gap-4 md:grid-cols-2">
+                  <div className="space-y-2">
                     <div className="text-xs text-muted-foreground">Contact Name</div>
                     <div className="text-sm font-semibold text-foreground">{ecName}</div>
                     <div className="text-xs text-muted-foreground">Relationship</div>
                     <div className="text-sm font-semibold text-foreground">{ecRelation}</div>
                   </div>
-                  <div className="space-y-3">
+                  <div className="space-y-2">
                     <div className="text-xs text-muted-foreground">Contact Number</div>
                     <div className="text-sm font-semibold text-foreground">{ecPhone}</div>
                     <div className="text-xs text-muted-foreground">Alternate Number</div>
@@ -272,7 +272,7 @@ export default function ManageProfile() {
                 <h3 className="text-base font-bold">Skills Summary</h3>
                 <Button>Add New Skill</Button>
               </div>
-              <div className="overflow-hidden rounded-lg border">
+              <div className="overflow-hidden rounded-lg border border-[#e5e7eb] shadow-sm">
                 <Table className="text-[13px]">
                   <TableHeader>
                     <TableRow className="hover:bg-transparent bg-[#f9fafb]">
@@ -375,9 +375,9 @@ export default function ManageProfile() {
               <div className="rounded-none p-0 shadow-none">
                 <div className="mb-2 text-sm font-bold text-foreground">Performance Reviews</div>
                 <div className="overflow-x-auto">
-                  <Table className="text-sm border-collapse table-fixed">
+                  <Table className="text-[13px] border-collapse table-fixed">
                     <TableHeader>
-                      <TableRow className="hover:bg-transparent">
+                      <TableRow className="hover:bg-transparent bg-[#f9fafb]">
                         <TableHead className="py-3 border-y border-border font-bold uppercase">Review Period</TableHead>
                         <TableHead className="py-3 border-y border-border font-bold uppercase">Reviewer Name</TableHead>
                         <TableHead className="py-3 border-y border-border font-bold uppercase">Rating</TableHead>
@@ -386,7 +386,7 @@ export default function ManageProfile() {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      <TableRow className="hover:bg-transparent">
+                      <TableRow className="hover:bg-transparent bg-[#f9fafb]">
                         <TableCell className="py-3 border-y border-border">Q3 2023</TableCell>
                         <TableCell className="py-3 border-y border-border">—</TableCell>
                         <TableCell className="py-3 border-y border-border">4.5/5</TableCell>
@@ -399,7 +399,7 @@ export default function ManageProfile() {
                           </Button>
                         </TableCell>
                       </TableRow>
-                      <TableRow className="hover:bg-transparent">
+                      <TableRow className="hover:bg-transparent bg-[#f9fafb]">
                         <TableCell className="py-3 border-y border-border">Q2 2023</TableCell>
                         <TableCell className="py-3 border-y border-border">—</TableCell>
                         <TableCell className="py-3 border-y border-border">4.4/5</TableCell>
@@ -425,10 +425,10 @@ export default function ManageProfile() {
 
               <div className="rounded-2xl border bg-card p-4 shadow-sm">
                 <div className="mb-2 text-sm font-semibold">Training</div>
-                <div className="overflow-hidden rounded-lg border">
-                  <Table className="text-sm">
+                <div className="overflow-hidden rounded-lg border border-[#e5e7eb] shadow-sm">
+                  <Table className="text-[13px]">
                     <TableHeader>
-                      <TableRow className="hover:bg-transparent">
+                      <TableRow className="hover:bg-transparent bg-[#f9fafb]">
                         <TableHead className="py-2 font-bold uppercase">Training Title</TableHead>
                         <TableHead className="py-2 font-bold uppercase">Provider / Instructor</TableHead>
                         <TableHead className="py-2 font-bold uppercase">Date Completed</TableHead>
@@ -437,7 +437,7 @@ export default function ManageProfile() {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      <TableRow className="hover:bg-transparent">
+                      <TableRow className="hover:bg-transparent bg-[#f9fafb]">
                         <TableCell className="py-2">React Advanced Patterns</TableCell>
                         <TableCell className="py-2">Tech Academy</TableCell>
                         <TableCell className="py-2">08/15/2023</TableCell>
@@ -450,7 +450,7 @@ export default function ManageProfile() {
                           </Button>
                         </TableCell>
                       </TableRow>
-                      <TableRow className="hover:bg-transparent">
+                      <TableRow className="hover:bg-transparent bg-[#f9fafb]">
                         <TableCell className="py-2">AWS Cloud Architecture</TableCell>
                         <TableCell className="py-2">Amazon Web Services</TableCell>
                         <TableCell className="py-2">N/A</TableCell>
@@ -459,7 +459,7 @@ export default function ManageProfile() {
                         </TableCell>
                         <TableCell className="py-2 text-right">—</TableCell>
                       </TableRow>
-                      <TableRow className="hover:bg-transparent">
+                      <TableRow className="hover:bg-transparent bg-[#f9fafb]">
                         <TableCell className="py-2">Leadership Development Program</TableCell>
                         <TableCell className="py-2">Corporate University</TableCell>
                         <TableCell className="py-2">N/A</TableCell>
@@ -569,10 +569,10 @@ export default function ManageProfile() {
                 <div className="mb-2 flex items-center gap-2 text-sm font-bold text-foreground">
                   <CalendarDays className="h-4 w-4" /> Leave History
                 </div>
-                <div className="overflow-hidden rounded-lg border">
-                  <Table className="text-sm">
+                <div className="overflow-hidden rounded-lg border border-[#e5e7eb] shadow-sm">
+                  <Table className="text-[13px]">
                     <TableHeader>
-                      <TableRow className="hover:bg-transparent">
+                      <TableRow className="hover:bg-transparent bg-[#f9fafb]">
                         <TableHead className="py-2 font-bold uppercase">Leave Type</TableHead>
                         <TableHead className="py-2 font-bold uppercase">Duration</TableHead>
                         <TableHead className="py-2 font-bold uppercase">Total Days</TableHead>
@@ -581,7 +581,7 @@ export default function ManageProfile() {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      <TableRow className="hover:bg-transparent">
+                      <TableRow className="hover:bg-transparent bg-[#f9fafb]">
                         <TableCell className="py-2">Sick Leave</TableCell>
                         <TableCell className="py-2">03-15-2024 – 03-17-2024</TableCell>
                         <TableCell className="py-2">3</TableCell>
@@ -594,7 +594,7 @@ export default function ManageProfile() {
                           </Button>
                         </TableCell>
                       </TableRow>
-                      <TableRow className="hover:bg-transparent">
+                      <TableRow className="hover:bg-transparent bg-[#f9fafb]">
                         <TableCell className="py-2">Annual Leave</TableCell>
                         <TableCell className="py-2">01-08-2024 – 01-12-2024</TableCell>
                         <TableCell className="py-2">5</TableCell>
@@ -607,7 +607,7 @@ export default function ManageProfile() {
                           </Button>
                         </TableCell>
                       </TableRow>
-                      <TableRow className="hover:bg-transparent">
+                      <TableRow className="hover:bg-transparent bg-[#f9fafb]">
                         <TableCell className="py-2">Personal Leave</TableCell>
                         <TableCell className="py-2">04-22-2024 – 04-22-2024</TableCell>
                         <TableCell className="py-2">1</TableCell>
@@ -620,7 +620,7 @@ export default function ManageProfile() {
                           </Button>
                         </TableCell>
                       </TableRow>
-                      <TableRow className="hover:bg-transparent">
+                      <TableRow className="hover:bg-transparent bg-[#f9fafb]">
                         <TableCell className="py-2">Annual Leave</TableCell>
                         <TableCell className="py-2">05-10-2024 – 05-14-2024</TableCell>
                         <TableCell className="py-2">5</TableCell>
@@ -644,8 +644,8 @@ export default function ManageProfile() {
                   <div className="text-sm font-bold text-foreground">Employee Documents</div>
                   <Button className="h-8 rounded-md bg-blue-600 px-3 text-xs text-white hover:bg-blue-700">+ Upload Document</Button>
                 </div>
-                <div className="overflow-hidden rounded-lg border">
-                  <Table className="text-sm">
+                <div className="overflow-hidden rounded-lg border border-[#e5e7eb] shadow-sm">
+                  <Table className="text-[13px]">
                     <TableHeader>
                       <TableRow className="bg-muted/40">
                         <TableHead className="py-2 font-bold uppercase">Document Title</TableHead>
@@ -731,7 +731,7 @@ export default function ManageProfile() {
                 <div className="mb-3 flex items-center gap-2 text-sm font-bold text-foreground">
                   <Shield className="h-4 w-4" /> Account Settings
                 </div>
-                <div className="space-y-3 text-sm">
+                <div className="space-y-2 text-sm">
                   <div className="flex items-center justify-between">
                     <div className="text-muted-foreground">Account Active</div>
                     <Switch defaultChecked aria-label="Account Active" />
