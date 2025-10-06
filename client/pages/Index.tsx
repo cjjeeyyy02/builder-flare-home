@@ -41,6 +41,9 @@ import {
   Building2,
   ChevronLeft,
   ChevronRight,
+  Bot,
+  Send,
+  X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
@@ -465,6 +468,39 @@ export default function Index() {
 
   const docTypes = ["PDF", "Word", "Excel", "Image"];
   const departments = Array.from(new Set(EMPLOYEES.map((e) => e.department)));
+
+  // AI Assistant state and simple HR-aware responder
+  type ChatMessage = { role: "user" | "assistant"; content: string };
+  const [aiOpen, setAiOpen] = useState(false);
+  const [aiInput, setAiInput] = useState("");
+  const [aiMsgs, setAiMsgs] = useState<ChatMessage[]>([
+    { role: "assistant", content: "Hi! Ask me about headcount, on leave, or any employee." },
+  ]);
+
+  function getAssistantReply(q: string): string {
+    const text = q.toLowerCase().trim();
+    if (!text) return "Please type a question.";
+    if (text.includes("active")) return `Active employees: ${totalActive}`;
+    if (text.includes("on leave") || text.includes("leave")) return `On leave: ${onLeave}`;
+    if (text.includes("new hire") || text.includes("new hires")) return `New hires this month: ${newHiresThisMonth}`;
+    if (text.includes("offboard") || text.includes("exit")) return `Pending offboarding: ${pendingOffboarding}`;
+    const deptMatch = departments.find((d) => text.includes(d.toLowerCase()));
+    if (deptMatch) {
+      const count = EMPLOYEES.filter((e) => e.department.toLowerCase() === deptMatch.toLowerCase()).length;
+      return `${deptMatch} headcount: ${count}`;
+    }
+    const byName = EMPLOYEES.find((e) => `${e.firstName} ${e.lastName}`.toLowerCase().includes(text));
+    if (byName) return `${byName.firstName} ${byName.lastName} – ${byName.role}, ${byName.department}. Status: ${byName.status}.`;
+    return "I can help with headcount by department, who is on leave, or quick employee lookups.";
+  }
+
+  function sendAi() {
+    const query = aiInput;
+    if (!query.trim()) return;
+    const reply = getAssistantReply(query);
+    setAiMsgs((m) => [...m, { role: "user", content: query }, { role: "assistant", content: reply }]);
+    setAiInput("");
+  }
 
   const DOCS: Doc[] = [
     {
@@ -962,6 +998,45 @@ export default function Index() {
             </div>
           </TabsContent>
         </Tabs>
+
+        {/* Floating AI Assistant */}
+        <button
+          type="button"
+          aria-label="Open AI Assistant"
+          onClick={() => setAiOpen((v) => !v)}
+          className="fixed bottom-4 right-4 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-[#2563eb] text-white shadow-lg hover:bg-[#1d4ed8]"
+        >
+          <Bot className="h-6 w-6" />
+        </button>
+        {aiOpen && (
+          <div className="fixed bottom-20 right-4 z-50 w-80 overflow-hidden rounded-xl border bg-white shadow-xl font-poppins">
+            <div className="flex items-center justify-between border-b px-3 py-2">
+              <div className="text-sm font-semibold">AI Assistant</div>
+              <button onClick={() => setAiOpen(false)} aria-label="Close" className="rounded p-1 hover:bg-accent">
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+            <div className="max-h-72 space-y-2 overflow-auto px-3 py-2 text-sm">
+              {aiMsgs.map((m, i) => (
+                <div key={i} className={cn("flex", m.role === "user" ? "justify-end" : "justify-start")}>
+                  <div className={cn("rounded-md px-2 py-1.5", m.role === "user" ? "bg-[#2563eb] text-white" : "bg-muted")}>{m.content}</div>
+                </div>
+              ))}
+            </div>
+            <div className="flex items-center gap-2 border-t p-2">
+              <Input
+                value={aiInput}
+                onChange={(e) => setAiInput(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && sendAi()}
+                placeholder="Ask about HR data..."
+                className="h-8 text-xs"
+              />
+              <Button type="button" onClick={sendAi} className="h-8 px-2 text-xs">
+                <Send className="h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
