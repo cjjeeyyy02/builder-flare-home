@@ -162,6 +162,8 @@ function OrgListView() {
               ? "bg-fuchsia-100 text-fuchsia-700 dark:bg-fuchsia-500/20 dark:text-fuchsia-300"
               : "bg-muted text-foreground";
 
+  useEffect(() => { setOrgPage(0); }, [orgName, orgPos]);
+
   const DEPT_SUMMARY = [
     { department: "Design", manager: "Ava Thompson", members: 1, location: "New York" },
     { department: "Engineering", manager: "Liam Carter", members: 3, location: "San Francisco" },
