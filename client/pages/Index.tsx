@@ -825,18 +825,12 @@ export default function Index() {
                           <TableCell className="px-2 py-1 text-xs leading-tight">{e.role}</TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">{e.department}</TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">
-                            <div className="flex flex-wrap gap-1">
-                              {(() => {
-                                const skills = getSkills(e);
-                                return skills.length ? (
-                                  skills.map((s) => (
-                                    <span key={s} className="rounded border px-1.5 py-0.5 text-[10px] text-foreground/80">{s}</span>
-                                  ))
-                                ) : (
-                                  <span className="text-muted-foreground">—</span>
-                                );
-                              })()}
-                            </div>
+                            {(() => {
+                              const skills = getSkills(e);
+                              if (!skills.length) return <span className="text-muted-foreground">—</span>;
+                              const shown = skills.slice(0, 2);
+                              return <span>{shown.join(", ")}{skills.length > 2 ? ", ..." : ""}</span>;
+                            })()}
                           </TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">{e.status}</TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">{e.joiningDate}</TableCell>
