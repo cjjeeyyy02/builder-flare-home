@@ -596,11 +596,11 @@ export default function Index() {
 
               <div className="flex items-center gap-3 self-end">
                 <div className="flex items-center gap-3">
-                  <Button type="button" className="rounded-lg px-4 py-2 bg-[#2563eb] text-white hover:bg-[#1d4ed8]">
-                    <Plus className="mr-2 h-4 w-4" /> Add Employee
+                  <Button type="button" className="h-8 rounded-md px-3 text-xs bg-[#2563eb] text-white hover:bg-[#1d4ed8]">
+                    <Plus className="mr-1.5 h-4 w-4" /> Add Employee
                   </Button>
-                  <Button type="button" variant="outline" className="rounded-lg px-4 py-2 bg-white text-[#374151] border border-[#d1d5db] hover:bg-gray-50">
-                    <Download className="mr-2 h-4 w-4" /> Export
+                  <Button type="button" variant="outline" className="h-8 rounded-md px-3 text-xs bg-white text-[#374151] border border-[#d1d5db] hover:bg-gray-50">
+                    <Download className="mr-1.5 h-4 w-4" /> Export
                   </Button>
                 </div>
                 <Button
