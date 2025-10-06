@@ -345,7 +345,7 @@ function OrgListView() {
         <div className="overflow-hidden rounded-lg border">
           <Table>
             <TableHeader>
-              <TableRow className="bg-muted/40">
+              <TableRow>
                 <TableHead className="h-9 px-3 text-xs">Name</TableHead>
                 <TableHead className="h-9 px-3 text-xs">Title</TableHead>
                 <TableHead className="h-9 px-3 text-xs">Department</TableHead>
@@ -889,7 +889,7 @@ export default function Index() {
               <div className="overflow-hidden rounded-lg border">
                 <Table className="text-xs leading-tight">
                   <TableHeader>
-                    <TableRow className="bg-muted/40">
+                    <TableRow>
                       {docColumns.map((col) => (
                         <TableHead key={col.key as string} className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
                           <button className="inline-flex items-center gap-1" onClick={() => handleSort(col.key)}>
@@ -903,7 +903,7 @@ export default function Index() {
                   </TableHeader>
                   <TableBody>
                     {sortedDocs.map((d) => (
-                      <TableRow key={d.id} className="hover:bg-muted/40">
+                      <TableRow key={d.id} className="hover:bg-transparent">
                         <TableCell className="px-2 py-1 text-xs leading-tight">{d.title}</TableCell>
                         <TableCell className="px-2 py-1 text-xs leading-tight">{d.employeeName}</TableCell>
                         <TableCell className="px-2 py-1 text-xs leading-tight">{d.department}</TableCell>
