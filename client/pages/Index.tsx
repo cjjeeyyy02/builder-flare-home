@@ -606,7 +606,7 @@ export default function Index() {
                 <Button
                   variant="outline"
                   className={cn(
-                    "h-10 w-10 rounded-full p-0",
+                    "h-8 w-8 rounded-md p-0",
                     view === "table"
                       ? "bg-brand text-brand-foreground border-transparent"
                       : "",
@@ -618,7 +618,7 @@ export default function Index() {
                 <Button
                   variant="outline"
                   className={cn(
-                    "h-10 w-10 rounded-full p-0",
+                    "h-8 w-8 rounded-md p-0",
                     view === "card"
                       ? "bg-brand text-brand-foreground border-transparent"
                       : "",
