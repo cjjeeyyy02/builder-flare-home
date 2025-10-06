@@ -109,34 +109,38 @@ function OrgListView() {
     const hasChildren = !!node.children?.length;
     const isCollapsed = collapsed.has(node.name);
     const rows: React.ReactNode[] = [];
-    rows.push(
-      <TableRow key={node.name}>
-        <TableCell className="py-2 text-sm">
-          <div className="flex items-center gap-2" style={{ marginLeft: depth * 16 }}>
-            {hasChildren && (
-              <button
-                type="button"
-                aria-label={isCollapsed ? "Expand direct reports" : "Collapse direct reports"}
-                onClick={() => toggle(node.name)}
-                className="flex h-5 w-5 items-center justify-center rounded border text-[10px] text-muted-foreground hover:bg-accent"
-              >
-                {isCollapsed ? ">" : "˅"}
-              </button>
-            )}
-            <span className="font-medium text-foreground">{node.name}</span>
-          </div>
-        </TableCell>
-        <TableCell className="py-2 text-xs text-muted-foreground">{node.title}</TableCell>
-        <TableCell className="py-2 text-xs">{node.department}</TableCell>
-        <TableCell className="py-2 text-xs">{typeof node.directReports === "number" ? node.directReports : node.children?.length ?? 0}</TableCell>
-        <TableCell className="py-2 text-right">
-          <div className="flex items-center justify-end gap-2">
-            <Button className="h-7 rounded-md px-2 text-xs bg-brand text-brand-foreground hover:bg-brand/90">View Chart</Button>
-            <Button className="h-7 rounded-md px-2 text-xs bg-emerald-600 text-white hover:bg-emerald-700">Add Report</Button>
-          </div>
-        </TableCell>
-      </TableRow>,
-    );
+    const matchesName = !orgName.trim() || node.name.toLowerCase().includes(orgName.toLowerCase());
+    const matchesPos = orgPos === "all" || node.title.toLowerCase().includes(orgPos);
+    if (matchesName && matchesPos) {
+      rows.push(
+        <TableRow key={node.name}>
+          <TableCell className="py-2 text-sm">
+            <div className="flex items-center gap-2" style={{ marginLeft: depth * 16 }}>
+              {hasChildren && (
+                <button
+                  type="button"
+                  aria-label={isCollapsed ? "Expand direct reports" : "Collapse direct reports"}
+                  onClick={() => toggle(node.name)}
+                  className="flex h-5 w-5 items-center justify-center rounded border text-[10px] text-muted-foreground hover:bg-accent"
+                >
+                  {isCollapsed ? ">" : "˅"}
+                </button>
+              )}
+              <span className="font-medium text-foreground">{node.name}</span>
+            </div>
+          </TableCell>
+          <TableCell className="py-2 text-xs text-muted-foreground">{node.title}</TableCell>
+          <TableCell className="py-2 text-xs">{node.department}</TableCell>
+          <TableCell className="py-2 text-xs">{typeof node.directReports === "number" ? node.directReports : node.children?.length ?? 0}</TableCell>
+          <TableCell className="py-2 text-right">
+            <div className="flex items-center justify-end gap-2">
+              <Button className="h-7 rounded-md px-2 text-xs bg-brand text-brand-foreground hover:bg-brand/90">View Chart</Button>
+              <Button className="h-7 rounded-md px-2 text-xs bg-emerald-600 text-white hover:bg-emerald-700">Add Report</Button>
+            </div>
+          </TableCell>
+        </TableRow>,
+      );
+    }
     if (hasChildren && !isCollapsed) {
       node.children?.forEach((child) => {
         rows.push(...renderRows(child, depth + 1));
