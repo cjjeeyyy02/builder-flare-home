@@ -148,11 +148,11 @@ function OrgListView() {
               : "bg-muted text-foreground";
 
   const DEPT_SUMMARY = [
-    { department: "Design", total: 1, active: 1, onLeave: 0, inactive: 0 },
-    { department: "Engineering", total: 3, active: 2, onLeave: 1, inactive: 0 },
-    { department: "Finance", total: 1, active: 1, onLeave: 0, inactive: 0 },
-    { department: "Marketing", total: 1, active: 1, onLeave: 0, inactive: 0 },
-    { department: "Product", total: 2, active: 2, onLeave: 0, inactive: 0 },
+    { department: "Design", manager: "Ava Thompson", members: 1, location: "New York" },
+    { department: "Engineering", manager: "Liam Carter", members: 3, location: "San Francisco" },
+    { department: "Finance", manager: "Olivia Chen", members: 1, location: "Chicago" },
+    { department: "Marketing", manager: "Noah Patel", members: 1, location: "Los Angeles" },
+    { department: "Product", manager: "Emma Davis", members: 2, location: "Seattle" },
   ];
 
   const ChartNode = ({ node }: { node: OrgNode }) => {
@@ -269,20 +269,29 @@ function OrgListView() {
               <TableHeader>
                 <TableRow className="hover:bg-transparent border-b">
                   <TableHead className="px-3 py-2 text-xs font-medium">Department</TableHead>
-                  <TableHead className="px-3 py-2 text-xs font-medium">Total Employees</TableHead>
-                  <TableHead className="px-3 py-2 text-xs font-medium">Active</TableHead>
-                  <TableHead className="px-3 py-2 text-xs font-medium">On Leave</TableHead>
-                  <TableHead className="px-3 py-2 text-xs font-medium">Inactive</TableHead>
+                  <TableHead className="px-3 py-2 text-xs font-medium">Manager</TableHead>
+                  <TableHead className="px-3 py-2 text-xs font-medium">Team Members</TableHead>
+                  <TableHead className="px-3 py-2 text-xs font-medium">Location</TableHead>
+                  <TableHead className="px-3 py-2 text-right text-xs font-medium">Action</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {DEPT_SUMMARY.map((d) => (
                   <TableRow key={d.department} className="border-b last:border-0 hover:bg-transparent">
                     <TableCell className="px-3 py-2">{d.department}</TableCell>
-                    <TableCell className="px-3 py-2">{d.total}</TableCell>
-                    <TableCell className="px-3 py-2">{d.active}</TableCell>
-                    <TableCell className="px-3 py-2">{d.onLeave}</TableCell>
-                    <TableCell className="px-3 py-2">{d.inactive}</TableCell>
+                    <TableCell className="px-3 py-2">{d.manager}</TableCell>
+                    <TableCell className="px-3 py-2">{d.members}</TableCell>
+                    <TableCell className="px-3 py-2">{d.location}</TableCell>
+                    <TableCell className="px-3 py-2">
+                      <div className="flex items-center justify-end gap-2">
+                        <Button type="button" className="h-7 rounded-md px-3 text-xs bg-[#2563eb] text-white hover:bg-[#1e40af]">
+                          <span aria-hidden className="mr-1">✏️</span> Edit
+                        </Button>
+                        <Button type="button" className="h-7 rounded-md px-3 text-xs bg-[#dc2626] text-white hover:bg-[#b91c1c]">
+                          <span aria-hidden className="mr-1">🗑️</span> Delete
+                        </Button>
+                      </div>
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
