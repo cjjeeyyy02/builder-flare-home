@@ -517,7 +517,7 @@ export default function Index() {
   const docTypes = ["PDF", "Word", "Excel", "Image"];
   const departments = Array.from(new Set(EMPLOYEES.map((e) => e.department)));
 
-  // Derive simple skills from role keywords
+  // Derive simple skills from role keywords (for table tag display)
   function getSkills(e: Employee): string[] {
     const s = new Set<string>();
     const r = e.role.toLowerCase();
@@ -530,6 +530,96 @@ export default function Index() {
     if (r.includes("analyst")) s.add("Analysis");
     if (r.includes("hr")) s.add("HR");
     return Array.from(s);
+  }
+
+  // Skill profile used by AI search and recommendations
+  const SKILL_ALIASES: Record<string, string> = {
+    js: "javascript",
+    ts: "typescript",
+    reactjs: "react",
+    nodejs: "node",
+    k8s: "kubernetes",
+    kubernetes: "kubernetes",
+    docker: "docker",
+    terraform: "terraform",
+    cicd: "ci/cd",
+    ci: "ci/cd",
+    aws: "aws",
+    "amazon web services": "aws",
+    sql: "sql",
+    python: "python",
+    tableau: "tableau",
+    excel: "excel",
+    analytics: "analytics",
+    qa: "qa",
+    testing: "testing",
+    automation: "automation",
+    cypress: "cypress",
+    selenium: "selenium",
+    ux: "ux",
+    ui: "ui",
+    figma: "figma",
+    design: "design",
+    product: "product",
+    agile: "agile",
+    scrum: "scrum",
+    roadmap: "roadmap",
+    jira: "jira",
+    hr: "hr",
+    recruiting: "recruiting",
+    onboarding: "onboarding",
+    payroll: "payroll",
+    devops: "devops",
+    "power bi": "power bi",
+  };
+
+  function normalizeSkill(token: string): string | null {
+    const t = token.trim().toLowerCase();
+    if (!t) return null;
+    if (SKILL_ALIASES[t]) return SKILL_ALIASES[t];
+    return t;
+  }
+
+  function getSkillProfile(e: Employee): string[] {
+    const r = e.role.toLowerCase();
+    const skills = new Set<string>();
+    // Base by department
+    if (e.department.toLowerCase() === "engineering") {
+      ["javascript","typescript","react","node","aws","docker","kubernetes","ci/cd"].forEach((k) => skills.add(k));
+    }
+    // Role specific
+    if (r.includes("devops")) {
+      ["aws","docker","kubernetes","terraform","ci/cd","linux","cloud"].forEach((k) => skills.add(k));
+    }
+    if (r.includes("qa")) {
+      ["qa","testing","automation","cypress","selenium","javascript","typescript"].forEach((k) => skills.add(k));
+    }
+    if (r.includes("software") || r.includes("engineer")) {
+      ["javascript","typescript","react","node","testing","git"].forEach((k) => skills.add(k));
+    }
+    if (r.includes("designer")) {
+      ["design","figma","ux","ui","prototyping","research"].forEach((k) => skills.add(k));
+    }
+    if (r.includes("analyst")) {
+      ["sql","python","tableau","excel","analytics"].forEach((k) => skills.add(k));
+    }
+    if (r.includes("product")) {
+      ["product","agile","scrum","roadmap","jira"].forEach((k) => skills.add(k));
+    }
+    if (r.includes("hr")) {
+      ["hr","recruiting","onboarding","payroll"].forEach((k) => skills.add(k));
+    }
+    return Array.from(skills);
+  }
+
+  function scoreCandidate(e: Employee, querySkills: string[]): { score: number; matches: string[] } {
+    const prof = new Set(getSkillProfile(e).map((s) => s.toLowerCase()));
+    const matches = querySkills.filter((q) => prof.has(q));
+    if (!matches.length) return { score: 0, matches: [] };
+    const years = getYearsExperience(e);
+    const seniority = /senior|lead|manager/i.test(e.role) ? 1 : 0;
+    const score = matches.length * 3 + years * 0.2 + seniority * 1.5;
+    return { score, matches };
   }
   function getYearsExperience(e: Employee): number {
     const parts = e.joiningDate.split("-"); // MM-DD-YYYY
@@ -546,12 +636,29 @@ export default function Index() {
   const [aiOpen, setAiOpen] = useState(false);
   const [aiInput, setAiInput] = useState("");
   const [aiMsgs, setAiMsgs] = useState<ChatMessage[]>([
-    { role: "assistant", content: "Hi! Ask me about headcount, on leave, or any employee." },
+    { role: "assistant", content: "Hi! Try: who knows AWS, React, or TypeScript? I'll list matches with years and recommend top candidates." },
   ]);
 
   function getAssistantReply(q: string): string {
-    const text = q.toLowerCase().trim();
+    const raw = q.trim();
+    const text = raw.toLowerCase();
     if (!text) return "Please type a question.";
+
+    // Skills-based search and recommendations
+    const tokens = text.split(/[^a-zA-Z0-9+/]+/).map(normalizeSkill).filter(Boolean) as string[];
+    const skills = Array.from(new Set(tokens)).filter((t) => Object.values(SKILL_ALIASES).includes(t) || t.length > 2);
+    if (skills.length) {
+      const scored = EMPLOYEES.map((e) => ({ e, ...scoreCandidate(e, skills) }))
+        .filter((x) => x.score > 0)
+        .sort((a, b) => b.score - a.score || getYearsExperience(b.e) - getYearsExperience(a.e));
+      if (!scored.length) return `No employees found for skills: ${skills.join(", ")}.`;
+      const top = scored.slice(0, 3);
+      const topLines = top.map((x, i) => `${i + 1}. ${x.e.firstName} ${x.e.lastName} – ${x.e.role}, ${x.e.department} • ${getYearsExperience(x.e)} yrs • Matches: ${x.matches.join(", ")}`);
+      const allLines = scored.map((x) => `• ${x.e.firstName} ${x.e.lastName} – ${x.e.role}, ${x.e.department} • ${getYearsExperience(x.e)} yrs • Matches: ${x.matches.join(", ")}`);
+      return `Top candidates:\n${topLines.join("\n")}\n\nAll matches:\n${allLines.join("\n")}`;
+    }
+
+    // Legacy quick answers retained
     if (text.includes("active")) return `Active employees: ${totalActive}`;
     if (text.includes("on leave") || text.includes("leave")) return `On leave: ${onLeave}`;
     if (text.includes("new hire") || text.includes("new hires")) return `New hires this month: ${newHiresThisMonth}`;
@@ -563,7 +670,7 @@ export default function Index() {
     }
     const byName = EMPLOYEES.find((e) => `${e.firstName} ${e.lastName}`.toLowerCase().includes(text));
     if (byName) return `${byName.firstName} ${byName.lastName} – ${byName.role}, ${byName.department}. Status: ${byName.status}.`;
-    return "I can help with headcount by department, who is on leave, or quick employee lookups.";
+    return "Try asking: 'show engineers with React and TypeScript' or 'who knows AWS?'";
   }
 
   function sendAi() {
