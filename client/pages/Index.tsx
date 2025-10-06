@@ -358,20 +358,41 @@ function OrgListView() {
         </div>
       ) : mode === "list" ? (
         <div className="overflow-hidden rounded-lg border">
+          <div className="flex items-center gap-2 border-b p-2">
+            <Input value={orgName} onChange={(e) => setOrgName(e.target.value)} placeholder="Search by name" className="h-8 w-56 text-xs" />
+            <Select value={orgPos} onValueChange={setOrgPos}>
+              <SelectTrigger className="h-8 w-44 text-xs"><SelectValue placeholder="All Positions" /></SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Positions</SelectItem>
+                {(() => { const set = new Set<string>(); const walk = (n: OrgNode) => { set.add(n.title.toLowerCase()); n.children?.forEach(walk); }; ORG_TREE.forEach(walk); return Array.from(set).map((p) => (<SelectItem key={p} value={p}>{p.charAt(0).toUpperCase()+p.slice(1)}</SelectItem>)); })()}
+              </SelectContent>
+            </Select>
+          </div>
+          {(() => { const rows = ORG_TREE.flatMap((node)=> renderRows(node, 0)); const pageSize = 10; const totalPages = Math.max(1, Math.ceil(rows.length / pageSize)); const start = Math.min(orgPage*pageSize, Math.max(0, rows.length - (rows.length % pageSize || pageSize))); const end = Math.min(start + pageSize, rows.length); return (
+          <>
           <Table>
             <TableHeader>
               <TableRow>
                 <TableHead className="h-9 px-3 text-xs">Name</TableHead>
-                <TableHead className="h-9 px-3 text-xs">Title</TableHead>
+                <TableHead className="h-9 px-3 text-xs">Position</TableHead>
                 <TableHead className="h-9 px-3 text-xs">Department</TableHead>
-                <TableHead className="h-9 px-3 text-xs">Reports</TableHead>
+                <TableHead className="h-9 px-3 text-xs">Reporting Staff</TableHead>
                 <TableHead className="h-9 px-3 text-right text-xs">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {ORG_TREE.flatMap((node) => renderRows(node, 0))}
+              {rows.slice(start, end)}
             </TableBody>
           </Table>
+          <div className="flex items-center justify-end gap-2 border-t px-2 py-2 text-xs">
+            <Button variant="outline" className="h-7 rounded-md px-2" onClick={() => setOrgPage((p)=> Math.max(0, p-1))} disabled={orgPage===0}>Previous</Button>
+            {Array.from({length: totalPages}, (_, i) => (
+              <Button key={i} variant={i===orgPage ? 'default' : 'outline'} className="h-7 rounded-md px-2" onClick={() => setOrgPage(i)}>{i+1}</Button>
+            ))}
+            <Button variant="outline" className="h-7 rounded-md px-2" onClick={() => setOrgPage((p)=> Math.min(totalPages-1, p+1))} disabled={orgPage>=totalPages-1}>Next</Button>
+          </div>
+          </>
+          ); })()}
         </div>
       ) : (
         <div className="mt-2 origin-top" style={{ transform: `scale(${zoom})`, transformOrigin: "top center" }}>
