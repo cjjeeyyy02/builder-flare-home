@@ -36,6 +36,7 @@ import {
   Trash2,
   Upload,
   ArrowUpDown,
+  Building2,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
@@ -201,7 +202,10 @@ function OrgListView() {
         <div className="flex items-center gap-2">
           <h3 className="text-sm font-bold">{mode === "list" ? "List View" : "Chart View"}</h3>
         </div>
-        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+        <div className="flex items-center gap-3 text-xs text-muted-foreground">
+          <Button type="button" className="h-8 rounded-lg px-4 text-xs font-medium bg-[#2563eb] text-white hover:bg-[#1e40af]">
+            <Building2 className="mr-1.5 h-4 w-4" /> Manage Department
+          </Button>
           <div className="inline-flex items-center gap-1">
             <button
               type="button"
