@@ -10,6 +10,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogFooter, DialogTitle, DialogTrigger, DialogClose } from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
 import {
   Table,
   TableBody,
@@ -265,6 +267,47 @@ function OrgListView() {
       {mode === "manage" ? (
         <div className="mt-2 font-poppins">
           <div className="overflow-hidden rounded-lg border bg-white">
+            <div className="flex items-center justify-between border-b px-3 py-2">
+              <div className="font-poppins text-[16px] font-semibold">Departments List</div>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button type="button" className="h-8 rounded-lg px-4 text-xs font-medium bg-[#2563eb] text-white hover:bg-[#1e40af]">
+                    <Plus className="mr-1.5 h-4 w-4" /> Add Department
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="font-poppins">
+                  <DialogHeader>
+                    <DialogTitle className="font-poppins text-base font-semibold">Add Department</DialogTitle>
+                  </DialogHeader>
+                  <div className="grid gap-3 py-2">
+                    <div className="grid gap-1.5">
+                      <Label htmlFor="dept-name" className="font-poppins text-sm">Department Name</Label>
+                      <Input id="dept-name" placeholder="Enter department name" />
+                    </div>
+                    <div className="grid gap-1.5">
+                      <Label htmlFor="dept-manager" className="font-poppins text-sm">Manager</Label>
+                      <Input id="dept-manager" placeholder="Enter manager name" />
+                    </div>
+                    <div className="grid gap-1.5">
+                      <Label htmlFor="dept-members" className="font-poppins text-sm">Team Members</Label>
+                      <Input id="dept-members" type="number" min={0} placeholder="Number of team members" />
+                    </div>
+                    <div className="grid gap-1.5">
+                      <Label htmlFor="dept-location" className="font-poppins text-sm">Location</Label>
+                      <Input id="dept-location" placeholder="Enter location" />
+                    </div>
+                  </div>
+                  <DialogFooter>
+                    <DialogClose asChild>
+                      <Button type="button" variant="outline" className="rounded-md bg-white text-[#111827] border border-[#d1d5db]">Cancel</Button>
+                    </DialogClose>
+                    <DialogClose asChild>
+                      <Button type="button" className="rounded-md bg-[#2563eb] text-white hover:bg-[#1e40af]">Save</Button>
+                    </DialogClose>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
+            </div>
             <Table className="text-sm">
               <TableHeader>
                 <TableRow className="hover:bg-transparent border-b">
