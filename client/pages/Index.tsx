@@ -514,7 +514,6 @@ export default function Index() {
                 <SelectItem value="records">Employee Records</SelectItem>
                 <SelectItem value="org">Organization Chart</SelectItem>
                 <SelectItem value="docs">Document Center</SelectItem>
-                <SelectItem value="dept">Department Management</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -550,16 +549,6 @@ export default function Index() {
                 )}
               >
                 Document Center
-              </TabsTrigger>
-              <TabsTrigger
-                value="dept"
-                className={cn(
-                  "flex-1 rounded-[12px] px-4 py-2 text-sm transition-colors",
-                  "data-[state=active]:bg-[#3B82F6] data-[state=active]:text-white data-[state=active]:font-bold",
-                  "data-[state=inactive]:bg-transparent data-[state=inactive]:text-black data-[state=inactive]:font-medium data-[state=inactive]:hover:bg-[#E0F2FE]",
-                )}
-              >
-                Department Management
               </TabsTrigger>
             </div>
           </TabsList>
@@ -834,9 +823,6 @@ export default function Index() {
                 </Table>
               </div>
             </div>
-          </TabsContent>
-          <TabsContent value="dept" className="mt-6 text-sm text-muted-foreground">
-            Department Management placeholder. Define departments, heads, and policies to proceed.
           </TabsContent>
         </Tabs>
       </div>
