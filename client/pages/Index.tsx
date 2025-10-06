@@ -84,7 +84,7 @@ const ORG_TREE: OrgNode[] = [
 function OrgListView() {
   const total = 13;
   const [collapsed, setCollapsed] = useState<Set<string>>(() => new Set(ORG_TREE.map((n) => n.name)));
-  const [mode, setMode] = useState<"list" | "chart">("list");
+  const [mode, setMode] = useState<"list" | "chart" | "manage">("list");
   const [zoom, setZoom] = useState<number>(0.8);
   const toggle = (name: string) =>
     setCollapsed((prev) => {
@@ -147,6 +147,14 @@ function OrgListView() {
               ? "bg-fuchsia-100 text-fuchsia-700 dark:bg-fuchsia-500/20 dark:text-fuchsia-300"
               : "bg-muted text-foreground";
 
+  const DEPT_SUMMARY = [
+    { department: "Design", total: 1, active: 1, onLeave: 0, inactive: 0 },
+    { department: "Engineering", total: 3, active: 2, onLeave: 1, inactive: 0 },
+    { department: "Finance", total: 1, active: 1, onLeave: 0, inactive: 0 },
+    { department: "Marketing", total: 1, active: 1, onLeave: 0, inactive: 0 },
+    { department: "Product", total: 2, active: 2, onLeave: 0, inactive: 0 },
+  ];
+
   const ChartNode = ({ node }: { node: OrgNode }) => {
     const hasChildren = !!node.children?.length;
     const isCollapsed = collapsed.has(node.name);
@@ -200,10 +208,10 @@ function OrgListView() {
     <div className="space-y-3">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <h3 className="text-sm font-bold">{mode === "list" ? "List View" : "Chart View"}</h3>
+          <h3 className="text-sm font-bold">{mode === "list" ? "List View" : mode === "chart" ? "Chart View" : "Manage Department"}</h3>
         </div>
         <div className="flex items-center gap-3 text-xs text-muted-foreground">
-          <Button type="button" className="h-8 rounded-lg px-4 text-xs font-medium bg-[#2563eb] text-white hover:bg-[#1e40af]">
+          <Button type="button" onClick={() => setMode("manage")} className="h-8 rounded-lg px-4 text-xs font-medium bg-[#2563eb] text-white hover:bg-[#1e40af]">
             <Building2 className="mr-1.5 h-4 w-4" /> Manage Department
           </Button>
           <div className="inline-flex items-center gap-1">
@@ -247,7 +255,34 @@ function OrgListView() {
           </div>
         </div>
       </div>
-      {mode === "list" ? (
+      {mode === "manage" ? (
+        <div className="mt-2 font-poppins">
+          <div className="overflow-hidden rounded-lg border bg-white">
+            <Table className="text-sm">
+              <TableHeader>
+                <TableRow className="hover:bg-transparent border-b">
+                  <TableHead className="px-3 py-2 text-xs font-medium">Department</TableHead>
+                  <TableHead className="px-3 py-2 text-xs font-medium">Total Employees</TableHead>
+                  <TableHead className="px-3 py-2 text-xs font-medium">Active</TableHead>
+                  <TableHead className="px-3 py-2 text-xs font-medium">On Leave</TableHead>
+                  <TableHead className="px-3 py-2 text-xs font-medium">Inactive</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {DEPT_SUMMARY.map((d) => (
+                  <TableRow key={d.department} className="border-b last:border-0 hover:bg-transparent">
+                    <TableCell className="px-3 py-2">{d.department}</TableCell>
+                    <TableCell className="px-3 py-2">{d.total}</TableCell>
+                    <TableCell className="px-3 py-2">{d.active}</TableCell>
+                    <TableCell className="px-3 py-2">{d.onLeave}</TableCell>
+                    <TableCell className="px-3 py-2">{d.inactive}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+        </div>
+      ) : mode === "list" ? (
         <div className="overflow-hidden rounded-lg border">
           <Table>
             <TableHeader>
