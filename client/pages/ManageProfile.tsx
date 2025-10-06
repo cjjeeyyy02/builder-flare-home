@@ -647,7 +647,7 @@ export default function ManageProfile() {
                 <div className="overflow-hidden rounded-lg border border-[#e5e7eb] shadow-sm">
                   <Table className="text-[13px]">
                     <TableHeader>
-                      <TableRow className="bg-muted/40">
+                      <TableRow>
                         <TableHead className="py-2 font-bold uppercase">Document Title</TableHead>
                         <TableHead className="py-2 font-bold uppercase">File Type</TableHead>
                         <TableHead className="py-2 font-bold uppercase">File Size</TableHead>
