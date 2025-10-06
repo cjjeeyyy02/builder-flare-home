@@ -21,6 +21,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
+import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip";
 import {
   CalendarDays,
   EllipsisVertical,
@@ -483,6 +484,15 @@ export default function Index() {
     if (r.includes("hr")) s.add("HR");
     return Array.from(s);
   }
+  function getYearsExperience(e: Employee): number {
+    const parts = e.joiningDate.split("-"); // MM-DD-YYYY
+    if (parts.length !== 3) return 0;
+    const [mm, dd, yyyy] = parts.map((p) => parseInt(p, 10));
+    const start = new Date(yyyy, (mm || 1) - 1, dd || 1).getTime();
+    const now = Date.now();
+    const years = (now - start) / (1000 * 60 * 60 * 24 * 365.25);
+    return Math.max(0, Math.floor(years));
+  }
 
   // AI Assistant state and simple HR-aware responder
   type ChatMessage = { role: "user" | "assistant"; content: string };
@@ -829,7 +839,25 @@ export default function Index() {
                               const skills = getSkills(e);
                               if (!skills.length) return <span className="text-muted-foreground">—</span>;
                               const shown = skills.slice(0, 2);
-                              return <span>{shown.join(", ")}{skills.length > 2 ? ", ..." : ""}</span>;
+                              const display = `${shown.join(", ")}${skills.length > 2 ? ", ..." : ""}`;
+                              const full = `${skills.join(", ")}`;
+                              const years = getYearsExperience(e);
+                              return (
+                                <TooltipProvider>
+                                  <Tooltip>
+                                    <TooltipTrigger asChild>
+                                      <span className="cursor-help underline decoration-dotted underline-offset-2">{display}</span>
+                                    </TooltipTrigger>
+                                    <TooltipContent>
+                                      <div className="max-w-xs text-xs">
+                                        <div className="font-semibold">Skills</div>
+                                        <div className="text-foreground/80">{full}</div>
+                                        <div className="mt-1 text-foreground/80">Experience: {years} {years === 1 ? "year" : "years"}</div>
+                                      </div>
+                                    </TooltipContent>
+                                  </Tooltip>
+                                </TooltipProvider>
+                              );
                             })()}
                           </TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">{e.status}</TableCell>
