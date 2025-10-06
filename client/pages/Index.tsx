@@ -469,6 +469,21 @@ export default function Index() {
   const docTypes = ["PDF", "Word", "Excel", "Image"];
   const departments = Array.from(new Set(EMPLOYEES.map((e) => e.department)));
 
+  // Derive simple skills from role keywords
+  function getSkills(e: Employee): string[] {
+    const s = new Set<string>();
+    const r = e.role.toLowerCase();
+    if (r.includes("engineer")) s.add("Engineering");
+    if (r.includes("software")) s.add("Software");
+    if (r.includes("devops")) s.add("DevOps");
+    if (r.includes("qa")) s.add("QA");
+    if (r.includes("product")) s.add("Product");
+    if (r.includes("design")) s.add("Design");
+    if (r.includes("analyst")) s.add("Analysis");
+    if (r.includes("hr")) s.add("HR");
+    return Array.from(s);
+  }
+
   // AI Assistant state and simple HR-aware responder
   type ChatMessage = { role: "user" | "assistant"; content: string };
   const [aiOpen, setAiOpen] = useState(false);
@@ -809,7 +824,20 @@ export default function Index() {
                           </TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">{e.role}</TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">{e.department}</TableCell>
-                          <TableCell className="px-2 py-1 text-xs leading-tight">{e.email}</TableCell>
+                          <TableCell className="px-2 py-1 text-xs leading-tight">
+                            <div className="flex flex-wrap gap-1">
+                              {(() => {
+                                const skills = getSkills(e);
+                                return skills.length ? (
+                                  skills.map((s) => (
+                                    <span key={s} className="rounded border px-1.5 py-0.5 text-[10px] text-foreground/80">{s}</span>
+                                  ))
+                                ) : (
+                                  <span className="text-muted-foreground">—</span>
+                                );
+                              })()}
+                            </div>
+                          </TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">{e.status}</TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">{e.joiningDate}</TableCell>
                           <TableCell className="px-2 py-1 text-right text-xs leading-tight">
