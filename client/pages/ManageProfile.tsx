@@ -334,9 +334,9 @@ export default function ManageProfile() {
               <div>
                 <h3 className="text-base font-bold">Compensation History</h3>
                 <div className="mt-3">
-                  <Table>
-                    <TableHeader>
-                      <TableRow className="hover:bg-transparent">
+                  <Table className="text-[13px]">
+                  <TableHeader>
+                    <TableRow className="hover:bg-transparent bg-[#f9fafb]">
                         <TableHead className="py-2 font-bold uppercase">Date of Change</TableHead>
                         <TableHead className="py-2 font-bold uppercase">Amount</TableHead>
                         <TableHead className="py-2 font-bold uppercase">Salary Amount</TableHead>
