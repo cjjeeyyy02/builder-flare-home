@@ -273,9 +273,9 @@ export default function ManageProfile() {
                 <Button>Add New Skill</Button>
               </div>
               <div className="overflow-hidden rounded-lg border">
-                <Table>
+                <Table className="text-[13px]">
                   <TableHeader>
-                    <TableRow className="hover:bg-transparent">
+                    <TableRow className="hover:bg-transparent bg-[#f9fafb]">
                       <TableHead className="py-2 font-bold uppercase">Skill Name</TableHead>
                       <TableHead className="py-2 font-bold uppercase">Experience (Years)</TableHead>
                       <TableHead className="py-2 font-bold uppercase">Skill Level</TableHead>
