@@ -105,6 +105,9 @@ function OrgListView() {
       return next;
     });
 
+  const [addReportOpen, setAddReportOpen] = useState(false);
+  const [reportTarget, setReportTarget] = useState<{ name: string; role: string } | null>(null);
+
   const renderRows = (node: OrgNode, depth: number): React.ReactNode[] => {
     const hasChildren = !!node.children?.length;
     const isCollapsed = collapsed.has(node.name);
