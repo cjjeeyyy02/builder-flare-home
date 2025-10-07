@@ -1054,9 +1054,16 @@ export default function Index() {
                             {e.id}
                           </TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">
-                            <span className="text-xs font-semibold text-foreground">
-                              {e.firstName} {e.lastName}
-                            </span>
+                            <div className="flex items-center gap-2">
+                              <Avatar className="h-6 w-6">
+                                <AvatarFallback className="text-[10px]">
+                                  {(e.firstName?.[0] || "").toUpperCase()}{(e.lastName?.[0] || "").toUpperCase()}
+                                </AvatarFallback>
+                              </Avatar>
+                              <span className="text-xs font-semibold text-foreground">
+                                {e.firstName} {e.lastName}
+                              </span>
+                            </div>
                           </TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">{e.role}</TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">{e.department}</TableCell>
@@ -1123,14 +1130,21 @@ export default function Index() {
                 {filtered.map((e) => (
                   <Card key={e.id} className="rounded-xl border p-4 shadow-sm">
                     <div className="flex items-start justify-between">
-                      <div>
-                        <div className="text-xs font-semibold uppercase text-muted-foreground">
-                          {e.id}
+                      <div className="flex items-start gap-3">
+                        <Avatar className="mt-0.5 h-9 w-9">
+                          <AvatarFallback className="text-[11px]">
+                            {(e.firstName?.[0] || "").toUpperCase()}{(e.lastName?.[0] || "").toUpperCase()}
+                          </AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <div className="text-xs font-semibold uppercase text-muted-foreground">
+                            {e.id}
+                          </div>
+                          <div className="mt-1 text-base font-semibold">
+                            {e.firstName} {e.lastName}
+                          </div>
+                          <div className="text-xs text-muted-foreground">{e.role}</div>
                         </div>
-                        <div className="mt-1 text-base font-semibold">
-                          {e.firstName} {e.lastName}
-                        </div>
-                        <div className="text-xs text-muted-foreground">{e.role}</div>
                       </div>
                       <RowActions employee={e} />
                     </div>
@@ -1139,6 +1153,24 @@ export default function Index() {
                       <div className="truncate text-muted-foreground">{e.email}</div>
                       <div>{e.status}</div>
                       <div className="text-muted-foreground">{e.joiningDate}</div>
+                      <div className="col-span-2">
+                        {(() => {
+                          const skills = getSkills(e);
+                          if (!skills.length) return <span className="text-xs text-muted-foreground">Skills: —</span>;
+                          const shown = skills.slice(0, 3);
+                          return (
+                            <div className="flex flex-wrap items-center gap-1 text-[11px]">
+                              <span className="text-muted-foreground">Skills:</span>
+                              {shown.map((s) => (
+                                <Badge key={s} variant="secondary" className="px-1.5 py-0 text-[10px]">{s}</Badge>
+                              ))}
+                              {skills.length > 3 && (
+                                <span className="text-muted-foreground">+{skills.length - 3} more</span>
+                              )}
+                            </div>
+                          );
+                        })()}
+                      </div>
                     </div>
                   </Card>
                 ))}
