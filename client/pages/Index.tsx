@@ -1054,7 +1054,7 @@ export default function Index() {
                           </TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">
                             <div className="flex items-center gap-2">
-                              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1E4DD8] text-white font-semibold text-[14px]">
+                              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#1E4DD8] text-white font-semibold text-[12px]">
                                 {(e.firstName?.[0] || "").toUpperCase()}{(e.lastName?.[0] || "").toUpperCase()}
                               </div>
                               <span className="text-xs font-semibold text-foreground">
