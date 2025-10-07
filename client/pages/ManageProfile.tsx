@@ -932,9 +932,19 @@ export default function ManageProfile() {
                           <Badge className="border-0 bg-amber-100 px-2.5 py-0.5 text-amber-700 dark:bg-amber-500/20 dark:text-amber-300">Under Review</Badge>
                         </TableCell>
                         <TableCell className="py-2 text-right">
-                          <Button variant="ghost" className="h-8 w-8 p-0" aria-label="View personal leave">
-                            <Eye className="h-4 w-4" />
-                          </Button>
+                          <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                              <Button variant="ghost" className="h-8 w-8 p-0" aria-label="Actions for personal leave">
+                                <EllipsisVertical className="h-4 w-4" />
+                              </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end" className="w-44">
+                              <DropdownMenuItem className="hover:bg-accent" onClick={() => setLeaveView({ type: "Personal Leave", duration: "04-22-2024 – 04-22-2024", days: 1, status: "Under Review" })}>View Details</DropdownMenuItem>
+                              {canDeleteLeave && (
+                                <DropdownMenuItem className="hover:bg-accent" onClick={() => setLeaveConfirm({ type: "Personal Leave", duration: "04-22-2024 – 04-22-2024", days: 1, status: "Under Review" })}>Delete</DropdownMenuItem>
+                              )}
+                            </DropdownMenuContent>
+                          </DropdownMenu>
                         </TableCell>
                       </TableRow>
                       <TableRow className="hover:bg-transparent">
