@@ -18,6 +18,57 @@ export default function ManageProfile() {
   const { id } = useParams();
   const { toast } = useToast();
 
+  type CertData = {
+    title: string;
+    provider?: string;
+    id?: string;
+    issued?: string;
+    expires?: string;
+    owner?: string;
+  };
+  const [certModal, setCertModal] = useState<CertData | null>(null);
+
+  function buildCertificateHTML(c: CertData): string {
+    const issued = c.issued ? `<div style="margin-top:8px;color:#374151">Issued: ${c.issued}</div>` : "";
+    const expires = c.expires ? `<div style="color:#374151">Expiry: ${c.expires}</div>` : "";
+    const id = c.id ? `<div style="margin-top:8px;color:#374151">Certificate ID: ${c.id}</div>` : "";
+    const provider = c.provider ? `<div style="margin-top:8px;color:#374151">Issuer: ${c.provider}</div>` : "";
+    const owner = c.owner ? `<div style="margin-top:8px;color:#374151">Awarded to: ${c.owner}</div>` : "";
+    return `<!doctype html><html><head><meta charset='utf-8'><title>${c.title}</title></head><body style="font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu; background:#f9fafb; padding:24px;">
+      <div style="max-width:720px;margin:0 auto;background:white;border:1px solid #e5e7eb;border-radius:12px;padding:24px;">
+        <h1 style="margin:0;font-size:20px;color:#111827">${c.title}</h1>
+        ${owner}
+        ${provider}
+        ${issued}
+        ${expires}
+        ${id}
+      </div>
+    </body></html>`;
+  }
+
+  function downloadFile(filename: string, content: string, mime = "text/html") {
+    const blob = new Blob([content], { type: mime });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  function viewCertificate(data: CertData) {
+    setCertModal(data);
+  }
+
+  function downloadCertificate(data: CertData) {
+    const html = buildCertificateHTML(data);
+    const safeTitle = data.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+    downloadFile(`${safeTitle}.html`, html);
+    toast({ title: "Download started", description: `${data.title}` });
+  }
+
   type PerfReview = { period: string; reviewer: string; date: string; rating: string; comments: string };
   const [viewOpen, setViewOpen] = useState<PerfReview | null>(null);
   const [editOpen, setEditOpen] = useState<PerfReview | null>(null);
@@ -563,9 +614,34 @@ export default function ManageProfile() {
                           <Badge className="border-0 bg-emerald-100 px-2.5 py-0.5 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300">Completed</Badge>
                         </TableCell>
                         <TableCell className="py-2 text-right">
-                          <Button variant="ghost" className="h-8 w-8 p-0" aria-label="Download certificate">
-                            <Download className="h-4 w-4" />
-                          </Button>
+                          <div className="inline-flex items-center gap-1">
+                            <Button
+                              variant="ghost"
+                              className="h-8 w-8 p-0"
+                              aria-label="View certificate"
+                              onClick={() => viewCertificate({
+                                title: "React Advanced Patterns – Certificate of Completion",
+                                provider: "Tech Academy",
+                                issued: "08/15/2023",
+                                owner: `${employee.firstName} ${employee.lastName}`,
+                              })}
+                            >
+                              <Eye className="h-4 w-4" />
+                            </Button>
+                            <Button
+                              variant="ghost"
+                              className="h-8 w-8 p-0"
+                              aria-label="Download certificate"
+                              onClick={() => downloadCertificate({
+                                title: "React Advanced Patterns – Certificate of Completion",
+                                provider: "Tech Academy",
+                                issued: "08/15/2023",
+                                owner: `${employee.firstName} ${employee.lastName}`,
+                              })}
+                            >
+                              <Download className="h-4 w-4" />
+                            </Button>
+                          </div>
                         </TableCell>
                       </TableRow>
                       <TableRow className="hover:bg-transparent">
@@ -628,10 +704,59 @@ export default function ManageProfile() {
                   </div>
                 </div>
                 <div className="mt-4 flex items-center gap-2">
-                  <Button variant="outline" className="h-8 rounded-md px-3 text-xs">View Certificate</Button>
-                  <Button variant="outline" className="h-8 rounded-md px-3 text-xs">Download Certificate</Button>
+                  <Button
+                    variant="outline"
+                    className="h-8 rounded-md px-3 text-xs"
+                    onClick={() => viewCertificate({
+                      title: "AWS Certified Solutions Architect",
+                      provider: "Amazon Web Services",
+                      id: "AWS-CSA-2023-001234",
+                      issued: "06/15/2023",
+                      expires: "06/15/2026",
+                      owner: `${employee.firstName} ${employee.lastName}`,
+                    })}
+                  >
+                    View Certificate
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="h-8 rounded-md px-3 text-xs"
+                    onClick={() => downloadCertificate({
+                      title: "AWS Certified Solutions Architect",
+                      provider: "Amazon Web Services",
+                      id: "AWS-CSA-2023-001234",
+                      issued: "06/15/2023",
+                      expires: "06/15/2026",
+                      owner: `${employee.firstName} ${employee.lastName}`,
+                    })}
+                  >
+                    Download Certificate
+                  </Button>
                 </div>
               </div>
+              {/* Certificate Viewer */}
+              <Dialog open={!!certModal} onOpenChange={(o) => !o && setCertModal(null)}>
+                <DialogContent className="max-w-3xl">
+                  <DialogHeader>
+                    <DialogTitle>{certModal?.title}</DialogTitle>
+                  </DialogHeader>
+                  {certModal && (
+                    <div className="h-[60vh] w-full overflow-hidden rounded-md border">
+                      <iframe title="Certificate Preview" className="h-full w-full" srcDoc={buildCertificateHTML(certModal)} />
+                    </div>
+                  )}
+                  <DialogFooter>
+                    <DialogClose asChild>
+                      <Button variant="outline">Close</Button>
+                    </DialogClose>
+                    {certModal && (
+                      <Button onClick={() => downloadCertificate(certModal)}>
+                        <Download className="mr-2 h-4 w-4" /> Download
+                      </Button>
+                    )}
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
             </TabsContent>
             <TabsContent value="leave" className="space-y-4">
               <div className="flex items-center justify-between">
