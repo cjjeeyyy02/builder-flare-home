@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { EMPLOYEES, type Employee } from "@/lib/data/employees";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/local/tabs";
