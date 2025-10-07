@@ -34,6 +34,58 @@ export default function ManageProfile() {
     setLeaveConfirm(null);
   }
 
+  type LeaveRequest = {
+    id: string;
+    employeeId: string;
+    employeeName: string;
+    type: string;
+    dateFiled: string; // DD/MM/YYYY
+    duration: string;
+    reason: string;
+    status: "Pending" | "Approved" | "Declined";
+  };
+  const [leaveRequests, setLeaveRequests] = useState<LeaveRequest[]>([
+    {
+      id: "lr-1",
+      employeeId: EMPLOYEES[0]?.id || "EMP001",
+      employeeName: `${EMPLOYEES[0]?.firstName || "Sarah"} ${EMPLOYEES[0]?.lastName || "Mitchell"}`,
+      type: "Sick Leave",
+      dateFiled: "03/14/2024",
+      duration: "03-15-2024 – 03-17-2024",
+      reason: "Flu and rest",
+      status: "Pending",
+    },
+    {
+      id: "lr-2",
+      employeeId: EMPLOYEES[1]?.id || "EMP002",
+      employeeName: `${EMPLOYEES[1]?.firstName || "Daniel"} ${EMPLOYEES[1]?.lastName || "Nguyen"}`,
+      type: "Annual Leave",
+      dateFiled: "01/05/2024",
+      duration: "01-08-2024 – 01-12-2024",
+      reason: "Family vacation",
+      status: "Approved",
+    },
+    {
+      id: "lr-3",
+      employeeId: EMPLOYEES[2]?.id || "EMP003",
+      employeeName: `${EMPLOYEES[2]?.firstName || "Priya"} ${EMPLOYEES[2]?.lastName || "Kumar"}`,
+      type: "Personal Leave",
+      dateFiled: "04/20/2024",
+      duration: "04-22-2024 – 04-22-2024",
+      reason: "Personal errand",
+      status: "Pending",
+    },
+  ]);
+  const [confirmApprove, setConfirmApprove] = useState<LeaveRequest | null>(null);
+  const [confirmDecline, setConfirmDecline] = useState<LeaveRequest | null>(null);
+
+  function applyRequestStatus(rec: LeaveRequest, status: "Approved" | "Declined") {
+    setLeaveRequests((arr) => arr.map((r) => (r.id === rec.id ? { ...r, status } : r)));
+    toast({ title: `Request ${status.toLowerCase()}`, description: `${rec.employeeName} • ${rec.type}` });
+    setConfirmApprove(null);
+    setConfirmDecline(null);
+  }
+
   type CertData = {
     title: string;
     provider?: string;
@@ -837,10 +889,60 @@ export default function ManageProfile() {
               </Dialog>
             </TabsContent>
             <TabsContent value="leave" className="space-y-4">
-              <div className="flex items-center justify-between">
-                <h3 className="text-base font-bold">Performance Metrics & Leave History</h3>
-                <Button className="h-8 rounded-md bg-blue-600 px-3 text-xs text-white hover:bg-blue-700">Manage Leave</Button>
-              </div>
+              <Dialog>
+                <div className="flex items-center justify-between">
+                  <h3 className="text-base font-bold">Performance Metrics & Leave History</h3>
+                  <DialogTrigger asChild>
+                    <Button className="h-8 rounded-md bg-blue-600 px-3 text-xs text-white hover:bg-blue-700">Manage Leave</Button>
+                  </DialogTrigger>
+                </div>
+                <DialogContent className="max-w-5xl rounded-2xl p-6 shadow-xl">
+                  <DialogHeader>
+                    <DialogTitle>Manage Leave Requests</DialogTitle>
+                  </DialogHeader>
+                  <div className="overflow-hidden rounded-lg border">
+                    <Table className="text-[13px]">
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead className="py-2 font-bold uppercase">Employee Name</TableHead>
+                          <TableHead className="py-2 font-bold uppercase">Leave Type</TableHead>
+                          <TableHead className="py-2 font-bold uppercase">Date Filed</TableHead>
+                          <TableHead className="py-2 font-bold uppercase">Duration</TableHead>
+                          <TableHead className="py-2 font-bold uppercase">Reason</TableHead>
+                          <TableHead className="py-2 font-bold uppercase">Status</TableHead>
+                          <TableHead className="py-2 text-right font-bold uppercase">Actions</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {leaveRequests.map((r) => (
+                          <TableRow key={r.id} className="hover:bg-transparent">
+                            <TableCell className="py-2">{r.employeeName}</TableCell>
+                            <TableCell className="py-2">{r.type}</TableCell>
+                            <TableCell className="py-2">{r.dateFiled}</TableCell>
+                            <TableCell className="py-2">{r.duration}</TableCell>
+                            <TableCell className="py-2">{r.reason}</TableCell>
+                            <TableCell className="py-2">
+                              {r.status === "Approved" ? (
+                                <Badge className="border-0 bg-emerald-100 px-2.5 py-0.5 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300">Approved</Badge>
+                              ) : r.status === "Declined" ? (
+                                <Badge className="border-0 bg-rose-100 px-2.5 py-0.5 text-rose-700 dark:bg-rose-500/20 dark:text-rose-300">Declined</Badge>
+                              ) : (
+                                <Badge className="border-0 bg-amber-100 px-2.5 py-0.5 text-amber-700 dark:bg-amber-500/20 dark:text-amber-300">Pending</Badge>
+                              )}
+                            </TableCell>
+                            <TableCell className="py-2 text-right">
+                              <div className="inline-flex items-center gap-2">
+                                <Button className="h-7 rounded-md bg-emerald-600 px-3 text-xs text-white hover:bg-emerald-700" onClick={() => setConfirmApprove(r)}>Approve</Button>
+                                <Button className="h-7 rounded-md bg-rose-600 px-3 text-xs text-white hover:bg-rose-700" onClick={() => setConfirmDecline(r)}>Decline</Button>
+                              </div>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </div>
+                </DialogContent>
+              </Dialog>
 
               {/* Metrics */}
               <div className="grid gap-4 sm:grid-cols-2">
@@ -1031,6 +1133,34 @@ export default function ManageProfile() {
                   <AlertDialogFooter>
                     <AlertDialogCancel>Cancel</AlertDialogCancel>
                     <AlertDialogAction onClick={() => leaveConfirm && deleteLeave(leaveConfirm)}>Delete</AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+
+              {/* Approve Confirmation */}
+              <AlertDialog open={!!confirmApprove} onOpenChange={(o) => !o && setConfirmApprove(null)}>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Approve leave request?</AlertDialogTitle>
+                  </AlertDialogHeader>
+                  <div className="text-sm text-muted-foreground">Are you sure you want to approve this leave request?</div>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction onClick={() => confirmApprove && applyRequestStatus(confirmApprove, "Approved")}>Approve</AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+
+              {/* Decline Confirmation */}
+              <AlertDialog open={!!confirmDecline} onOpenChange={(o) => !o && setConfirmDecline(null)}>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Decline leave request?</AlertDialogTitle>
+                  </AlertDialogHeader>
+                  <div className="text-sm text-muted-foreground">Are you sure you want to decline this leave request?</div>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction onClick={() => confirmDecline && applyRequestStatus(confirmDecline, "Declined")}>Decline</AlertDialogAction>
                   </AlertDialogFooter>
                 </AlertDialogContent>
               </AlertDialog>
