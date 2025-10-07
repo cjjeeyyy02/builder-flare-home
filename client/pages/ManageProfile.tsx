@@ -27,6 +27,25 @@ export default function ManageProfile() {
   const [editRating, setEditRating] = useState("");
   const [editComments, setEditComments] = useState("");
 
+  const [perfReviews, setPerfReviews] = useState<PerfReview[]>([
+    {
+      period: "Q3 2023",
+      reviewer: "Michael Rodriguez",
+      date: "10/05/2023",
+      rating: "4.5/5",
+      comments:
+        "Sarah has consistently delivered exceptional work this quarter. Her technical leadership elevated the team’s output, and she proactively mentored junior engineers. She demonstrated strong problem-solving skills and improved system reliability through well-planned refactoring and testing.",
+    },
+    {
+      period: "Q2 2023",
+      reviewer: "Michael Rodriguez",
+      date: "07/05/2023",
+      rating: "4.4/5",
+      comments:
+        "Excellent performance in Q2. Sarah successfully optimized our application performance, reducing average response times by 35%. She collaborated effectively across teams and raised code quality through reviews and documentation.",
+    },
+  ]);
+
   function openEdit(r: PerfReview) {
     setEditOpen(r);
     setEditReviewer(r.reviewer);
@@ -36,8 +55,15 @@ export default function ManageProfile() {
 
   function saveEdit() {
     if (!editOpen) return;
+    setPerfReviews((arr) => arr.map((r) => (r.period === editOpen.period ? { ...r, reviewer: editReviewer, rating: editRating, comments: editComments } : r)));
     toast({ title: "Review updated", description: `${editOpen.period} has been updated.` });
     setEditOpen(null);
+  }
+
+  function doDelete(r: PerfReview) {
+    setPerfReviews((arr) => arr.filter((x) => x.period !== r.period));
+    toast({ title: "Review deleted", description: `${r.period} has been removed.` });
+    setConfirmDel(null);
   }
   const navigate = useNavigate();
   const employee = useMemo(() => EMPLOYEES.find((e) => e.id === id) as Employee | undefined, [id]);
@@ -413,50 +439,30 @@ export default function ManageProfile() {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      <TableRow className="hover:bg-transparent">
-                        <TableCell className="py-3 border-y border-border">Q3 2023</TableCell>
-                        <TableCell className="py-3 border-y border-border">—</TableCell>
-                        <TableCell className="py-3 border-y border-border">4.5/5</TableCell>
-                        <TableCell className="py-3 border-y border-border">
-                          <div className="max-w-[520px] truncate">Sarah has consistently delivered exceptional work this quarter. Her technical le...</div>
-                        </TableCell>
-                        <TableCell className="py-3 border-y border-border text-center">
-                          <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                              <Button variant="ghost" className="h-8 w-8 p-0 text-muted-foreground hover:bg-transparent" aria-label="Actions for Q3 2023">
-                                <EllipsisVertical className="h-4 w-4" />
-                              </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end" className="w-44">
-                              <DropdownMenuItem onClick={() => setViewOpen({ period: "Q3 2023", reviewer: "Michael Rodriguez", date: "10/05/2023", rating: "4.5/5", comments: "Sarah has consistently delivered exceptional work this quarter. Her technical leadership elevated the team’s output, and she proactively mentored junior engineers. She demonstrated strong problem-solving skills and improved system reliability through well-planned refactoring and testing." })}>View Details</DropdownMenuItem>
-                              <DropdownMenuItem onClick={() => openEdit({ period: "Q3 2023", reviewer: "Michael Rodriguez", date: "10/05/2023", rating: "4.5/5", comments: "Sarah has consistently delivered exceptional work this quarter. Her technical leadership elevated the team’s output, and she proactively mentored junior engineers. She demonstrated strong problem-solving skills and improved system reliability through well-planned refactoring and testing." })}>Edit Review</DropdownMenuItem>
-                              <DropdownMenuItem onClick={() => setConfirmDel({ period: "Q3 2023", reviewer: "Michael Rodriguez", date: "10/05/2023", rating: "4.5/5", comments: "Sarah has consistently delivered exceptional work this quarter. Her technical leadership elevated the team’s output, and she proactively mentored junior engineers. She demonstrated strong problem-solving skills and improved system reliability through well-planned refactoring and testing." })}>Delete Review</DropdownMenuItem>
-                            </DropdownMenuContent>
-                          </DropdownMenu>
-                        </TableCell>
-                      </TableRow>
-                      <TableRow className="hover:bg-transparent">
-                        <TableCell className="py-3 border-y border-border">Q2 2023</TableCell>
-                        <TableCell className="py-3 border-y border-border">—</TableCell>
-                        <TableCell className="py-3 border-y border-border">4.4/5</TableCell>
-                        <TableCell className="py-3 border-y border-border">
-                          <div className="max-w-[520px] truncate">Excellent performance in Q2. Sarah successfully optimized our application perfor...</div>
-                        </TableCell>
-                        <TableCell className="py-3 border-y border-border text-center">
-                          <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                              <Button variant="ghost" className="h-8 w-8 p-0 text-muted-foreground hover:bg-transparent" aria-label="Actions for Q2 2023">
-                                <EllipsisVertical className="h-4 w-4" />
-                              </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end" className="w-44">
-                              <DropdownMenuItem onClick={() => setViewOpen({ period: "Q2 2023", reviewer: "Michael Rodriguez", date: "07/05/2023", rating: "4.4/5", comments: "Excellent performance in Q2. Sarah successfully optimized our application performance, reducing average response times by 35%. She collaborated effectively across teams and raised code quality through reviews and documentation." })}>View Details</DropdownMenuItem>
-                              <DropdownMenuItem onClick={() => openEdit({ period: "Q2 2023", reviewer: "Michael Rodriguez", date: "07/05/2023", rating: "4.4/5", comments: "Excellent performance in Q2. Sarah successfully optimized our application performance, reducing average response times by 35%. She collaborated effectively across teams and raised code quality through reviews and documentation." })}>Edit Review</DropdownMenuItem>
-                              <DropdownMenuItem onClick={() => setConfirmDel({ period: "Q2 2023", reviewer: "Michael Rodriguez", date: "07/05/2023", rating: "4.4/5", comments: "Excellent performance in Q2. Sarah successfully optimized our application performance, reducing average response times by 35%. She collaborated effectively across teams and raised code quality through reviews and documentation." })}>Delete Review</DropdownMenuItem>
-                            </DropdownMenuContent>
-                          </DropdownMenu>
-                        </TableCell>
-                      </TableRow>
+                      {perfReviews.map((r) => (
+                        <TableRow key={r.period} className="hover:bg-transparent">
+                          <TableCell className="py-3 border-y border-border">{r.period}</TableCell>
+                          <TableCell className="py-3 border-y border-border">{r.reviewer}</TableCell>
+                          <TableCell className="py-3 border-y border-border">{r.rating}</TableCell>
+                          <TableCell className="py-3 border-y border-border">
+                            <div className="max-w-[520px] truncate">{r.comments}</div>
+                          </TableCell>
+                          <TableCell className="py-3 border-y border-border text-center">
+                            <DropdownMenu>
+                              <DropdownMenuTrigger asChild>
+                                <Button variant="ghost" className="h-8 w-8 p-0 text-muted-foreground hover:bg-transparent" aria-label={`Actions for ${r.period}`}>
+                                  <EllipsisVertical className="h-4 w-4" />
+                                </Button>
+                              </DropdownMenuTrigger>
+                              <DropdownMenuContent align="end" className="w-44">
+                                <DropdownMenuItem onClick={() => setViewOpen(r)}>View Details</DropdownMenuItem>
+                                <DropdownMenuItem onClick={() => openEdit(r)}>Edit Review</DropdownMenuItem>
+                                <DropdownMenuItem onClick={() => setConfirmDel(r)}>Delete Review</DropdownMenuItem>
+                              </DropdownMenuContent>
+                            </DropdownMenu>
+                          </TableCell>
+                        </TableRow>
+                      ))}
                     </TableBody>
                   </Table>
                 </div>
@@ -524,7 +530,7 @@ export default function ManageProfile() {
                   <div className="text-sm text-muted-foreground">This action cannot be undone. This will permanently remove the selected performance review.</div>
                   <AlertDialogFooter>
                     <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction onClick={() => confirmDel && (setConfirmDel(null), toast({ title: "Review deleted" }))}>Delete</AlertDialogAction>
+                    <AlertDialogAction onClick={() => confirmDel && doDelete(confirmDel)}>Delete</AlertDialogAction>
                   </AlertDialogFooter>
                 </AlertDialogContent>
               </AlertDialog>
