@@ -20,6 +20,20 @@ export default function ManageProfile() {
   const { id } = useParams();
   const { toast } = useToast();
 
+  // Role and permissions (example: admin | hr | employee)
+  const currentRole: "admin" | "hr" | "employee" = "admin";
+  const canDeleteLeave = currentRole === "admin" || currentRole === "hr";
+
+  type LeaveRec = { type: string; duration: string; days: number; status: string };
+  const [leaveView, setLeaveView] = useState<LeaveRec | null>(null);
+  const [leaveConfirm, setLeaveConfirm] = useState<LeaveRec | null>(null);
+
+  function deleteLeave(rec: LeaveRec) {
+    // in a real app this would call an API; here we just show a toast
+    toast({ title: "Leave record deleted", description: `${rec.type} • ${rec.duration}` });
+    setLeaveConfirm(null);
+  }
+
   type CertData = {
     title: string;
     provider?: string;
