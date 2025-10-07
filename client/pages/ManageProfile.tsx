@@ -914,7 +914,7 @@ export default function ManageProfile() {
                         </TableRow>
                       </TableHeader>
                       <TableBody>
-                        {leaveRequests.map((r) => (
+                        {leaveRequests.filter((r) => r.employeeId === id).map((r) => (
                           <TableRow key={r.id} className="hover:bg-transparent">
                             <TableCell className="py-2">{r.employeeName}</TableCell>
                             <TableCell className="py-2">{r.type}</TableCell>
