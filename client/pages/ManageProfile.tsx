@@ -7,11 +7,14 @@ import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, CalendarDays, Check, Download, Eye, Pencil, Shield, ShieldCheck, Trash2, User } from "lucide-react";
+import { ArrowLeft, CalendarDays, Check, Download, Eye, Pencil, Shield, ShieldCheck, Trash2, User, EllipsisVertical } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useToast } from "@/hooks/use-toast";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
 export default function ManageProfile() {
   const { id } = useParams();
+  const { toast } = useToast();
   const navigate = useNavigate();
   const employee = useMemo(() => EMPLOYEES.find((e) => e.id === id) as Employee | undefined, [id]);
 
@@ -394,9 +397,17 @@ export default function ManageProfile() {
                           <div className="max-w-[520px] truncate">Sarah has consistently delivered exceptional work this quarter. Her technical le...</div>
                         </TableCell>
                         <TableCell className="py-3 border-y border-border text-center">
-                          <Button variant="ghost" className="h-8 w-8 p-0 text-muted-foreground hover:bg-transparent" aria-label="View review Q3 2023">
-                            <Eye className="h-4 w-4" />
-                          </Button>
+                          <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                              <Button variant="ghost" className="h-8 w-8 p-0 text-muted-foreground hover:bg-transparent" aria-label="Actions for Q3 2023">
+                                <EllipsisVertical className="h-4 w-4" />
+                              </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end" className="w-44">
+                              <DropdownMenuItem onClick={() => toast({ title: "Rate", description: "Open rating for Q3 2023." })}>Rate</DropdownMenuItem>
+                              <DropdownMenuItem onClick={() => toast({ title: "Add comments / notes", description: "Add comments for Q3 2023." })}>Add comments / notes</DropdownMenuItem>
+                            </DropdownMenuContent>
+                          </DropdownMenu>
                         </TableCell>
                       </TableRow>
                       <TableRow className="hover:bg-transparent">
@@ -407,9 +418,17 @@ export default function ManageProfile() {
                           <div className="max-w-[520px] truncate">Excellent performance in Q2. Sarah successfully optimized our application perfor...</div>
                         </TableCell>
                         <TableCell className="py-3 border-y border-border text-center">
-                          <Button variant="ghost" className="h-8 w-8 p-0 text-muted-foreground hover:bg-transparent" aria-label="View review Q2 2023">
-                            <Eye className="h-4 w-4" />
-                          </Button>
+                          <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                              <Button variant="ghost" className="h-8 w-8 p-0 text-muted-foreground hover:bg-transparent" aria-label="Actions for Q2 2023">
+                                <EllipsisVertical className="h-4 w-4" />
+                              </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end" className="w-44">
+                              <DropdownMenuItem onClick={() => toast({ title: "Rate", description: "Open rating for Q2 2023." })}>Rate</DropdownMenuItem>
+                              <DropdownMenuItem onClick={() => toast({ title: "Add comments / notes", description: "Add comments for Q2 2023." })}>Add comments / notes</DropdownMenuItem>
+                            </DropdownMenuContent>
+                          </DropdownMenu>
                         </TableCell>
                       </TableRow>
                     </TableBody>
