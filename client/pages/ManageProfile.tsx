@@ -323,7 +323,7 @@ export default function ManageProfile() {
 
         <div className="py-4">
           <Tabs defaultValue={initialTab}>
-            <div className="sticky top-16 z-10 border-b bg-background/90 py-2 backdrop-blur supports-[backdrop-filter]:bg-background/70">
+            <div className="border-b bg-background py-2">
               <TabsList className="flex items-center gap-2 overflow-x-auto">
               {[
                 ["personal", "Personal Info"],
