@@ -969,7 +969,7 @@ export default function Index() {
                         <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Skills</TableHead>
                         <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Status</TableHead>
                         <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Joining Date</TableHead>
-                        <TableHead className="px-2 py-1 text-right text-xs font-semibold uppercase leading-tight">Action</TableHead>
+                        <TableHead className="px-2 py-1 text-center text-xs font-semibold uppercase leading-tight">Action</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -1016,7 +1016,7 @@ export default function Index() {
                           </TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">{e.status}</TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">{e.joiningDate}</TableCell>
-                          <TableCell className="px-2 py-1 text-right text-xs leading-tight">
+                          <TableCell className="px-2 py-1 text-center text-xs leading-tight">
                             <RowActions employee={e} />
                           </TableCell>
                         </TableRow>
