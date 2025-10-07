@@ -917,9 +917,9 @@ export default function ManageProfile() {
                               </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end" className="w-44">
-                              <DropdownMenuItem className="hover:bg-accent" onClick={() => setLeaveView({ type: "Sick Leave", duration: "03-15-2024 – 03-17-2024", days: 3, status: "Approved" })}>View Details</DropdownMenuItem>
+                              <DropdownMenuItem className="hover:bg-gray-100" onClick={() => setLeaveView({ type: "Sick Leave", duration: "03-15-2024 – 03-17-2024", days: 3, status: "Approved" })}>View Details</DropdownMenuItem>
                               {canDeleteLeave && (
-                                <DropdownMenuItem className="hover:bg-accent" onClick={() => setLeaveConfirm({ type: "Sick Leave", duration: "03-15-2024 – 03-17-2024", days: 3, status: "Approved" })}>Delete</DropdownMenuItem>
+                                <DropdownMenuItem className="hover:bg-gray-100" onClick={() => setLeaveConfirm({ type: "Sick Leave", duration: "03-15-2024 – 03-17-2024", days: 3, status: "Approved" })}>Delete</DropdownMenuItem>
                               )}
                             </DropdownMenuContent>
                           </DropdownMenu>
@@ -940,9 +940,9 @@ export default function ManageProfile() {
                               </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end" className="w-44">
-                              <DropdownMenuItem className="hover:bg-accent" onClick={() => setLeaveView({ type: "Annual Leave", duration: "01-08-2024 – 01-12-2024", days: 5, status: "Approved" })}>View Details</DropdownMenuItem>
+                              <DropdownMenuItem className="hover:bg-gray-100" onClick={() => setLeaveView({ type: "Annual Leave", duration: "01-08-2024 – 01-12-2024", days: 5, status: "Approved" })}>View Details</DropdownMenuItem>
                               {canDeleteLeave && (
-                                <DropdownMenuItem className="hover:bg-accent" onClick={() => setLeaveConfirm({ type: "Annual Leave", duration: "01-08-2024 – 01-12-2024", days: 5, status: "Approved" })}>Delete</DropdownMenuItem>
+                                <DropdownMenuItem className="hover:bg-gray-100" onClick={() => setLeaveConfirm({ type: "Annual Leave", duration: "01-08-2024 – 01-12-2024", days: 5, status: "Approved" })}>Delete</DropdownMenuItem>
                               )}
                             </DropdownMenuContent>
                           </DropdownMenu>
@@ -963,9 +963,9 @@ export default function ManageProfile() {
                               </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end" className="w-44">
-                              <DropdownMenuItem className="hover:bg-accent" onClick={() => setLeaveView({ type: "Personal Leave", duration: "04-22-2024 – 04-22-2024", days: 1, status: "Under Review" })}>View Details</DropdownMenuItem>
+                              <DropdownMenuItem className="hover:bg-gray-100" onClick={() => setLeaveView({ type: "Personal Leave", duration: "04-22-2024 – 04-22-2024", days: 1, status: "Under Review" })}>View Details</DropdownMenuItem>
                               {canDeleteLeave && (
-                                <DropdownMenuItem className="hover:bg-accent" onClick={() => setLeaveConfirm({ type: "Personal Leave", duration: "04-22-2024 – 04-22-2024", days: 1, status: "Under Review" })}>Delete</DropdownMenuItem>
+                                <DropdownMenuItem className="hover:bg-gray-100" onClick={() => setLeaveConfirm({ type: "Personal Leave", duration: "04-22-2024 – 04-22-2024", days: 1, status: "Under Review" })}>Delete</DropdownMenuItem>
                               )}
                             </DropdownMenuContent>
                           </DropdownMenu>
@@ -986,9 +986,9 @@ export default function ManageProfile() {
                               </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end" className="w-44">
-                              <DropdownMenuItem className="hover:bg-accent" onClick={() => setLeaveView({ type: "Annual Leave", duration: "01-08-2024 – 01-12-2024", days: 5, status: "Approved" })}>View Details</DropdownMenuItem>
+                              <DropdownMenuItem className="hover:bg-gray-100" onClick={() => setLeaveView({ type: "Annual Leave", duration: "01-08-2024 – 01-12-2024", days: 5, status: "Approved" })}>View Details</DropdownMenuItem>
                               {canDeleteLeave && (
-                                <DropdownMenuItem className="hover:bg-accent" onClick={() => setLeaveConfirm({ type: "Annual Leave", duration: "01-08-2024 – 01-12-2024", days: 5, status: "Approved" })}>Delete</DropdownMenuItem>
+                                <DropdownMenuItem className="hover:bg-gray-100" onClick={() => setLeaveConfirm({ type: "Annual Leave", duration: "01-08-2024 – 01-12-2024", days: 5, status: "Approved" })}>Delete</DropdownMenuItem>
                               )}
                             </DropdownMenuContent>
                           </DropdownMenu>
@@ -1216,11 +1216,11 @@ function OrgChartMenu() {
       {open && (
         <div className="absolute z-20 mt-2 w-64 rounded-md border bg-popover p-2 text-sm shadow-md">
           <div className="space-y-2">
-            <div className="rounded-md p-2 hover:bg-accent">
+            <div className="rounded-md p-2 hover:bg-gray-100">
               <div className="font-medium">Hierarchical View</div>
               <div className="text-xs text-muted-foreground">See reporting structure in a top-down hierarchy.</div>
             </div>
-            <div className="rounded-md p-2 hover:bg-accent">
+            <div className="rounded-md p-2 hover:bg-gray-100">
               <div className="font-medium">Chart View</div>
               <div className="text-xs text-muted-foreground">Visual chart layout of teams and roles.</div>
             </div>
