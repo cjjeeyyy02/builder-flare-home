@@ -984,6 +984,42 @@ export default function ManageProfile() {
                   </Table>
                 </div>
               </div>
+
+              {/* Leave Details Modal */}
+              <Dialog open={!!leaveView} onOpenChange={(o) => !o && setLeaveView(null)}>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>Leave Details</DialogTitle>
+                  </DialogHeader>
+                  {leaveView && (
+                    <div className="grid gap-2 text-sm">
+                      <div><span className="font-semibold">Type:</span> {leaveView.type}</div>
+                      <div><span className="font-semibold">Duration:</span> {leaveView.duration}</div>
+                      <div><span className="font-semibold">Total Days:</span> {leaveView.days}</div>
+                      <div><span className="font-semibold">Status:</span> {leaveView.status}</div>
+                    </div>
+                  )}
+                  <DialogFooter>
+                    <DialogClose asChild>
+                      <Button variant="outline">Close</Button>
+                    </DialogClose>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
+
+              {/* Delete Confirmation */}
+              <AlertDialog open={!!leaveConfirm} onOpenChange={(o) => !o && setLeaveConfirm(null)}>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Delete leave record?</AlertDialogTitle>
+                  </AlertDialogHeader>
+                  <div className="text-sm text-muted-foreground">Are you sure you want to delete this leave record?</div>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction onClick={() => leaveConfirm && deleteLeave(leaveConfirm)}>Delete</AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
             </TabsContent>
             <TabsContent value="docs" className="space-y-4">
               <div className="rounded-2xl border bg-card p-4 shadow-sm">
