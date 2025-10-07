@@ -919,9 +919,19 @@ export default function ManageProfile() {
                           <Badge className="border-0 bg-emerald-100 px-2.5 py-0.5 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300">Approved</Badge>
                         </TableCell>
                         <TableCell className="py-2 text-right">
-                          <Button variant="ghost" className="h-8 w-8 p-0" aria-label="View annual leave">
-                            <Eye className="h-4 w-4" />
-                          </Button>
+                          <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                              <Button variant="ghost" className="h-8 w-8 p-0" aria-label="Actions for annual leave">
+                                <EllipsisVertical className="h-4 w-4" />
+                              </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end" className="w-44">
+                              <DropdownMenuItem className="hover:bg-accent" onClick={() => setLeaveView({ type: "Annual Leave", duration: "01-08-2024 – 01-12-2024", days: 5, status: "Approved" })}>View Details</DropdownMenuItem>
+                              {canDeleteLeave && (
+                                <DropdownMenuItem className="hover:bg-accent" onClick={() => setLeaveConfirm({ type: "Annual Leave", duration: "01-08-2024 – 01-12-2024", days: 5, status: "Approved" })}>Delete</DropdownMenuItem>
+                              )}
+                            </DropdownMenuContent>
+                          </DropdownMenu>
                         </TableCell>
                       </TableRow>
                       <TableRow className="hover:bg-transparent">
@@ -955,9 +965,19 @@ export default function ManageProfile() {
                           <Badge className="border-0 bg-rose-100 px-2.5 py-0.5 text-rose-700 dark:bg-rose-500/20 dark:text-rose-300">Rejected</Badge>
                         </TableCell>
                         <TableCell className="py-2 text-right">
-                          <Button variant="ghost" className="h-8 w-8 p-0" aria-label="View annual leave">
-                            <Eye className="h-4 w-4" />
-                          </Button>
+                          <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                              <Button variant="ghost" className="h-8 w-8 p-0" aria-label="Actions for annual leave">
+                                <EllipsisVertical className="h-4 w-4" />
+                              </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end" className="w-44">
+                              <DropdownMenuItem className="hover:bg-accent" onClick={() => setLeaveView({ type: "Annual Leave", duration: "01-08-2024 – 01-12-2024", days: 5, status: "Approved" })}>View Details</DropdownMenuItem>
+                              {canDeleteLeave && (
+                                <DropdownMenuItem className="hover:bg-accent" onClick={() => setLeaveConfirm({ type: "Annual Leave", duration: "01-08-2024 – 01-12-2024", days: 5, status: "Approved" })}>Delete</DropdownMenuItem>
+                              )}
+                            </DropdownMenuContent>
+                          </DropdownMenu>
                         </TableCell>
                       </TableRow>
                     </TableBody>
