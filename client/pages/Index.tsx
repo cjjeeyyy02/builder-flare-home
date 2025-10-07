@@ -58,6 +58,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useNavigate } from "react-router-dom";
 import { EMPLOYEES, type Employee } from "@/lib/data/employees";
+import AddReportModalTemplate from "@/components/local/AddReportModalTemplate";
 
 type OrgNode = {
   name: string;
