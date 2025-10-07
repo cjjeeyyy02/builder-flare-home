@@ -1274,6 +1274,26 @@ export default function ManageProfile() {
                   </Table>
                 </div>
               </div>
+              {/* Document Preview */}
+              <Dialog open={!!docPreview} onOpenChange={(o) => !o && setDocPreview(null)}>
+                <DialogContent className="max-w-3xl">
+                  <DialogHeader>
+                    <DialogTitle>{docPreview?.title}</DialogTitle>
+                  </DialogHeader>
+                  {docPreview?.url ? (
+                    <div className="h-[60vh] w-full overflow-hidden rounded-md border">
+                      <iframe title="Document Preview" className="h-full w-full" src={docPreview.url} />
+                    </div>
+                  ) : (
+                    <div className="text-sm text-muted-foreground">No preview available.</div>
+                  )}
+                  <DialogFooter>
+                    <DialogClose asChild>
+                      <Button variant="outline">Close</Button>
+                    </DialogClose>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
             </TabsContent>
             <TabsContent value="access" className="space-y-4">
               <div className="rounded-2xl border bg-card p-4 shadow-sm">
