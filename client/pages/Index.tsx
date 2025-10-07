@@ -423,6 +423,16 @@ function OrgListView() {
           ))}
         </div>
       )}
+
+      {reportTarget && (
+        <AddReportModalTemplate
+          open={addReportOpen}
+          onOpenChange={setAddReportOpen}
+          managerName={reportTarget.name}
+          managerRole={reportTarget.role}
+          onAdd={() => {}}
+        />
+      )}
     </div>
   );
 }
