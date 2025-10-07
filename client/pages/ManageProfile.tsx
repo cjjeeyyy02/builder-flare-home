@@ -839,7 +839,7 @@ export default function ManageProfile() {
             <TabsContent value="leave" className="space-y-4">
               <div className="flex items-center justify-between">
                 <h3 className="text-base font-bold">Performance Metrics & Leave History</h3>
-                <Button className="h-8 rounded-md bg-blue-600 px-3 text-xs text-white hover:bg-blue-700">Request Leave</Button>
+                <Button className="h-8 rounded-md bg-blue-600 px-3 text-xs text-white hover:bg-blue-700">Manage Leave</Button>
               </div>
 
               {/* Metrics */}
