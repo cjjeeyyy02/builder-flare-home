@@ -57,6 +57,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useNavigate } from "react-router-dom";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { EMPLOYEES, type Employee } from "@/lib/data/employees";
 import AddReportModalTemplate from "@/components/local/AddReportModalTemplate";
 
@@ -108,6 +109,59 @@ function OrgListView() {
 
   const [addReportOpen, setAddReportOpen] = useState(false);
   const [reportTarget, setReportTarget] = useState<{ name: string; role: string } | null>(null);
+
+  type DeptRow = { department: string; manager: string; members: number; location: string };
+  const [departmentsData, setDepartmentsData] = useState<DeptRow[]>(DEPT_SUMMARY);
+  const { toast } = useToast();
+  const [deptDialogOpen, setDeptDialogOpen] = useState(false);
+  const [editingDeptIndex, setEditingDeptIndex] = useState<number | null>(null);
+  const [deptName, setDeptName] = useState("");
+  const [deptManager, setDeptManager] = useState("");
+  const [deptMembers, setDeptMembers] = useState<number>(0);
+  const [deptLocation, setDeptLocation] = useState("");
+  const [confirmDeleteIndex, setConfirmDeleteIndex] = useState<number | null>(null);
+
+  function openAddDept() {
+    setEditingDeptIndex(null);
+    setDeptName("");
+    setDeptManager("");
+    setDeptMembers(0);
+    setDeptLocation("");
+    setDeptDialogOpen(true);
+  }
+  function openEditDept(index: number) {
+    const d = departmentsData[index];
+    setEditingDeptIndex(index);
+    setDeptName(d.department);
+    setDeptManager(d.manager);
+    setDeptMembers(d.members);
+    setDeptLocation(d.location);
+    setDeptDialogOpen(true);
+  }
+  function saveDept() {
+    const name = deptName.trim();
+    const manager = deptManager.trim();
+    const members = Math.max(0, Number.isFinite(deptMembers) ? deptMembers : 0);
+    const location = deptLocation.trim();
+    if (!name) {
+      toast({ title: "Department name required" });
+      return;
+    }
+    const row: DeptRow = { department: name, manager, members, location };
+    setDepartmentsData((arr) => {
+      if (editingDeptIndex === null) return [...arr, row];
+      const next = [...arr];
+      next[editingDeptIndex] = row;
+      return next;
+    });
+    setDeptDialogOpen(false);
+  }
+  function deleteDept() {
+    if (confirmDeleteIndex === null) return;
+    setDepartmentsData((arr) => arr.filter((_, i) => i !== confirmDeleteIndex));
+    setConfirmDeleteIndex(null);
+    toast({ title: "Department deleted" });
+  }
 
   const renderRows = (node: OrgNode, depth: number): React.ReactNode[] => {
     const hasChildren = !!node.children?.length;
@@ -289,41 +343,35 @@ function OrgListView() {
           <div className="overflow-hidden rounded-lg border bg-white">
             <div className="flex items-center justify-between border-b px-3 py-2">
               <div className="font-poppins text-[16px] font-semibold">Departments List</div>
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button type="button" className="h-8 rounded-lg px-4 text-xs font-medium bg-[#2563eb] text-white hover:bg-[#1e40af]">
-                    <Plus className="mr-1.5 h-4 w-4" /> Add Department
-                  </Button>
-                </DialogTrigger>
+              <Button type="button" onClick={openAddDept} className="h-8 rounded-lg px-4 text-xs font-medium bg-[#2563eb] text-white hover:bg-[#1e40af]">
+                <Plus className="mr-1.5 h-4 w-4" /> Add Department
+              </Button>
+              <Dialog open={deptDialogOpen} onOpenChange={setDeptDialogOpen}>
                 <DialogContent className="font-poppins">
                   <DialogHeader>
-                    <DialogTitle className="font-poppins text-base font-semibold">Add Department</DialogTitle>
+                    <DialogTitle className="font-poppins text-base font-semibold">{editingDeptIndex === null ? "Add Department" : "Edit Department"}</DialogTitle>
                   </DialogHeader>
                   <div className="grid gap-3 py-2">
                     <div className="grid gap-1.5">
                       <Label htmlFor="dept-name" className="font-poppins text-sm">Department Name</Label>
-                      <Input id="dept-name" placeholder="Enter department name" />
+                      <Input id="dept-name" placeholder="Enter department name" value={deptName} onChange={(e) => setDeptName(e.target.value)} />
                     </div>
                     <div className="grid gap-1.5">
                       <Label htmlFor="dept-manager" className="font-poppins text-sm">Manager</Label>
-                      <Input id="dept-manager" placeholder="Enter manager name" />
+                      <Input id="dept-manager" placeholder="Enter manager name" value={deptManager} onChange={(e) => setDeptManager(e.target.value)} />
                     </div>
                     <div className="grid gap-1.5">
                       <Label htmlFor="dept-members" className="font-poppins text-sm">Team Members</Label>
-                      <Input id="dept-members" type="number" min={0} placeholder="Number of team members" />
+                      <Input id="dept-members" type="number" min={0} placeholder="Number of team members" value={String(deptMembers)} onChange={(e) => setDeptMembers(parseInt(e.target.value || "0", 10))} />
                     </div>
                     <div className="grid gap-1.5">
                       <Label htmlFor="dept-location" className="font-poppins text-sm">Location</Label>
-                      <Input id="dept-location" placeholder="Enter location" />
+                      <Input id="dept-location" placeholder="Enter location" value={deptLocation} onChange={(e) => setDeptLocation(e.target.value)} />
                     </div>
                   </div>
                   <DialogFooter>
-                    <DialogClose asChild>
-                      <Button type="button" variant="outline" className="rounded-md bg-white text-[#111827] border border-[#d1d5db]">Cancel</Button>
-                    </DialogClose>
-                    <DialogClose asChild>
-                      <Button type="button" className="rounded-md bg-[#2563eb] text-white hover:bg-[#1e40af]">Save</Button>
-                    </DialogClose>
+                    <Button type="button" variant="outline" className="rounded-md bg-white text-[#111827] border border-[#d1d5db]" onClick={() => setDeptDialogOpen(false)}>Cancel</Button>
+                    <Button type="button" className="rounded-md bg-[#2563eb] text-white hover:bg-[#1e40af]" onClick={saveDept}>Save</Button>
                   </DialogFooter>
                 </DialogContent>
               </Dialog>
@@ -339,18 +387,18 @@ function OrgListView() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {DEPT_SUMMARY.map((d) => (
-                  <TableRow key={d.department} className="border-b last:border-0 hover:bg-transparent">
+                {departmentsData.map((d, i) => (
+                  <TableRow key={d.department + i} className="border-b last:border-0 hover:bg-transparent">
                     <TableCell className="px-3 py-2">{d.department}</TableCell>
                     <TableCell className="px-3 py-2">{d.manager}</TableCell>
                     <TableCell className="px-3 py-2">{d.members}</TableCell>
                     <TableCell className="px-3 py-2">{d.location}</TableCell>
                     <TableCell className="px-3 py-2">
                       <div className="flex items-center justify-end gap-2">
-                        <Button type="button" aria-label="Edit department" className="h-7 rounded-md px-3 text-xs bg-white text-[#111827] border border-[#d1d5db] hover:bg-gray-50">
+                        <Button type="button" aria-label="Edit department" onClick={() => openEditDept(i)} className="h-7 rounded-md px-3 text-xs bg-white text-[#111827] border border-[#d1d5db] hover:bg-gray-50">
                           <Pencil className="h-4 w-4" />
                         </Button>
-                        <Button type="button" aria-label="Delete department" className="h-7 rounded-md px-3 text-xs bg-white text-[#111827] border border-[#d1d5db] hover:bg-gray-50">
+                        <Button type="button" aria-label="Delete department" onClick={() => setConfirmDeleteIndex(i)} className="h-7 rounded-md px-3 text-xs bg-white text-[#111827] border border-[#d1d5db] hover:bg-gray-50">
                           <Trash2 className="h-4 w-4" />
                         </Button>
                       </div>
@@ -360,6 +408,18 @@ function OrgListView() {
               </TableBody>
             </Table>
           </div>
+          <AlertDialog open={confirmDeleteIndex !== null} onOpenChange={(o) => !o && setConfirmDeleteIndex(null)}>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Delete department?</AlertDialogTitle>
+              </AlertDialogHeader>
+              <div className="text-sm text-muted-foreground">This action cannot be undone. This will permanently remove the department.</div>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction onClick={deleteDept}>Delete</AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         </div>
       ) : mode === "list" ? (
         <div className="space-y-2">
