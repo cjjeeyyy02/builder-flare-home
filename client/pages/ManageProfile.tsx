@@ -11,10 +11,34 @@ import { ArrowLeft, CalendarDays, Check, Download, Eye, Pencil, Shield, ShieldCh
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogClose } from "@/components/ui/dialog";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 
 export default function ManageProfile() {
   const { id } = useParams();
   const { toast } = useToast();
+
+  type PerfReview = { period: string; reviewer: string; date: string; rating: string; comments: string };
+  const [viewOpen, setViewOpen] = useState<PerfReview | null>(null);
+  const [editOpen, setEditOpen] = useState<PerfReview | null>(null);
+  const [confirmDel, setConfirmDel] = useState<PerfReview | null>(null);
+
+  const [editReviewer, setEditReviewer] = useState("");
+  const [editRating, setEditRating] = useState("");
+  const [editComments, setEditComments] = useState("");
+
+  function openEdit(r: PerfReview) {
+    setEditOpen(r);
+    setEditReviewer(r.reviewer);
+    setEditRating(r.rating);
+    setEditComments(r.comments);
+  }
+
+  function saveEdit() {
+    if (!editOpen) return;
+    toast({ title: "Review updated", description: `${editOpen.period} has been updated.` });
+    setEditOpen(null);
+  }
   const navigate = useNavigate();
   const employee = useMemo(() => EMPLOYEES.find((e) => e.id === id) as Employee | undefined, [id]);
 
@@ -404,8 +428,9 @@ export default function ManageProfile() {
                               </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end" className="w-44">
-                              <DropdownMenuItem onClick={() => toast({ title: "Rate", description: "Open rating for Q3 2023." })}>Rate</DropdownMenuItem>
-                              <DropdownMenuItem onClick={() => toast({ title: "Add comments / notes", description: "Add comments for Q3 2023." })}>Add comments / notes</DropdownMenuItem>
+                              <DropdownMenuItem onClick={() => setViewOpen({ period: "Q3 2023", reviewer: "Michael Rodriguez", date: "10/05/2023", rating: "4.5/5", comments: "Sarah has consistently delivered exceptional work this quarter. Her technical leadership elevated the team’s output, and she proactively mentored junior engineers. She demonstrated strong problem-solving skills and improved system reliability through well-planned refactoring and testing." })}>View Details</DropdownMenuItem>
+                              <DropdownMenuItem onClick={() => openEdit({ period: "Q3 2023", reviewer: "Michael Rodriguez", date: "10/05/2023", rating: "4.5/5", comments: "Sarah has consistently delivered exceptional work this quarter. Her technical leadership elevated the team’s output, and she proactively mentored junior engineers. She demonstrated strong problem-solving skills and improved system reliability through well-planned refactoring and testing." })}>Edit Review</DropdownMenuItem>
+                              <DropdownMenuItem onClick={() => setConfirmDel({ period: "Q3 2023", reviewer: "Michael Rodriguez", date: "10/05/2023", rating: "4.5/5", comments: "Sarah has consistently delivered exceptional work this quarter. Her technical leadership elevated the team’s output, and she proactively mentored junior engineers. She demonstrated strong problem-solving skills and improved system reliability through well-planned refactoring and testing." })}>Delete Review</DropdownMenuItem>
                             </DropdownMenuContent>
                           </DropdownMenu>
                         </TableCell>
@@ -425,8 +450,9 @@ export default function ManageProfile() {
                               </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end" className="w-44">
-                              <DropdownMenuItem onClick={() => toast({ title: "Rate", description: "Open rating for Q2 2023." })}>Rate</DropdownMenuItem>
-                              <DropdownMenuItem onClick={() => toast({ title: "Add comments / notes", description: "Add comments for Q2 2023." })}>Add comments / notes</DropdownMenuItem>
+                              <DropdownMenuItem onClick={() => setViewOpen({ period: "Q2 2023", reviewer: "Michael Rodriguez", date: "07/05/2023", rating: "4.4/5", comments: "Excellent performance in Q2. Sarah successfully optimized our application performance, reducing average response times by 35%. She collaborated effectively across teams and raised code quality through reviews and documentation." })}>View Details</DropdownMenuItem>
+                              <DropdownMenuItem onClick={() => openEdit({ period: "Q2 2023", reviewer: "Michael Rodriguez", date: "07/05/2023", rating: "4.4/5", comments: "Excellent performance in Q2. Sarah successfully optimized our application performance, reducing average response times by 35%. She collaborated effectively across teams and raised code quality through reviews and documentation." })}>Edit Review</DropdownMenuItem>
+                              <DropdownMenuItem onClick={() => setConfirmDel({ period: "Q2 2023", reviewer: "Michael Rodriguez", date: "07/05/2023", rating: "4.4/5", comments: "Excellent performance in Q2. Sarah successfully optimized our application performance, reducing average response times by 35%. She collaborated effectively across teams and raised code quality through reviews and documentation." })}>Delete Review</DropdownMenuItem>
                             </DropdownMenuContent>
                           </DropdownMenu>
                         </TableCell>
@@ -435,6 +461,73 @@ export default function ManageProfile() {
                   </Table>
                 </div>
               </div>
+              {/* View Details Dialog */}
+              <Dialog open={!!viewOpen} onOpenChange={(o) => !o && setViewOpen(null)}>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>Performance Review – {viewOpen?.period}</DialogTitle>
+                  </DialogHeader>
+                  {viewOpen && (
+                    <div className="space-y-2 text-sm">
+                      <div><span className="font-semibold">Reviewer:</span> {viewOpen.reviewer}</div>
+                      <div><span className="font-semibold">Date:</span> {viewOpen.date}</div>
+                      <div><span className="font-semibold">Rating:</span> {viewOpen.rating}</div>
+                      <div>
+                        <div className="font-semibold">Comments</div>
+                        <div className="mt-1 whitespace-pre-line text-foreground/80">{viewOpen.comments}</div>
+                      </div>
+                    </div>
+                  )}
+                  <DialogFooter>
+                    <DialogClose asChild>
+                      <Button variant="outline">Close</Button>
+                    </DialogClose>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
+
+              {/* Edit Review Dialog */}
+              <Dialog open={!!editOpen} onOpenChange={(o) => !o && setEditOpen(null)}>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>Edit Review – {editOpen?.period}</DialogTitle>
+                  </DialogHeader>
+                  <div className="grid gap-3 text-sm">
+                    <div className="grid gap-1.5">
+                      <label className="text-xs font-semibold">Reviewer Name</label>
+                      <Input value={editReviewer} onChange={(e) => setEditReviewer(e.target.value)} />
+                    </div>
+                    <div className="grid gap-1.5">
+                      <label className="text-xs font-semibold">Rating</label>
+                      <Input value={editRating} onChange={(e) => setEditRating(e.target.value)} />
+                    </div>
+                    <div className="grid gap-1.5">
+                      <label className="text-xs font-semibold">Comments / Notes</label>
+                      <textarea value={editComments} onChange={(e) => setEditComments(e.target.value)} className="min-h-[100px] resize-y rounded-md border bg-background p-2 outline-none focus:ring-2 focus:ring-ring" />
+                    </div>
+                  </div>
+                  <DialogFooter>
+                    <DialogClose asChild>
+                      <Button variant="outline">Cancel</Button>
+                    </DialogClose>
+                    <Button onClick={saveEdit}>Save Changes</Button>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
+
+              {/* Delete Confirmation */}
+              <AlertDialog open={!!confirmDel} onOpenChange={(o) => !o && setConfirmDel(null)}>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Delete review – {confirmDel?.period}?</AlertDialogTitle>
+                  </AlertDialogHeader>
+                  <div className="text-sm text-muted-foreground">This action cannot be undone. This will permanently remove the selected performance review.</div>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction onClick={() => confirmDel && (setConfirmDel(null), toast({ title: "Review deleted" }))}>Delete</AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
             </TabsContent>
             <TabsContent value="training" className="space-y-4">
               <div className="flex items-center justify-between">
