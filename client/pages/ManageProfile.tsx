@@ -695,7 +695,7 @@ export default function ManageProfile() {
                           <div className="inline-flex items-center gap-1">
                             <Button
                               variant="ghost"
-                              className="h-8 w-8 p-0"
+                              className="h-8 w-8 p-2"
                               aria-label="View certificate"
                               onClick={() => viewCertificate({
                                 title: "React Advanced Patterns – Certificate of Completion",
@@ -708,7 +708,7 @@ export default function ManageProfile() {
                             </Button>
                             <Button
                               variant="ghost"
-                              className="h-8 w-8 p-0"
+                              className="h-8 w-8 p-2"
                               aria-label="Download certificate"
                               onClick={() => downloadCertificate({
                                 title: "React Advanced Patterns – Certificate of Completion",
@@ -912,7 +912,7 @@ export default function ManageProfile() {
                         <TableCell className="py-2 text-right">
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
-                              <Button variant="ghost" className="h-8 w-8 p-0" aria-label="Actions for sick leave">
+                              <Button variant="ghost" className="h-8 w-8 p-2" aria-label="Actions for sick leave">
                                 <EllipsisVertical className="h-4 w-4" />
                               </Button>
                             </DropdownMenuTrigger>
@@ -935,7 +935,7 @@ export default function ManageProfile() {
                         <TableCell className="py-2 text-right">
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
-                              <Button variant="ghost" className="h-8 w-8 p-0" aria-label="Actions for annual leave">
+                              <Button variant="ghost" className="h-8 w-8 p-2" aria-label="Actions for annual leave">
                                 <EllipsisVertical className="h-4 w-4" />
                               </Button>
                             </DropdownMenuTrigger>
@@ -958,7 +958,7 @@ export default function ManageProfile() {
                         <TableCell className="py-2 text-right">
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
-                              <Button variant="ghost" className="h-8 w-8 p-0" aria-label="Actions for personal leave">
+                              <Button variant="ghost" className="h-8 w-8 p-2" aria-label="Actions for personal leave">
                                 <EllipsisVertical className="h-4 w-4" />
                               </Button>
                             </DropdownMenuTrigger>
@@ -981,7 +981,7 @@ export default function ManageProfile() {
                         <TableCell className="py-2 text-right">
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
-                              <Button variant="ghost" className="h-8 w-8 p-0" aria-label="Actions for annual leave">
+                              <Button variant="ghost" className="h-8 w-8 p-2" aria-label="Actions for annual leave">
                                 <EllipsisVertical className="h-4 w-4" />
                               </Button>
                             </DropdownMenuTrigger>
@@ -1060,8 +1060,8 @@ export default function ManageProfile() {
                         <TableCell className="py-2">01/15/2023</TableCell>
                         <TableCell className="py-2 text-right">
                           <div className="inline-flex items-center gap-1">
-                            <Button variant="ghost" className="h-8 w-8 p-0" aria-label="View Employment Contract"><Eye className="h-4 w-4" /></Button>
-                            <Button variant="ghost" className="h-8 w-8 p-0" aria-label="Download Employment Contract"><Download className="h-4 w-4" /></Button>
+                            <Button variant="ghost" className="h-8 w-8 p-2" aria-label="View Employment Contract"><Eye className="h-4 w-4" /></Button>
+                            <Button variant="ghost" className="h-8 w-8 p-2" aria-label="Download Employment Contract"><Download className="h-4 w-4" /></Button>
                             <Button variant="ghost" className="h-8 w-8 p-0 text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-500/10" aria-label="Delete Employment Contract"><Trash2 className="h-4 w-4" /></Button>
                           </div>
                         </TableCell>
@@ -1073,8 +1073,8 @@ export default function ManageProfile() {
                         <TableCell className="py-2">12/31/2023</TableCell>
                         <TableCell className="py-2 text-right">
                           <div className="inline-flex items-center gap-1">
-                            <Button variant="ghost" className="h-8 w-8 p-0" aria-label="View Tax Forms (W-2)"><Eye className="h-4 w-4" /></Button>
-                            <Button variant="ghost" className="h-8 w-8 p-0" aria-label="Download Tax Forms (W-2)"><Download className="h-4 w-4" /></Button>
+                            <Button variant="ghost" className="h-8 w-8 p-2" aria-label="View Tax Forms (W-2)"><Eye className="h-4 w-4" /></Button>
+                            <Button variant="ghost" className="h-8 w-8 p-2" aria-label="Download Tax Forms (W-2)"><Download className="h-4 w-4" /></Button>
                             <Button variant="ghost" className="h-8 w-8 p-0 text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-500/10" aria-label="Delete Tax Forms (W-2)"><Trash2 className="h-4 w-4" /></Button>
                           </div>
                         </TableCell>
@@ -1086,8 +1086,8 @@ export default function ManageProfile() {
                         <TableCell className="py-2">11/20/2023</TableCell>
                         <TableCell className="py-2 text-right">
                           <div className="inline-flex items-center gap-1">
-                            <Button variant="ghost" className="h-8 w-8 p-0" aria-label="View Performance Review 2023"><Eye className="h-4 w-4" /></Button>
-                            <Button variant="ghost" className="h-8 w-8 p-0" aria-label="Download Performance Review 2023"><Download className="h-4 w-4" /></Button>
+                            <Button variant="ghost" className="h-8 w-8 p-2" aria-label="View Performance Review 2023"><Eye className="h-4 w-4" /></Button>
+                            <Button variant="ghost" className="h-8 w-8 p-2" aria-label="Download Performance Review 2023"><Download className="h-4 w-4" /></Button>
                             <Button variant="ghost" className="h-8 w-8 p-0 text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-500/10" aria-label="Delete Performance Review 2023"><Trash2 className="h-4 w-4" /></Button>
                           </div>
                         </TableCell>
@@ -1099,8 +1099,8 @@ export default function ManageProfile() {
                         <TableCell className="py-2">03/10/2023</TableCell>
                         <TableCell className="py-2 text-right">
                           <div className="inline-flex items-center gap-1">
-                            <Button variant="ghost" className="h-8 w-8 p-0" aria-label="View Benefits Enrollment"><Eye className="h-4 w-4" /></Button>
-                            <Button variant="ghost" className="h-8 w-8 p-0" aria-label="Download Benefits Enrollment"><Download className="h-4 w-4" /></Button>
+                            <Button variant="ghost" className="h-8 w-8 p-2" aria-label="View Benefits Enrollment"><Eye className="h-4 w-4" /></Button>
+                            <Button variant="ghost" className="h-8 w-8 p-2" aria-label="Download Benefits Enrollment"><Download className="h-4 w-4" /></Button>
                             <Button variant="ghost" className="h-8 w-8 p-0 text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-500/10" aria-label="Delete Benefits Enrollment"><Trash2 className="h-4 w-4" /></Button>
                           </div>
                         </TableCell>
@@ -1112,8 +1112,8 @@ export default function ManageProfile() {
                         <TableCell className="py-2">08/15/2023</TableCell>
                         <TableCell className="py-2 text-right">
                           <div className="inline-flex items-center gap-1">
-                            <Button variant="ghost" className="h-8 w-8 p-0" aria-label="View Training Certificate"><Eye className="h-4 w-4" /></Button>
-                            <Button variant="ghost" className="h-8 w-8 p-0" aria-label="Download Training Certificate"><Download className="h-4 w-4" /></Button>
+                            <Button variant="ghost" className="h-8 w-8 p-2" aria-label="View Training Certificate"><Eye className="h-4 w-4" /></Button>
+                            <Button variant="ghost" className="h-8 w-8 p-2" aria-label="Download Training Certificate"><Download className="h-4 w-4" /></Button>
                             <Button variant="ghost" className="h-8 w-8 p-0 text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-500/10" aria-label="Delete Training Certificate"><Trash2 className="h-4 w-4" /></Button>
                           </div>
                         </TableCell>
