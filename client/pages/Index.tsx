@@ -21,7 +21,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip";
 import {
   CalendarDays,
@@ -1055,11 +1054,9 @@ export default function Index() {
                           </TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">
                             <div className="flex items-center gap-2">
-                              <Avatar className="h-6 w-6">
-                                <AvatarFallback className="text-[10px]">
-                                  {(e.firstName?.[0] || "").toUpperCase()}{(e.lastName?.[0] || "").toUpperCase()}
-                                </AvatarFallback>
-                              </Avatar>
+                              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1E4DD8] text-white font-semibold text-[14px]">
+                                {(e.firstName?.[0] || "").toUpperCase()}{(e.lastName?.[0] || "").toUpperCase()}
+                              </div>
                               <span className="text-xs font-semibold text-foreground">
                                 {e.firstName} {e.lastName}
                               </span>
