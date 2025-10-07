@@ -3,6 +3,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { EMPLOYEES, type Employee } from "@/lib/data/employees";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/local/tabs";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -589,7 +591,69 @@ export default function ManageProfile() {
             <TabsContent value="training" className="space-y-4">
               <div className="flex items-center justify-between">
                 <h3 className="text-base font-bold">Training & Industry Certifications</h3>
-                <Button className="h-8 rounded-md bg-blue-600 px-3 text-xs text-white hover:bg-blue-700">+ Add Training/Certification</Button>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button className="h-8 rounded-md bg-blue-600 px-3 text-xs text-white hover:bg-blue-700">+ Add Training/Certification</Button>
+                  </DialogTrigger>
+                  <DialogContent className="rounded-2xl p-6 shadow-xl">
+                    <DialogHeader>
+                      <DialogTitle>Add Training/Certification</DialogTitle>
+                    </DialogHeader>
+                    <div className="grid gap-4 text-sm">
+                      <div className="grid gap-1.5">
+                        <Label className="text-xs font-semibold">Type</Label>
+                        <Select defaultValue="training">
+                          <SelectTrigger className="h-9">
+                            <SelectValue placeholder="Training" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="training">Training</SelectItem>
+                            <SelectItem value="certification">Certification</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div className="grid gap-1.5">
+                        <Label className="text-xs font-semibold">Training Title</Label>
+                        <Input placeholder="The name or title of the training session" required />
+                      </div>
+                      <div className="grid gap-1.5">
+                        <Label className="text-xs font-semibold">Training Provider</Label>
+                        <Input placeholder="The organization or individual offering it" />
+                      </div>
+                      <div className="grid gap-1.5">
+                        <Label className="text-xs font-semibold">Status</Label>
+                        <Select>
+                          <SelectTrigger className="h-9">
+                            <SelectValue placeholder="Select status" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="ongoing">Ongoing</SelectItem>
+                            <SelectItem value="completed">Completed</SelectItem>
+                            <SelectItem value="pending">Pending</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div className="grid gap-3 sm:grid-cols-2">
+                        <div className="grid gap-1.5">
+                          <Label className="text-xs font-semibold">Score</Label>
+                          <Input type="number" placeholder="Numeric value representing performance" />
+                        </div>
+                        <div className="grid gap-1.5">
+                          <Label className="text-xs font-semibold">Completion Date</Label>
+                          <Input type="date" placeholder="dd/mm/yyyy" />
+                        </div>
+                      </div>
+                    </div>
+                    <DialogFooter>
+                      <DialogClose asChild>
+                        <Button variant="outline" className="rounded-md border px-4">Cancel</Button>
+                      </DialogClose>
+                      <DialogClose asChild>
+                        <Button className="rounded-md bg-[#0066FF] px-4 text-white hover:bg-[#0052CC]">Save</Button>
+                      </DialogClose>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
               </div>
 
               <div className="rounded-2xl border bg-card p-4 shadow-sm">
