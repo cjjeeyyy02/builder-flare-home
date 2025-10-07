@@ -24,6 +24,75 @@ export default function ManageProfile() {
   const currentRole: "admin" | "hr" | "employee" = "admin";
   const canDeleteLeave = currentRole === "admin" || currentRole === "hr";
 
+  type EmployeeDoc = { id: string; title: string; fileType: string; fileSize: string; uploadDate: string; url?: string };
+  const [docs, setDocs] = useState<EmployeeDoc[]>([
+    { id: "doc-1", title: "Employment Contract", fileType: "PDF", fileSize: "2.4 MB", uploadDate: "01/15/2023" },
+    { id: "doc-2", title: "Tax Forms (W-2)", fileType: "PDF", fileSize: "1.8 MB", uploadDate: "12/31/2023" },
+    { id: "doc-3", title: "Performance Review 2023", fileType: "DOCX", fileSize: "856 KB", uploadDate: "11/20/2023" },
+    { id: "doc-4", title: "Benefits Enrollment", fileType: "PDF", fileSize: "3.1 MB", uploadDate: "03/10/2023" },
+    { id: "doc-5", title: "Training Certificate", fileType: "PDF", fileSize: "1.2 MB", uploadDate: "08/15/2023" },
+  ]);
+  const uploadRef = useRef<HTMLInputElement | null>(null);
+  const [docPreview, setDocPreview] = useState<EmployeeDoc | null>(null);
+
+  function formatSize(bytes: number): string {
+    if (bytes < 1024) return `${bytes} B`;
+    if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+    return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+  }
+  function today(): string {
+    const d = new Date();
+    const mm = String(d.getMonth() + 1).padStart(2, "0");
+    const dd = String(d.getDate()).padStart(2, "0");
+    const yyyy = String(d.getFullYear());
+    return `${mm}/${dd}/${yyyy}`;
+  }
+  function onUploadClick() {
+    uploadRef.current?.click();
+  }
+  function onFilesSelected(e: React.ChangeEvent<HTMLInputElement>) {
+    const files = Array.from(e.target.files || []);
+    if (!files.length) return;
+    const newDocs: EmployeeDoc[] = files.map((f, i) => {
+      const parts = f.name.split(".");
+      const ext = parts.length > 1 ? parts.pop()!.toUpperCase() : "FILE";
+      const title = parts.join(".");
+      const url = URL.createObjectURL(f);
+      return {
+        id: `u-${Date.now()}-${i}`,
+        title: title || f.name,
+        fileType: ext,
+        fileSize: formatSize(f.size),
+        uploadDate: today(),
+        url,
+      };
+    });
+    setDocs((arr) => [...newDocs, ...arr]);
+    e.target.value = "";
+    toast({ title: "Upload complete", description: `${files.length} document(s) added.` });
+  }
+  function viewDoc(d: EmployeeDoc) {
+    if (!d.url) return toast({ title: "Preview unavailable", description: "This document has no preview." });
+    setDocPreview(d);
+  }
+  function downloadDoc(d: EmployeeDoc) {
+    if (d.url) {
+      const a = document.createElement("a");
+      a.href = d.url;
+      a.download = `${d.title}.${d.fileType.toLowerCase()}`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      return;
+    }
+    toast({ title: "Download unavailable", description: "No file attached." });
+  }
+  function deleteDoc(d: EmployeeDoc) {
+    if (d.url) URL.revokeObjectURL(d.url);
+    setDocs((arr) => arr.filter((x) => x.id !== d.id));
+    toast({ title: "Document removed", description: d.title });
+  }
+
   type LeaveRec = { type: string; duration: string; days: number; status: string };
   const [leaveView, setLeaveView] = useState<LeaveRec | null>(null);
   const [leaveConfirm, setLeaveConfirm] = useState<LeaveRec | null>(null);
