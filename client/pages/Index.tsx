@@ -1128,29 +1128,25 @@ export default function Index() {
             ) : (
               <section className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 {filtered.map((e) => (
-                  <Card key={e.id} className="rounded-xl border p-4 shadow-sm">
-                    <div className="flex items-start justify-between">
-                      <div className="flex items-start gap-3">
-                        <Avatar className="mt-0.5 h-9 w-9">
-                          <AvatarFallback className="text-[11px]">
-                            {(e.firstName?.[0] || "").toUpperCase()}{(e.lastName?.[0] || "").toUpperCase()}
-                          </AvatarFallback>
-                        </Avatar>
+                  <div key={e.id} className="bg-white rounded-[12px] py-4 px-5" style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.1)" }}>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1E4DD8] text-white font-semibold text-[14px]">
+                          {(e.firstName?.[0] || "").toUpperCase()}{(e.lastName?.[0] || "").toUpperCase()}
+                        </div>
                         <div>
-                          <div className="text-xs font-semibold uppercase text-muted-foreground">
-                            {e.id}
+                          <div className="flex items-center gap-2">
+                            <div className="text-[16px] font-bold text-[#1A1A1A]">{e.firstName} {e.lastName}</div>
+                            <span className="rounded-[8px] bg-[#F0F4FF] px-2 py-[2px] text-[#3B5BDB] text-[12px] font-medium">{e.status}</span>
                           </div>
-                          <div className="mt-1 text-base font-semibold">
-                            {e.firstName} {e.lastName}
-                          </div>
-                          <div className="text-xs text-muted-foreground">{e.role}</div>
+                          <div className="text-[11px] text-muted-foreground">ID: {e.id}</div>
                         </div>
                       </div>
                       <RowActions employee={e} />
                     </div>
                     <div className="mt-3 grid grid-cols-2 gap-2 text-sm">
+                      <div className="truncate text-muted-foreground">{e.role}</div>
                       <div className="truncate text-muted-foreground">{e.department}</div>
-                      <div>{e.status}</div>
                       <div className="text-muted-foreground">{e.joiningDate}</div>
                       <div className="col-span-2">
                         {(() => {
@@ -1171,7 +1167,7 @@ export default function Index() {
                         })()}
                       </div>
                     </div>
-                  </Card>
+                  </div>
                 ))}
               </section>
             )}
