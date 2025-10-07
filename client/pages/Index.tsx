@@ -922,9 +922,80 @@ export default function Index() {
 
               <div className="flex items-center gap-3 self-end">
                 <div className="flex items-center gap-3">
-                  <Button type="button" className="h-8 rounded-md px-3 text-xs bg-[#2563eb] text-white hover:bg-[#1d4ed8]">
-                    <Plus className="mr-1.5 h-4 w-4" /> Add Employee
-                  </Button>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button type="button" className="h-8 rounded-md px-3 text-xs bg-[#2563eb] text-white hover:bg-[#1d4ed8]">
+                        <Plus className="mr-1.5 h-4 w-4" /> Add Employee
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="rounded-2xl p-6 shadow-xl">
+                      <DialogHeader>
+                        <DialogTitle>Add Employee</DialogTitle>
+                      </DialogHeader>
+                      <div className="grid gap-3 text-sm">
+                        <div className="grid gap-1.5 sm:grid-cols-2 sm:gap-3">
+                          <div className="grid gap-1.5">
+                            <Label className="text-xs font-semibold" htmlFor="emp-first">First Name</Label>
+                            <Input id="emp-first" placeholder="First name" required />
+                          </div>
+                          <div className="grid gap-1.5">
+                            <Label className="text-xs font-semibold" htmlFor="emp-last">Last Name</Label>
+                            <Input id="emp-last" placeholder="Last name" required />
+                          </div>
+                        </div>
+                        <div className="grid gap-1.5">
+                          <Label className="text-xs font-semibold" htmlFor="emp-email">Email</Label>
+                          <Input id="emp-email" type="email" placeholder="email@company.com" required />
+                        </div>
+                        <div className="grid gap-1.5 sm:grid-cols-2 sm:gap-3">
+                          <div className="grid gap-1.5">
+                            <Label className="text-xs font-semibold" htmlFor="emp-role">Role / Position</Label>
+                            <Input id="emp-role" placeholder="e.g., Software Engineer" />
+                          </div>
+                          <div className="grid gap-1.5">
+                            <Label className="text-xs font-semibold">Department</Label>
+                            <Select>
+                              <SelectTrigger className="h-9">
+                                <SelectValue placeholder="Select department" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {departments.map((d) => (
+                                  <SelectItem key={d} value={d.toLowerCase()}>{d}</SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          </div>
+                        </div>
+                        <div className="grid gap-1.5 sm:grid-cols-2 sm:gap-3">
+                          <div className="grid gap-1.5">
+                            <Label className="text-xs font-semibold">Status</Label>
+                            <Select>
+                              <SelectTrigger className="h-9">
+                                <SelectValue placeholder="Select status" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="active">Active</SelectItem>
+                                <SelectItem value="on leave">On Leave</SelectItem>
+                                <SelectItem value="inactive">Inactive</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                          <div className="grid gap-1.5">
+                            <Label className="text-xs font-semibold" htmlFor="emp-join">Joining Date</Label>
+                            <Input id="emp-join" type="date" />
+                          </div>
+                        </div>
+                      </div>
+                      <DialogFooter>
+                        <DialogClose asChild>
+                          <Button variant="outline" className="rounded-md border px-4">Cancel</Button>
+                        </DialogClose>
+                        <DialogClose asChild>
+                          <Button className="rounded-md bg-[#2563eb] px-4 text-white hover:bg-[#1d4ed8]" onClick={() => toast({ title: "Employee added", description: "New employee has been added." })}>Save</Button>
+                        </DialogClose>
+                      </DialogFooter>
+                    </DialogContent>
+                  </Dialog>
                   <Button type="button" variant="outline" className="h-8 rounded-md px-3 text-xs bg-white text-[#374151] border border-[#d1d5db] hover:bg-gray-50">
                     <Download className="mr-1.5 h-4 w-4" /> Export
                   </Button>
