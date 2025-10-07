@@ -1238,7 +1238,10 @@ export default function ManageProfile() {
               <div className="rounded-2xl border bg-card p-4 shadow-sm">
                 <div className="mb-3 flex items-center justify-between">
                   <div className="text-sm font-bold text-foreground">Employee Documents</div>
-                  <Button className="h-8 rounded-md bg-blue-600 px-3 text-xs text-white hover:bg-blue-700">+ Upload Document</Button>
+                  <div>
+                    <input ref={uploadRef} type="file" className="hidden" multiple onChange={onFilesSelected} accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,image/*" />
+                    <Button onClick={onUploadClick} className="h-8 rounded-md bg-blue-600 px-3 text-xs text-white hover:bg-blue-700">+ Upload Document</Button>
+                  </div>
                 </div>
                 <div className="overflow-hidden rounded-lg border border-[#e5e7eb] shadow-sm">
                   <Table className="text-[13px]">
