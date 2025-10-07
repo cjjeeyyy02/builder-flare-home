@@ -1150,7 +1150,6 @@ export default function Index() {
                     </div>
                     <div className="mt-3 grid grid-cols-2 gap-2 text-sm">
                       <div className="truncate text-muted-foreground">{e.department}</div>
-                      <div className="truncate text-muted-foreground">{e.email}</div>
                       <div>{e.status}</div>
                       <div className="text-muted-foreground">{e.joiningDate}</div>
                       <div className="col-span-2">
