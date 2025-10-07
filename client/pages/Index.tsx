@@ -91,6 +91,14 @@ const ORG_TREE: OrgNode[] = [
   },
 ];
 
+const DEPT_SUMMARY = [
+  { department: "Design", manager: "Ava Thompson", members: 1, location: "New York" },
+  { department: "Engineering", manager: "Liam Carter", members: 3, location: "San Francisco" },
+  { department: "Finance", manager: "Olivia Chen", members: 1, location: "Chicago" },
+  { department: "Marketing", manager: "Noah Patel", members: 1, location: "Los Angeles" },
+  { department: "Product", manager: "Emma Davis", members: 2, location: "Seattle" },
+];
+
 function OrgListView() {
   const total = 13;
   const [collapsed, setCollapsed] = useState<Set<string>>(() => new Set(ORG_TREE.map((n) => n.name)));
@@ -223,13 +231,6 @@ function OrgListView() {
 
   useEffect(() => { setOrgPage(0); }, [orgName, orgDept]);
 
-  const DEPT_SUMMARY = [
-    { department: "Design", manager: "Ava Thompson", members: 1, location: "New York" },
-    { department: "Engineering", manager: "Liam Carter", members: 3, location: "San Francisco" },
-    { department: "Finance", manager: "Olivia Chen", members: 1, location: "Chicago" },
-    { department: "Marketing", manager: "Noah Patel", members: 1, location: "Los Angeles" },
-    { department: "Product", manager: "Emma Davis", members: 2, location: "Seattle" },
-  ];
 
   const ChartNode = ({ node }: { node: OrgNode }) => {
     const hasChildren = !!node.children?.length;
