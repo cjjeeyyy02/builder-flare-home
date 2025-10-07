@@ -135,7 +135,7 @@ function OrgListView() {
           <TableCell className="py-2 text-xs">{typeof node.directReports === "number" ? node.directReports : node.children?.length ?? 0}</TableCell>
           <TableCell className="py-2 text-right">
             <div className="flex items-center justify-end gap-2">
-              <Button className="h-7 rounded-md px-2 text-xs bg-brand text-brand-foreground hover:bg-brand/90">View Chart</Button>
+              <Button type="button" onClick={() => setMode("chart")} className="h-7 rounded-md px-2 text-xs bg-brand text-brand-foreground hover:bg-brand/90">View Chart</Button>
               <Button className="h-7 rounded-md px-2 text-xs bg-emerald-600 text-white hover:bg-emerald-700">Add Report</Button>
             </div>
           </TableCell>
