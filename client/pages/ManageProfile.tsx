@@ -93,6 +93,13 @@ export default function ManageProfile() {
     toast({ title: "Document removed", description: d.title });
   }
 
+  type AppEntry = { id: string; position: string; department: string; dateApplied: string; status: "Submitted" | "Under Review" | "Interview" | "Offer" | "Rejected" };
+  const [appHistory] = useState<AppEntry[]>([
+    { id: "app-1", position: "Senior Software Engineer", department: "Engineering", dateApplied: "12/05/2023", status: "Offer" },
+    { id: "app-2", position: "Frontend Developer", department: "Engineering", dateApplied: "09/18/2023", status: "Interview" },
+    { id: "app-3", position: "UX Designer", department: "Design", dateApplied: "06/21/2023", status: "Rejected" },
+  ]);
+
   type LeaveRec = { type: string; duration: string; days: number; status: string };
   const [leaveView, setLeaveView] = useState<LeaveRec | null>(null);
   const [leaveConfirm, setLeaveConfirm] = useState<LeaveRec | null>(null);
@@ -334,6 +341,7 @@ export default function ManageProfile() {
                 ["training", "Training"],
                 ["leave", "Leave & Attendance"],
                 ["docs", "Documents"],
+                ["apps", "Application History"],
                 ["access", "Access & Security"],
               ].map(([val, label]) => (
                 <TabsTrigger
@@ -1294,6 +1302,47 @@ export default function ManageProfile() {
                   </DialogFooter>
                 </DialogContent>
               </Dialog>
+            </TabsContent>
+            <TabsContent value="apps" className="space-y-4">
+              <div className="rounded-2xl border bg-card p-4 shadow-sm">
+                <div className="mb-2 flex items-center gap-2 text-sm font-bold text-foreground">
+                  <CalendarDays className="h-4 w-4" /> Application History
+                </div>
+                <div className="overflow-hidden rounded-lg border border-[#e5e7eb] shadow-sm">
+                  <Table className="text-[13px]">
+                    <TableHeader>
+                      <TableRow className="hover:bg-transparent">
+                        <TableHead className="py-2 font-bold uppercase">Position</TableHead>
+                        <TableHead className="py-2 font-bold uppercase">Department</TableHead>
+                        <TableHead className="py-2 font-bold uppercase">Date Applied</TableHead>
+                        <TableHead className="py-2 font-bold uppercase">Status</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {appHistory.map((a) => (
+                        <TableRow key={a.id} className="hover:bg-transparent">
+                          <TableCell className="py-2">{a.position}</TableCell>
+                          <TableCell className="py-2">{a.department}</TableCell>
+                          <TableCell className="py-2">{a.dateApplied}</TableCell>
+                          <TableCell className="py-2">
+                            {a.status === "Offer" ? (
+                              <Badge className="border-0 bg-emerald-100 px-2.5 py-0.5 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300">Offer</Badge>
+                            ) : a.status === "Interview" ? (
+                              <Badge className="border-0 bg-sky-100 px-2.5 py-0.5 text-sky-700 dark:bg-sky-500/20 dark:text-sky-300">Interview</Badge>
+                            ) : a.status === "Under Review" ? (
+                              <Badge className="border-0 bg-amber-100 px-2.5 py-0.5 text-amber-700 dark:bg-amber-500/20 dark:text-amber-300">Under Review</Badge>
+                            ) : a.status === "Submitted" ? (
+                              <Badge className="border-0 bg-blue-100 px-2.5 py-0.5 text-blue-700 dark:bg-blue-500/20 dark:text-blue-300">Submitted</Badge>
+                            ) : (
+                              <Badge className="border-0 bg-rose-100 px-2.5 py-0.5 text-rose-700 dark:bg-rose-500/20 dark:text-rose-300">Rejected</Badge>
+                            )}
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
+              </div>
             </TabsContent>
             <TabsContent value="access" className="space-y-4">
               <div className="rounded-2xl border bg-card p-4 shadow-sm">
