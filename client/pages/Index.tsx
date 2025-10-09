@@ -356,11 +356,24 @@ function OrgListView() {
       {mode === "manage" ? (
         <div className="mt-2 font-poppins">
           <div className="overflow-hidden rounded-lg border bg-white">
-            <div className="flex items-center justify-between border-b px-3 py-2">
-              <div className="font-poppins text-[16px] font-semibold">Departments List</div>
-              <Button type="button" onClick={openAddDept} className="h-8 rounded-lg px-4 text-xs font-medium bg-[#2563eb] text-white hover:bg-[#1e40af]">
-                <Plus className="mr-1.5 h-4 w-4" /> Add Department
-              </Button>
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b px-3 py-2">
+              <div className="font-poppins text-[16px] font-semibold">Manage Structure</div>
+              <div className="flex items-center gap-2">
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button type="button" className="h-8 rounded-lg px-3 text-xs font-medium">
+                      <Download className="mr-1.5 h-4 w-4" /> Export
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-44">
+                    <DropdownMenuItem onClick={() => exportCSV()}>Export CSV</DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => exportXLS()}>Export Excel</DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+                <Button type="button" onClick={openAddDept} className="h-8 rounded-lg px-4 text-xs font-medium bg-[#2563eb] text-white hover:bg-[#1e40af]">
+                  <Plus className="mr-1.5 h-4 w-4" /> Add Department
+                </Button>
+              </div>
               <Dialog open={deptDialogOpen} onOpenChange={setDeptDialogOpen}>
                 <DialogContent className="font-poppins">
                   <DialogHeader>
@@ -372,16 +385,28 @@ function OrgListView() {
                       <Input id="dept-name" placeholder="Enter department name" value={deptName} onChange={(e) => setDeptName(e.target.value)} />
                     </div>
                     <div className="grid gap-1.5">
-                      <Label htmlFor="dept-manager" className="font-poppins text-sm">Manager</Label>
-                      <Input id="dept-manager" placeholder="Enter manager name" value={deptManager} onChange={(e) => setDeptManager(e.target.value)} />
+                      <Label className="font-poppins text-sm">Department Head</Label>
+                      <div className="flex items-center gap-2">
+                        <Input readOnly value={deptHead} placeholder="Select department head" className="h-9" onClick={() => setDeptHeadPicker(true)} />
+                        <Button type="button" variant="outline" className="h-9" onClick={() => setDeptHeadPicker(true)}>Select</Button>
+                      </div>
+                      <CommandDialog open={deptHeadPicker} onOpenChange={setDeptHeadPicker}>
+                        <CommandInput placeholder="Search employee..." />
+                        <CommandList>
+                          <CommandEmpty>No results found.</CommandEmpty>
+                          {msHeads.map((h) => (
+                            <CommandItem key={h} value={h} onSelect={() => { setDeptHead(h); setDeptHeadPicker(false); }}>{h}</CommandItem>
+                          ))}
+                        </CommandList>
+                      </CommandDialog>
+                    </div>
+                    <div className="grid gap-1.5">
+                      <Label htmlFor="dept-cost" className="font-poppins text-sm">Cost Center (Co Center)</Label>
+                      <Input id="dept-cost" placeholder="e.g., CC-1001" value={deptCostCenter} onChange={(e) => setDeptCostCenter(e.target.value)} />
                     </div>
                     <div className="grid gap-1.5">
                       <Label htmlFor="dept-members" className="font-poppins text-sm">Team Members</Label>
                       <Input id="dept-members" type="number" min={0} placeholder="Number of team members" value={String(deptMembers)} onChange={(e) => setDeptMembers(parseInt(e.target.value || "0", 10))} />
-                    </div>
-                    <div className="grid gap-1.5">
-                      <Label htmlFor="dept-location" className="font-poppins text-sm">Location</Label>
-                      <Input id="dept-location" placeholder="Enter location" value={deptLocation} onChange={(e) => setDeptLocation(e.target.value)} />
                     </div>
                   </div>
                   <DialogFooter>
@@ -391,35 +416,95 @@ function OrgListView() {
                 </DialogContent>
               </Dialog>
             </div>
+            <div className="flex flex-wrap items-center gap-2 px-3 py-2">
+              <Input value={msQuery} onChange={(e) => { setMsQuery(e.target.value); setMsPage(0); }} placeholder="Search by Department Head or filter by Department" className="h-8 w-72 text-xs" />
+              <Select value={msDeptFilter} onValueChange={(v) => { setMsDeptFilter(v); setMsPage(0); }}>
+                <SelectTrigger className="h-8 w-44 text-xs"><SelectValue placeholder="All Departments" /></SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Departments</SelectItem>
+                  {Array.from(new Set(departmentsData.map((d) => d.department))).map((d) => (
+                    <SelectItem key={d} value={d}>{d}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
             <Table className="text-sm">
               <TableHeader>
                 <TableRow className="hover:bg-transparent border-b">
                   <TableHead className="px-3 py-2 text-xs font-medium">Department</TableHead>
-                  <TableHead className="px-3 py-2 text-xs font-medium">Manager</TableHead>
+                  <TableHead className="px-3 py-2 text-xs font-medium">Department Head</TableHead>
+                  <TableHead className="px-3 py-2 text-xs font-medium">Cost Center</TableHead>
                   <TableHead className="px-3 py-2 text-xs font-medium">Team Members</TableHead>
-                  <TableHead className="px-3 py-2 text-xs font-medium">Location</TableHead>
-                  <TableHead className="px-3 py-2 text-right text-xs font-medium">Action</TableHead>
+                  <TableHead className="px-3 py-2 text-right text-xs font-medium">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {departmentsData.map((d, i) => (
-                  <TableRow key={d.department + i} className="border-b last:border-0 hover:bg-transparent">
-                    <TableCell className="px-3 py-2">{d.department}</TableCell>
-                    <TableCell className="px-3 py-2">{d.manager}</TableCell>
-                    <TableCell className="px-3 py-2">{d.members}</TableCell>
-                    <TableCell className="px-3 py-2">{d.location}</TableCell>
-                    <TableCell className="px-3 py-2">
-                      <div className="flex items-center justify-end gap-2">
-                        <Button type="button" aria-label="Edit department" onClick={() => openEditDept(i)} className="h-7 rounded-md px-3 text-xs bg-white text-[#111827] border border-[#d1d5db] hover:bg-gray-50">
-                          <Pencil className="h-4 w-4" />
-                        </Button>
-                        <Button type="button" aria-label="Delete department" onClick={() => setConfirmDeleteIndex(i)} className="h-7 rounded-md px-3 text-xs bg-white text-[#111827] border border-[#d1d5db] hover:bg-gray-50">
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
-                      </div>
-                    </TableCell>
-                  </TableRow>
-                ))}
+                {(() => {
+                  const q = msQuery.toLowerCase().trim();
+                  const filtered = departmentsData.filter((d) => {
+                    const matchesHead = !q || d.head.toLowerCase().includes(q);
+                    const matchesDept = msDeptFilter === "all" || d.department === msDeptFilter;
+                    return matchesHead && matchesDept;
+                  });
+                  const total = filtered.length;
+                  const totalPages = Math.max(1, Math.ceil(total / msPageSize));
+                  const start = Math.min(msPage * msPageSize, Math.max(0, total - (total % msPageSize || msPageSize)));
+                  const end = Math.min(start + msPageSize, total);
+                  return (
+                    <>
+                      {filtered.slice(start, end).map((d, i) => (
+                        <TableRow key={d.department + i} className="border-b last:border-0 hover:bg-transparent">
+                          <TableCell className="px-3 py-2">{d.department}</TableCell>
+                          <TableCell className="px-3 py-2">{d.head}</TableCell>
+                          <TableCell className="px-3 py-2">{d.costCenter}</TableCell>
+                          <TableCell className="px-3 py-2">{d.members}</TableCell>
+                          <TableCell className="px-3 py-2 text-right">
+                            <DropdownMenu>
+                              <DropdownMenuTrigger asChild>
+                                <Button variant="ghost" className="h-7 w-7 p-0" aria-label={`Actions for ${d.department}`}>
+                                  <EllipsisVertical className="h-4 w-4" />
+                                </Button>
+                              </DropdownMenuTrigger>
+                              <DropdownMenuContent align="end" className="w-44">
+                                <DropdownMenuItem onClick={() => openEditDept(departmentsData.findIndex((x) => x === d))}>Edit</DropdownMenuItem>
+                                <DropdownMenuItem onClick={() => toast({ title: d.department, description: `${d.head} • ${d.costCenter}` })}>View Details</DropdownMenuItem>
+                                <DropdownMenuItem onClick={() => setConfirmDeleteIndex(departmentsData.findIndex((x) => x === d))}>Delete</DropdownMenuItem>
+                              </DropdownMenuContent>
+                            </DropdownMenu>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                      <tr>
+                        <td colSpan={5} className="border-t px-2 py-2">
+                          <div className="flex flex-wrap items-center justify-between gap-2 text-xs">
+                            <div className="inline-flex items-center gap-2">
+                              <span className="text-muted-foreground">Rows per page</span>
+                              <Select value={String(msPageSize)} onValueChange={(v) => { setMsPageSize(parseInt(v, 10)); setMsPage(0); }}>
+                                <SelectTrigger className="h-7 w-20 text-xs"><SelectValue /></SelectTrigger>
+                                <SelectContent>
+                                  {[10,25,50,100].map((n) => (<SelectItem key={n} value={String(n)}>{n}</SelectItem>))}
+                                </SelectContent>
+                              </Select>
+                            </div>
+                            <div className="inline-flex items-center gap-1">
+                              <Button variant="outline" className="h-7 w-7 rounded-md p-0" onClick={() => setMsPage((p) => Math.max(0, p - 1))} disabled={msPage === 0} aria-label="Previous page">
+                                <ChevronLeft className="h-4 w-4" />
+                              </Button>
+                              {Array.from({ length: totalPages }).map((_, idx) => (
+                                <Button key={idx} variant={idx === msPage ? "default" : "outline"} className="h-7 min-w-7 rounded-md px-2 text-xs" onClick={() => setMsPage(idx)}>
+                                  {idx + 1}
+                                </Button>
+                              ))}
+                              <Button variant="outline" className="h-7 w-7 rounded-md p-0" onClick={() => setMsPage((p) => Math.min(totalPages - 1, p + 1))} disabled={msPage >= totalPages - 1} aria-label="Next page">
+                                <ChevronRight className="h-4 w-4" />
+                              </Button>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </>
+                  );
+                })()}
               </TableBody>
             </Table>
           </div>
