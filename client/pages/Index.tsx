@@ -140,18 +140,18 @@ function OrgListView() {
   function openAddDept() {
     setEditingDeptIndex(null);
     setDeptName("");
-    setDeptManager("");
+    setDeptHead("");
+    setDeptCostCenter("");
     setDeptMembers(0);
-    setDeptLocation("");
     setDeptDialogOpen(true);
   }
   function openEditDept(index: number) {
     const d = departmentsData[index];
     setEditingDeptIndex(index);
     setDeptName(d.department);
-    setDeptManager(d.manager);
+    setDeptHead(d.head);
+    setDeptCostCenter(d.costCenter);
     setDeptMembers(d.members);
-    setDeptLocation(d.location);
     setDeptDialogOpen(true);
   }
   function saveDept() {
