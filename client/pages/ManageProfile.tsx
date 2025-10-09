@@ -1677,38 +1677,34 @@ export default function ManageProfile() {
                   </div>
                 </div>
 
-                {/* Leave Summary */}
+                {/* Leave Balance */}
                 <div className="rounded-2xl border bg-card p-4 shadow-sm">
                   <div className="mb-2 flex items-center gap-2 text-sm font-bold text-foreground">
-                    <CalendarDays className="h-4 w-4" /> Leave Summary (2024)
+                    <CalendarDays className="h-4 w-4" /> Leave Balance
                   </div>
-                  <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-                    <div>
-                      <div className="text-xs text-muted-foreground">
-                        Approved Leaves
-                      </div>
-                      <div className="text-sm font-bold text-emerald-600">
-                        2
-                      </div>
-                    </div>
-                    <div>
-                      <div className="text-xs text-muted-foreground">
-                        Under Review
-                      </div>
-                      <div className="text-sm font-bold text-amber-600">1</div>
-                    </div>
-                    <div>
-                      <div className="text-xs text-muted-foreground">
-                        Rejected
-                      </div>
-                      <div className="text-sm font-bold text-rose-600">1</div>
-                    </div>
-                    <div>
-                      <div className="text-xs text-muted-foreground">
-                        Total Days Taken
-                      </div>
-                      <div className="text-sm font-bold text-foreground">8</div>
-                    </div>
+                  <div className="overflow-hidden rounded-lg border">
+                    <Table className="text-[13px]">
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead className="py-2 font-bold uppercase">Leave Type</TableHead>
+                          <TableHead className="py-2 font-bold uppercase">Leave Taken</TableHead>
+                          <TableHead className="py-2 font-bold uppercase">Leave Balance</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {[
+                          { type: "Annual Leave", taken: 7, balance: 13 },
+                          { type: "Sick Leave", taken: 3, balance: 7 },
+                          { type: "Personal Leave", taken: 2, balance: 4 },
+                        ].map((x) => (
+                          <TableRow key={x.type}>
+                            <TableCell className="py-2">{x.type}</TableCell>
+                            <TableCell className="py-2">{x.taken}</TableCell>
+                            <TableCell className="py-2">{x.balance}</TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
                   </div>
                 </div>
 
