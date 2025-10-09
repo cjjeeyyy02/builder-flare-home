@@ -367,6 +367,16 @@ export default function ManageProfile() {
     toast({ title: "Download started", description: `${data.title}` });
   }
 
+  const [trainingUploadFiles, setTrainingUploadFiles] = useState<File[]>([]);
+  const trainingFileInputRef = useRef<HTMLInputElement | null>(null);
+  function triggerTrainingUpload() {
+    trainingFileInputRef.current?.click();
+  }
+  function onTrainingFilesSelected(e: React.ChangeEvent<HTMLInputElement>) {
+    const files = e.target.files ? Array.from(e.target.files) : [];
+    setTrainingUploadFiles(files);
+  }
+
   type PerfReview = {
     period: string;
     reviewer: string;
@@ -1325,6 +1335,31 @@ export default function ManageProfile() {
                             <Input type="date" placeholder="dd/mm/yyyy" />
                           </div>
                         </div>
+                      </div>
+                      <div className="grid gap-1.5">
+                        <Label className="text-xs font-semibold">Supporting Documents</Label>
+                        <input
+                          ref={trainingFileInputRef}
+                          type="file"
+                          multiple
+                          className="hidden"
+                          onChange={onTrainingFilesSelected}
+                        />
+                        <Button
+                          type="button"
+                          variant="outline"
+                          className="h-9 rounded-md px-3 text-xs"
+                          onClick={triggerTrainingUpload}
+                        >
+                          Upload Docs
+                        </Button>
+                        {trainingUploadFiles.length > 0 && (
+                          <ul className="mt-2 list-disc pl-5 text-xs text-muted-foreground">
+                            {trainingUploadFiles.map((f) => (
+                              <li key={f.name}>{f.name}</li>
+                            ))}
+                          </ul>
+                        )}
                       </div>
                       <DialogFooter>
                         <DialogClose asChild>
