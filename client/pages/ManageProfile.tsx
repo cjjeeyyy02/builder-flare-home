@@ -1514,40 +1514,6 @@ export default function ManageProfile() {
                       </div>
                     </div>
                   </div>
-                  <div className="mt-4 flex items-center gap-2">
-                    <Button
-                      variant="outline"
-                      className="h-8 rounded-md px-3 text-xs"
-                      onClick={() =>
-                        viewCertificate({
-                          title: "AWS Certified Solutions Architect",
-                          provider: "Amazon Web Services",
-                          id: "AWS-CSA-2023-001234",
-                          issued: "06/15/2023",
-                          expires: "06/15/2026",
-                          owner: `${employee.firstName} ${employee.lastName}`,
-                        })
-                      }
-                    >
-                      View Certificate
-                    </Button>
-                    <Button
-                      variant="outline"
-                      className="h-8 rounded-md px-3 text-xs"
-                      onClick={() =>
-                        downloadCertificate({
-                          title: "AWS Certified Solutions Architect",
-                          provider: "Amazon Web Services",
-                          id: "AWS-CSA-2023-001234",
-                          issued: "06/15/2023",
-                          expires: "06/15/2026",
-                          owner: `${employee.firstName} ${employee.lastName}`,
-                        })
-                      }
-                    >
-                      Download Certificate
-                    </Button>
-                  </div>
                 </div>
                 {/* Certificate Viewer */}
                 <Dialog
@@ -1870,7 +1836,7 @@ export default function ManageProfile() {
                                     onClick={() =>
                                       setLeaveConfirm({
                                         type: "Annual Leave",
-                                        duration: "01-08-2024 �� 01-12-2024",
+                                        duration: "01-08-2024 – 01-12-2024",
                                         days: 5,
                                         status: "Approved",
                                       })
