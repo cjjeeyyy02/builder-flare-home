@@ -125,10 +125,17 @@ function OrgListView() {
   const [deptDialogOpen, setDeptDialogOpen] = useState(false);
   const [editingDeptIndex, setEditingDeptIndex] = useState<number | null>(null);
   const [deptName, setDeptName] = useState("");
-  const [deptManager, setDeptManager] = useState("");
+  const [deptHead, setDeptHead] = useState("");
+  const [deptHeadPicker, setDeptHeadPicker] = useState(false);
+  const [deptCostCenter, setDeptCostCenter] = useState("");
   const [deptMembers, setDeptMembers] = useState<number>(0);
-  const [deptLocation, setDeptLocation] = useState("");
   const [confirmDeleteIndex, setConfirmDeleteIndex] = useState<number | null>(null);
+
+  const msHeads = useMemo(() => EMPLOYEES.map((e) => `${e.firstName} ${e.lastName}`), []);
+  const [msQuery, setMsQuery] = useState("");
+  const [msDeptFilter, setMsDeptFilter] = useState<string>("all");
+  const [msPage, setMsPage] = useState(0);
+  const [msPageSize, setMsPageSize] = useState<number>(10);
 
   function openAddDept() {
     setEditingDeptIndex(null);
