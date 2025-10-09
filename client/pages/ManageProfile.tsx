@@ -516,6 +516,16 @@ export default function ManageProfile() {
   const ecPhone = isSarah ? "+1 456 789 123" : "—";
   const ecAltPhone = isSarah ? "+1 321 654 987" : "—";
 
+  type PersonalInfo = { firstName: string; middleName: string; lastName: string; dob: string; gender: string; marital: string; nationality: string };
+  const [personal, setPersonal] = useState<PersonalInfo>({ firstName: piFirstName, middleName: piMiddleName, lastName: piLastName, dob: piDOB, gender: piGender, marital: piMarital, nationality: piNationality });
+  const [piEditOpen, setPiEditOpen] = useState(false);
+  const [piDraft, setPiDraft] = useState<PersonalInfo>({ ...personal });
+
+  type WorkDetails = { position: string; department: string; manager: string; status: string; employmentType: string; dateHired: string; probationEnd: string; workLocation: string; shift: string; workEmail: string; workPhone: string };
+  const [work, setWork] = useState<WorkDetails>({ position: "Senior Software Engineer", department: "Engineering", manager: "Michael Rodriguez", status: "Active", employmentType: "Full-Time", dateHired: "01/15/2023", probationEnd: "07-15-2023", workLocation: "Head Office", shift: "Day", workEmail: "sarah.mitchell@company.com", workPhone: "+1 (555) 123-4567 ext. 1234" });
+  const [wdEditOpen, setWdEditOpen] = useState(false);
+  const [wdDraft, setWdDraft] = useState<WorkDetails>({ ...work });
+
   return (
     <div className="min-h-screen bg-background font-poppins text-[13px] leading-[1.4]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -596,7 +606,7 @@ export default function ManageProfile() {
                 <section>
                   <div className="flex items-center justify-between">
                     <h3 className="text-base font-bold text-foreground">Personal Information</h3>
-                    <Button variant="ghost" className="h-7 w-7 p-0" aria-label="Edit Personal Information"><Pencil className="h-4 w-4" /></Button>
+                    <Button variant="ghost" className="h-7 w-7 p-0" aria-label="Edit Personal Information" onClick={() => { setPiDraft(personal); setPiEditOpen(true); }}><Pencil className="h-4 w-4" /></Button>
                   </div>
                   <div className="mt-3 grid grid-cols-1 gap-4 md:grid-cols-2">
                     <div className="space-y-2">
@@ -604,19 +614,19 @@ export default function ManageProfile() {
                         First Name
                       </div>
                       <div className="text-sm text-muted-foreground">
-                        {piFirstName}
+                        {personal.firstName}
                       </div>
                       <div className="text-xs font-semibold text-foreground">
                         Middle Name
                       </div>
                       <div className="text-sm text-muted-foreground">
-                        {piMiddleName}
+                        {personal.middleName}
                       </div>
                       <div className="text-xs font-semibold text-foreground">
                         Last Name
                       </div>
                       <div className="text-sm text-muted-foreground">
-                        {piLastName}
+                        {personal.lastName}
                       </div>
                     </div>
                     <div className="space-y-2">
@@ -624,25 +634,25 @@ export default function ManageProfile() {
                         Date of Birth
                       </div>
                       <div className="text-sm text-muted-foreground">
-                        {piDOB}
+                        {personal.dob}
                       </div>
                       <div className="text-xs font-semibold text-foreground">
                         Gender
                       </div>
                       <div className="text-sm text-muted-foreground">
-                        {piGender}
+                        {personal.gender}
                       </div>
                       <div className="text-xs font-semibold text-foreground">
                         Marital Status
                       </div>
                       <div className="text-sm text-muted-foreground">
-                        {piMarital}
+                        {personal.marital}
                       </div>
                       <div className="text-xs font-semibold text-foreground">
                         Nationality
                       </div>
                       <div className="text-sm text-muted-foreground">
-                        {piNationality}
+                        {personal.nationality}
                       </div>
                     </div>
                   </div>
@@ -756,42 +766,152 @@ export default function ManageProfile() {
                 </section>
               </TabsContent>
 
+              {/* Edit Personal Information Dialog */}
+              <Dialog open={piEditOpen} onOpenChange={(o) => !o && setPiEditOpen(false)}>
+                <DialogContent className="rounded-2xl p-6 shadow-xl">
+                  <DialogHeader>
+                    <DialogTitle>Edit Personal Information</DialogTitle>
+                  </DialogHeader>
+                  <div className="grid gap-3 text-sm sm:grid-cols-2">
+                    <div className="grid gap-1.5">
+                      <Label className="text-xs font-semibold">First Name</Label>
+                      <Input value={piDraft.firstName} onChange={(e) => setPiDraft({ ...piDraft, firstName: e.target.value })} />
+                    </div>
+                    <div className="grid gap-1.5">
+                      <Label className="text-xs font-semibold">Middle Name</Label>
+                      <Input value={piDraft.middleName} onChange={(e) => setPiDraft({ ...piDraft, middleName: e.target.value })} />
+                    </div>
+                    <div className="grid gap-1.5">
+                      <Label className="text-xs font-semibold">Last Name</Label>
+                      <Input value={piDraft.lastName} onChange={(e) => setPiDraft({ ...piDraft, lastName: e.target.value })} />
+                    </div>
+                    <div className="grid gap-1.5">
+                      <Label className="text-xs font-semibold">Date of Birth</Label>
+                      <Input value={piDraft.dob} onChange={(e) => setPiDraft({ ...piDraft, dob: e.target.value })} />
+                    </div>
+                    <div className="grid gap-1.5">
+                      <Label className="text-xs font-semibold">Gender</Label>
+                      <Input value={piDraft.gender} onChange={(e) => setPiDraft({ ...piDraft, gender: e.target.value })} />
+                    </div>
+                    <div className="grid gap-1.5">
+                      <Label className="text-xs font-semibold">Marital Status</Label>
+                      <Input value={piDraft.marital} onChange={(e) => setPiDraft({ ...piDraft, marital: e.target.value })} />
+                    </div>
+                    <div className="grid gap-1.5 sm:col-span-2">
+                      <Label className="text-xs font-semibold">Nationality</Label>
+                      <Input value={piDraft.nationality} onChange={(e) => setPiDraft({ ...piDraft, nationality: e.target.value })} />
+                    </div>
+                  </div>
+                  <DialogFooter>
+                    <DialogClose asChild>
+                      <Button variant="outline" className="rounded-md border px-4">Cancel</Button>
+                    </DialogClose>
+                    <DialogClose asChild>
+                      <Button className="rounded-md bg-[#2563eb] px-4 text-white hover:bg-[#1d4ed8]" onClick={() => { setPersonal(piDraft); }}>Save</Button>
+                    </DialogClose>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
+
+              {/* Edit Work Details Dialog */}
+              <Dialog open={wdEditOpen} onOpenChange={(o) => !o && setWdEditOpen(false)}>
+                <DialogContent className="rounded-2xl p-6 shadow-xl">
+                  <DialogHeader>
+                    <DialogTitle>Edit Work Details</DialogTitle>
+                  </DialogHeader>
+                  <div className="grid gap-3 text-sm sm:grid-cols-2">
+                    <div className="grid gap-1.5">
+                      <Label className="text-xs font-semibold">Position</Label>
+                      <Input value={wdDraft.position} onChange={(e) => setWdDraft({ ...wdDraft, position: e.target.value })} />
+                    </div>
+                    <div className="grid gap-1.5">
+                      <Label className="text-xs font-semibold">Department</Label>
+                      <Input value={wdDraft.department} onChange={(e) => setWdDraft({ ...wdDraft, department: e.target.value })} />
+                    </div>
+                    <div className="grid gap-1.5">
+                      <Label className="text-xs font-semibold">Reporting Manager</Label>
+                      <Input value={wdDraft.manager} onChange={(e) => setWdDraft({ ...wdDraft, manager: e.target.value })} />
+                    </div>
+                    <div className="grid gap-1.5">
+                      <Label className="text-xs font-semibold">Employment Status</Label>
+                      <Input value={wdDraft.status} onChange={(e) => setWdDraft({ ...wdDraft, status: e.target.value })} />
+                    </div>
+                    <div className="grid gap-1.5">
+                      <Label className="text-xs font-semibold">Employment Type</Label>
+                      <Input value={wdDraft.employmentType} onChange={(e) => setWdDraft({ ...wdDraft, employmentType: e.target.value })} />
+                    </div>
+                    <div className="grid gap-1.5">
+                      <Label className="text-xs font-semibold">Date Hired</Label>
+                      <Input value={wdDraft.dateHired} onChange={(e) => setWdDraft({ ...wdDraft, dateHired: e.target.value })} />
+                    </div>
+                    <div className="grid gap-1.5">
+                      <Label className="text-xs font-semibold">Probation End Date</Label>
+                      <Input value={wdDraft.probationEnd} onChange={(e) => setWdDraft({ ...wdDraft, probationEnd: e.target.value })} />
+                    </div>
+                    <div className="grid gap-1.5">
+                      <Label className="text-xs font-semibold">Work Location / Site</Label>
+                      <Input value={wdDraft.workLocation} onChange={(e) => setWdDraft({ ...wdDraft, workLocation: e.target.value })} />
+                    </div>
+                    <div className="grid gap-1.5">
+                      <Label className="text-xs font-semibold">Shift Schedule</Label>
+                      <Input value={wdDraft.shift} onChange={(e) => setWdDraft({ ...wdDraft, shift: e.target.value })} />
+                    </div>
+                    <div className="grid gap-1.5">
+                      <Label className="text-xs font-semibold">Work Email</Label>
+                      <Input value={wdDraft.workEmail} onChange={(e) => setWdDraft({ ...wdDraft, workEmail: e.target.value })} />
+                    </div>
+                    <div className="grid gap-1.5 sm:col-span-2">
+                      <Label className="text-xs font-semibold">Work Phone / Extension</Label>
+                      <Input value={wdDraft.workPhone} onChange={(e) => setWdDraft({ ...wdDraft, workPhone: e.target.value })} />
+                    </div>
+                  </div>
+                  <DialogFooter>
+                    <DialogClose asChild>
+                      <Button variant="outline" className="rounded-md border px-4">Cancel</Button>
+                    </DialogClose>
+                    <DialogClose asChild>
+                      <Button className="rounded-md bg-[#2563eb] px-4 text-white hover:bg-[#1d4ed8]" onClick={() => { setWork(wdDraft); }}>Save</Button>
+                    </DialogClose>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
+
               <TabsContent value="work" className="space-y-6">
                 <div className="grid gap-6 lg:grid-cols-2">
                   <div>
                     <div className="flex items-center justify-between">
                       <h3 className="text-base font-bold">Work Details</h3>
-                      <Button variant="ghost" className="h-7 w-7 p-0" aria-label="Edit Work Details"><Pencil className="h-4 w-4" /></Button>
+                      <Button variant="ghost" className="h-7 w-7 p-0" aria-label="Edit Work Details" onClick={() => { setWdDraft(work); setWdEditOpen(true); }}><Pencil className="h-4 w-4" /></Button>
                     </div>
                     <div className="mt-3 grid grid-cols-1 gap-3">
                       <LabeledField
                         label="Position"
-                        value="Senior Software Engineer"
+                        value={work.position}
                       />
-                      <LabeledField label="Department" value="Engineering" />
+                      <LabeledField label="Department" value={work.department} />
                       <LabeledField
                         label="Reporting Manager"
-                        value="Michael Rodriguez"
+                        value={work.manager}
                       />
-                      <LabeledField label="Employment Status" value="Active" />
-                      <LabeledField label="Employment Type" value="Full-Time" />
-                      <LabeledField label="Date Hired" value="01/15/2023" />
+                      <LabeledField label="Employment Status" value={work.status} />
+                      <LabeledField label="Employment Type" value={work.employmentType} />
+                      <LabeledField label="Date Hired" value={work.dateHired} />
                       <LabeledField
                         label="Probation End Date"
-                        value="07-15-2023"
+                        value={work.probationEnd}
                       />
                       <LabeledField
                         label="Work Location / Site"
-                        value="Head Office"
+                        value={work.workLocation}
                       />
-                      <LabeledField label="Shift Schedule" value="Day" />
+                      <LabeledField label="Shift Schedule" value={work.shift} />
                       <LabeledField
                         label="Work Email"
-                        value="sarah.mitchell@company.com"
+                        value={work.workEmail}
                       />
                       <LabeledField
                         label="Work Phone / Extension"
-                        value="+1 (555) 123-4567 ext. 1234"
+                        value={work.workPhone}
                       />
                     </div>
                   </div>
