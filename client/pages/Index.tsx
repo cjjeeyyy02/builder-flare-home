@@ -238,7 +238,7 @@ function OrgListView() {
           <TableCell className="py-2 text-xs text-muted-foreground">{node.title}</TableCell>
           <TableCell className="py-2 text-xs">{node.department}</TableCell>
           <TableCell className="py-2 text-xs">{typeof node.directReports === "number" ? node.directReports : node.children?.length ?? 0}</TableCell>
-          <TableCell className="py-2 text-right">
+          <TableCell className="py-2 text-center">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="h-7 w-7 p-0" aria-label={`Actions for ${node.name}`}>
@@ -491,7 +491,7 @@ function OrgListView() {
                           <TableCell className="px-3 py-2">{d.head}</TableCell>
                           <TableCell className="px-3 py-2">{d.costCenter}</TableCell>
                           <TableCell className="px-3 py-2">{d.members}</TableCell>
-                          <TableCell className="px-3 py-2 text-right">
+                          <TableCell className="px-3 py-2 text-center">
                             <DropdownMenu>
                               <DropdownMenuTrigger asChild>
                                 <Button variant="ghost" className="h-7 w-7 p-0" aria-label={`Actions for ${d.department}`}>
