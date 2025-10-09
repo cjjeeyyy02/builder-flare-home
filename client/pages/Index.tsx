@@ -437,10 +437,6 @@ function OrgListView() {
                       <Label htmlFor="dept-cost" className="font-poppins text-sm">Cost Center (Co Center)</Label>
                       <Input id="dept-cost" placeholder="e.g., CC-1001" value={deptCostCenter} onChange={(e) => setDeptCostCenter(e.target.value)} />
                     </div>
-                    <div className="grid gap-1.5">
-                      <Label htmlFor="dept-members" className="font-poppins text-sm">Team Members</Label>
-                      <Input id="dept-members" type="number" min={0} placeholder="Number of team members" value={String(deptMembers)} onChange={(e) => setDeptMembers(parseInt(e.target.value || "0", 10))} />
-                    </div>
                   </div>
                   <DialogFooter>
                     <Button type="button" variant="outline" className="rounded-md bg-white text-[#111827] border border-[#d1d5db]" onClick={() => setDeptDialogOpen(false)}>Cancel</Button>
