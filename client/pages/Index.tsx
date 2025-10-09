@@ -1140,7 +1140,7 @@ export default function Index() {
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end" className="w-40">
                         <DropdownMenuItem onClick={() => document.getElementById("bulk-emp-upload")?.click()}>Bulk Upload</DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => setOpenAddSingle(true)}>Single Upload</DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => setOpenAddSingle(true)}>Manual Upload</DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>
                   </div>
