@@ -921,7 +921,7 @@ export default function ManageProfile() {
                           <TableCell className="py-2"><span className="inline-flex items-center gap-1"><Check className="h-4 w-4 text-muted-foreground" /> {s.name}</span></TableCell>
                           <TableCell className="py-2 text-center">{s.years}</TableCell>
                           <TableCell className="py-2">{s.level}</TableCell>
-                          <TableCell className="py-2 text-right">
+                          <TableCell className="py-2 text-center">
                             <DropdownMenu>
                               <DropdownMenuTrigger asChild>
                                 <Button
@@ -1407,7 +1407,7 @@ export default function ManageProfile() {
                               Completed
                             </Badge>
                           </TableCell>
-                          <TableCell className="py-2 text-right">
+                          <TableCell className="py-2 text-center">
                             <DropdownMenu>
                               <DropdownMenuTrigger asChild>
                                 <Button
@@ -1808,7 +1808,7 @@ export default function ManageProfile() {
                               Approved
                             </Badge>
                           </TableCell>
-                          <TableCell className="py-2 text-right">
+                          <TableCell className="py-2 text-center">
                             <DropdownMenu>
                               <DropdownMenuTrigger asChild>
                                 <Button
@@ -1863,7 +1863,7 @@ export default function ManageProfile() {
                               Approved
                             </Badge>
                           </TableCell>
-                          <TableCell className="py-2 text-right">
+                          <TableCell className="py-2 text-center">
                             <DropdownMenu>
                               <DropdownMenuTrigger asChild>
                                 <Button
@@ -1918,7 +1918,7 @@ export default function ManageProfile() {
                               Under Review
                             </Badge>
                           </TableCell>
-                          <TableCell className="py-2 text-right">
+                          <TableCell className="py-2 text-center">
                             <DropdownMenu>
                               <DropdownMenuTrigger asChild>
                                 <Button
@@ -1973,7 +1973,7 @@ export default function ManageProfile() {
                               Rejected
                             </Badge>
                           </TableCell>
-                          <TableCell className="py-2 text-right">
+                          <TableCell className="py-2 text-center">
                             <DropdownMenu>
                               <DropdownMenuTrigger asChild>
                                 <Button
