@@ -25,6 +25,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
+  TableFooter,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -863,10 +864,6 @@ export default function ManageProfile() {
               <TabsContent value="skills" className="space-y-4">
                 <div className="flex items-center justify-between">
                   <h3 className="text-base font-bold">Skills Summary</h3>
-                  <div className="flex items-center gap-2">
-                    <Button className="h-7 rounded-md bg-blue-600 px-2 text-xs text-white hover:bg-blue-700">Add Skill</Button>
-                    <Button variant="outline" className="h-7 rounded-md px-2 text-xs">Add Suggested Skill</Button>
-                  </div>
                 </div>
                 <div className="overflow-hidden rounded-lg border border-[#e5e7eb] shadow-sm">
                   <Table className="text-[13px]">
@@ -919,6 +916,13 @@ export default function ManageProfile() {
                         </TableRow>
                       ))}
                     </TableBody>
+                    <TableFooter>
+                      <TableRow className="hover:bg-transparent">
+                        <TableCell colSpan={4} className="py-2 text-right">
+                          <Button className="h-7 rounded-md bg-blue-600 px-2 text-xs text-white hover:bg-blue-700">Add Skill</Button>
+                        </TableCell>
+                      </TableRow>
+                    </TableFooter>
                   </Table>
                 </div>
               </TabsContent>
