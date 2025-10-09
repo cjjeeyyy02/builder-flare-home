@@ -2085,27 +2085,19 @@ export default function ManageProfile() {
                     <div className="text-sm font-bold text-foreground">
                       Employee Documents
                     </div>
-                    <div>
-                      <input
-                        ref={uploadRef}
-                        type="file"
-                        className="hidden"
-                        multiple
-                        onChange={onFilesSelected}
-                        accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,image/*"
-                      />
-                      <Button
-                        onClick={onUploadClick}
-                        className="h-8 rounded-md bg-blue-600 px-3 text-xs text-white hover:bg-blue-700"
-                      >
-                        + Upload Document
-                      </Button>
+                    <div className="flex items-center gap-2">
+                      <input ref={uploadRef} type="file" className="hidden" multiple onChange={onFilesSelected} accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,image/*" />
+                      <Button onClick={onUploadClick} className="h-8 rounded-md bg-blue-600 px-3 text-xs text-white hover:bg-blue-700">+ Bulk Upload</Button>
+                      <Button variant="outline" className="h-8 rounded-md px-3 text-xs" onClick={() => { const selected = docs.filter(d => selectedDocs.has(d.id) && d.url); if (!selected.length) return toast({ title: "No documents selected" }); selected.forEach(downloadDoc); }}>Download Selected</Button>
                     </div>
                   </div>
                   <div className="overflow-hidden rounded-lg border border-[#e5e7eb] shadow-sm">
                     <Table className="text-[13px]">
                       <TableHeader>
                         <TableRow>
+                          <TableHead className="py-2 font-bold uppercase">
+                            <input type="checkbox" aria-label="Select all" onChange={(e) => { const all = new Set<string>(); if (e.target.checked) docs.forEach((x) => all.add(x.id)); setSelectedDocs(all); }} />
+                          </TableHead>
                           <TableHead className="py-2 font-bold uppercase">
                             Document Title
                           </TableHead>
@@ -2126,6 +2118,7 @@ export default function ManageProfile() {
                       <TableBody>
                         {docs.map((d) => (
                           <TableRow key={d.id}>
+                            <TableCell className="py-2"><input type="checkbox" checked={selectedDocs.has(d.id)} onChange={(e) => { setSelectedDocs((prev) => { const next = new Set(prev); if (e.target.checked) next.add(d.id); else next.delete(d.id); return next; }); }} aria-label={`Select ${d.title}`} /></TableCell>
                             <TableCell className="py-2">{d.title}</TableCell>
                             <TableCell className="py-2">{d.fileType}</TableCell>
                             <TableCell className="py-2">{d.fileSize}</TableCell>
