@@ -156,14 +156,12 @@ function OrgListView() {
   }
   function saveDept() {
     const name = deptName.trim();
-    const manager = deptManager.trim();
+    const head = deptHead.trim();
+    const costCenter = deptCostCenter.trim();
     const members = Math.max(0, Number.isFinite(deptMembers) ? deptMembers : 0);
-    const location = deptLocation.trim();
-    if (!name) {
-      toast({ title: "Department name required" });
-      return;
-    }
-    const row: DeptRow = { department: name, manager, members, location };
+    if (!name) return toast({ title: "Department name required" });
+    if (!costCenter) return toast({ title: "Cost Center is required" });
+    const row: DeptRow = { department: name, head, costCenter, members };
     setDepartmentsData((arr) => {
       if (editingDeptIndex === null) return [...arr, row];
       const next = [...arr];
