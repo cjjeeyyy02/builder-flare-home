@@ -1130,12 +1130,21 @@ export default function Index() {
 
               <div className="flex items-center gap-3 self-end">
                 <div className="flex items-center gap-3">
-                  <Dialog>
-                    <DialogTrigger asChild>
-                      <Button type="button" className="h-8 rounded-md px-3 text-xs bg-[#2563eb] text-white hover:bg-[#1d4ed8]">
-                        <Plus className="mr-1.5 h-4 w-4" /> Add Employee
-                      </Button>
-                    </DialogTrigger>
+                  <div className="relative">
+                    <input id="bulk-emp-upload" type="file" accept="text/csv,.csv" className="hidden" onChange={(e) => { if (e.target.files?.length) toast({ title: "Bulk upload started", description: `${e.target.files[0].name}` }); }} />
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button type="button" className="h-8 rounded-md px-3 text-xs bg-[#2563eb] text-white hover:bg-[#1d4ed8]">
+                          <Plus className="mr-1.5 h-4 w-4" /> Add Employee
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end" className="w-40">
+                        <DropdownMenuItem onClick={() => document.getElementById("bulk-emp-upload")?.click()}>Bulk Upload</DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => setOpenAddSingle(true)}>Single Upload</DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
+                  <Dialog open={openAddSingle} onOpenChange={setOpenAddSingle}>
                     <DialogContent className="rounded-2xl p-6 shadow-xl">
                       <DialogHeader>
                         <DialogTitle>Add Employee</DialogTitle>
@@ -1189,7 +1198,7 @@ export default function Index() {
                             </Select>
                           </div>
                           <div className="grid gap-1.5">
-                            <Label className="text-xs font-semibold" htmlFor="emp-join">Joining Date</Label>
+                            <Label className="text-xs font-semibold" htmlFor="emp-join">Joined Date</Label>
                             <Input id="emp-join" type="date" />
                           </div>
                         </div>
