@@ -729,7 +729,10 @@ export default function ManageProfile() {
               <TabsContent value="work" className="space-y-6">
                 <div className="grid gap-6 lg:grid-cols-2">
                   <div>
-                    <h3 className="text-base font-bold">Work Details</h3>
+                    <div className="flex items-center justify-between">
+                      <h3 className="text-base font-bold">Work Details</h3>
+                      <Button variant="ghost" className="h-7 w-7 p-0" aria-label="Edit Work Details"><Pencil className="h-4 w-4" /></Button>
+                    </div>
                     <div className="mt-3 grid grid-cols-1 gap-3">
                       <LabeledField
                         label="Position"
@@ -763,7 +766,10 @@ export default function ManageProfile() {
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-base font-bold">Position History</h3>
+                    <div className="flex items-center justify-between">
+                      <h3 className="text-base font-bold">Position History</h3>
+                      <Button variant="ghost" className="h-7 w-7 p-0" aria-label="Edit Position History"><Pencil className="h-4 w-4" /></Button>
+                    </div>
                     <ul className="mt-3 space-y-4">
                       {[
                         {
