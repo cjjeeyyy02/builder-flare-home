@@ -2234,32 +2234,22 @@ export default function ManageProfile() {
                               {d.uploadDate}
                             </TableCell>
                             <TableCell className="py-2 text-right">
-                              <div className="inline-flex items-center gap-1">
-                                <Button
-                                  variant="ghost"
-                                  className="h-8 w-8 p-2"
-                                  aria-label={`View ${d.title}`}
-                                  onClick={() => viewDoc(d)}
-                                >
-                                  <Eye className="h-4 w-4" />
-                                </Button>
-                                <Button
-                                  variant="ghost"
-                                  className="h-8 w-8 p-2"
-                                  aria-label={`Download ${d.title}`}
-                                  onClick={() => downloadDoc(d)}
-                                >
-                                  <Download className="h-4 w-4" />
-                                </Button>
-                                <Button
-                                  variant="ghost"
-                                  className="h-8 w-8 p-0 text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-500/10"
-                                  aria-label={`Delete ${d.title}`}
-                                  onClick={() => deleteDoc(d)}
-                                >
-                                  <Trash2 className="h-4 w-4" />
-                                </Button>
-                              </div>
+                              <DropdownMenu>
+                                <DropdownMenuTrigger asChild>
+                                  <Button
+                                    variant="ghost"
+                                    className="h-8 w-8 p-0 text-muted-foreground hover:bg-transparent"
+                                    aria-label={`Actions for ${d.title}`}
+                                  >
+                                    <EllipsisVertical className="h-4 w-4" />
+                                  </Button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent align="end" className="w-40">
+                                  <DropdownMenuItem onClick={() => viewDoc(d)}>View</DropdownMenuItem>
+                                  <DropdownMenuItem onClick={() => downloadDoc(d)}>Download</DropdownMenuItem>
+                                  <DropdownMenuItem onClick={() => deleteDoc(d)}>Delete</DropdownMenuItem>
+                                </DropdownMenuContent>
+                              </DropdownMenu>
                             </TableCell>
                           </TableRow>
                         ))}
