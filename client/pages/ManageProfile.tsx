@@ -482,7 +482,7 @@ export default function ManageProfile() {
   const ecName = isSarah ? "John Mitchell" : "—";
   const ecRelation = isSarah ? "Brother" : "—";
   const ecPhone = isSarah ? "+1 456 789 123" : "—";
-  const ecAltPhone = isSarah ? "+1 321 654 987" : "��";
+  const ecAltPhone = isSarah ? "+1 321 654 987" : "—";
 
   return (
     <div className="min-h-screen bg-background font-poppins text-[13px] leading-[1.4]">
@@ -966,39 +966,17 @@ export default function ManageProfile() {
                           <TableHead className="py-2 font-bold uppercase">
                             Date of Change
                           </TableHead>
-                          <TableHead className="py-2 font-bold uppercase">
-                            Amount
-                          </TableHead>
-                          <TableHead className="py-2 font-bold uppercase">
-                            Salary Amount
-                          </TableHead>
-                          <TableHead className="py-2 font-bold uppercase">
-                            Change Amount
-                          </TableHead>
-                          <TableHead className="py-2 font-bold uppercase">
-                            Change %
-                          </TableHead>
-                          <TableHead className="py-2 font-bold uppercase">
-                            Type
-                          </TableHead>
-                          <TableHead className="py-2 font-bold uppercase">
-                            Source
-                          </TableHead>
-                          <TableHead className="py-2 font-bold uppercase">
-                            Currency
-                          </TableHead>
-                          <TableHead className="py-2 font-bold uppercase">
-                            Job Title
-                          </TableHead>
+                          <TableHead className="py-2 font-bold uppercase">Change %</TableHead>
+                          <TableHead className="py-2 font-bold uppercase">Type</TableHead>
+                          <TableHead className="py-2 font-bold uppercase">Currency</TableHead>
+                          <TableHead className="py-2 font-bold uppercase">Position</TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
                         {[
                           {
                             date: "01-15-2024",
-                            amount: "$98,000",
-                            salary: "$98,000",
-                            change: "+$3,000",
+                            pct: "+3.16%",
                             pct: "+3.16%",
                             type: "Merit Increase",
                             source: "Annual Review",
@@ -1007,9 +985,7 @@ export default function ManageProfile() {
                           },
                           {
                             date: "01-15-2023",
-                            amount: "$95,000",
-                            salary: "$95,000",
-                            change: "+$5,000",
+                            pct: "+5.56%",
                             pct: "+5.56%",
                             type: "Promotion",
                             source: "HR",
@@ -1018,9 +994,7 @@ export default function ManageProfile() {
                           },
                           {
                             date: "01-15-2022",
-                            amount: "$90,000",
-                            salary: "$90,000",
-                            change: "+$10,000",
+                            pct: "+12.50%",
                             pct: "+12.50%",
                             type: "Adjustment",
                             source: "Manager",
@@ -1033,12 +1007,8 @@ export default function ManageProfile() {
                             className="hover:bg-transparent"
                           >
                             <TableCell className="py-2">{r.date}</TableCell>
-                            <TableCell className="py-2">{r.amount}</TableCell>
-                            <TableCell className="py-2">{r.salary}</TableCell>
-                            <TableCell className="py-2">{r.change}</TableCell>
                             <TableCell className="py-2">{r.pct}</TableCell>
                             <TableCell className="py-2">{r.type}</TableCell>
-                            <TableCell className="py-2">{r.source}</TableCell>
                             <TableCell className="py-2">{r.currency}</TableCell>
                             <TableCell className="py-2">{r.title}</TableCell>
                           </TableRow>
