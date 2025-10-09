@@ -900,22 +900,21 @@ export default function ManageProfile() {
                           <TableCell className="py-2 text-center">{s.years}</TableCell>
                           <TableCell className="py-2">{s.level}</TableCell>
                           <TableCell className="py-2 text-right">
-                            <div className="inline-flex items-center gap-1">
-                              <Button
-                                variant="ghost"
-                                className="h-8 px-2"
-                                aria-label={`Edit ${s.name}`}
-                              >
-                                <Pencil className="h-4 w-4" />
-                              </Button>
-                              <Button
-                                variant="ghost"
-                                className="h-8 px-2"
-                                aria-label={`Delete ${s.name}`}
-                              >
-                                <Trash2 className="h-4 w-4" />
-                              </Button>
-                            </div>
+                            <DropdownMenu>
+                              <DropdownMenuTrigger asChild>
+                                <Button
+                                  variant="ghost"
+                                  className="h-8 w-8 p-0"
+                                  aria-label={`Actions for ${s.name}`}
+                                >
+                                  <EllipsisVertical className="h-4 w-4" />
+                                </Button>
+                              </DropdownMenuTrigger>
+                              <DropdownMenuContent align="end" className="w-44">
+                                <DropdownMenuItem>Edit</DropdownMenuItem>
+                                <DropdownMenuItem>Delete</DropdownMenuItem>
+                              </DropdownMenuContent>
+                            </DropdownMenu>
                           </TableCell>
                         </TableRow>
                       ))}
