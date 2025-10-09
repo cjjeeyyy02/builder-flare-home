@@ -337,7 +337,7 @@ function OrgListView() {
               ← Back
             </Button>
           )}
-          <h3 className={cn("text-sm font-bold", mode === "manage" && "font-poppins")}>{mode === "list" ? "List View" : mode === "chart" ? "Chart View" : "Manage Department"}</h3>
+          <h3 className={cn("text-sm font-bold", mode === "manage" && "font-poppins")}>{mode === "manage" ? "Manage Department" : ""}</h3>
         </div>
         {mode === "manage" ? null : (
           <div className="flex items-center gap-3 text-xs text-muted-foreground">
