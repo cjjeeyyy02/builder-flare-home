@@ -1764,8 +1764,8 @@ export default function ManageProfile() {
                       <TableHeader>
                         <TableRow>
                           <TableHead className="py-2 font-bold uppercase">Leave Type</TableHead>
-                          <TableHead className="py-2 font-bold uppercase">Leave Taken</TableHead>
-                          <TableHead className="py-2 font-bold uppercase">Leave Balance</TableHead>
+                          <TableHead className="py-2 text-center font-bold uppercase">Leave Taken</TableHead>
+                          <TableHead className="py-2 text-center font-bold uppercase">Leave Balance</TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
@@ -1776,8 +1776,8 @@ export default function ManageProfile() {
                         ].map((x) => (
                           <TableRow key={x.type}>
                             <TableCell className="py-2">{x.type}</TableCell>
-                            <TableCell className="py-2">{x.taken}</TableCell>
-                            <TableCell className="py-2">{x.balance}</TableCell>
+                            <TableCell className="py-2 text-center">{x.taken}</TableCell>
+                            <TableCell className="py-2 text-center">{x.balance}</TableCell>
                           </TableRow>
                         ))}
                       </TableBody>
@@ -1800,7 +1800,7 @@ export default function ManageProfile() {
                           <TableHead className="py-2 font-bold uppercase">
                             Duration
                           </TableHead>
-                          <TableHead className="py-2 font-bold uppercase">
+                          <TableHead className="py-2 text-center font-bold uppercase">
                             Total Days
                           </TableHead>
                           <TableHead className="py-2 font-bold uppercase">
@@ -1817,7 +1817,7 @@ export default function ManageProfile() {
                           <TableCell className="py-2">
                             03-15-2024 – 03-17-2024
                           </TableCell>
-                          <TableCell className="py-2">3</TableCell>
+                          <TableCell className="py-2 text-center">3</TableCell>
                           <TableCell className="py-2">
                             <Badge className="border-0 bg-emerald-100 px-2.5 py-0.5 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300">
                               Approved
@@ -1872,7 +1872,7 @@ export default function ManageProfile() {
                           <TableCell className="py-2">
                             01-08-2024 – 01-12-2024
                           </TableCell>
-                          <TableCell className="py-2">5</TableCell>
+                          <TableCell className="py-2 text-center">5</TableCell>
                           <TableCell className="py-2">
                             <Badge className="border-0 bg-emerald-100 px-2.5 py-0.5 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300">
                               Approved
@@ -1927,7 +1927,7 @@ export default function ManageProfile() {
                           <TableCell className="py-2">
                             04-22-2024 – 04-22-2024
                           </TableCell>
-                          <TableCell className="py-2">1</TableCell>
+                          <TableCell className="py-2 text-center">1</TableCell>
                           <TableCell className="py-2">
                             <Badge className="border-0 bg-amber-100 px-2.5 py-0.5 text-amber-700 dark:bg-amber-500/20 dark:text-amber-300">
                               Under Review
@@ -1982,7 +1982,7 @@ export default function ManageProfile() {
                           <TableCell className="py-2">
                             05-10-2024 – 05-14-2024
                           </TableCell>
-                          <TableCell className="py-2">5</TableCell>
+                          <TableCell className="py-2 text-center">5</TableCell>
                           <TableCell className="py-2">
                             <Badge className="border-0 bg-rose-100 px-2.5 py-0.5 text-rose-700 dark:bg-rose-500/20 dark:text-rose-300">
                               Rejected
