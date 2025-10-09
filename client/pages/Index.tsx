@@ -119,7 +119,7 @@ function OrgListView() {
   const [addReportOpen, setAddReportOpen] = useState(false);
   const [reportTarget, setReportTarget] = useState<{ name: string; role: string } | null>(null);
 
-  type DeptRow = { department: string; manager: string; members: number; location: string };
+  type DeptRow = { department: string; head: string; costCenter: string; members: number };
   const [departmentsData, setDepartmentsData] = useState<DeptRow[]>(DEPT_SUMMARY);
   const { toast } = useToast();
   const [deptDialogOpen, setDeptDialogOpen] = useState(false);
