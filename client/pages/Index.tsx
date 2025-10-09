@@ -177,6 +177,39 @@ function OrgListView() {
     toast({ title: "Department deleted" });
   }
 
+  function download(filename: string, content: string, mime: string) {
+    const blob = new Blob([content], { type: mime });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  }
+  function currentManagedRows(): DeptRow[] {
+    const q = msQuery.toLowerCase().trim();
+    return departmentsData.filter((d) => {
+      const matchesHead = !q || d.head.toLowerCase().includes(q);
+      const matchesDept = msDeptFilter === "all" || d.department === msDeptFilter;
+      return matchesHead && matchesDept;
+    });
+  }
+  function exportCSV() {
+    const rows = currentManagedRows();
+    const headers = ["Department","Department Head","Cost Center","Team Members"];
+    const csv = [headers.join(","), ...rows.map(r => [r.department, r.head, r.costCenter, String(r.members)].map(v => `"${String(v).replace(/"/g, '""')}"`).join(","))].join("\n");
+    download("manage-structure.csv", csv, "text/csv;charset=utf-8;");
+    toast({ title: "Exported CSV", description: `${rows.length} record(s)` });
+  }
+  function exportXLS() {
+    const rows = currentManagedRows();
+    const xml = `<?xml version="1.0"?>\n<?mso-application progid="Excel.Sheet"?>\n<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">\n<Worksheet ss:Name="ManageStructure"><Table>${["Department","Department Head","Cost Center","Team Members"].map(h=>`<Cell><Data ss:Type=\"String\">${h}</Data></Cell>`).join("")}${rows.map(r=>`<Row><Cell><Data ss:Type=\"String\">${r.department}</Data></Cell><Cell><Data ss:Type=\"String\">${r.head}</Data></Cell><Cell><Data ss:Type=\"String\">${r.costCenter}</Data></Cell><Cell><Data ss:Type=\"Number\">${r.members}</Data></Cell></Row>`).join("")}</Table></Worksheet></Workbook>`;
+    download("manage-structure.xls", xml, "application/vnd.ms-excel");
+    toast({ title: "Exported Excel", description: `${rows.length} record(s)` });
+  }
+
   const renderRows = (node: OrgNode, depth: number): React.ReactNode[] => {
     const hasChildren = !!node.children?.length;
     const isCollapsed = collapsed.has(node.name);
