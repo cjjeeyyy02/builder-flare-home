@@ -487,6 +487,11 @@ export default function ManageProfile() {
   return (
     <div className="min-h-screen bg-background font-poppins text-[13px] leading-[1.4]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="py-2">
+          <Button variant="ghost" onClick={() => navigate(-1)} className="h-8 px-2 text-xs">
+            <ArrowLeft className="mr-2 h-4 w-4" /> Back
+          </Button>
+        </div>
         <div className="py-4">
           <div className="flex items-start justify-between gap-4 rounded-2xl border bg-white p-3 shadow-sm">
             <div className="flex items-center gap-4">
