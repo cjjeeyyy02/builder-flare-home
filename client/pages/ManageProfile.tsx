@@ -2283,65 +2283,136 @@ export default function ManageProfile() {
                 </Dialog>
               </TabsContent>
               <TabsContent value="apps" className="space-y-4">
+                {/* Header: Back + Key Job Info */}
                 <div className="rounded-2xl border bg-card p-4 shadow-sm">
-                  <div className="mb-2 flex items-center gap-2 text-sm font-bold text-foreground">
-                    <CalendarDays className="h-4 w-4" /> Application History
+                  <div className="mb-3 flex items-center justify-between">
+                    <Button variant="outline" className="h-8 rounded-md px-3 text-xs" onClick={() => navigate(-1)}>
+                      <ArrowLeft className="mr-2 h-4 w-4" /> Back
+                    </Button>
                   </div>
-                  <div className="overflow-hidden rounded-lg border border-[#e5e7eb] shadow-sm">
-                    <Table className="text-[13px]">
-                      <TableHeader>
-                        <TableRow className="hover:bg-transparent">
-                          <TableHead className="py-2 font-bold uppercase">
-                            Position
-                          </TableHead>
-                          <TableHead className="py-2 font-bold uppercase">
-                            Department
-                          </TableHead>
-                          <TableHead className="py-2 font-bold uppercase">
-                            Date Applied
-                          </TableHead>
-                          <TableHead className="py-2 font-bold uppercase">
-                            Status
-                          </TableHead>
-                        </TableRow>
-                      </TableHeader>
-                      <TableBody>
-                        {appHistory.map((a) => (
-                          <TableRow key={a.id} className="hover:bg-transparent">
-                            <TableCell className="py-2">{a.position}</TableCell>
-                            <TableCell className="py-2">
-                              {a.department}
-                            </TableCell>
-                            <TableCell className="py-2">
-                              {a.dateApplied}
-                            </TableCell>
-                            <TableCell className="py-2">
-                              {a.status === "Offer" ? (
-                                <Badge className="border-0 bg-emerald-100 px-2.5 py-0.5 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300">
-                                  Offer
-                                </Badge>
-                              ) : a.status === "Interview" ? (
-                                <Badge className="border-0 bg-sky-100 px-2.5 py-0.5 text-sky-700 dark:bg-sky-500/20 dark:text-sky-300">
-                                  Interview
-                                </Badge>
-                              ) : a.status === "Under Review" ? (
-                                <Badge className="border-0 bg-amber-100 px-2.5 py-0.5 text-amber-700 dark:bg-amber-500/20 dark:text-amber-300">
-                                  Under Review
-                                </Badge>
-                              ) : a.status === "Submitted" ? (
-                                <Badge className="border-0 bg-blue-100 px-2.5 py-0.5 text-blue-700 dark:bg-blue-500/20 dark:text-blue-300">
-                                  Submitted
-                                </Badge>
-                              ) : (
-                                <Badge className="border-0 bg-rose-100 px-2.5 py-0.5 text-rose-700 dark:bg-rose-500/20 dark:text-rose-300">
-                                  Rejected
-                                </Badge>
-                              )}
-                            </TableCell>
-                          </TableRow>
-                        ))}
-                      </TableBody>
-                    </Table>
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    <div className="flex items-center justify-between rounded-md border p-3 text-sm">
+                      <div className="text-muted-foreground">Job ID</div>
+                      <div className="font-semibold text-foreground">JOB-101</div>
+                    </div>
+                    <div className="flex items-center justify-between rounded-md border p-3 text-sm">
+                      <div className="text-muted-foreground">Application Date</div>
+                      <div className="font-semibold text-foreground">01-15-2024</div>
+                    </div>
+                    <div className="flex items-center justify-between rounded-md border p-3 text-sm sm:col-span-2">
+                      <div className="text-muted-foreground">Application Method</div>
+                      <div className="font-semibold text-foreground">—</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 1. Screening Details */}
+                <div className="rounded-2xl border bg-card p-4 shadow-sm">
+                  <div className="mb-2 flex items-center justify-between">
+                    <div className="text-sm font-semibold">1. Screening Details</div>
+                    <Button variant="ghost" className="h-7 w-7 p-0" aria-label="Edit Screening Details">
+                      <Pencil className="h-4 w-4" />
+                    </Button>
+                  </div>
+                  <div className="grid gap-2 text-sm">
+                    <div className="grid grid-cols-2 items-center">
+                      <div className="text-muted-foreground">Date Added</div>
+                      <div className="text-right font-semibold">—</div>
+                    </div>
+                    <div className="grid grid-cols-2 items-center">
+                      <div className="text-muted-foreground">Status</div>
+                      <div className="text-right font-semibold">—</div>
+                    </div>
+                    <div className="grid grid-cols-2 items-center">
+                      <div className="text-muted-foreground">Approved Date</div>
+                      <div className="text-right font-semibold">—</div>
+                    </div>
+                    <div className="grid grid-cols-2 items-center">
+                      <div className="text-muted-foreground">Approved By</div>
+                      <div className="text-right font-semibold">—</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 2. Interview Details */}
+                <div className="rounded-2xl border bg-card p-4 shadow-sm">
+                  <div className="mb-2 flex items-center justify-between">
+                    <div className="text-sm font-semibold">2. Interview Details</div>
+                    <Button variant="ghost" className="h-7 w-7 p-0" aria-label="Edit Interview Details">
+                      <Pencil className="h-4 w-4" />
+                    </Button>
+                  </div>
+                  <div className="grid gap-2 text-sm">
+                    <div className="grid grid-cols-2 items-center">
+                      <div className="text-muted-foreground">Step 1</div>
+                      <div className="text-right font-semibold">—</div>
+                    </div>
+                    <div className="grid grid-cols-2 items-center">
+                      <div className="text-muted-foreground">Step 2</div>
+                      <div className="text-right font-semibold">—</div>
+                    </div>
+                    <div className="grid grid-cols-2 items-center">
+                      <div className="text-muted-foreground">Date Added</div>
+                      <div className="text-right font-semibold">—</div>
+                    </div>
+                    <div className="grid grid-cols-2 items-center">
+                      <div className="text-muted-foreground">Date Moved to Activation</div>
+                      <div className="text-right font-semibold">—</div>
+                    </div>
+                    <div className="grid grid-cols-2 items-center">
+                      <div className="text-muted-foreground">Approved By</div>
+                      <div className="text-right font-semibold">—</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 3. Activation Details */}
+                <div className="rounded-2xl border bg-card p-4 shadow-sm">
+                  <div className="mb-2 flex items-center justify-between">
+                    <div className="text-sm font-semibold">3. Activation Details</div>
+                    <Button variant="ghost" className="h-7 w-7 p-0" aria-label="Edit Activation Details">
+                      <Pencil className="h-4 w-4" />
+                    </Button>
+                  </div>
+                  <div className="grid gap-2 text-sm">
+                    <div className="grid grid-cols-2 items-center">
+                      <div className="text-muted-foreground">Date Added</div>
+                      <div className="text-right font-semibold">—</div>
+                    </div>
+                    <div className="grid grid-cols-2 items-center">
+                      <div className="text-muted-foreground">Activation Confirmed Date</div>
+                      <div className="text-right font-semibold">—</div>
+                    </div>
+                    <div className="grid grid-cols-2 items-center">
+                      <div className="text-muted-foreground">Approved By</div>
+                      <div className="text-right font-semibold">—</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 4. Hired Details */}
+                <div className="rounded-2xl border bg-card p-4 shadow-sm">
+                  <div className="mb-2 flex items-center justify-between">
+                    <div className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-700">
+                      <ShieldCheck className="h-4 w-4" /> 4. Hired Details
+                    </div>
+                    <Button variant="ghost" className="h-7 w-7 p-0" aria-label="Edit Hired Details">
+                      <Pencil className="h-4 w-4" />
+                    </Button>
+                  </div>
+                  <div className="grid gap-2 text-sm">
+                    <div className="grid grid-cols-2 items-center">
+                      <div className="text-muted-foreground">Date Added</div>
+                      <div className="text-right font-semibold">—</div>
+                    </div>
+                    <div className="grid grid-cols-2 items-center">
+                      <div className="text-muted-foreground">Orientation Stage Completed</div>
+                      <div className="text-right font-semibold">—</div>
+                    </div>
+                    <div className="grid grid-cols-2 items-center">
+                      <div className="text-muted-foreground">Integration Stage Completed</div>
+                      <div className="text-right font-semibold">—</div>
+                    </div>
                   </div>
                 </div>
               </TabsContent>
