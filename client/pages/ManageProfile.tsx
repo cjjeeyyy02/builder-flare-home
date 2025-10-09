@@ -923,7 +923,7 @@ export default function ManageProfile() {
                         <TableHead className="py-2 font-bold uppercase">
                           Skill Level
                         </TableHead>
-                        <TableHead className="py-2 text-right font-bold uppercase">
+                        <TableHead className="py-2 text-center font-bold uppercase">
                           Action
                         </TableHead>
                       </TableRow>
