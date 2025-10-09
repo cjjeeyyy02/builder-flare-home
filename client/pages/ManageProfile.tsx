@@ -1634,11 +1634,6 @@ export default function ManageProfile() {
                     <h3 className="text-base font-bold">
                       Performance Metrics & Leave History
                     </h3>
-                    <DialogTrigger asChild>
-                      <Button className="h-8 rounded-md bg-blue-600 px-3 text-xs text-white hover:bg-blue-700">
-                        Manage Leave
-                      </Button>
-                    </DialogTrigger>
                   </div>
                   <DialogContent className="max-w-5xl rounded-2xl p-6 shadow-xl">
                     <DialogHeader>
