@@ -122,6 +122,7 @@ export default function ManageProfile() {
   ]);
   const uploadRef = useRef<HTMLInputElement | null>(null);
   const [docPreview, setDocPreview] = useState<EmployeeDoc | null>(null);
+  const [selectedDocs, setSelectedDocs] = useState<Set<string>>(new Set());
 
   function formatSize(bytes: number): string {
     if (bytes < 1024) return `${bytes} B`;
