@@ -1350,9 +1350,18 @@ export default function Index() {
                       <RowActions employee={e} />
                     </div>
                     <div className="mt-3 grid grid-cols-2 gap-2 text-sm">
-                      <div className="truncate text-muted-foreground">{e.role}</div>
-                      <div className="truncate text-muted-foreground">{e.department}</div>
-                      <div className="text-muted-foreground">{e.joiningDate}</div>
+                      <div>
+                        <div className="text-[11px] text-muted-foreground">Position</div>
+                        <div className="truncate text-foreground">{e.role}</div>
+                      </div>
+                      <div>
+                        <div className="text-[11px] text-muted-foreground">Department</div>
+                        <div className="truncate text-foreground">{e.department}</div>
+                      </div>
+                      <div>
+                        <div className="text-[11px] text-muted-foreground">Joined Date</div>
+                        <div className="text-foreground">{e.joiningDate}</div>
+                      </div>
                       <div className="col-span-2">
                         {(() => {
                           const skills = getSkills(e);
