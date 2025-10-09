@@ -463,7 +463,7 @@ export default function ManageProfile() {
   // Section 1: Personal Information
   const piFirstName = isSarah ? "Sarah" : employee.firstName || "—";
   const piMiddleName = isSarah ? "—" : "—";
-  const piLastName = isSarah ? "Mitchell" : employee.lastName || "��";
+  const piLastName = isSarah ? "Mitchell" : employee.lastName || "—";
   const piDOB = isSarah ? "03-15-1990" : "��";
   const piGender = isSarah ? "Female" : "—";
   const piMarital = isSarah ? "Single" : "—";
@@ -874,7 +874,7 @@ export default function ManageProfile() {
                         <TableHead className="py-2 font-bold uppercase">
                           Skill Name
                         </TableHead>
-                        <TableHead className="py-2 font-bold uppercase">
+                        <TableHead className="py-2 text-center font-bold uppercase">
                           Experience (Years)
                         </TableHead>
                         <TableHead className="py-2 font-bold uppercase">
