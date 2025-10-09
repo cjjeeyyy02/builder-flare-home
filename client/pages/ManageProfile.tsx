@@ -1249,7 +1249,7 @@ export default function ManageProfile() {
               <TabsContent value="training" className="space-y-4">
                 <div className="flex items-center justify-between">
                   <h3 className="text-base font-bold">
-                    Training & Industry Certifications
+                    Training & Certifications
                   </h3>
                   <Dialog>
                     <DialogTrigger asChild>
@@ -1454,7 +1454,7 @@ export default function ManageProfile() {
 
                 <div className="rounded-2xl border bg-card p-4 shadow-sm">
                   <div className="mb-2 flex items-center justify-between">
-                    <div className="text-sm font-semibold">Industry Certifications</div>
+                    <div className="text-sm font-semibold">Certifications</div>
                     <div className="flex items-center gap-2">
                       <Button
                         variant="outline"
