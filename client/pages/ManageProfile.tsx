@@ -946,7 +946,6 @@ export default function ManageProfile() {
                 <div>
                   <div className="flex items-center justify-between">
                     <h3 className="text-base font-bold">Compensation Information</h3>
-                    <Button variant="outline" className="h-7 rounded-md px-2 text-xs">+ Add Compensation</Button>
                   </div>
                   <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-3">
                     <div className="rounded-lg border p-4">
@@ -1038,6 +1037,13 @@ export default function ManageProfile() {
                           </TableRow>
                         ))}
                       </TableBody>
+                      <TableFooter>
+                        <TableRow className="hover:bg-transparent">
+                          <TableCell colSpan={6} className="py-2 text-right">
+                            <Button className="h-7 rounded-md bg-blue-600 px-2 text-xs text-white hover:bg-blue-700">Add Compensation History</Button>
+                          </TableCell>
+                        </TableRow>
+                      </TableFooter>
                     </Table>
                   </div>
                 </div>
