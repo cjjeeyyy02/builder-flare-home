@@ -315,9 +315,7 @@ function OrgListView() {
                 <LayoutGrid className="h-4 w-4" />
               </button>
             </div>
-            <span className="ml-2">
-              Zoom: <span className="text-foreground font-semibold">{Math.round(zoom * 100)}%</span> | {total} employees
-            </span>
+            <span className="ml-2">{total} employees</span>
             <div className="inline-flex items-center gap-1">
               <button
                 type="button"
