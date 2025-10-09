@@ -482,7 +482,7 @@ export default function ManageProfile() {
   const ecName = isSarah ? "John Mitchell" : "—";
   const ecRelation = isSarah ? "Brother" : "—";
   const ecPhone = isSarah ? "+1 456 789 123" : "—";
-  const ecAltPhone = isSarah ? "+1 321 654 987" : "—";
+  const ecAltPhone = isSarah ? "+1 321 654 987" : "��";
 
   return (
     <div className="min-h-screen bg-background font-poppins text-[13px] leading-[1.4]">
@@ -932,7 +932,7 @@ export default function ManageProfile() {
                   <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-3">
                     <div className="rounded-lg border p-4">
                       <div className="text-xs font-semibold text-foreground">
-                        Base Salary
+                        Current Salary
                       </div>
                       <div className="mt-1 text-lg font-semibold text-foreground">
                         $95,000 per month
