@@ -206,10 +206,20 @@ function OrgListView() {
           <TableCell className="py-2 text-xs">{node.department}</TableCell>
           <TableCell className="py-2 text-xs">{typeof node.directReports === "number" ? node.directReports : node.children?.length ?? 0}</TableCell>
           <TableCell className="py-2 text-right">
-            <div className="flex items-center justify-end gap-2">
-              <Button type="button" onClick={() => setMode("chart")} className="h-7 rounded-md px-2 text-xs bg-brand text-brand-foreground hover:bg-brand/90">View Chart</Button>
-              <Button type="button" onClick={() => { setReportTarget({ name: node.name, role: node.title }); setAddReportOpen(true); }} className="h-7 rounded-md px-2 text-xs bg-emerald-600 text-white hover:bg-emerald-700">Add Report</Button>
-            </div>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="h-7 w-7 p-0" aria-label={`Actions for ${node.name}`}>
+                  <EllipsisVertical className="h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-44">
+                <DropdownMenuItem onClick={() => setMode("chart")}>View Chart</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => { setReportTarget({ name: node.name, role: node.title }); setAddReportOpen(true); }}>Add Report</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => toast({ title: "Edit", description: `${node.name}` })}>Edit</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => toast({ title: "Details", description: `${node.title} • ${node.department}` })}>View Details</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => toast({ title: "Deleted", description: `${node.name}` })}>Delete</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </TableCell>
         </TableRow>,
       );
