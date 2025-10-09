@@ -520,7 +520,7 @@ export default function ManageProfile() {
                 <span className="text-muted-foreground">{employee.id}</span>
               </div>
               <div className="mt-1 flex items-center justify-end gap-1 text-muted-foreground">
-                <CalendarDays className="h-4 w-4" /> Joining Date:{" "}
+                <CalendarDays className="h-4 w-4" /> Joined Date:{" "}
                 {employee.joiningDate}
               </div>
             </div>
