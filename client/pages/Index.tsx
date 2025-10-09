@@ -1246,7 +1246,7 @@ export default function Index() {
                         <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Department</TableHead>
                         <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Skills</TableHead>
                         <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Status</TableHead>
-                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Joining Date</TableHead>
+                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Joined Date</TableHead>
                         <TableHead className="px-2 py-1 text-center text-xs font-semibold uppercase leading-tight">Action</TableHead>
                       </TableRow>
                     </TableHeader>
