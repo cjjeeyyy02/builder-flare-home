@@ -1337,7 +1337,6 @@ export default function ManageProfile() {
                         </div>
                       </div>
                       <div className="grid gap-1.5">
-                        <Label className="text-xs font-semibold">Supporting Documents</Label>
                         <input
                           ref={trainingFileInputRef}
                           type="file"
@@ -1348,18 +1347,11 @@ export default function ManageProfile() {
                         <Button
                           type="button"
                           variant="outline"
-                          className="h-9 rounded-md px-3 text-xs"
+                          className="h-7 rounded-md px-2 text-xs"
                           onClick={triggerTrainingUpload}
                         >
                           Upload Docs
                         </Button>
-                        {trainingUploadFiles.length > 0 && (
-                          <ul className="mt-2 list-disc pl-5 text-xs text-muted-foreground">
-                            {trainingUploadFiles.map((f) => (
-                              <li key={f.name}>{f.name}</li>
-                            ))}
-                          </ul>
-                        )}
                       </div>
                       <DialogFooter>
                         <DialogClose asChild>
