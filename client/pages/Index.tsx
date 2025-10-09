@@ -845,6 +845,7 @@ export default function Index() {
   const [aiMsgs, setAiMsgs] = useState<ChatMessage[]>([
     { role: "assistant", content: "Hi! Try: who knows AWS, React, or TypeScript? I'll list matches with years and recommend top candidates." },
   ]);
+  const [openAddSingle, setOpenAddSingle] = useState(false);
 
   function getAssistantReply(q: string): string {
     const raw = q.trim();
