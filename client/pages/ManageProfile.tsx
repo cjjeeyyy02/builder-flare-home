@@ -985,6 +985,7 @@ export default function ManageProfile() {
                           <TableHead className="py-2 font-bold uppercase">
                             Date of Change
                           </TableHead>
+                          <TableHead className="py-2 font-bold uppercase">Salary</TableHead>
                           <TableHead className="py-2 font-bold uppercase">Change %</TableHead>
                           <TableHead className="py-2 font-bold uppercase">Type</TableHead>
                           <TableHead className="py-2 font-bold uppercase">Currency</TableHead>
@@ -995,6 +996,7 @@ export default function ManageProfile() {
                         {[
                           {
                             date: "01-15-2024",
+                            salary: "$95,000",
                             pct: "+3.16%",
                             pct: "+3.16%",
                             type: "Merit Increase",
@@ -1004,6 +1006,7 @@ export default function ManageProfile() {
                           },
                           {
                             date: "01-15-2023",
+                            salary: "$90,000",
                             pct: "+5.56%",
                             pct: "+5.56%",
                             type: "Promotion",
@@ -1013,6 +1016,7 @@ export default function ManageProfile() {
                           },
                           {
                             date: "01-15-2022",
+                            salary: "$80,000",
                             pct: "+12.50%",
                             pct: "+12.50%",
                             type: "Adjustment",
@@ -1026,6 +1030,7 @@ export default function ManageProfile() {
                             className="hover:bg-transparent"
                           >
                             <TableCell className="py-2">{r.date}</TableCell>
+                            <TableCell className="py-2">{r.salary}</TableCell>
                             <TableCell className="py-2">{r.pct}</TableCell>
                             <TableCell className="py-2">{r.type}</TableCell>
                             <TableCell className="py-2">{r.currency}</TableCell>
