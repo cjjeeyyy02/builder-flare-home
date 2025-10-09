@@ -463,7 +463,7 @@ function OrgListView() {
                   <TableHead className="px-3 py-2 text-xs font-medium">Department</TableHead>
                   <TableHead className="px-3 py-2 text-xs font-medium">Department Head</TableHead>
                   <TableHead className="px-3 py-2 text-xs font-medium">Cost Center</TableHead>
-                  <TableHead className="px-3 py-2 text-xs font-medium">Team Members</TableHead>
+                  <TableHead className="px-3 py-2 text-center text-xs font-medium">Team Members</TableHead>
                   <TableHead className="px-3 py-2 text-right text-xs font-medium">Actions</TableHead>
                 </TableRow>
               </TableHeader>
@@ -486,7 +486,7 @@ function OrgListView() {
                           <TableCell className="px-3 py-2">{d.department}</TableCell>
                           <TableCell className="px-3 py-2">{d.head}</TableCell>
                           <TableCell className="px-3 py-2">{d.costCenter}</TableCell>
-                          <TableCell className="px-3 py-2">{d.members}</TableCell>
+                          <TableCell className="px-3 py-2 text-center">{d.members}</TableCell>
                           <TableCell className="px-3 py-2 text-center">
                             <DropdownMenu>
                               <DropdownMenuTrigger asChild>
