@@ -2285,11 +2285,6 @@ export default function ManageProfile() {
               <TabsContent value="apps" className="space-y-4">
                 {/* Header: Back + Key Job Info */}
                 <div className="rounded-2xl border bg-card p-4 shadow-sm">
-                  <div className="mb-3 flex items-center justify-between">
-                    <Button variant="outline" className="h-8 rounded-md px-3 text-xs" onClick={() => navigate(-1)}>
-                      <ArrowLeft className="mr-2 h-4 w-4" /> Back
-                    </Button>
-                  </div>
                   <div className="grid gap-3 sm:grid-cols-2">
                     <div className="flex items-center justify-between rounded-md border p-3 text-sm">
                       <div className="text-muted-foreground">Job ID</div>
@@ -2308,12 +2303,7 @@ export default function ManageProfile() {
 
                 {/* 1. Screening Details */}
                 <div className="rounded-2xl border bg-card p-4 shadow-sm">
-                  <div className="mb-2 flex items-center justify-between">
-                    <div className="text-sm font-semibold">1. Screening Details</div>
-                    <Button variant="ghost" className="h-7 w-7 p-0" aria-label="Edit Screening Details">
-                      <Pencil className="h-4 w-4" />
-                    </Button>
-                  </div>
+                  <div className="mb-2 text-sm font-semibold">1. Screening Details</div>
                   <div className="grid gap-2 text-sm">
                     <div className="grid grid-cols-2 items-center">
                       <div className="text-muted-foreground">Date Added</div>
@@ -2336,12 +2326,7 @@ export default function ManageProfile() {
 
                 {/* 2. Interview Details */}
                 <div className="rounded-2xl border bg-card p-4 shadow-sm">
-                  <div className="mb-2 flex items-center justify-between">
-                    <div className="text-sm font-semibold">2. Interview Details</div>
-                    <Button variant="ghost" className="h-7 w-7 p-0" aria-label="Edit Interview Details">
-                      <Pencil className="h-4 w-4" />
-                    </Button>
-                  </div>
+                  <div className="mb-2 text-sm font-semibold">2. Interview Details</div>
                   <div className="grid gap-2 text-sm">
                     <div className="grid grid-cols-2 items-center">
                       <div className="text-muted-foreground">Step 1</div>
@@ -2368,12 +2353,7 @@ export default function ManageProfile() {
 
                 {/* 3. Activation Details */}
                 <div className="rounded-2xl border bg-card p-4 shadow-sm">
-                  <div className="mb-2 flex items-center justify-between">
-                    <div className="text-sm font-semibold">3. Activation Details</div>
-                    <Button variant="ghost" className="h-7 w-7 p-0" aria-label="Edit Activation Details">
-                      <Pencil className="h-4 w-4" />
-                    </Button>
-                  </div>
+                  <div className="mb-2 text-sm font-semibold">3. Activation Details</div>
                   <div className="grid gap-2 text-sm">
                     <div className="grid grid-cols-2 items-center">
                       <div className="text-muted-foreground">Date Added</div>
@@ -2392,13 +2372,8 @@ export default function ManageProfile() {
 
                 {/* 4. Hired Details */}
                 <div className="rounded-2xl border bg-card p-4 shadow-sm">
-                  <div className="mb-2 flex items-center justify-between">
-                    <div className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-700">
-                      <ShieldCheck className="h-4 w-4" /> 4. Hired Details
-                    </div>
-                    <Button variant="ghost" className="h-7 w-7 p-0" aria-label="Edit Hired Details">
-                      <Pencil className="h-4 w-4" />
-                    </Button>
+                  <div className="mb-2 inline-flex items-center gap-2 text-sm font-semibold text-emerald-700">
+                    <ShieldCheck className="h-4 w-4" /> 4. Hired Details
                   </div>
                   <div className="grid gap-2 text-sm">
                     <div className="grid grid-cols-2 items-center">
