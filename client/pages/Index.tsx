@@ -92,11 +92,11 @@ const ORG_TREE: OrgNode[] = [
 ];
 
 const DEPT_SUMMARY = [
-  { department: "Design", manager: "Ava Thompson", members: 1, location: "New York" },
-  { department: "Engineering", manager: "Liam Carter", members: 3, location: "San Francisco" },
-  { department: "Finance", manager: "Olivia Chen", members: 1, location: "Chicago" },
-  { department: "Marketing", manager: "Noah Patel", members: 1, location: "Los Angeles" },
-  { department: "Product", manager: "Emma Davis", members: 2, location: "Seattle" },
+  { department: "Design", head: "Ava Thompson", costCenter: "CC-1001", members: 8 },
+  { department: "Engineering", head: "Liam Carter", costCenter: "CC-2001", members: 42 },
+  { department: "Finance", head: "Olivia Chen", costCenter: "CC-3001", members: 12 },
+  { department: "Marketing", head: "Noah Patel", costCenter: "CC-4001", members: 16 },
+  { department: "Product", head: "Emma Davis", costCenter: "CC-5001", members: 18 },
 ];
 
 function OrgListView() {
