@@ -925,9 +925,10 @@ export default function ManageProfile() {
 
               <TabsContent value="comp" className="space-y-6">
                 <div>
-                  <h3 className="text-base font-bold">
-                    Compensation Information
-                  </h3>
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-base font-bold">Compensation Information</h3>
+                    <Button variant="outline" className="h-7 rounded-md px-2 text-xs">+ Add Compensation</Button>
+                  </div>
                   <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-3">
                     <div className="rounded-lg border p-4">
                       <div className="text-xs font-semibold text-foreground">
@@ -1853,7 +1854,7 @@ export default function ManageProfile() {
                                   onClick={() =>
                                     setLeaveView({
                                       type: "Annual Leave",
-                                      duration: "01-08-2024 �� 01-12-2024",
+                                      duration: "01-08-2024 – 01-12-2024",
                                       days: 5,
                                       status: "Approved",
                                     })
