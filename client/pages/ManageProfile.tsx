@@ -1424,8 +1424,40 @@ export default function ManageProfile() {
 
                 <div className="rounded-2xl border bg-card p-4 shadow-sm">
                   <div className="mb-2 flex items-center justify-between">
-                    <div className="text-sm font-semibold">
-                      Industry Certifications
+                    <div className="text-sm font-semibold">Industry Certifications</div>
+                    <div className="flex items-center gap-2">
+                      <Button
+                        variant="outline"
+                        className="h-7 rounded-md px-2 text-xs"
+                        onClick={() =>
+                          viewCertificate({
+                            title: "AWS Certified Solutions Architect",
+                            provider: "Amazon Web Services",
+                            id: "AWS-CSA-2023-001234",
+                            issued: "06/15/2023",
+                            expires: "06/15/2026",
+                            owner: `${employee.firstName} ${employee.lastName}`,
+                          })
+                        }
+                      >
+                        View
+                      </Button>
+                      <Button
+                        variant="outline"
+                        className="h-7 rounded-md px-2 text-xs"
+                        onClick={() =>
+                          downloadCertificate({
+                            title: "AWS Certified Solutions Architect",
+                            provider: "Amazon Web Services",
+                            id: "AWS-CSA-2023-001234",
+                            issued: "06/15/2023",
+                            expires: "06/15/2026",
+                            owner: `${employee.firstName} ${employee.lastName}`,
+                          })
+                        }
+                      >
+                        Export
+                      </Button>
                     </div>
                   </div>
                   <div className="grid gap-3 text-sm sm:grid-cols-2">
@@ -1838,7 +1870,7 @@ export default function ManageProfile() {
                                     onClick={() =>
                                       setLeaveConfirm({
                                         type: "Annual Leave",
-                                        duration: "01-08-2024 – 01-12-2024",
+                                        duration: "01-08-2024 �� 01-12-2024",
                                         days: 5,
                                         status: "Approved",
                                       })
