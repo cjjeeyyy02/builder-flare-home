@@ -330,13 +330,15 @@ function OrgListView() {
 
   return (
     <div className="space-y-3">
+      {mode === "manage" && (
+        <div>
+          <Button type="button" variant="outline" onClick={() => setMode("list")} className="h-8 rounded-lg px-4 text-xs font-medium bg-white text-[#111827] border border-[#d1d5db] hover:bg-gray-50">
+            ← Back
+          </Button>
+        </div>
+      )}
       <div className="flex items-center justify-between">
         <div className={cn("flex items-center gap-3", mode === "manage" && "font-poppins")}>
-          {mode === "manage" && (
-            <Button type="button" variant="outline" onClick={() => setMode("list")} className="h-8 rounded-lg px-4 text-xs font-medium bg-white text-[#111827] border border-[#d1d5db] hover:bg-gray-50">
-              ← Back
-            </Button>
-          )}
           <h3 className={cn("text-sm font-bold", mode === "manage" && "font-poppins")}>{mode === "manage" ? "Manage Department" : ""}</h3>
         </div>
         {mode === "manage" ? null : (
