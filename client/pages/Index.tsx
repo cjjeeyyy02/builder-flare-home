@@ -247,10 +247,8 @@ function OrgListView() {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-44">
                 <DropdownMenuItem onClick={() => setMode("chart")}>View Chart</DropdownMenuItem>
-                <DropdownMenuItem onClick={() => { setReportTarget({ name: node.name, role: node.title }); setAddReportOpen(true); }}>Add Report</DropdownMenuItem>
                 <DropdownMenuItem onClick={() => toast({ title: "Edit", description: `${node.name}` })}>Edit</DropdownMenuItem>
-                <DropdownMenuItem onClick={() => toast({ title: "Details", description: `${node.title} • ${node.department}` })}>View Details</DropdownMenuItem>
-                <DropdownMenuItem onClick={() => toast({ title: "Deleted", description: `${node.name}` })}>Delete</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => toast({ title: "Details", description: `${node.title} • ${node.department}` })}>View</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </TableCell>
