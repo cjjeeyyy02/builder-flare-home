@@ -895,8 +895,8 @@ export default function ManageProfile() {
                         { name: "Docker", years: 1, level: "Beginner" },
                       ].map((s, idx) => (
                         <TableRow key={s.name} className="hover:bg-transparent">
-                          <TableCell className="py-2">{s.name}</TableCell>
-                          <TableCell className="py-2">{s.years}</TableCell>
+                          <TableCell className="py-2"><span className="inline-flex items-center gap-1"><Check className="h-4 w-4 text-muted-foreground" /> {s.name}</span></TableCell>
+                          <TableCell className="py-2 text-center">{s.years}</TableCell>
                           <TableCell className="py-2">{s.level}</TableCell>
                           <TableCell className="py-2 text-right">
                             <div className="inline-flex items-center gap-1">
@@ -1853,7 +1853,7 @@ export default function ManageProfile() {
                                   onClick={() =>
                                     setLeaveView({
                                       type: "Annual Leave",
-                                      duration: "01-08-2024 – 01-12-2024",
+                                      duration: "01-08-2024 �� 01-12-2024",
                                       days: 5,
                                       status: "Approved",
                                     })
