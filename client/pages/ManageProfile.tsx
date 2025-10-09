@@ -864,6 +864,13 @@ export default function ManageProfile() {
                           </TableRow>
                         ))}
                       </TableBody>
+                      <TableFooter>
+                        <TableRow className="hover:bg-transparent">
+                          <TableCell colSpan={6} className="py-2 text-right">
+                            <Button className="h-7 rounded-md bg-blue-600 px-2 text-xs text-white hover:bg-blue-700">Add Work History</Button>
+                          </TableCell>
+                        </TableRow>
+                      </TableFooter>
                     </Table>
                   </div>
                 </div>
