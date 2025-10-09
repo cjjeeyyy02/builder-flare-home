@@ -617,9 +617,10 @@ export default function ManageProfile() {
                 </section>
 
                 <section className="border-t pt-6">
-                  <h3 className="text-base font-bold text-foreground">
-                    Contact Details
-                  </h3>
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-base font-bold text-foreground">Contact Details</h3>
+                    <Button variant="ghost" className="h-7 w-7 p-0" aria-label="Edit Contact Details"><Pencil className="h-4 w-4" /></Button>
+                  </div>
                   <div className="mt-3 grid grid-cols-1 gap-4 md:grid-cols-2">
                     <div className="space-y-2">
                       <div className="text-xs font-semibold text-foreground">
