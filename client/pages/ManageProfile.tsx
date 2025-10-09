@@ -1408,40 +1408,45 @@ export default function ManageProfile() {
                             </Badge>
                           </TableCell>
                           <TableCell className="py-2 text-right">
-                            <div className="inline-flex items-center gap-1">
-                              <Button
-                                variant="ghost"
-                                className="h-8 w-8 p-2"
-                                aria-label="View certificate"
-                                onClick={() =>
-                                  viewCertificate({
-                                    title:
-                                      "React Advanced Patterns – Certificate of Completion",
-                                    provider: "Tech Academy",
-                                    issued: "08/15/2023",
-                                    owner: `${employee.firstName} ${employee.lastName}`,
-                                  })
-                                }
-                              >
-                                <Eye className="h-4 w-4" />
-                              </Button>
-                              <Button
-                                variant="ghost"
-                                className="h-8 w-8 p-2"
-                                aria-label="Download certificate"
-                                onClick={() =>
-                                  downloadCertificate({
-                                    title:
-                                      "React Advanced Patterns – Certificate of Completion",
-                                    provider: "Tech Academy",
-                                    issued: "08/15/2023",
-                                    owner: `${employee.firstName} ${employee.lastName}`,
-                                  })
-                                }
-                              >
-                                <Download className="h-4 w-4" />
-                              </Button>
-                            </div>
+                            <DropdownMenu>
+                              <DropdownMenuTrigger asChild>
+                                <Button
+                                  variant="ghost"
+                                  className="h-8 w-8 p-0 text-muted-foreground hover:bg-transparent"
+                                  aria-label="Certificate actions"
+                                >
+                                  <EllipsisVertical className="h-4 w-4" />
+                                </Button>
+                              </DropdownMenuTrigger>
+                              <DropdownMenuContent align="end" className="w-40">
+                                <DropdownMenuItem
+                                  onClick={() =>
+                                    viewCertificate({
+                                      title:
+                                        "React Advanced Patterns – Certificate of Completion",
+                                      provider: "Tech Academy",
+                                      issued: "08/15/2023",
+                                      owner: `${employee.firstName} ${employee.lastName}`,
+                                    })
+                                  }
+                                >
+                                  View
+                                </DropdownMenuItem>
+                                <DropdownMenuItem
+                                  onClick={() =>
+                                    downloadCertificate({
+                                      title:
+                                        "React Advanced Patterns – Certificate of Completion",
+                                      provider: "Tech Academy",
+                                      issued: "08/15/2023",
+                                      owner: `${employee.firstName} ${employee.lastName}`,
+                                    })
+                                  }
+                                >
+                                  Download
+                                </DropdownMenuItem>
+                              </DropdownMenuContent>
+                            </DropdownMenu>
                           </TableCell>
                         </TableRow>
                         <TableRow className="hover:bg-transparent">
