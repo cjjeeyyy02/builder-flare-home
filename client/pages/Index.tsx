@@ -464,7 +464,7 @@ function OrgListView() {
                   <TableHead className="px-3 py-2 text-xs font-medium">Department Head</TableHead>
                   <TableHead className="px-3 py-2 text-xs font-medium">Cost Center</TableHead>
                   <TableHead className="px-3 py-2 text-center text-xs font-medium">Team Members</TableHead>
-                  <TableHead className="px-3 py-2 text-right text-xs font-medium">Actions</TableHead>
+                  <TableHead className="px-3 py-2 text-center text-xs font-medium">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -572,7 +572,7 @@ function OrgListView() {
                   <TableHead className="h-9 px-3 text-xs">Position</TableHead>
                   <TableHead className="h-9 px-3 text-xs">Department</TableHead>
                   <TableHead className="h-9 px-3 text-xs">Reporting Staff</TableHead>
-                  <TableHead className="h-9 px-3 text-right text-xs">Actions</TableHead>
+                  <TableHead className="h-9 px-3 text-center text-xs">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
