@@ -1600,12 +1600,19 @@ export default function Index() {
                         <TableCell className="px-2 py-1 text-xs leading-tight">{d.expirationDate ?? "—"}</TableCell>
                         <TableCell className="px-2 py-1 text-xs leading-tight">{d.uploadedBy}</TableCell>
                         <TableCell className="px-2 py-1 text-right text-xs leading-tight">
-                          <div className="flex items-center justify-end gap-2">
-                            <Button variant="ghost" className="h-7 w-7 p-0" aria-label="View"><Eye className="h-4 w-4" /></Button>
-                            <Button variant="ghost" className="h-7 w-7 p-0" aria-label="Download"><Download className="h-4 w-4" /></Button>
-                            {(currentRole === "admin" || currentRole === "hr") && (
-                              <Button variant="ghost" className="h-7 w-7 p-0" aria-label="Edit"><Pencil className="h-4 w-4" /></Button>
-                            )}
+                          <div className="flex items-center justify-end">
+                            <DropdownMenu>
+                              <DropdownMenuTrigger asChild>
+                                <Button variant="ghost" className="h-7 w-7 p-0" aria-label={`Actions for ${d.title}`}>
+                                  <EllipsisVertical className="h-4 w-4" />
+                                </Button>
+                              </DropdownMenuTrigger>
+                              <DropdownMenuContent align="end" className="w-40">
+                                <DropdownMenuItem onClick={() => toast({ title: "View", description: d.title })}>View</DropdownMenuItem>
+                                <DropdownMenuItem onClick={() => toast({ title: "Edit", description: d.title })}>Edit</DropdownMenuItem>
+                                <DropdownMenuItem onClick={() => toast({ title: "Delete", description: d.title })}>Delete</DropdownMenuItem>
+                              </DropdownMenuContent>
+                            </DropdownMenu>
                           </div>
                         </TableCell>
                       </TableRow>
