@@ -248,7 +248,6 @@ function OrgListView() {
               <DropdownMenuContent align="end" className="w-44">
                 <DropdownMenuItem onClick={() => setMode("chart")}>View Chart</DropdownMenuItem>
                 <DropdownMenuItem onClick={() => toast({ title: "Edit", description: `${node.name}` })}>Edit</DropdownMenuItem>
-                <DropdownMenuItem onClick={() => toast({ title: "Details", description: `${node.title} • ${node.department}` })}>View</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </TableCell>
@@ -496,7 +495,6 @@ function OrgListView() {
                               </DropdownMenuTrigger>
                               <DropdownMenuContent align="end" className="w-44">
                                 <DropdownMenuItem onClick={() => openEditDept(departmentsData.findIndex((x) => x === d))}>Edit</DropdownMenuItem>
-                                <DropdownMenuItem onClick={() => toast({ title: d.department, description: `${d.head} • ${d.costCenter}` })}>View Details</DropdownMenuItem>
                                 <DropdownMenuItem onClick={() => setConfirmDeleteIndex(departmentsData.findIndex((x) => x === d))}>Delete</DropdownMenuItem>
                               </DropdownMenuContent>
                             </DropdownMenu>
