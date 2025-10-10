@@ -841,6 +841,53 @@ export default function Index() {
   ]);
   const [openAddSingle, setOpenAddSingle] = useState(false);
 
+  // Helpers for AI assistant
+  function parseMDY(s: string): Date | null {
+    const m = s.match(/(\d{1,2})[-\/](\d{1,2})[-\/]?(\d{2,4})/);
+    if (!m) return null;
+    const mm = parseInt(m[1], 10);
+    const dd = parseInt(m[2], 10);
+    const yy = parseInt(m[3].length === 2 ? `20${m[3]}` : m[3], 10);
+    const d = new Date(yy, (mm || 1) - 1, dd || 1);
+    return isNaN(d.getTime()) ? null : d;
+  }
+  function findEmployeeRef(text: string): Employee | null {
+    const byId = text.match(/emp\d{3}/i);
+    if (byId) {
+      const id = byId[0].toUpperCase();
+      const e = EMPLOYEES.find((x) => x.id.toUpperCase() === id);
+      if (e) return e;
+    }
+    const byEmail = EMPLOYEES.find((e) => text.includes(e.email.toLowerCase()));
+    if (byEmail) return byEmail;
+    const byFull = EMPLOYEES.find((e) => text.includes(`${e.firstName} ${e.lastName}`.toLowerCase()));
+    if (byFull) return byFull;
+    // fallback: unique first or last name
+    const byFirst = EMPLOYEES.filter((e) => text.includes(e.firstName.toLowerCase()));
+    if (byFirst.length === 1) return byFirst[0];
+    const byLast = EMPLOYEES.filter((e) => text.includes(e.lastName.toLowerCase()));
+    if (byLast.length === 1) return byLast[0];
+    return null;
+  }
+  function fmtEmp(e: Employee): string {
+    const parts = [
+      `${e.firstName} ${e.lastName} (${e.id})`,
+      e.role,
+      e.department,
+      `Status: ${e.status}`,
+      `Joined: ${e.joiningDate}`,
+      `Email: ${e.email}`,
+      e.contactNumber ? `Phone: ${e.contactNumber}` : null,
+      e.location ? `Location: ${e.location}` : null,
+    ].filter(Boolean) as string[];
+    return parts.join(" • ");
+  }
+  function listByDept(d: string): string {
+    const list = EMPLOYEES.filter((e) => e.department.toLowerCase() === d.toLowerCase());
+    if (!list.length) return `No employees found in ${d}.`;
+    return `${d} (${list.length}):\n${list.map((e) => `• ${e.firstName} ${e.lastName} – ${e.role} (${e.status})`).join("\n")}`;
+  }
+
   function getAssistantReply(q: string): string {
     const raw = q.trim();
     const text = raw.toLowerCase();
@@ -860,19 +907,70 @@ export default function Index() {
       return `Top candidates:\n${topLines.join("\n")}\n\nAll matches:\n${allLines.join("\n")}`;
     }
 
-    // Legacy quick answers retained
+    // Direct employee record lookups
+    const ref = findEmployeeRef(text);
+    if (ref) {
+      if (/(email|mail)/.test(text)) return `${ref.firstName} ${ref.lastName} email: ${ref.email}`;
+      if (/(phone|contact|number)/.test(text)) return `${ref.firstName} ${ref.lastName} phone: ${ref.contactNumber ?? "—"}`;
+      if (/location/.test(text)) return `${ref.firstName} ${ref.lastName} location: ${ref.location ?? "—"}`;
+      if (/(status|role|position|department)/.test(text)) return fmtEmp(ref);
+      return fmtEmp(ref);
+    }
+
+    // Counts and summaries
+    if (/how many|count|total/.test(text)) {
+      const statusMatch = /(active|on leave)/.exec(text);
+      if (statusMatch) {
+        const s = statusMatch[1].toLowerCase().includes("active") ? "Active" : "On Leave";
+        const c = EMPLOYEES.filter((e) => e.status === s).length;
+        return `${s} employees: ${c}`;
+      }
+      const dept = departments.find((d) => text.includes(d.toLowerCase()));
+      if (dept) {
+        const c = EMPLOYEES.filter((e) => e.department.toLowerCase() === dept.toLowerCase()).length;
+        return `${dept} headcount: ${c}`;
+      }
+      return `Total employees: ${EMPLOYEES.length}`;
+    }
+
+    // Department lists
+    const deptMatch = departments.find((d) => text.includes(d.toLowerCase()));
+    if (deptMatch && /(list|show|who|employees|team)/.test(text)) {
+      return listByDept(deptMatch);
+    }
+
+    // Join date filters
+    if (/joined/.test(text) || /hired/.test(text)) {
+      const after = /(after|since)\s+(\d{4}|\d{1,2}[\/-]\d{1,2}[\/-]\d{2,4})/.exec(text);
+      const before = /(before)\s+(\d{4}|\d{1,2}[\/-]\d{1,2}[\/-]\d{2,4})/.exec(text);
+      let list = EMPLOYEES.slice();
+      if (after) {
+        const d = parseMDY(after[2]) || new Date(parseInt(after[2], 10), 0, 1);
+        list = list.filter((e) => (parseMDY(e.joiningDate)?.getTime() ?? 0) >= (d?.getTime() ?? 0));
+      }
+      if (before) {
+        const d = parseMDY(before[2]) || new Date(parseInt(before[2], 10), 11, 31);
+        list = list.filter((e) => (parseMDY(e.joiningDate)?.getTime() ?? 0) <= (d?.getTime() ?? 0));
+      }
+      if (!list.length) return "No matches for that date filter.";
+      return list.map((e) => `• ${e.firstName} ${e.lastName} – ${e.role}, ${e.department} • Joined ${e.joiningDate}`).join("\n");
+    }
+
+    // Status filters
+    if (/active/.test(text) || /on leave/.test(text)) {
+      const s = /on leave/.test(text) ? "On Leave" : "Active";
+      const list = EMPLOYEES.filter((e) => e.status === s);
+      return `${s} (${list.length}):\n${list.map((e) => `• ${e.firstName} ${e.lastName} – ${e.role}, ${e.department}`).join("\n")}`;
+    }
+
+    // Fallback quick answers retained
     if (text.includes("active")) return `Active employees: ${totalActive}`;
     if (text.includes("on leave") || text.includes("leave")) return `On leave: ${onLeave}`;
     if (text.includes("new hire") || text.includes("new hires")) return `New hires this month: ${newHiresThisMonth}`;
     if (text.includes("offboard") || text.includes("exit")) return `Pending offboarding: ${pendingOffboarding}`;
-    const deptMatch = departments.find((d) => text.includes(d.toLowerCase()));
-    if (deptMatch) {
-      const count = EMPLOYEES.filter((e) => e.department.toLowerCase() === deptMatch.toLowerCase()).length;
-      return `${deptMatch} headcount: ${count}`;
-    }
     const byName = EMPLOYEES.find((e) => `${e.firstName} ${e.lastName}`.toLowerCase().includes(text));
     if (byName) return `${byName.firstName} ${byName.lastName} – ${byName.role}, ${byName.department}. Status: ${byName.status}.`;
-    return "Try asking: 'show engineers with React and TypeScript' or 'who knows AWS?'";
+    return "Try asking things like: 'EMP001 details', 'list Engineering employees', 'email of Sarah Mitchell', 'who joined after 2022', or 'count active employees'.";
   }
 
   function sendAi() {
