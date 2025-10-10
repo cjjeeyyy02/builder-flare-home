@@ -521,10 +521,33 @@ export default function ManageProfile() {
   const [piEditOpen, setPiEditOpen] = useState(false);
   const [piDraft, setPiDraft] = useState<PersonalInfo>({ ...personal });
 
+  type ContactDetails = { phone: string; altPhone: string; email: string; workEmail: string };
+  const [contact, setContact] = useState<ContactDetails>({ phone: cdPhone, altPhone: cdAltPhone, email: cdEmail, workEmail: cdWorkEmail });
+  const [cdEditOpen, setCdEditOpen] = useState(false);
+  const [cdDraft, setCdDraft] = useState<ContactDetails>({ ...contact });
+
+  type AddressInfo = { street: string; city: string; state: string; zip: string };
+  const [address, setAddress] = useState<AddressInfo>({ street: addrStreet, city: addrCity, state: addrState, zip: addrZip });
+  const [addrEditOpen, setAddrEditOpen] = useState(false);
+  const [addrDraft, setAddrDraft] = useState<AddressInfo>({ ...address });
+
+  type EmergencyContact = { name: string; relation: string; phone: string; altPhone: string };
+  const [emergency, setEmergency] = useState<EmergencyContact>({ name: ecName, relation: ecRelation, phone: ecPhone, altPhone: ecAltPhone });
+  const [ecEditOpen, setEcEditOpen] = useState(false);
+  const [ecDraft, setEcDraft] = useState<EmergencyContact>({ ...emergency });
+
   type WorkDetails = { position: string; department: string; manager: string; status: string; employmentType: string; dateHired: string; probationEnd: string; workLocation: string; shift: string; workEmail: string; workPhone: string };
   const [work, setWork] = useState<WorkDetails>({ position: "Senior Software Engineer", department: "Engineering", manager: "Michael Rodriguez", status: "Active", employmentType: "Full-Time", dateHired: "01/15/2023", probationEnd: "07-15-2023", workLocation: "Head Office", shift: "Day", workEmail: "sarah.mitchell@company.com", workPhone: "+1 (555) 123-4567 ext. 1234" });
   const [wdEditOpen, setWdEditOpen] = useState(false);
   const [wdDraft, setWdDraft] = useState<WorkDetails>({ ...work });
+
+  type PositionItem = { title: string; range: string; reason: string };
+  const [positionHistory, setPositionHistory] = useState<PositionItem[]>([
+    { title: "Senior Analyst", range: "Jan 2022 – Aug 2023", reason: "Promoted" },
+    { title: "HR Assistant", range: "Jun 2020 – Dec 2021", reason: "Transfer" },
+  ]);
+  const [phEditOpen, setPhEditOpen] = useState(false);
+  const [phDraft, setPhDraft] = useState<PositionItem[]>([...positionHistory]);
 
   return (
     <div className="min-h-screen bg-background font-poppins text-[13px] leading-[1.4]">
@@ -661,7 +684,7 @@ export default function ManageProfile() {
                 <section className="border-t pt-6">
                   <div className="flex items-center justify-between">
                     <h3 className="text-base font-bold text-foreground">Contact Details</h3>
-                    <Button variant="ghost" className="h-7 w-7 p-0" aria-label="Edit Contact Details"><Pencil className="h-4 w-4" /></Button>
+                    <Button variant="ghost" className="h-7 w-7 p-0" aria-label="Edit Contact Details" onClick={() => { setCdDraft(contact); setCdEditOpen(true); }}><Pencil className="h-4 w-4" /></Button>
                   </div>
                   <div className="mt-3 grid grid-cols-1 gap-4 md:grid-cols-2">
                     <div className="space-y-2">
@@ -669,13 +692,13 @@ export default function ManageProfile() {
                         Phone Number
                       </div>
                       <div className="text-sm text-muted-foreground">
-                        {cdPhone}
+                        {contact.phone}
                       </div>
                       <div className="text-xs font-semibold text-foreground">
                         Alternate Number
                       </div>
                       <div className="text-sm text-muted-foreground">
-                        {cdAltPhone}
+                        {contact.altPhone}
                       </div>
                     </div>
                     <div className="space-y-2">
@@ -683,13 +706,13 @@ export default function ManageProfile() {
                         Email Address
                       </div>
                       <div className="text-sm text-muted-foreground">
-                        {cdEmail}
+                        {contact.email}
                       </div>
                       <div className="text-xs font-semibold text-foreground">
                         Work Email
                       </div>
                       <div className="text-sm text-muted-foreground">
-                        {cdWorkEmail}
+                        {contact.workEmail}
                       </div>
                     </div>
                   </div>
@@ -698,7 +721,7 @@ export default function ManageProfile() {
                 <section className="border-t pt-6">
                   <div className="flex items-center justify-between">
                     <h3 className="text-base font-bold text-foreground">Address Information</h3>
-                    <Button variant="ghost" className="h-7 w-7 p-0" aria-label="Edit Address Information"><Pencil className="h-4 w-4" /></Button>
+                    <Button variant="ghost" className="h-7 w-7 p-0" aria-label="Edit Address Information" onClick={() => { setAddrDraft(address); setAddrEditOpen(true); }}><Pencil className="h-4 w-4" /></Button>
                   </div>
                   <div className="mt-3 grid grid-cols-1 gap-4 md:grid-cols-2">
                     <div className="space-y-2">
@@ -706,23 +729,23 @@ export default function ManageProfile() {
                         Street Address
                       </div>
                       <div className="text-sm font-semibold text-foreground">
-                        {addrStreet}
+                        {address.street}
                       </div>
                       <div className="text-xs text-muted-foreground">City</div>
                       <div className="text-sm font-semibold text-foreground">
-                        {addrCity}
+                        {address.city}
                       </div>
                     </div>
                     <div className="space-y-2">
                       <div className="text-xs text-muted-foreground">State</div>
                       <div className="text-sm font-semibold text-foreground">
-                        {addrState}
+                        {address.state}
                       </div>
                       <div className="text-xs text-muted-foreground">
                         Zip Code
                       </div>
                       <div className="text-sm font-semibold text-foreground">
-                        {addrZip}
+                        {address.zip}
                       </div>
                     </div>
                   </div>
@@ -731,7 +754,7 @@ export default function ManageProfile() {
                 <section className="border-t pt-6">
                   <div className="flex items-center justify-between">
                     <h3 className="text-base font-bold text-foreground">Emergency Contact</h3>
-                    <Button variant="ghost" className="h-7 w-7 p-0" aria-label="Edit Emergency Contact"><Pencil className="h-4 w-4" /></Button>
+                    <Button variant="ghost" className="h-7 w-7 p-0" aria-label="Edit Emergency Contact" onClick={() => { setEcDraft(emergency); setEcEditOpen(true); }}><Pencil className="h-4 w-4" /></Button>
                   </div>
                   <div className="mt-3 grid grid-cols-1 gap-4 md:grid-cols-2">
                     <div className="space-y-2">
@@ -739,13 +762,13 @@ export default function ManageProfile() {
                         Contact Name
                       </div>
                       <div className="text-sm font-semibold text-foreground">
-                        {ecName}
+                        {emergency.name}
                       </div>
                       <div className="text-xs text-muted-foreground">
                         Relationship
                       </div>
                       <div className="text-sm font-semibold text-foreground">
-                        {ecRelation}
+                        {emergency.relation}
                       </div>
                     </div>
                     <div className="space-y-2">
@@ -753,13 +776,13 @@ export default function ManageProfile() {
                         Contact Number
                       </div>
                       <div className="text-sm font-semibold text-foreground">
-                        {ecPhone}
+                        {emergency.phone}
                       </div>
                       <div className="text-xs text-muted-foreground">
                         Alternate Number
                       </div>
                       <div className="text-sm font-semibold text-foreground">
-                        {ecAltPhone}
+                        {emergency.altPhone}
                       </div>
                     </div>
                   </div>
@@ -808,6 +831,111 @@ export default function ManageProfile() {
                     </DialogClose>
                     <DialogClose asChild>
                       <Button className="rounded-md bg-[#2563eb] px-4 text-white hover:bg-[#1d4ed8]" onClick={() => { setPersonal(piDraft); }}>Save</Button>
+                    </DialogClose>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
+
+              {/* Edit Contact Details Dialog */}
+              <Dialog open={cdEditOpen} onOpenChange={(o) => !o && setCdEditOpen(false)}>
+                <DialogContent className="rounded-2xl p-6 shadow-xl">
+                  <DialogHeader>
+                    <DialogTitle>Edit Contact Details</DialogTitle>
+                  </DialogHeader>
+                  <div className="grid gap-3 text-sm sm:grid-cols-2">
+                    <div className="grid gap-1.5">
+                      <Label className="text-xs font-semibold">Phone Number</Label>
+                      <Input value={cdDraft.phone} onChange={(e) => setCdDraft({ ...cdDraft, phone: e.target.value })} />
+                    </div>
+                    <div className="grid gap-1.5">
+                      <Label className="text-xs font-semibold">Alternate Number</Label>
+                      <Input value={cdDraft.altPhone} onChange={(e) => setCdDraft({ ...cdDraft, altPhone: e.target.value })} />
+                    </div>
+                    <div className="grid gap-1.5">
+                      <Label className="text-xs font-semibold">Email Address</Label>
+                      <Input value={cdDraft.email} onChange={(e) => setCdDraft({ ...cdDraft, email: e.target.value })} />
+                    </div>
+                    <div className="grid gap-1.5">
+                      <Label className="text-xs font-semibold">Work Email</Label>
+                      <Input value={cdDraft.workEmail} onChange={(e) => setCdDraft({ ...cdDraft, workEmail: e.target.value })} />
+                    </div>
+                  </div>
+                  <DialogFooter>
+                    <DialogClose asChild>
+                      <Button variant="outline" className="rounded-md border px-4">Cancel</Button>
+                    </DialogClose>
+                    <DialogClose asChild>
+                      <Button className="rounded-md bg-[#2563eb] px-4 text-white hover:bg-[#1d4ed8]" onClick={() => { setContact(cdDraft); }}>Save</Button>
+                    </DialogClose>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
+
+              {/* Edit Address Information Dialog */}
+              <Dialog open={addrEditOpen} onOpenChange={(o) => !o && setAddrEditOpen(false)}>
+                <DialogContent className="rounded-2xl p-6 shadow-xl">
+                  <DialogHeader>
+                    <DialogTitle>Edit Address Information</DialogTitle>
+                  </DialogHeader>
+                  <div className="grid gap-3 text-sm sm:grid-cols-2">
+                    <div className="grid gap-1.5">
+                      <Label className="text-xs font-semibold">Street Address</Label>
+                      <Input value={addrDraft.street} onChange={(e) => setAddrDraft({ ...addrDraft, street: e.target.value })} />
+                    </div>
+                    <div className="grid gap-1.5">
+                      <Label className="text-xs font-semibold">City</Label>
+                      <Input value={addrDraft.city} onChange={(e) => setAddrDraft({ ...addrDraft, city: e.target.value })} />
+                    </div>
+                    <div className="grid gap-1.5">
+                      <Label className="text-xs font-semibold">State</Label>
+                      <Input value={addrDraft.state} onChange={(e) => setAddrDraft({ ...addrDraft, state: e.target.value })} />
+                    </div>
+                    <div className="grid gap-1.5">
+                      <Label className="text-xs font-semibold">Zip Code</Label>
+                      <Input value={addrDraft.zip} onChange={(e) => setAddrDraft({ ...addrDraft, zip: e.target.value })} />
+                    </div>
+                  </div>
+                  <DialogFooter>
+                    <DialogClose asChild>
+                      <Button variant="outline" className="rounded-md border px-4">Cancel</Button>
+                    </DialogClose>
+                    <DialogClose asChild>
+                      <Button className="rounded-md bg-[#2563eb] px-4 text-white hover:bg-[#1d4ed8]" onClick={() => { setAddress(addrDraft); }}>Save</Button>
+                    </DialogClose>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
+
+              {/* Edit Emergency Contact Dialog */}
+              <Dialog open={ecEditOpen} onOpenChange={(o) => !o && setEcEditOpen(false)}>
+                <DialogContent className="rounded-2xl p-6 shadow-xl">
+                  <DialogHeader>
+                    <DialogTitle>Edit Emergency Contact</DialogTitle>
+                  </DialogHeader>
+                  <div className="grid gap-3 text-sm sm:grid-cols-2">
+                    <div className="grid gap-1.5">
+                      <Label className="text-xs font-semibold">Contact Name</Label>
+                      <Input value={ecDraft.name} onChange={(e) => setEcDraft({ ...ecDraft, name: e.target.value })} />
+                    </div>
+                    <div className="grid gap-1.5">
+                      <Label className="text-xs font-semibold">Relationship</Label>
+                      <Input value={ecDraft.relation} onChange={(e) => setEcDraft({ ...ecDraft, relation: e.target.value })} />
+                    </div>
+                    <div className="grid gap-1.5">
+                      <Label className="text-xs font-semibold">Contact Number</Label>
+                      <Input value={ecDraft.phone} onChange={(e) => setEcDraft({ ...ecDraft, phone: e.target.value })} />
+                    </div>
+                    <div className="grid gap-1.5">
+                      <Label className="text-xs font-semibold">Alternate Number</Label>
+                      <Input value={ecDraft.altPhone} onChange={(e) => setEcDraft({ ...ecDraft, altPhone: e.target.value })} />
+                    </div>
+                  </div>
+                  <DialogFooter>
+                    <DialogClose asChild>
+                      <Button variant="outline" className="rounded-md border px-4">Cancel</Button>
+                    </DialogClose>
+                    <DialogClose asChild>
+                      <Button className="rounded-md bg-[#2563eb] px-4 text-white hover:bg-[#1d4ed8]" onClick={() => { setEmergency(ecDraft); }}>Save</Button>
                     </DialogClose>
                   </DialogFooter>
                 </DialogContent>
@@ -876,6 +1004,41 @@ export default function ManageProfile() {
                 </DialogContent>
               </Dialog>
 
+              {/* Edit Position History Dialog */}
+              <Dialog open={phEditOpen} onOpenChange={(o) => !o && setPhEditOpen(false)}>
+                <DialogContent className="rounded-2xl p-6 shadow-xl">
+                  <DialogHeader>
+                    <DialogTitle>Edit Position History</DialogTitle>
+                  </DialogHeader>
+                  <div className="space-y-4 text-sm">
+                    {phDraft.map((item, i) => (
+                      <div key={i} className="grid gap-2 sm:grid-cols-3">
+                        <div className="grid gap-1.5">
+                          <Label className="text-xs font-semibold">Title</Label>
+                          <Input value={item.title} onChange={(e) => { const next = [...phDraft]; next[i] = { ...next[i], title: e.target.value }; setPhDraft(next); }} />
+                        </div>
+                        <div className="grid gap-1.5">
+                          <Label className="text-xs font-semibold">Duration</Label>
+                          <Input value={item.range} onChange={(e) => { const next = [...phDraft]; next[i] = { ...next[i], range: e.target.value }; setPhDraft(next); }} />
+                        </div>
+                        <div className="grid gap-1.5">
+                          <Label className="text-xs font-semibold">Reason</Label>
+                          <Input value={item.reason} onChange={(e) => { const next = [...phDraft]; next[i] = { ...next[i], reason: e.target.value }; setPhDraft(next); }} />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <DialogFooter>
+                    <DialogClose asChild>
+                      <Button variant="outline" className="rounded-md border px-4">Cancel</Button>
+                    </DialogClose>
+                    <DialogClose asChild>
+                      <Button className="rounded-md bg-[#2563eb] px-4 text-white hover:bg-[#1d4ed8]" onClick={() => { setPositionHistory(phDraft); }}>Save</Button>
+                    </DialogClose>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
+
               <TabsContent value="work" className="space-y-6">
                 <div className="grid gap-6 lg:grid-cols-2">
                   <div>
@@ -918,21 +1081,10 @@ export default function ManageProfile() {
                   <div>
                     <div className="flex items-center justify-between">
                       <h3 className="text-base font-bold">Position History</h3>
-                      <Button variant="ghost" className="h-7 w-7 p-0" aria-label="Edit Position History"><Pencil className="h-4 w-4" /></Button>
+                      <Button variant="ghost" className="h-7 w-7 p-0" aria-label="Edit Position History" onClick={() => { setPhDraft([...positionHistory]); setPhEditOpen(true); }}><Pencil className="h-4 w-4" /></Button>
                     </div>
                     <ul className="mt-3 space-y-4">
-                      {[
-                        {
-                          title: "Senior Analyst",
-                          range: "Jan 2022 – Aug 2023",
-                          reason: "Promoted",
-                        },
-                        {
-                          title: "HR Assistant",
-                          range: "Jun 2020 – Dec 2021",
-                          reason: "Transfer",
-                        },
-                      ].map((item, i) => (
+                      {positionHistory.map((item, i) => (
                         <li key={i} className="relative pl-6">
                           <span className="absolute left-0 top-1.5 h-3 w-3 rounded-full bg-brand" />
                           <div className="text-sm font-semibold">
