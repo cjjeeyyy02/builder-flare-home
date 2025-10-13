@@ -2223,11 +2223,31 @@ export default function Index() {
                           )}
                         </TableCell>
                         <TableCell className="px-2 py-1 text-center text-xs leading-tight">
-                          <div className="flex items-center justify-center gap-1.5">
-                            <Button className="h-7 rounded-md px-2.5 text-xs font-medium bg-[#6C4CF5] text-white hover:bg-[#5a3fe0]" type="button">Approve</Button>
-                            <Button className="h-7 rounded-md px-2.5 text-xs font-medium bg-red-500 text-white hover:bg-red-600" type="button">Reject</Button>
-                            <Button className="h-7 rounded-md px-2.5 text-xs font-medium bg-[#6C4CF5] text-white hover:bg-[#5a3fe0]" type="button">Adjust</Button>
-                          </div>
+                          <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                              <Button variant="ghost" className="h-7 w-7 p-0" aria-label={`Actions for ${l.employee}`}>
+                                <EllipsisVertical className="h-4 w-4" />
+                              </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end" className="w-40">
+                              <DropdownMenuItem
+                                onClick={() =>
+                                  setLeaves((prev) =>
+                                    prev.map((x, idx) => (idx === i ? { ...x, status: "Approved" } : x)),
+                                  )
+                                }
+                              >
+                                Approve
+                              </DropdownMenuItem>
+                              <DropdownMenuItem
+                                onClick={() =>
+                                  setLeaves((prev) => prev.filter((_, idx) => idx !== i))
+                                }
+                              >
+                                Delete
+                              </DropdownMenuItem>
+                            </DropdownMenuContent>
+                          </DropdownMenu>
                         </TableCell>
                       </TableRow>
                     ))}
