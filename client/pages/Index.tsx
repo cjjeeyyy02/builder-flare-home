@@ -1076,6 +1076,13 @@ export default function Index() {
     return num % 5 === 0 ? "Late" : "Present";
   }
 
+  function getInOutTimes(e: Employee): { in: string; out: string } {
+    const s = getAttendanceStatus(e);
+    if (s === "Absent") return { in: "—", out: "—" };
+    if (s === "Late") return { in: "09:15 am", out: "05:30 pm" };
+    return { in: "09:00 am", out: "05:30 pm" };
+  }
+
   // Leave Requests demo data and search
   type LeaveReq = {
     empId: string;
@@ -2042,8 +2049,8 @@ export default function Index() {
                           <TableCell className="px-2 py-1 text-xs leading-tight">
                             {e.department}
                           </TableCell>
-                          <TableCell className="px-2 py-1 text-xs leading-tight">—</TableCell>
-                          <TableCell className="px-2 py-1 text-xs leading-tight">��</TableCell>
+                          <TableCell className="px-2 py-1 text-xs leading-tight">{getInOutTimes(e).in}</TableCell>
+                          <TableCell className="px-2 py-1 text-xs leading-tight">{getInOutTimes(e).out}</TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">{getAttendanceStatus(e)}</TableCell>
                           <TableCell className="px-2 py-1 text-center text-xs leading-tight">
                             <RowActions employee={e} />
