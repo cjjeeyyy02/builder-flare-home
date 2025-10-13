@@ -1060,6 +1060,14 @@ export default function Index() {
   const newHiresThisMonth = 0;
   const pendingOffboarding = 0;
 
+  const todayStr = useMemo(() => {
+    const d = new Date();
+    const mm = String(d.getMonth() + 1).padStart(2, "0");
+    const dd = String(d.getDate()).padStart(2, "0");
+    const yyyy = d.getFullYear();
+    return `${mm}-${dd}-${yyyy}`;
+  }, []);
+
   const filtered = useMemo(() => {
     return EMPLOYEES.filter((e) => {
       const matchesSearch =
@@ -1983,22 +1991,19 @@ export default function Index() {
                           Employee ID
                         </TableHead>
                         <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
-                          Name
+                          Employee Name
                         </TableHead>
                         <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
-                          Position
+                          Date
                         </TableHead>
                         <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
                           Department
                         </TableHead>
                         <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
-                          Skills
+                          In
                         </TableHead>
                         <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
-                          Status
-                        </TableHead>
-                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
-                          Joined Date
+                          Out
                         </TableHead>
                         <TableHead className="px-2 py-1 text-center text-xs font-semibold uppercase leading-tight">
                           Action
@@ -2006,11 +2011,8 @@ export default function Index() {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {pageItems.map((e, idx) => (
-                        <TableRow
-                          key={e.id}
-                          className={cn("hover:bg-transparent")}
-                        >
+                      {pageItems.map((e) => (
+                        <TableRow key={e.id} className={cn("hover:bg-transparent")}>
                           <TableCell className="px-2 py-1 text-xs leading-tight font-medium text-foreground/90">
                             {e.id}
                           </TableCell>
@@ -2026,57 +2028,13 @@ export default function Index() {
                             </div>
                           </TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">
-                            {e.role}
+                            {todayStr}
                           </TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">
                             {e.department}
                           </TableCell>
-                          <TableCell className="px-2 py-1 text-xs leading-tight">
-                            {(() => {
-                              const skills = getSkills(e);
-                              if (!skills.length)
-                                return (
-                                  <span className="text-muted-foreground">
-                                    —
-                                  </span>
-                                );
-                              const shown = skills.slice(0, 2);
-                              const display = `${shown.join(", ")}${skills.length > 2 ? ", ..." : ""}`;
-                              const full = `${skills.join(", ")}`;
-                              const years = getYearsExperience(e);
-                              return (
-                                <TooltipProvider>
-                                  <Tooltip>
-                                    <TooltipTrigger asChild>
-                                      <span className="cursor-help">
-                                        {display}
-                                      </span>
-                                    </TooltipTrigger>
-                                    <TooltipContent>
-                                      <div className="max-w-xs text-xs">
-                                        <div className="font-semibold">
-                                          Skills
-                                        </div>
-                                        <div className="text-foreground/80">
-                                          {full}
-                                        </div>
-                                        <div className="mt-1 text-foreground/80">
-                                          Experience: {years}{" "}
-                                          {years === 1 ? "year" : "years"}
-                                        </div>
-                                      </div>
-                                    </TooltipContent>
-                                  </Tooltip>
-                                </TooltipProvider>
-                              );
-                            })()}
-                          </TableCell>
-                          <TableCell className="px-2 py-1 text-xs leading-tight">
-                            {e.status}
-                          </TableCell>
-                          <TableCell className="px-2 py-1 text-xs leading-tight">
-                            {e.joiningDate}
-                          </TableCell>
+                          <TableCell className="px-2 py-1 text-xs leading-tight">—</TableCell>
+                          <TableCell className="px-2 py-1 text-xs leading-tight">—</TableCell>
                           <TableCell className="px-2 py-1 text-center text-xs leading-tight">
                             <RowActions employee={e} />
                           </TableCell>
@@ -2084,30 +2042,33 @@ export default function Index() {
                       ))}
                     </TableBody>
                   </Table>
-                  <div className="flex items-center justify-end gap-2 border-t px-2 py-2 text-xs">
-                    <span className="text-muted-foreground">
-                      {start + 1}-{end} of {filtered.length}
-                    </span>
-                    <Button
-                      variant="outline"
-                      className="h-7 w-7 rounded-md p-0"
-                      onClick={() => setPage((p) => Math.max(0, p - 1))}
-                      disabled={page === 0}
-                      aria-label="Previous page"
-                    >
-                      <ChevronLeft className="h-4 w-4" />
-                    </Button>
-                    <Button
-                      variant="outline"
-                      className="h-7 w-7 rounded-md p-0"
-                      onClick={() =>
-                        setPage((p) => Math.min(totalPages - 1, p + 1))
-                      }
-                      disabled={page >= totalPages - 1}
-                      aria-label="Next page"
-                    >
-                      <ChevronRight className="h-4 w-4" />
-                    </Button>
+                  <div className="flex items-center justify-between gap-2 border-t px-2 py-2 text-xs">
+                    <span className="font-medium text-foreground">Attendance List</span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-muted-foreground">
+                        {start + 1}-{end} of {filtered.length}
+                      </span>
+                      <Button
+                        variant="outline"
+                        className="h-7 w-7 rounded-md p-0"
+                        onClick={() => setPage((p) => Math.max(0, p - 1))}
+                        disabled={page === 0}
+                        aria-label="Previous page"
+                      >
+                        <ChevronLeft className="h-4 w-4" />
+                      </Button>
+                      <Button
+                        variant="outline"
+                        className="h-7 w-7 rounded-md p-0"
+                        onClick={() =>
+                          setPage((p) => Math.min(totalPages - 1, p + 1))
+                        }
+                        disabled={page >= totalPages - 1}
+                        aria-label="Next page"
+                      >
+                        <ChevronRight className="h-4 w-4" />
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </section>
