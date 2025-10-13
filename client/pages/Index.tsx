@@ -1742,7 +1742,7 @@ export default function Index() {
                 <Input
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  placeholder="Search by name, email, position, status"
+                  placeholder="Search by name, dept, or date"
                   className="h-8 text-xs max-w-md"
                 />
                 <Select value={position} onValueChange={setPosition}>
