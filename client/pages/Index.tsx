@@ -63,6 +63,7 @@ import {
   Bot,
   Send,
   X,
+  Clock,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
@@ -1707,24 +1708,24 @@ export default function Index() {
           <TabsContent value="records" className="mt-5">
             <section className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
               <MetricCard
-                label="Total Active Employee"
-                value={totalActive}
+                label="Total Present Today"
+                value={86}
                 icon={<User className="h-5 w-5" />}
               />
               <MetricCard
-                label="New Hires This Month"
-                value={newHiresThisMonth}
-                icon={<Plus className="h-5 w-5" />}
+                label="On Leave"
+                value={12}
+                icon={<CalendarDays className="h-5 w-5" />}
               />
               <MetricCard
-                label="Pending Offboarding"
-                value={pendingOffboarding}
+                label="Pending Approval"
+                value={5}
                 icon={<ArrowLeftRight className="h-5 w-5" />}
               />
               <MetricCard
-                label="On Leave"
-                value={onLeave}
-                icon={<CalendarDays className="h-5 w-5" />}
+                label="Late Arrival"
+                value={7}
+                icon={<Clock className="h-5 w-5" />}
               />
             </section>
 
