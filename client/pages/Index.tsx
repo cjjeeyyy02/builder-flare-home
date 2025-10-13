@@ -235,14 +235,15 @@ function OrgListView() {
     setEditingDeptIndex(index);
     setDeptName(d.department);
     setDeptHead(d.head);
-    setDeptCostCenter(d.costCenter);
+    setDeptCostCenter(d.costCenter.replace(/^CC-/, ""));
     setDeptMembers(d.members);
     setDeptDialogOpen(true);
   }
   function saveDept() {
     const name = deptName.trim();
     const head = deptHead.trim();
-    const costCenter = deptCostCenter.trim();
+    const costCenterInput = deptCostCenter.trim().replace(/^CC-/, "");
+    const costCenter = costCenterInput ? `CC-${costCenterInput}` : "";
     const members = Math.max(0, Number.isFinite(deptMembers) ? deptMembers : 0);
     if (!name) return toast({ title: "Department name required" });
     if (!costCenter) return toast({ title: "Cost Center is required" });
@@ -625,55 +626,24 @@ function OrgListView() {
                       <Label className="font-poppins text-sm">
                         Department Head
                       </Label>
-                      <div className="flex items-center gap-2">
-                        <Input
-                          readOnly
-                          value={deptHead}
-                          placeholder="Select department head"
-                          className="h-9"
-                          onClick={() => setDeptHeadPicker(true)}
-                        />
-                        <Button
-                          type="button"
-                          variant="outline"
-                          className="h-9"
-                          onClick={() => setDeptHeadPicker(true)}
-                        >
-                          Select
-                        </Button>
-                      </div>
-                      <CommandDialog
-                        open={deptHeadPicker}
-                        onOpenChange={setDeptHeadPicker}
-                      >
-                        <CommandInput placeholder="Search employee..." />
-                        <CommandList>
-                          <CommandEmpty>No results found.</CommandEmpty>
-                          {msHeads.map((h) => (
-                            <CommandItem
-                              key={h}
-                              value={h}
-                              onSelect={() => {
-                                setDeptHead(h);
-                                setDeptHeadPicker(false);
-                              }}
-                            >
-                              {h}
-                            </CommandItem>
-                          ))}
-                        </CommandList>
-                      </CommandDialog>
+                      <Input
+                        id="dept-head"
+                        placeholder="Enter department head"
+                        value={deptHead}
+                        onChange={(e) => setDeptHead(e.target.value)}
+                        className="h-9"
+                      />
                     </div>
                     <div className="grid gap-1.5">
                       <Label
                         htmlFor="dept-cost"
                         className="font-poppins text-sm"
                       >
-                        Cost Center (Co Center)
+                        Cost Center
                       </Label>
                       <Input
                         id="dept-cost"
-                        placeholder="e.g., CC-1001"
+                        placeholder="e.g., 1001"
                         value={deptCostCenter}
                         onChange={(e) => setDeptCostCenter(e.target.value)}
                       />
