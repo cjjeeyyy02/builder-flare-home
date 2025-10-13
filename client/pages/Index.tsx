@@ -1636,10 +1636,10 @@ export default function Index() {
       <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
         <header className="mb-4">
           <h2 className="text-2xl font-bold text-foreground">
-            Employee Records
+            Leave and Attendance
           </h2>
           <p className="mt-1 text-sm text-muted-foreground">
-            Centralized employee records management and organizational tools
+            Centralized leave and attendance tracking for employees
           </p>
         </header>
 
