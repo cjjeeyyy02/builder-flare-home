@@ -1651,9 +1651,10 @@ export default function Index() {
                 <SelectValue placeholder="Select section" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="records">Employee Records</SelectItem>
-                <SelectItem value="org">Organization Chart</SelectItem>
-                <SelectItem value="docs">Document Center</SelectItem>
+                <SelectItem value="records">Attendance List</SelectItem>
+                <SelectItem value="org">Leave Requests</SelectItem>
+                <SelectItem value="docs">Employee Shift</SelectItem>
+                <SelectItem value="balance">Leave Balance</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -1668,7 +1669,7 @@ export default function Index() {
                   "data-[state=inactive]:bg-transparent data-[state=inactive]:text-black data-[state=inactive]:font-medium data-[state=inactive]:hover:bg-[#E0F2FE]",
                 )}
               >
-                Employee Records
+                Attendance List
               </TabsTrigger>
               <TabsTrigger
                 value="org"
@@ -1678,7 +1679,7 @@ export default function Index() {
                   "data-[state=inactive]:bg-transparent data-[state=inactive]:text-black data-[state=inactive]:font-medium data-[state=inactive]:hover:bg-[#E0F2FE]",
                 )}
               >
-                Organization Chart
+                Leave Requests
               </TabsTrigger>
               <TabsTrigger
                 value="docs"
@@ -1688,7 +1689,17 @@ export default function Index() {
                   "data-[state=inactive]:bg-transparent data-[state=inactive]:text-black data-[state=inactive]:font-medium data-[state=inactive]:hover:bg-[#E0F2FE]",
                 )}
               >
-                Document Center
+                Employee Shift
+              </TabsTrigger>
+              <TabsTrigger
+                value="balance"
+                className={cn(
+                  "flex-1 rounded-[12px] px-4 py-2 text-sm transition-colors",
+                  "data-[state=active]:bg-[#3B82F6] data-[state=active]:text-white data-[state=active]:font-bold",
+                  "data-[state=inactive]:bg-transparent data-[state=inactive]:text-black data-[state=inactive]:font-medium data-[state=inactive]:hover:bg-[#E0F2FE]",
+                )}
+              >
+                Leave Balance
               </TabsTrigger>
             </div>
           </TabsList>
@@ -2400,6 +2411,13 @@ export default function Index() {
                   </TableBody>
                 </Table>
               </div>
+            </div>
+          </TabsContent>
+          <TabsContent value="balance" className="mt-6">
+            <div className="rounded-2xl border bg-card p-4 shadow-sm">
+              <h3 className="text-base font-semibold">Leave Balance</h3>
+              <p className="mt-1 text-sm text-muted-foreground">Track remaining leave for employees.</p>
+              <div className="mt-4 text-sm text-muted-foreground">No leave balance data available.</div>
             </div>
           </TabsContent>
         </Tabs>
