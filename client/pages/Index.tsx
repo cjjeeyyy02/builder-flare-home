@@ -1068,6 +1068,14 @@ export default function Index() {
     return `${mm}-${dd}-${yyyy}`;
   }, []);
 
+  function getAttendanceStatus(e: Employee): "Present" | "Late" | "Absent" {
+    const s = String(e.status || "").toLowerCase();
+    if (s.includes("on leave") || s.includes("inactive")) return "Absent";
+    const num = parseInt(e.id.replace(/\D/g, ""), 10);
+    if (Number.isNaN(num)) return "Present";
+    return num % 5 === 0 ? "Late" : "Present";
+  }
+
   const filtered = useMemo(() => {
     return EMPLOYEES.filter((e) => {
       const matchesSearch =
@@ -1966,6 +1974,9 @@ export default function Index() {
                         <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
                           Out
                         </TableHead>
+                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
+                          Status
+                        </TableHead>
                         <TableHead className="px-2 py-1 text-center text-xs font-semibold uppercase leading-tight">
                           Action
                         </TableHead>
@@ -1996,6 +2007,7 @@ export default function Index() {
                           </TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">—</TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">—</TableCell>
+                          <TableCell className="px-2 py-1 text-xs leading-tight">{getAttendanceStatus(e)}</TableCell>
                           <TableCell className="px-2 py-1 text-center text-xs leading-tight">
                             <RowActions employee={e} />
                           </TableCell>
