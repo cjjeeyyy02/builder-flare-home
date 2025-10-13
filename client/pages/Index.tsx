@@ -1105,6 +1105,14 @@ export default function Index() {
     [leaves, lrSearch],
   );
 
+  type ShiftRow = { employee: string; dept: string; shift: "Day" | "Night" | "Early" };
+  const [shiftRows, setShiftRows] = useState<ShiftRow[]>([
+    { employee: "Aarav Sharma", dept: "Engineering", shift: "Day" },
+    { employee: "Neha Gupta", dept: "Finance", shift: "Day" },
+    { employee: "John Patel", dept: "Sales", shift: "Early" },
+    { employee: "Sara Khan", dept: "Support", shift: "Night" },
+  ]);
+
   const filtered = useMemo(() => {
     return EMPLOYEES.filter((e) => {
       const matchesSearch =
@@ -2035,7 +2043,7 @@ export default function Index() {
                             {e.department}
                           </TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">—</TableCell>
-                          <TableCell className="px-2 py-1 text-xs leading-tight">—</TableCell>
+                          <TableCell className="px-2 py-1 text-xs leading-tight">��</TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">{getAttendanceStatus(e)}</TableCell>
                           <TableCell className="px-2 py-1 text-center text-xs leading-tight">
                             <RowActions employee={e} />
@@ -2260,7 +2268,50 @@ export default function Index() {
               </div>
             </div>
           </TabsContent>
-          <TabsContent value="docs" className="mt-6"></TabsContent>
+          <TabsContent value="docs" className="mt-6">
+            <div className="rounded-2xl border bg-card p-4 shadow-sm">
+              <div className="overflow-hidden rounded-lg border">
+                <Table className="text-xs leading-tight">
+                  <TableHeader>
+                    <TableRow className="hover:bg-transparent">
+                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Employee</TableHead>
+                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Dept</TableHead>
+                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Shift</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {shiftRows.map((r, i) => (
+                      <TableRow key={i} className="hover:bg-transparent">
+                        <TableCell className="px-2 py-1 text-xs leading-tight">{r.employee}</TableCell>
+                        <TableCell className="px-2 py-1 text-xs leading-tight">{r.dept}</TableCell>
+                        <TableCell className="px-2 py-1 text-xs leading-tight">
+                          <Select
+                            value={r.shift}
+                            onValueChange={(v) =>
+                              setShiftRows((prev) =>
+                                prev.map((x, idx) =>
+                                  idx === i ? { ...x, shift: v as ShiftRow["shift"] } : x,
+                                ),
+                              )
+                            }
+                          >
+                            <SelectTrigger className="h-8 w-32 text-xs">
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="Day">Day</SelectItem>
+                              <SelectItem value="Night">Night</SelectItem>
+                              <SelectItem value="Early">Early</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
+            </div>
+          </TabsContent>
           <TabsContent value="balance" className="mt-6">
             <div className="rounded-2xl border bg-card p-4 shadow-sm">
               <h3 className="text-base font-semibold">Leave Balance</h3>
