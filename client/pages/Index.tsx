@@ -2456,6 +2456,57 @@ function RowActions({ employee }: { employee: Employee }) {
           </button>
         </div>
       )}
+      <Dialog open={editOpen} onOpenChange={setEditOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-base font-semibold">Edit Attendance</DialogTitle>
+          </DialogHeader>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <div className="space-y-1">
+              <Label htmlFor={`in-${employee.id}`}>In</Label>
+              <Input
+                id={`in-${employee.id}`}
+                type="time"
+                value={editIn}
+                onChange={(e) => setEditIn(e.target.value)}
+                placeholder="09:05 am"
+              />
+            </div>
+            <div className="space-y-1">
+              <Label htmlFor={`out-${employee.id}`}>Out</Label>
+              <Input
+                id={`out-${employee.id}`}
+                type="time"
+                value={editOut}
+                onChange={(e) => setEditOut(e.target.value)}
+                placeholder="05:30 pm"
+              />
+            </div>
+            <div className="space-y-1 sm:col-span-2">
+              <Label>Status</Label>
+              <Select value={editStatus} onValueChange={setEditStatus}>
+                <SelectTrigger className="h-9 w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Late">Late</SelectItem>
+                  <SelectItem value="Present">Present</SelectItem>
+                  <SelectItem value="Absent">Absent</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          <DialogFooter>
+            <Button
+              type="button"
+              className="h-9 rounded-md bg-[#6C4DFF] px-4 text-sm font-medium text-white hover:bg-[#5a3fff]"
+              onClick={() => setEditOpen(false)}
+            >
+              Save
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
