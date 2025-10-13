@@ -1120,6 +1120,15 @@ export default function Index() {
     { empId: "EMP203", employee: "Sara Khan", dept: "Support", shift: "Night" },
   ]);
 
+  type BalanceRow = { employee: string; type: string; balance: number };
+  const [balances, setBalances] = useState<BalanceRow[]>([
+    { employee: "Aarav Sharma", type: "Annual Leave", balance: 15 },
+    { employee: "Aarav Sharma", type: "Sick Leave", balance: 9 },
+    { employee: "Neha Gupta", type: "Annual Leave", balance: 12 },
+    { employee: "John Patel", type: "Annual Leave", balance: 8 },
+    { employee: "Sara Khan", type: "Annual Leave", balance: 16 },
+  ]);
+
   const filtered = useMemo(() => {
     return EMPLOYEES.filter((e) => {
       const matchesSearch =
@@ -2323,12 +2332,56 @@ export default function Index() {
           </TabsContent>
           <TabsContent value="balance" className="mt-6">
             <div className="rounded-2xl border bg-card p-4 shadow-sm">
-              <h3 className="text-base font-semibold">Leave Balance</h3>
-              <p className="mt-1 text-sm text-muted-foreground">
-                Track remaining leave for employees.
-              </p>
-              <div className="mt-4 text-sm text-muted-foreground">
-                No leave balance data available.
+              <div className="overflow-hidden rounded-lg border">
+                <Table className="text-xs leading-tight">
+                  <TableHeader>
+                    <TableRow className="hover:bg-transparent">
+                      <TableHead className="px-3 py-2 text-xs font-semibold uppercase leading-tight">Employee</TableHead>
+                      <TableHead className="px-3 py-2 text-xs font-semibold uppercase leading-tight">Type</TableHead>
+                      <TableHead className="px-3 py-2 text-xs font-semibold uppercase leading-tight">Balance</TableHead>
+                      <TableHead className="px-3 py-2 text-center text-xs font-semibold uppercase leading-tight">Adjust</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {balances.map((r, i) => (
+                      <TableRow key={i} className="hover:bg-transparent">
+                        <TableCell className="px-3 py-2 text-xs leading-tight">{r.employee}</TableCell>
+                        <TableCell className="px-3 py-2 text-xs leading-tight">{r.type}</TableCell>
+                        <TableCell className="px-3 py-2 text-xs leading-tight">{r.balance} days</TableCell>
+                        <TableCell className="px-3 py-2 text-center text-xs leading-tight">
+                          <div className="inline-flex items-center gap-2">
+                            <Button
+                              type="button"
+                              className="h-7 rounded-md bg-[#F3F4F6] px-3 text-xs font-medium text-black hover:bg-[#e5e7eb]"
+                              onClick={() =>
+                                setBalances((prev) =>
+                                  prev.map((x, idx) =>
+                                    idx === i ? { ...x, balance: Math.max(0, x.balance - 1) } : x,
+                                  ),
+                                )
+                              }
+                            >
+                              -1
+                            </Button>
+                            <Button
+                              type="button"
+                              className="h-7 rounded-md bg-[#6C4DFF] px-3 text-xs font-medium text-white hover:bg-[#5a3fff]"
+                              onClick={() =>
+                                setBalances((prev) =>
+                                  prev.map((x, idx) =>
+                                    idx === i ? { ...x, balance: x.balance + 1 } : x,
+                                  ),
+                                )
+                              }
+                            >
+                              +1
+                            </Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
               </div>
             </div>
           </TabsContent>
