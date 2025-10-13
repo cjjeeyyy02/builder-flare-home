@@ -1044,9 +1044,7 @@ export default function Index() {
   const [status, setStatus] = useState<string>("all");
   const [view, setView] = useState<"table" | "card">("table");
   const [tab, setTab] = useState<string>("records");
-  const [settingsOpen, setSettingsOpen] = useState(false);
-  const [settingsTab, setSettingsTab] = useState<"workflows" | "types" | "shifts" | "notifications">("workflows");
-  const [settingsSteps, setSettingsSteps] = useState<string[]>(["Line Manager", "HR"]);
+  const navigate = useNavigate();
 
   // Role-based permissions (admin | hr | employee)
   const currentRole: "admin" | "hr" | "employee" = "admin";
@@ -1712,7 +1710,7 @@ export default function Index() {
         <header className="mb-4">
           <div className="flex items-center justify-between">
             <h2 className="text-2xl font-bold text-foreground">Leave and Attendance</h2>
-            <Button type="button" variant="ghost" className="h-8 w-8 p-0" aria-label="Settings" onClick={() => setSettingsOpen(true)}>
+            <Button type="button" variant="ghost" className="h-8 w-8 p-0" aria-label="Settings" onClick={() => navigate("/settings")}>
               <Settings className="h-4 w-4 text-muted-foreground" />
             </Button>
           </div>
@@ -1721,57 +1719,6 @@ export default function Index() {
           </p>
         </header>
 
-        <Dialog open={settingsOpen} onOpenChange={setSettingsOpen}>
-          <DialogContent className="sm:max-w-2xl">
-            <DialogHeader>
-              <DialogTitle className="text-base font-semibold">Settings</DialogTitle>
-              <DialogDescription>
-                Configure workflows, leave types, and shift templates.
-              </DialogDescription>
-            </DialogHeader>
-            <div className="mb-3 flex flex-wrap items-center gap-2 text-xs">
-              <Button variant={settingsTab === "workflows" ? "default" : "outline"} className={settingsTab === "workflows" ? "bg-brand text-white border-transparent" : ""} onClick={() => setSettingsTab("workflows")}>Approval Workflows</Button>
-              <Button variant={settingsTab === "types" ? "default" : "outline"} className={settingsTab === "types" ? "bg-brand text-white border-transparent" : ""} onClick={() => setSettingsTab("types")}>Leave Types</Button>
-              <Button variant={settingsTab === "shifts" ? "default" : "outline"} className={settingsTab === "shifts" ? "bg-brand text-white border-transparent" : ""} onClick={() => setSettingsTab("shifts")}>Shift Templates</Button>
-              <Button variant={settingsTab === "notifications" ? "default" : "outline"} className={settingsTab === "notifications" ? "bg-brand text-white border-transparent" : ""} onClick={() => setSettingsTab("notifications")}>Notifications</Button>
-            </div>
-
-            {settingsTab === "workflows" && (
-              <div className="space-y-4">
-                <div>
-                  <h4 className="text-sm font-semibold">Workflow Steps</h4>
-                  <ul className="mt-2 space-y-1 text-sm">
-                    {settingsSteps.map((s, i) => (
-                      <li key={i} className="flex items-center gap-2">
-                        <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-muted text-xs font-semibold">{i + 1}</span>
-                        <span>{s}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-3 flex items-center gap-2">
-                    <Button type="button" className="h-8 rounded-md bg-[#6C4DFF] px-3 text-xs font-medium text-white hover:bg-[#5a3fff]" onClick={() => setSettingsSteps((prev) => [...prev, "New Step"])}>Add Step</Button>
-                    <Button type="button" variant="outline" className="h-8 rounded-md px-3 text-xs" onClick={() => setSettingsSteps((prev) => prev.length ? prev.slice(0, -1) : prev)}>Remove Step</Button>
-                    <Button type="button" className="h-8 rounded-md bg-[#6C4DFF] px-3 text-xs font-medium text-white hover:bg-[#5a3fff]" onClick={() => toast({ title: "Workflow saved", description: settingsSteps.join(" → ") })}>Save Workflow</Button>
-                  </div>
-                </div>
-                <div>
-                  <h4 className="text-sm font-semibold">Preview</h4>
-                  <p className="mt-1 text-sm text-muted-foreground">{settingsSteps.join(" → ")}</p>
-                </div>
-              </div>
-            )}
-
-            {settingsTab === "types" && (
-              <div className="text-sm text-muted-foreground">Manage leave types (coming soon).</div>
-            )}
-            {settingsTab === "shifts" && (
-              <div className="text-sm text-muted-foreground">Configure shift templates (coming soon).</div>
-            )}
-            {settingsTab === "notifications" && (
-              <div className="text-sm text-muted-foreground">Notification preferences (coming soon).</div>
-            )}
-          </DialogContent>
-        </Dialog>
 
         <Tabs value={tab} onValueChange={setTab} className="w-full">
           {/* Mobile dropdown */}
