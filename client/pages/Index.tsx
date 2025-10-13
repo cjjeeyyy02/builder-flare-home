@@ -1078,6 +1078,7 @@ export default function Index() {
 
   // Leave Requests demo data and search
   type LeaveReq = {
+    empId: string;
     employee: string;
     type: string;
     from: string;
@@ -1087,9 +1088,9 @@ export default function Index() {
   };
   const [lrSearch, setLrSearch] = useState("");
   const [leaves, setLeaves] = useState<LeaveReq[]>([
-    { employee: "Neha Gupta", type: "Annual Leave", from: "2025-10-16", to: "2025-10-17", days: 2, status: "Pending" },
-    { employee: "Aarav Sharma", type: "Annual Leave", from: "2025-10-15", to: "2025-10-17", days: 3, status: "Pending" },
-    { employee: "Sara Khan", type: "Sick Leave", from: "2025-10-12", to: "2025-10-13", days: 2, status: "Approved" },
+    { empId: "EMP201", employee: "Neha Gupta", type: "Annual Leave", from: "2025-10-16", to: "2025-10-17", days: 2, status: "Pending" },
+    { empId: "EMP202", employee: "Aarav Sharma", type: "Annual Leave", from: "2025-10-15", to: "2025-10-17", days: 3, status: "Pending" },
+    { empId: "EMP203", employee: "Sara Khan", type: "Sick Leave", from: "2025-10-12", to: "2025-10-13", days: 2, status: "Approved" },
   ]);
   const filteredLeaves = useMemo(
     () =>
@@ -2180,6 +2181,7 @@ export default function Index() {
                     setLeaves((prev) => [
                       ...prev,
                       {
+                        empId: "EMP999",
                         employee: "Sample Employee",
                         type: "Annual Leave",
                         from: todayStr,
@@ -2198,7 +2200,8 @@ export default function Index() {
                 <Table className="text-xs leading-tight">
                   <TableHeader>
                     <TableRow className="hover:bg-transparent">
-                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Employee</TableHead>
+                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Employee ID</TableHead>
+                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Employee Name</TableHead>
                       <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Type</TableHead>
                       <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">From</TableHead>
                       <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">To</TableHead>
@@ -2210,6 +2213,7 @@ export default function Index() {
                   <TableBody>
                     {filteredLeaves.map((l, i) => (
                       <TableRow key={i} className="hover:bg-transparent">
+                        <TableCell className="px-2 py-1 text-xs leading-tight">{l.empId}</TableCell>
                         <TableCell className="px-2 py-1 text-xs leading-tight">{l.employee}</TableCell>
                         <TableCell className="px-2 py-1 text-xs leading-tight">{l.type}</TableCell>
                         <TableCell className="px-2 py-1 text-xs leading-tight">{l.from}</TableCell>
