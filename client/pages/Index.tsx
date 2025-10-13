@@ -2417,8 +2417,12 @@ export default function Index() {
           <TabsContent value="balance" className="mt-6">
             <div className="rounded-2xl border bg-card p-4 shadow-sm">
               <h3 className="text-base font-semibold">Leave Balance</h3>
-              <p className="mt-1 text-sm text-muted-foreground">Track remaining leave for employees.</p>
-              <div className="mt-4 text-sm text-muted-foreground">No leave balance data available.</div>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Track remaining leave for employees.
+              </p>
+              <div className="mt-4 text-sm text-muted-foreground">
+                No leave balance data available.
+              </div>
             </div>
           </TabsContent>
         </Tabs>
