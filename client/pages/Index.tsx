@@ -2274,19 +2274,19 @@ export default function Index() {
                 <Table className="text-xs leading-tight">
                   <TableHeader>
                     <TableRow className="hover:bg-transparent">
-                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Employee ID</TableHead>
-                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Employee Name</TableHead>
-                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Dept</TableHead>
-                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Shift</TableHead>
+                      <TableHead className="px-3 py-2 text-xs font-semibold uppercase leading-tight">Employee ID</TableHead>
+                      <TableHead className="px-3 py-2 text-xs font-semibold uppercase leading-tight">Employee Name</TableHead>
+                      <TableHead className="px-3 py-2 text-xs font-semibold uppercase leading-tight">Dept</TableHead>
+                      <TableHead className="px-3 py-2 text-xs font-semibold uppercase leading-tight">Shift</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
                     {shiftRows.map((r, i) => (
                       <TableRow key={i} className="hover:bg-transparent">
                         <TableCell className="px-2 py-1 text-xs leading-tight">{r.empId}</TableCell>
-                        <TableCell className="px-2 py-1 text-xs leading-tight">{r.employee}</TableCell>
-                        <TableCell className="px-2 py-1 text-xs leading-tight">{r.dept}</TableCell>
-                        <TableCell className="px-2 py-1 text-xs leading-tight">
+                        <TableCell className="px-3 py-2 text-xs leading-tight">{r.employee}</TableCell>
+                        <TableCell className="px-3 py-2 text-xs leading-tight">{r.dept}</TableCell>
+                        <TableCell className="px-3 py-2 text-xs leading-tight">
                           <Select
                             value={r.shift}
                             onValueChange={(v) =>
