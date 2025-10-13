@@ -2443,16 +2443,16 @@ function RowActions({ employee }: { employee: Employee }) {
               navigate(`/manage-profile/${employee.id}`);
             }}
           >
-            <User className="h-4 w-4" /> Manage Profile
+            <Pencil className="h-4 w-4" /> Edit
           </button>
           <button
             className="flex w-full items-center gap-2 rounded-sm px-2 py-1.5 text-left hover:bg-accent"
             onClick={() => {
               setOpen(false);
-              navigate(`/manage-profile/${employee.id}#documents`);
+              navigate(`/manage-profile/${employee.id}#delete`);
             }}
           >
-            <FileText className="h-4 w-4" /> Documents
+            <Trash2 className="h-4 w-4" /> Delete
           </button>
         </div>
       )}
