@@ -2419,6 +2419,10 @@ function MetricCard({
 
 function RowActions({ employee }: { employee: Employee }) {
   const [open, setOpen] = useState(false);
+  const [editOpen, setEditOpen] = useState(false);
+  const [editIn, setEditIn] = useState("09:05");
+  const [editOut, setEditOut] = useState("17:30");
+  const [editStatus, setEditStatus] = useState<string>("Late");
   const navigate = useNavigate();
   return (
     <div className="relative inline-block text-left">
