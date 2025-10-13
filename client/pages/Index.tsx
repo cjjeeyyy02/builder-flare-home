@@ -1076,6 +1076,34 @@ export default function Index() {
     return num % 5 === 0 ? "Late" : "Present";
   }
 
+  // Leave Requests demo data and search
+  type LeaveReq = {
+    employee: string;
+    type: string;
+    from: string;
+    to: string;
+    days: number;
+    status: "Pending" | "Approved";
+  };
+  const [lrSearch, setLrSearch] = useState("");
+  const [leaves, setLeaves] = useState<LeaveReq[]>([
+    { employee: "Neha Gupta", type: "Annual Leave", from: "2025-10-16", to: "2025-10-17", days: 2, status: "Pending" },
+    { employee: "Aarav Sharma", type: "Annual Leave", from: "2025-10-15", to: "2025-10-17", days: 3, status: "Pending" },
+    { employee: "Sara Khan", type: "Sick Leave", from: "2025-10-12", to: "2025-10-13", days: 2, status: "Approved" },
+  ]);
+  const filteredLeaves = useMemo(
+    () =>
+      leaves.filter((l) => {
+        const q = lrSearch.trim().toLowerCase();
+        if (!q) return true;
+        return (
+          l.employee.toLowerCase().includes(q) ||
+          l.type.toLowerCase().includes(q)
+        );
+      }),
+    [leaves, lrSearch],
+  );
+
   const filtered = useMemo(() => {
     return EMPLOYEES.filter((e) => {
       const matchesSearch =
@@ -2136,7 +2164,78 @@ export default function Index() {
             )}
           </TabsContent>
 
-          <TabsContent value="org" className="mt-6"></TabsContent>
+          <TabsContent value="org" className="mt-6">
+            <div className="rounded-2xl border bg-card p-4 shadow-sm">
+              <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+                <Input
+                  value={lrSearch}
+                  onChange={(e) => setLrSearch(e.target.value)}
+                  placeholder="Search by name or type"
+                  className="h-8 w-64 text-xs"
+                />
+                <Button
+                  type="button"
+                  className="h-8 rounded-md px-3 text-xs font-medium bg-[#6C4CF5] text-white hover:bg-[#5a3fe0]"
+                  onClick={() =>
+                    setLeaves((prev) => [
+                      ...prev,
+                      {
+                        employee: "Sample Employee",
+                        type: "Annual Leave",
+                        from: todayStr,
+                        to: todayStr,
+                        days: 1,
+                        status: "Pending",
+                      },
+                    ])
+                  }
+                >
+                  Create Sample Leave
+                </Button>
+              </div>
+
+              <div className="overflow-hidden rounded-lg border">
+                <Table className="text-xs leading-tight">
+                  <TableHeader>
+                    <TableRow className="hover:bg-transparent">
+                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Employee</TableHead>
+                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Type</TableHead>
+                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">From</TableHead>
+                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">To</TableHead>
+                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Days</TableHead>
+                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Status</TableHead>
+                      <TableHead className="px-2 py-1 text-center text-xs font-semibold uppercase leading-tight">Actions</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {filteredLeaves.map((l, i) => (
+                      <TableRow key={i} className="hover:bg-transparent">
+                        <TableCell className="px-2 py-1 text-xs leading-tight">{l.employee}</TableCell>
+                        <TableCell className="px-2 py-1 text-xs leading-tight">{l.type}</TableCell>
+                        <TableCell className="px-2 py-1 text-xs leading-tight">{l.from}</TableCell>
+                        <TableCell className="px-2 py-1 text-xs leading-tight">{l.to}</TableCell>
+                        <TableCell className="px-2 py-1 text-xs leading-tight">{l.days}</TableCell>
+                        <TableCell className="px-2 py-1 text-xs leading-tight">
+                          {l.status === "Pending" ? (
+                            <span className="inline-flex rounded-full bg-muted px-2.5 py-0.5 text-[11px] font-medium text-foreground/80">Pending</span>
+                          ) : (
+                            <span className="inline-flex rounded-full bg-[#6C4CF5] px-2.5 py-0.5 text-[11px] font-medium text-white">Approved</span>
+                          )}
+                        </TableCell>
+                        <TableCell className="px-2 py-1 text-center text-xs leading-tight">
+                          <div className="flex items-center justify-center gap-1.5">
+                            <Button className="h-7 rounded-md px-2.5 text-xs font-medium bg-[#6C4CF5] text-white hover:bg-[#5a3fe0]" type="button">Approve</Button>
+                            <Button className="h-7 rounded-md px-2.5 text-xs font-medium bg-red-500 text-white hover:bg-red-600" type="button">Reject</Button>
+                            <Button className="h-7 rounded-md px-2.5 text-xs font-medium bg-[#6C4CF5] text-white hover:bg-[#5a3fe0]" type="button">Adjust</Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
+            </div>
+          </TabsContent>
           <TabsContent value="docs" className="mt-6"></TabsContent>
           <TabsContent value="balance" className="mt-6">
             <div className="rounded-2xl border bg-card p-4 shadow-sm">
