@@ -2511,6 +2511,25 @@ function RowActions({ employee }: { employee: Employee }) {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+      <Dialog open={deleteOpen} onOpenChange={setDeleteOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-base font-semibold">Are you sure to delete?</DialogTitle>
+          </DialogHeader>
+          <DialogFooter>
+            <Button type="button" variant="outline" onClick={() => setDeleteOpen(false)}>
+              Cancel
+            </Button>
+            <Button
+              type="button"
+              className="h-9 rounded-md bg-red-600 px-4 text-sm font-medium text-white hover:bg-red-700"
+              onClick={() => setDeleteOpen(false)}
+            >
+              Delete
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
