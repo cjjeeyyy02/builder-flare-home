@@ -1105,12 +1105,12 @@ export default function Index() {
     [leaves, lrSearch],
   );
 
-  type ShiftRow = { employee: string; dept: string; shift: "Day" | "Night" | "Early" };
+  type ShiftRow = { empId: string; employee: string; dept: string; shift: "Day" | "Night" | "Early" };
   const [shiftRows, setShiftRows] = useState<ShiftRow[]>([
-    { employee: "Aarav Sharma", dept: "Engineering", shift: "Day" },
-    { employee: "Neha Gupta", dept: "Finance", shift: "Day" },
-    { employee: "John Patel", dept: "Sales", shift: "Early" },
-    { employee: "Sara Khan", dept: "Support", shift: "Night" },
+    { empId: "EMP202", employee: "Aarav Sharma", dept: "Engineering", shift: "Day" },
+    { empId: "EMP201", employee: "Neha Gupta", dept: "Finance", shift: "Day" },
+    { empId: "EMP301", employee: "John Patel", dept: "Sales", shift: "Early" },
+    { empId: "EMP203", employee: "Sara Khan", dept: "Support", shift: "Night" },
   ]);
 
   const filtered = useMemo(() => {
@@ -2274,7 +2274,8 @@ export default function Index() {
                 <Table className="text-xs leading-tight">
                   <TableHeader>
                     <TableRow className="hover:bg-transparent">
-                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Employee</TableHead>
+                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Employee ID</TableHead>
+                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Employee Name</TableHead>
                       <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Dept</TableHead>
                       <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Shift</TableHead>
                     </TableRow>
@@ -2282,6 +2283,7 @@ export default function Index() {
                   <TableBody>
                     {shiftRows.map((r, i) => (
                       <TableRow key={i} className="hover:bg-transparent">
+                        <TableCell className="px-2 py-1 text-xs leading-tight">{r.empId}</TableCell>
                         <TableCell className="px-2 py-1 text-xs leading-tight">{r.employee}</TableCell>
                         <TableCell className="px-2 py-1 text-xs leading-tight">{r.dept}</TableCell>
                         <TableCell className="px-2 py-1 text-xs leading-tight">
