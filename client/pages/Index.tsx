@@ -538,29 +538,33 @@ function OrgListView() {
                 <LayoutGrid className="h-4 w-4" />
               </button>
             </div>
-            <span className="ml-2">{total} employees</span>
-            <div className="inline-flex items-center gap-1">
-              <button
-                type="button"
-                aria-label="Zoom out"
-                onClick={() =>
-                  setZoom((z) => Math.max(0.5, +(z - 0.1).toFixed(2)))
-                }
-                className="flex h-7 w-7 items-center justify-center rounded-md border text-foreground hover:bg-accent"
-              >
-                <Minus className="h-4 w-4" />
-              </button>
-              <button
-                type="button"
-                aria-label="Zoom in"
-                onClick={() =>
-                  setZoom((z) => Math.min(1.5, +(z + 0.1).toFixed(2)))
-                }
-                className="flex h-7 w-7 items-center justify-center rounded-md border text-foreground hover:bg-accent"
-              >
-                <Plus className="h-4 w-4" />
-              </button>
-            </div>
+            {mode === "chart" && (
+              <>
+                <span className="ml-2">{total} employees</span>
+                <div className="inline-flex items-center gap-1">
+                  <button
+                    type="button"
+                    aria-label="Zoom out"
+                    onClick={() =>
+                      setZoom((z) => Math.max(0.5, +(z - 0.1).toFixed(2)))
+                    }
+                    className="flex h-7 w-7 items-center justify-center rounded-md border text-foreground hover:bg-accent"
+                  >
+                    <Minus className="h-4 w-4" />
+                  </button>
+                  <button
+                    type="button"
+                    aria-label="Zoom in"
+                    onClick={() =>
+                      setZoom((z) => Math.min(1.5, +(z + 0.1).toFixed(2)))
+                    }
+                    className="flex h-7 w-7 items-center justify-center rounded-md border text-foreground hover:bg-accent"
+                  >
+                    <Plus className="h-4 w-4" />
+                  </button>
+                </div>
+              </>
+            )}
           </div>
         )}
       </div>
