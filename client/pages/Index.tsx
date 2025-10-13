@@ -1507,7 +1507,7 @@ export default function Index() {
     if (/active/.test(text) || /on leave/.test(text)) {
       const s = /on leave/.test(text) ? "On Leave" : "Active";
       const list = EMPLOYEES.filter((e) => e.status === s);
-      return `${s} (${list.length}):\n${list.map((e) => `• ${e.firstName} ${e.lastName} – ${e.role}, ${e.department}`).join("\n")}`;
+      return `${s} (${list.length}):\n${list.map((e) => `• ${e.firstName} ${e.lastName} �� ${e.role}, ${e.department}`).join("\n")}`;
     }
 
     // Fallback quick answers retained
@@ -2454,7 +2454,7 @@ function RowActions({ employee }: { employee: Employee }) {
             className="flex w-full items-center gap-2 rounded-sm px-2 py-1.5 text-left hover:bg-accent"
             onClick={() => {
               setOpen(false);
-              navigate(`/manage-profile/${employee.id}#delete`);
+              setDeleteOpen(true);
             }}
           >
             <Trash2 className="h-4 w-4" /> Delete
