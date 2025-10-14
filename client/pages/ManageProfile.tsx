@@ -549,6 +549,35 @@ export default function ManageProfile() {
   const [phEditOpen, setPhEditOpen] = useState(false);
   const [phDraft, setPhDraft] = useState<PositionItem[]>([...positionHistory]);
 
+  type WorkHistoryItem = { company: string; position: string; duration: string; location: string; type: string; reason: string };
+  const [workHistory, setWorkHistory] = useState<WorkHistoryItem[]>([
+    { company: "Nimbus Labs", position: "Software Engineer", duration: "2 years", location: "Vancouver, Canada", type: "Full-time", reason: "Career growth" },
+    { company: "Aster Corp", position: "Junior Developer", duration: "1.5 years", location: "Seattle, USA", type: "Full-time", reason: "Relocation" },
+  ]);
+  const [whOpen, setWhOpen] = useState(false);
+  const [whDraft, setWhDraft] = useState<WorkHistoryItem>({ company: "", position: "", duration: "", location: "", type: "Full-time", reason: "" });
+
+  type SkillItem = { name: string; years: number; level: string };
+  const [skillsList, setSkillsList] = useState<SkillItem[]>([
+    { name: "React", years: 4, level: "Expert" },
+    { name: "TypeScript", years: 3, level: "Advanced" },
+    { name: "Node.js", years: 3, level: "Advanced" },
+    { name: "Python", years: 2, level: "Intermediate" },
+    { name: "AWS", years: 2, level: "Intermediate" },
+    { name: "Docker", years: 1, level: "Beginner" },
+  ]);
+  const [skillOpen, setSkillOpen] = useState(false);
+  const [skillDraft, setSkillDraft] = useState<SkillItem>({ name: "", years: 0, level: "Beginner" });
+
+  type CompItem = { date: string; salary: string; pct: string; type: string; currency: string; title: string };
+  const [compHistory, setCompHistory] = useState<CompItem[]>([
+    { date: "01-15-2024", salary: "$95,000", pct: "+3.16%", type: "Merit Increase", currency: "USD", title: "Senior Software Engineer" },
+    { date: "01-15-2023", salary: "$90,000", pct: "+5.56%", type: "Promotion", currency: "USD", title: "Senior Software Engineer" },
+    { date: "01-15-2022", salary: "$80,000", pct: "+12.50%", type: "Adjustment", currency: "USD", title: "Software Engineer" },
+  ]);
+  const [compOpen, setCompOpen] = useState(false);
+  const [compDraft, setCompDraft] = useState<CompItem>({ date: "", salary: "", pct: "", type: "", currency: "USD", title: "" });
+
   return (
     <div className="min-h-screen bg-background font-poppins text-[13px] leading-[1.4]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -1150,24 +1179,7 @@ export default function ManageProfile() {
                         </TableRow>
                       </TableHeader>
                       <TableBody>
-                        {[
-                          {
-                            company: "Nimbus Labs",
-                            position: "Software Engineer",
-                            duration: "2 years",
-                            location: "Vancouver, Canada",
-                            type: "Full-time",
-                            reason: "Career growth",
-                          },
-                          {
-                            company: "Aster Corp",
-                            position: "Junior Developer",
-                            duration: "1.5 years",
-                            location: "Seattle, USA",
-                            type: "Full-time",
-                            reason: "Relocation",
-                          },
-                        ].map((r, idx) => (
+                        {workHistory.map((r, idx) => (
                           <TableRow key={r.company + idx} className="">
                             <TableCell className="py-2">{r.company}</TableCell>
                             <TableCell className="py-2">{r.position}</TableCell>
@@ -1181,11 +1193,57 @@ export default function ManageProfile() {
                       <TableFooter>
                         <TableRow className="hover:bg-transparent">
                           <TableCell colSpan={6} className="py-2 text-right">
-                            <Button className="h-7 rounded-md bg-blue-600 px-2 text-xs text-white hover:bg-blue-700">Add Work History</Button>
+                            <Button onClick={() => setWhOpen(true)} className="h-7 rounded-md bg-blue-600 px-2 text-xs text-white hover:bg-blue-700">Add Work History</Button>
                           </TableCell>
                         </TableRow>
                       </TableFooter>
                     </Table>
+
+                    <Dialog open={whOpen} onOpenChange={setWhOpen}>
+                      <DialogContent>
+                        <DialogHeader>
+                          <DialogTitle>Add Work History</DialogTitle>
+                        </DialogHeader>
+                        <div className="grid gap-3 py-2">
+                          <div className="grid gap-1.5">
+                            <Label htmlFor="wh-company">Company Name</Label>
+                            <Input id="wh-company" value={whDraft.company} onChange={(e) => setWhDraft({ ...whDraft, company: e.target.value })} />
+                          </div>
+                          <div className="grid gap-1.5">
+                            <Label htmlFor="wh-position">Position</Label>
+                            <Input id="wh-position" value={whDraft.position} onChange={(e) => setWhDraft({ ...whDraft, position: e.target.value })} />
+                          </div>
+                          <div className="grid gap-1.5">
+                            <Label htmlFor="wh-duration">Duration</Label>
+                            <Input id="wh-duration" placeholder="e.g., 2 years" value={whDraft.duration} onChange={(e) => setWhDraft({ ...whDraft, duration: e.target.value })} />
+                          </div>
+                          <div className="grid gap-1.5">
+                            <Label htmlFor="wh-location">Location</Label>
+                            <Input id="wh-location" value={whDraft.location} onChange={(e) => setWhDraft({ ...whDraft, location: e.target.value })} />
+                          </div>
+                          <div className="grid gap-1.5">
+                            <Label>Employment Type</Label>
+                            <Select value={whDraft.type} onValueChange={(v) => setWhDraft({ ...whDraft, type: v })}>
+                              <SelectTrigger className="h-9"><SelectValue placeholder="Select type" /></SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="Full-time">Full-time</SelectItem>
+                                <SelectItem value="Part-time">Part-time</SelectItem>
+                                <SelectItem value="Contract">Contract</SelectItem>
+                                <SelectItem value="Internship">Internship</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                          <div className="grid gap-1.5">
+                            <Label htmlFor="wh-reason">Reason for Leaving</Label>
+                            <Input id="wh-reason" value={whDraft.reason} onChange={(e) => setWhDraft({ ...whDraft, reason: e.target.value })} />
+                          </div>
+                        </div>
+                        <DialogFooter>
+                          <Button variant="outline" onClick={() => setWhOpen(false)}>Cancel</Button>
+                          <Button onClick={() => { setWorkHistory((arr) => [...arr, whDraft]); setWhOpen(false); setWhDraft({ company: "", position: "", duration: "", location: "", type: "Full-time", reason: "" }); }}>Save</Button>
+                        </DialogFooter>
+                      </DialogContent>
+                    </Dialog>
                   </div>
                 </div>
               </TabsContent>
@@ -1213,14 +1271,7 @@ export default function ManageProfile() {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {[
-                        { name: "React", years: 4, level: "Expert" },
-                        { name: "TypeScript", years: 3, level: "Advanced" },
-                        { name: "Node.js", years: 3, level: "Advanced" },
-                        { name: "Python", years: 2, level: "Intermediate" },
-                        { name: "AWS", years: 2, level: "Intermediate" },
-                        { name: "Docker", years: 1, level: "Beginner" },
-                      ].map((s, idx) => (
+                      {skillsList.map((s) => (
                         <TableRow key={s.name} className="hover:bg-transparent">
                           <TableCell className="py-2"><span className="inline-flex items-center gap-1"><Check className="h-4 w-4 text-muted-foreground" /> {s.name}</span></TableCell>
                           <TableCell className="py-2 text-center">{s.years}</TableCell>
@@ -1248,11 +1299,45 @@ export default function ManageProfile() {
                     <TableFooter>
                       <TableRow className="hover:bg-transparent">
                         <TableCell colSpan={4} className="py-2 text-right">
-                          <Button className="h-7 rounded-md bg-blue-600 px-2 text-xs text-white hover:bg-blue-700">Add Skill</Button>
+                          <Button onClick={() => setSkillOpen(true)} className="h-7 rounded-md bg-blue-600 px-2 text-xs text-white hover:bg-blue-700">Add Skill</Button>
                         </TableCell>
                       </TableRow>
                     </TableFooter>
                   </Table>
+
+                  <Dialog open={skillOpen} onOpenChange={setSkillOpen}>
+                    <DialogContent>
+                      <DialogHeader>
+                        <DialogTitle>Add Skill</DialogTitle>
+                      </DialogHeader>
+                      <div className="grid gap-3 py-2">
+                        <div className="grid gap-1.5">
+                          <Label htmlFor="sk-name">Skill Name</Label>
+                          <Input id="sk-name" value={skillDraft.name} onChange={(e) => setSkillDraft({ ...skillDraft, name: e.target.value })} />
+                        </div>
+                        <div className="grid gap-1.5">
+                          <Label htmlFor="sk-years">Experience (Years)</Label>
+                          <Input id="sk-years" type="number" min={0} value={skillDraft.years} onChange={(e) => setSkillDraft({ ...skillDraft, years: Number(e.target.value) })} />
+                        </div>
+                        <div className="grid gap-1.5">
+                          <Label>Skill Level</Label>
+                          <Select value={skillDraft.level} onValueChange={(v) => setSkillDraft({ ...skillDraft, level: v })}>
+                            <SelectTrigger className="h-9"><SelectValue placeholder="Select level" /></SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="Beginner">Beginner</SelectItem>
+                              <SelectItem value="Intermediate">Intermediate</SelectItem>
+                              <SelectItem value="Advanced">Advanced</SelectItem>
+                              <SelectItem value="Expert">Expert</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+                      </div>
+                      <DialogFooter>
+                        <Button variant="outline" onClick={() => setSkillOpen(false)}>Cancel</Button>
+                        <Button onClick={() => { setSkillsList((arr) => [...arr, skillDraft]); setSkillOpen(false); setSkillDraft({ name: "", years: 0, level: "Beginner" }); }}>Save</Button>
+                      </DialogFooter>
+                    </DialogContent>
+                  </Dialog>
                 </div>
               </TabsContent>
 
@@ -1306,42 +1391,8 @@ export default function ManageProfile() {
                         </TableRow>
                       </TableHeader>
                       <TableBody>
-                        {[
-                          {
-                            date: "01-15-2024",
-                            salary: "$95,000",
-                            pct: "+3.16%",
-                            pct: "+3.16%",
-                            type: "Merit Increase",
-                            source: "Annual Review",
-                            currency: "USD",
-                            title: "Senior Software Engineer",
-                          },
-                          {
-                            date: "01-15-2023",
-                            salary: "$90,000",
-                            pct: "+5.56%",
-                            pct: "+5.56%",
-                            type: "Promotion",
-                            source: "HR",
-                            currency: "USD",
-                            title: "Senior Software Engineer",
-                          },
-                          {
-                            date: "01-15-2022",
-                            salary: "$80,000",
-                            pct: "+12.50%",
-                            pct: "+12.50%",
-                            type: "Adjustment",
-                            source: "Manager",
-                            currency: "USD",
-                            title: "Software Engineer",
-                          },
-                        ].map((r, idx) => (
-                          <TableRow
-                            key={r.date + r.title}
-                            className="hover:bg-transparent"
-                          >
+                        {compHistory.map((r) => (
+                          <TableRow key={r.date + r.title} className="hover:bg-transparent">
                             <TableCell className="py-2">{r.date}</TableCell>
                             <TableCell className="py-2">{r.salary}</TableCell>
                             <TableCell className="py-2">{r.pct}</TableCell>
@@ -1354,11 +1405,56 @@ export default function ManageProfile() {
                       <TableFooter>
                         <TableRow className="hover:bg-transparent">
                           <TableCell colSpan={6} className="py-2 text-right">
-                            <Button className="h-7 rounded-md bg-blue-600 px-2 text-xs text-white hover:bg-blue-700">Add Compensation History</Button>
+                            <Button onClick={() => setCompOpen(true)} className="h-7 rounded-md bg-blue-600 px-2 text-xs text-white hover:bg-blue-700">Add Compensation History</Button>
                           </TableCell>
                         </TableRow>
                       </TableFooter>
                     </Table>
+
+                    <Dialog open={compOpen} onOpenChange={setCompOpen}>
+                      <DialogContent>
+                        <DialogHeader>
+                          <DialogTitle>Add Compensation History</DialogTitle>
+                        </DialogHeader>
+                        <div className="grid gap-3 py-2">
+                          <div className="grid gap-1.5">
+                            <Label htmlFor="ch-date">Date of Change</Label>
+                            <Input id="ch-date" placeholder="MM-DD-YYYY" value={compDraft.date} onChange={(e) => setCompDraft({ ...compDraft, date: e.target.value })} />
+                          </div>
+                          <div className="grid gap-1.5">
+                            <Label htmlFor="ch-salary">Salary</Label>
+                            <Input id="ch-salary" placeholder="$95,000" value={compDraft.salary} onChange={(e) => setCompDraft({ ...compDraft, salary: e.target.value })} />
+                          </div>
+                          <div className="grid gap-1.5">
+                            <Label htmlFor="ch-pct">Change %</Label>
+                            <Input id="ch-pct" placeholder="+5.00%" value={compDraft.pct} onChange={(e) => setCompDraft({ ...compDraft, pct: e.target.value })} />
+                          </div>
+                          <div className="grid gap-1.5">
+                            <Label htmlFor="ch-type">Type</Label>
+                            <Input id="ch-type" value={compDraft.type} onChange={(e) => setCompDraft({ ...compDraft, type: e.target.value })} />
+                          </div>
+                          <div className="grid gap-1.5">
+                            <Label>Currency</Label>
+                            <Select value={compDraft.currency} onValueChange={(v) => setCompDraft({ ...compDraft, currency: v })}>
+                              <SelectTrigger className="h-9"><SelectValue placeholder="Select currency" /></SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="USD">USD</SelectItem>
+                                <SelectItem value="EUR">EUR</SelectItem>
+                                <SelectItem value="PHP">PHP</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                          <div className="grid gap-1.5">
+                            <Label htmlFor="ch-title">Position</Label>
+                            <Input id="ch-title" value={compDraft.title} onChange={(e) => setCompDraft({ ...compDraft, title: e.target.value })} />
+                          </div>
+                        </div>
+                        <DialogFooter>
+                          <Button variant="outline" onClick={() => setCompOpen(false)}>Cancel</Button>
+                          <Button onClick={() => { setCompHistory((arr) => [...arr, compDraft]); setCompOpen(false); setCompDraft({ date: "", salary: "", pct: "", type: "", currency: "USD", title: "" }); }}>Save</Button>
+                        </DialogFooter>
+                      </DialogContent>
+                    </Dialog>
                   </div>
                 </div>
               </TabsContent>
