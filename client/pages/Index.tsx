@@ -1082,7 +1082,7 @@ export default function Index() {
   const docColumns: { key: keyof Doc; label: string }[] = [
     { key: "title", label: "Document Title" },
     { key: "department", label: "Department" },
-    { key: "type", label: "Document Type" },
+    { key: "type", label: "File Type" },
     { key: "uploadDate", label: "Upload Date" },
     { key: "expirationDate", label: "Expiration Date" },
     { key: "uploadedBy", label: "Uploaded By" },
