@@ -2197,6 +2197,9 @@ export default function ManageProfile() {
                             Total Days
                           </TableHead>
                           <TableHead className="py-2 font-bold uppercase">
+                            Approved By
+                          </TableHead>
+                          <TableHead className="py-2 font-bold uppercase">
                             Status
                           </TableHead>
                           <TableHead className="py-2 text-center font-bold uppercase">
@@ -2211,6 +2214,7 @@ export default function ManageProfile() {
                             03-15-2024 – 03-17-2024
                           </TableCell>
                           <TableCell className="py-2 text-center">3</TableCell>
+                          <TableCell className="py-2">{work.manager}</TableCell>
                           <TableCell className="py-2">
                             <Badge className="border-0 bg-emerald-100 px-2.5 py-0.5 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300">
                               Approved
@@ -2266,6 +2270,7 @@ export default function ManageProfile() {
                             01-08-2024 – 01-12-2024
                           </TableCell>
                           <TableCell className="py-2 text-center">5</TableCell>
+                          <TableCell className="py-2">{work.manager}</TableCell>
                           <TableCell className="py-2">
                             <Badge className="border-0 bg-emerald-100 px-2.5 py-0.5 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300">
                               Approved
@@ -2321,6 +2326,7 @@ export default function ManageProfile() {
                             04-22-2024 – 04-22-2024
                           </TableCell>
                           <TableCell className="py-2 text-center">1</TableCell>
+                          <TableCell className="py-2">—</TableCell>
                           <TableCell className="py-2">
                             <Badge className="border-0 bg-amber-100 px-2.5 py-0.5 text-amber-700 dark:bg-amber-500/20 dark:text-amber-300">
                               Under Review
@@ -2376,6 +2382,7 @@ export default function ManageProfile() {
                             05-10-2024 – 05-14-2024
                           </TableCell>
                           <TableCell className="py-2 text-center">5</TableCell>
+                          <TableCell className="py-2">—</TableCell>
                           <TableCell className="py-2">
                             <Badge className="border-0 bg-rose-100 px-2.5 py-0.5 text-rose-700 dark:bg-rose-500/20 dark:text-rose-300">
                               Rejected
