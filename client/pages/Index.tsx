@@ -1626,7 +1626,7 @@ export default function Index() {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="records">Employee Records</SelectItem>
-                <SelectItem value="org">Organization Chart</SelectItem>
+                <SelectItem value="org">Organizational Chart</SelectItem>
                 <SelectItem value="docs">Document Center</SelectItem>
               </SelectContent>
             </Select>
@@ -1652,7 +1652,7 @@ export default function Index() {
                   "data-[state=inactive]:bg-transparent data-[state=inactive]:text-black data-[state=inactive]:font-medium data-[state=inactive]:hover:bg-[#E0F2FE]",
                 )}
               >
-                Organization Chart
+                Organizational Chart
               </TabsTrigger>
               <TabsTrigger
                 value="docs"

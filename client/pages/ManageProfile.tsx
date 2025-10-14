@@ -1099,13 +1099,13 @@ export default function ManageProfile() {
 
                     <div className="mt-5">
                       <h3 className="text-base font-bold">
-                        Organization Chart
+                        Organizational Chart
                       </h3>
                       <a
                         href="#"
                         className="mt-2 inline-block text-brand hover:underline"
                       >
-                        View Organization Chart
+                        View Organizational Chart
                       </a>
                     </div>
                   </div>
@@ -2789,7 +2789,7 @@ function OrgChartMenu() {
   return (
     <div className="relative inline-block">
       <Button variant="outline" onClick={() => setOpen((v) => !v)}>
-        <User className="mr-2 h-4 w-4" /> View Organization Chart
+        <User className="mr-2 h-4 w-4" /> View Organizational Chart
       </Button>
       {open && (
         <div className="absolute z-20 mt-2 w-64 rounded-md border bg-popover p-2 text-sm shadow-md">
