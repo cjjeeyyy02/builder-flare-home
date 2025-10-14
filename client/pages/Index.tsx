@@ -2216,6 +2216,9 @@ export default function Index() {
                       </Button>
                     </label>
                   )}
+                  <Button type="button" onClick={exportDocsCSV} className="h-8 gap-1 px-2 text-xs">
+                    <Download className="h-4 w-4" /> Export
+                  </Button>
                 </div>
               </div>
 
