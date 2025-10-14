@@ -2198,44 +2198,6 @@ export default function Index() {
                     placeholder="Search documents..."
                     className="h-8 w-56 text-xs"
                   />
-                  {currentRole === "admin" || currentRole === "hr" ? (
-                    <label className="inline-flex items-center">
-                      <input
-                        type="file"
-                        className="hidden"
-                        accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,image/*"
-                        onChange={() =>
-                          toast({
-                            title: "Upload started",
-                            description: "Your document is uploading.",
-                          })
-                        }
-                      />
-                      <Button type="button" className="h-8 gap-1 px-2 text-xs bg-blue-600 text-white hover:bg-blue-700">
-                        <Upload className="h-4 w-4" /> Upload Document
-                      </Button>
-                    </label>
-                  ) : (
-                    <label className="inline-flex items-center">
-                      <input
-                        type="file"
-                        className="hidden"
-                        accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,image/*"
-                        onChange={() =>
-                          toast({
-                            title: "Upload started",
-                            description: "Uploading your document.",
-                          })
-                        }
-                      />
-                      <Button type="button" className="h-8 gap-1 px-2 text-xs bg-blue-600 text-white hover:bg-blue-700">
-                        <Upload className="h-4 w-4" /> Upload My Document
-                      </Button>
-                    </label>
-                  )}
-                  <Button type="button" onClick={exportDocsCSV} className="h-8 gap-1 px-2 text-xs bg-blue-600 text-white hover:bg-blue-700">
-                    <Download className="h-4 w-4" /> Export
-                  </Button>
                 </div>
               </div>
 
