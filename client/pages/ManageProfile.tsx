@@ -2834,35 +2834,6 @@ export default function ManageProfile() {
                   </div>
                 </div>
 
-                <div className="rounded-2xl border bg-card p-4 shadow-sm">
-                  <div className="mb-3 flex items-center gap-2 text-sm font-bold text-foreground">
-                    <ShieldCheck className="h-4 w-4" /> Current Security Status
-                  </div>
-                  <div className="grid gap-3 text-sm sm:grid-cols-3">
-                    <div>
-                      <div className="text-xs text-muted-foreground">
-                        Account Status
-                      </div>
-                      <div>
-                        <span className="inline-flex items-center rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300">
-                          Active
-                        </span>
-                      </div>
-                    </div>
-                    <div>
-                      <div className="text-xs text-muted-foreground">
-                        HR Access
-                      </div>
-                      <div className="text-foreground/70">Disabled</div>
-                    </div>
-                    <div>
-                      <div className="text-xs text-muted-foreground">
-                        Admin Rights
-                      </div>
-                      <div className="text-foreground/70">Not Granted</div>
-                    </div>
-                  </div>
-                </div>
               </TabsContent>
             </div>
           </Tabs>
