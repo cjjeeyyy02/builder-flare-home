@@ -2028,11 +2028,6 @@ export default function ManageProfile() {
               </TabsContent>
               <TabsContent value="leave" className="space-y-4">
                 <Dialog>
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-base font-bold">
-                      Performance Metrics & Leave History
-                    </h3>
-                  </div>
                   <DialogContent className="max-w-5xl rounded-2xl p-6 shadow-xl">
                     <DialogHeader>
                       <DialogTitle>Manage Leave Requests</DialogTitle>
