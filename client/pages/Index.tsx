@@ -1081,7 +1081,6 @@ export default function Index() {
 
   const docColumns: { key: keyof Doc; label: string }[] = [
     { key: "title", label: "Document Title" },
-    { key: "employeeName", label: "Employee Name" },
     { key: "department", label: "Department" },
     { key: "type", label: "Document Type" },
     { key: "uploadDate", label: "Upload Date" },
@@ -1350,7 +1349,7 @@ export default function Index() {
       );
       const allLines = scored.map(
         (x) =>
-          `• ${x.e.firstName} ${x.e.lastName} – ${x.e.role}, ${x.e.department} • ${getYearsExperience(x.e)} yrs • Matches: ${x.matches.join(", ")}`,
+          `• ${x.e.firstName} ${x.e.lastName} – ${x.e.role}, ${x.e.department} ��� ${getYearsExperience(x.e)} yrs • Matches: ${x.matches.join(", ")}`,
       );
       return `Top candidates:\n${topLines.join("\n")}\n\nAll matches:\n${allLines.join("\n")}`;
     }
@@ -2192,7 +2191,6 @@ export default function Index() {
           <TabsContent value="docs" className="mt-6">
             <div className="rounded-2xl border bg-card p-4 shadow-sm">
               <div className="mb-3 flex items-center justify-between gap-3">
-                <h3 className="text-base font-semibold">Document Center</h3>
                 <div className="flex items-center gap-2">
                   <Input
                     value={dcSearch}
@@ -2328,9 +2326,6 @@ export default function Index() {
                       <TableRow key={d.id} className="hover:bg-transparent">
                         <TableCell className="px-2 py-1 text-xs leading-tight">
                           {d.title}
-                        </TableCell>
-                        <TableCell className="px-2 py-1 text-xs leading-tight">
-                          {d.employeeName}
                         </TableCell>
                         <TableCell className="px-2 py-1 text-xs leading-tight">
                           {d.department}
