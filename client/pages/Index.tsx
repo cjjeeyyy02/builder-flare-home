@@ -2255,8 +2255,8 @@ export default function Index() {
                   <Button type="button" onClick={() => setDcUploadOpen(true)} className="h-8 gap-1 px-2 text-xs bg-blue-600 text-white hover:bg-blue-700">
                     <Upload className="h-4 w-4" /> {currentRole === "employee" ? "Upload My Document" : "Upload Document"}
                   </Button>
-                  <Button type="button" onClick={exportDocsCSV} className="h-8 gap-1 px-2 text-xs bg-blue-600 text-white hover:bg-blue-700">
-                    <Download className="h-4 w-4" /> Export
+                  <Button type="button" onClick={exportDocsCSV} variant="outline" className="h-8 rounded-md px-3 text-xs bg-white text-[#374151] border border-[#d1d5db] hover:bg-gray-50 gap-1">
+                    <Download className="mr-1.5 h-4 w-4" /> Export
                   </Button>
                 </div>
               </div>
