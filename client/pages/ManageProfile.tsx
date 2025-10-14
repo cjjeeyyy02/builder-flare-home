@@ -391,10 +391,17 @@ export default function ManageProfile() {
   const trainingFileInputRef = useRef<HTMLInputElement | null>(null);
 
   const [trainingType, setTrainingType] = useState<"training" | "certification">("training");
+  // Certification fields
   const [certName, setCertName] = useState("");
   const [certOrg, setCertOrg] = useState("");
   const [certIssued, setCertIssued] = useState("");
   const [certExpiry, setCertExpiry] = useState("");
+  // Training fields (controlled to avoid uncontrolled -> controlled warnings)
+  const [trainingTitleInput, setTrainingTitleInput] = useState("");
+  const [trainingProviderInput, setTrainingProviderInput] = useState("");
+  const [trainingStatusInput, setTrainingStatusInput] = useState("");
+  const [trainingScoreInput, setTrainingScoreInput] = useState("");
+  const [trainingCompletionInput, setTrainingCompletionInput] = useState("");
   function triggerTrainingUpload() {
     trainingFileInputRef.current?.click();
   }
@@ -1694,15 +1701,15 @@ export default function ManageProfile() {
                           <>
                             <div className="grid gap-1.5">
                               <Label className="text-xs font-semibold">Training Title</Label>
-                              <Input placeholder="The name or title of the training session" required />
+                              <Input value={trainingTitleInput} onChange={(e) => setTrainingTitleInput(e.target.value)} placeholder="The name or title of the training session" required />
                             </div>
                             <div className="grid gap-1.5">
                               <Label className="text-xs font-semibold">Training Provider</Label>
-                              <Input placeholder="The organization or individual offering it" />
+                              <Input value={trainingProviderInput} onChange={(e) => setTrainingProviderInput(e.target.value)} placeholder="The organization or individual offering it" />
                             </div>
                             <div className="grid gap-1.5">
                               <Label className="text-xs font-semibold">Status</Label>
-                              <Select>
+                              <Select value={trainingStatusInput} onValueChange={(v) => setTrainingStatusInput(v)}>
                                 <SelectTrigger className="h-9">
                                   <SelectValue placeholder="Select status" />
                                 </SelectTrigger>
@@ -1716,11 +1723,11 @@ export default function ManageProfile() {
                             <div className="grid gap-3 sm:grid-cols-2">
                               <div className="grid gap-1.5">
                                 <Label className="text-xs font-semibold">Score</Label>
-                                <Input type="number" placeholder="Numeric value representing performance" />
+                                <Input type="number" value={trainingScoreInput} onChange={(e) => setTrainingScoreInput(e.target.value)} placeholder="Numeric value representing performance" />
                               </div>
                               <div className="grid gap-1.5">
                                 <Label className="text-xs font-semibold">Completion Date</Label>
-                                <Input type="date" placeholder="dd/mm/yyyy" />
+                                <Input type="date" value={trainingCompletionInput} onChange={(e) => setTrainingCompletionInput(e.target.value)} placeholder="dd/mm/yyyy" />
                               </div>
                             </div>
                           </>
