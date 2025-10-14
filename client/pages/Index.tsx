@@ -2213,7 +2213,7 @@ export default function Index() {
                           })
                         }
                       />
-                      <Button type="button" className="h-8 gap-1 px-2 text-xs">
+                      <Button type="button" className="h-8 gap-1 px-2 text-xs bg-blue-600 text-white hover:bg-blue-700">
                         <Upload className="h-4 w-4" /> Upload Document
                       </Button>
                     </label>
@@ -2230,12 +2230,12 @@ export default function Index() {
                           })
                         }
                       />
-                      <Button type="button" className="h-8 gap-1 px-2 text-xs">
+                      <Button type="button" className="h-8 gap-1 px-2 text-xs bg-blue-600 text-white hover:bg-blue-700">
                         <Upload className="h-4 w-4" /> Upload My Document
                       </Button>
                     </label>
                   )}
-                  <Button type="button" onClick={exportDocsCSV} className="h-8 gap-1 px-2 text-xs">
+                  <Button type="button" onClick={exportDocsCSV} className="h-8 gap-1 px-2 text-xs bg-blue-600 text-white hover:bg-blue-700">
                     <Download className="h-4 w-4" /> Export
                   </Button>
                 </div>
