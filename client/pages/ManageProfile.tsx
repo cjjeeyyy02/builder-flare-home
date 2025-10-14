@@ -1083,7 +1083,7 @@ export default function ManageProfile() {
               <TabsContent value="work" className="space-y-6">
                 <div className="grid gap-6 lg:grid-cols-2">
                   <div>
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
                       <h3 className="text-base font-bold">Work Details</h3>
                       <Button variant="ghost" className="h-7 w-7 p-0" aria-label="Edit Work Details" onClick={() => { setWdDraft(work); setWdEditOpen(true); }}><Pencil className="h-4 w-4" /></Button>
                     </div>
@@ -1120,7 +1120,7 @@ export default function ManageProfile() {
                     </div>
                   </div>
                   <div>
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
                       <h3 className="text-base font-bold">Position History</h3>
                       <Button variant="ghost" className="h-7 w-7 p-0" aria-label="Edit Position History" onClick={() => { setPhDraft([...positionHistory]); setPhEditOpen(true); }}><Pencil className="h-4 w-4" /></Button>
                     </div>
