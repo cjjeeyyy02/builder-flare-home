@@ -1030,6 +1030,12 @@ export default function Index() {
   const [dcCategory2, setDcCategory2] = useState<string>("employee");
   const [sortKey, setSortKey] = useState<keyof Doc>("uploadDate");
   const [sortDir, setSortDir] = useState<"asc" | "desc">("desc");
+  const [dcUploadOpen, setDcUploadOpen] = useState(false);
+  const [dcFile, setDcFile] = useState<File | null>(null);
+  const [dcTitle, setDcTitle] = useState("");
+  const [dcCategory, setDcCategory] = useState<string>("employee");
+  const [dcDeptSel, setDcDeptSel] = useState<string>("all");
+  const [dcExpiry, setDcExpiry] = useState<string>("");
 
   const totalActive = EMPLOYEES.filter((e) => e.status === "Active").length;
   const onLeave = EMPLOYEES.filter((e) => e.status === "On Leave").length;
@@ -1546,8 +1552,10 @@ export default function Index() {
     return Math.ceil(diff / (1000 * 60 * 60 * 24));
   }
 
+  const [docs, setDocs] = useState<Doc[]>(DOCS);
+
   const filteredDocs = useMemo(() => {
-    return DOCS.filter((d) => {
+    return docs.filter((d) => {
       const matchesSearch =
         !dcSearch.trim() ||
         d.title.toLowerCase().includes(dcSearch.toLowerCase());
@@ -1566,7 +1574,7 @@ export default function Index() {
         matchesSearch && matchesDept && matchesType && matchesCat && matchesDate
       );
     });
-  }, [DOCS, dcSearch, dcDept, dcDocType, dcCategory2, dcDateFilter]);
+  }, [docs, dcSearch, dcDept, dcDocType, dcCategory2, dcDateFilter]);
 
   const sortedDocs = useMemo(() => {
     const arr = [...filteredDocs];
@@ -1603,6 +1611,50 @@ export default function Index() {
     toast({ title: "Exported CSV", description: `${rows.length} document(s)` });
   }
 
+  function formatDMY(d: Date): string {
+    const dd = String(d.getDate()).padStart(2, "0");
+    const mm = String(d.getMonth() + 1).padStart(2, "0");
+    const yyyy = d.getFullYear();
+    return `${dd}/${mm}/${yyyy}`;
+  }
+
+  function getFileType(f: File | null): string {
+    if (!f) return "";
+    const t = f.type.toLowerCase();
+    const name = f.name.toLowerCase();
+    if (t.includes("pdf") || name.endsWith(".pdf")) return "PDF";
+    if (t.includes("word") || name.endsWith(".doc") || name.endsWith(".docx")) return "Word";
+    if (t.includes("excel") || t.includes("spreadsheet") || name.endsWith(".xls") || name.endsWith(".xlsx")) return "Excel";
+    if (t.startsWith("image/") || [".png", ".jpg", ".jpeg", ".gif", ".webp"].some((x) => name.endsWith(x))) return "Image";
+    return t.split("/")[1]?.toUpperCase() || "Unknown";
+  }
+
+  function submitUpload() {
+    if (!dcFile || !dcTitle.trim()) {
+      return toast({ title: "Missing info", description: "Please select a file and enter a title." });
+    }
+    const uploader = currentRole === "hr" ? "HR Admin" : currentRole === "admin" ? "Admin" : "Employee";
+    const newDoc: Doc = {
+      id: `d${Date.now()}`,
+      title: dcTitle.trim(),
+      employeeName: "—",
+      department: dcDeptSel === "all" ? "General" : departments.find((d) => d.toLowerCase() === dcDeptSel) || dcDeptSel,
+      type: getFileType(dcFile),
+      category: dcCategory,
+      uploadDate: formatDMY(new Date()),
+      expirationDate: dcExpiry || undefined,
+      uploadedBy: uploader,
+    };
+    setDocs((arr) => [newDoc, ...arr]);
+    setDcUploadOpen(false);
+    setDcFile(null);
+    setDcTitle("");
+    setDcCategory("employee");
+    setDcDeptSel("all");
+    setDcExpiry("");
+    toast({ title: "Uploaded", description: newDoc.title });
+  }
+
   function handleSort(key: keyof Doc) {
     if (sortKey === key) {
       setSortDir((d) => (d === "asc" ? "desc" : "asc"));
@@ -1614,7 +1666,7 @@ export default function Index() {
 
   useEffect(() => {
     if (tab !== "docs") return;
-    const soon = DOCS.filter((d) => {
+    const soon = docs.filter((d) => {
       const n = daysUntil(d.expirationDate);
       return typeof n === "number" && n <= 30 && n >= 0;
     });
@@ -1624,7 +1676,7 @@ export default function Index() {
         description: `${soon.length} document(s) will expire within 30 days.`,
       });
     }
-  }, [tab]);
+  }, [tab, docs]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -2200,46 +2252,65 @@ export default function Index() {
                   />
                 </div>
                 <div className="flex items-center gap-2">
-                  {currentRole === "admin" || currentRole === "hr" ? (
-                    <label className="inline-flex items-center">
-                      <input
-                        type="file"
-                        className="hidden"
-                        accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,image/*"
-                        onChange={() =>
-                          toast({
-                            title: "Upload started",
-                            description: "Your document is uploading.",
-                          })
-                        }
-                      />
-                      <Button type="button" className="h-8 gap-1 px-2 text-xs bg-blue-600 text-white hover:bg-blue-700">
-                        <Upload className="h-4 w-4" /> Upload Document
-                      </Button>
-                    </label>
-                  ) : (
-                    <label className="inline-flex items-center">
-                      <input
-                        type="file"
-                        className="hidden"
-                        accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,image/*"
-                        onChange={() =>
-                          toast({
-                            title: "Upload started",
-                            description: "Uploading your document.",
-                          })
-                        }
-                      />
-                      <Button type="button" className="h-8 gap-1 px-2 text-xs bg-blue-600 text-white hover:bg-blue-700">
-                        <Upload className="h-4 w-4" /> Upload My Document
-                      </Button>
-                    </label>
-                  )}
+                  <Button type="button" onClick={() => setDcUploadOpen(true)} className="h-8 gap-1 px-2 text-xs bg-blue-600 text-white hover:bg-blue-700">
+                    <Upload className="h-4 w-4" /> {currentRole === "employee" ? "Upload My Document" : "Upload Document"}
+                  </Button>
                   <Button type="button" onClick={exportDocsCSV} className="h-8 gap-1 px-2 text-xs bg-blue-600 text-white hover:bg-blue-700">
                     <Download className="h-4 w-4" /> Export
                   </Button>
                 </div>
               </div>
+
+              <Dialog open={dcUploadOpen} onOpenChange={setDcUploadOpen}>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>Upload Document</DialogTitle>
+                  </DialogHeader>
+                  <div className="grid gap-3 py-2">
+                    <div className="grid gap-1.5">
+                      <Label className="text-xs font-semibold">Select File</Label>
+                      <Input type="file" accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,image/*" onChange={(e) => setDcFile(e.target.files?.[0] || null)} />
+                    </div>
+                    <div className="grid gap-1.5">
+                      <Label className="text-xs font-semibold">Document Title</Label>
+                      <Input value={dcTitle} onChange={(e) => setDcTitle(e.target.value)} placeholder="Descriptive title" />
+                    </div>
+                    <div className="grid gap-1.5 sm:grid-cols-2 sm:gap-3">
+                      <div className="grid gap-1.5">
+                        <Label className="text-xs font-semibold">Document Category</Label>
+                        <Select value={dcCategory} onValueChange={setDcCategory}>
+                          <SelectTrigger className="h-9"><SelectValue placeholder="Select category" /></SelectTrigger>
+                          <SelectContent>
+                            {docCategories.map((c) => (
+                              <SelectItem key={c.value} value={c.value}>{c.label}</SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div className="grid gap-1.5">
+                        <Label className="text-xs font-semibold">Department</Label>
+                        <Select value={dcDeptSel} onValueChange={setDcDeptSel}>
+                          <SelectTrigger className="h-9"><SelectValue placeholder="Select department" /></SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="all">All Departments</SelectItem>
+                            {departments.map((d) => (
+                              <SelectItem key={d} value={d.toLowerCase()}>{d}</SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+                    <div className="grid gap-1.5 sm:max-w-xs">
+                      <Label className="text-xs font-semibold">Expiration Date (optional)</Label>
+                      <Input type="date" value={dcExpiry} onChange={(e) => setDcExpiry(e.target.value)} placeholder="dd/mm/yyyy" />
+                    </div>
+                  </div>
+                  <DialogFooter>
+                    <Button variant="outline" onClick={() => setDcUploadOpen(false)}>Cancel</Button>
+                    <Button onClick={submitUpload}>Save</Button>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
 
               <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
                 <div className="flex flex-wrap items-center gap-1 text-xs">
