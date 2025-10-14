@@ -1481,7 +1481,7 @@ export default function Index() {
       category: "policies",
       uploadDate: "22/08/2023",
       expirationDate: undefined,
-      uploadedBy: "Compliance",
+      uploadedBy: "HR Admin",
     },
     {
       id: "d3",
