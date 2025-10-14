@@ -232,7 +232,6 @@ function OrgListView() {
   }
   function openEditDept(index: number) {
     const d = departmentsData[index];
-    setMode("manage");
     setEditingDeptIndex(index);
     setDeptName(d.department);
     setDeptHead(d.head);
@@ -378,7 +377,6 @@ function OrgListView() {
                     if (idx >= 0) {
                       openEditDept(idx);
                     } else {
-                      setMode("manage");
                       setEditingDeptIndex(null);
                       setDeptName(node.department);
                       setDeptHead(node.name);
@@ -616,76 +614,6 @@ function OrgListView() {
                   <Plus className="mr-1.5 h-4 w-4" /> Add Department
                 </Button>
               </div>
-              <Dialog open={deptDialogOpen} onOpenChange={setDeptDialogOpen}>
-                <DialogContent className="font-poppins">
-                  <DialogHeader>
-                    <DialogTitle className="font-poppins text-base font-semibold">
-                      {editingDeptIndex === null
-                        ? "Add Department"
-                        : "Edit Department"}
-                    </DialogTitle>
-                  </DialogHeader>
-                  <div className="grid gap-3 py-2">
-                    <div className="grid gap-1.5">
-                      <Label
-                        htmlFor="dept-name"
-                        className="font-poppins text-sm"
-                      >
-                        Department Name
-                      </Label>
-                      <Input
-                        id="dept-name"
-                        placeholder="Enter department name"
-                        value={deptName}
-                        onChange={(e) => setDeptName(e.target.value)}
-                      />
-                    </div>
-                    <div className="grid gap-1.5">
-                      <Label className="font-poppins text-sm">
-                        Department Head
-                      </Label>
-                      <Input
-                        id="dept-head"
-                        placeholder="Enter department head"
-                        value={deptHead}
-                        onChange={(e) => setDeptHead(e.target.value)}
-                        className="h-9"
-                      />
-                    </div>
-                    <div className="grid gap-1.5">
-                      <Label
-                        htmlFor="dept-cost"
-                        className="font-poppins text-sm"
-                      >
-                        Cost Center
-                      </Label>
-                      <Input
-                        id="dept-cost"
-                        placeholder="e.g., 1001"
-                        value={deptCostCenter}
-                        onChange={(e) => setDeptCostCenter(e.target.value)}
-                      />
-                    </div>
-                  </div>
-                  <DialogFooter>
-                    <Button
-                      type="button"
-                      variant="outline"
-                      className="rounded-md bg-white text-[#111827] border border-[#d1d5db]"
-                      onClick={() => setDeptDialogOpen(false)}
-                    >
-                      Cancel
-                    </Button>
-                    <Button
-                      type="button"
-                      className="rounded-md bg-[#2563eb] text-white hover:bg-[#1e40af]"
-                      onClick={saveDept}
-                    >
-                      Save
-                    </Button>
-                  </DialogFooter>
-                </DialogContent>
-              </Dialog>
             </div>
             <div className="flex flex-wrap items-center gap-2 px-3 py-2">
               <Input
@@ -1008,6 +936,67 @@ function OrgListView() {
           ))}
         </div>
       )}
+
+      <Dialog open={deptDialogOpen} onOpenChange={setDeptDialogOpen}>
+        <DialogContent className="font-poppins">
+          <DialogHeader>
+            <DialogTitle className="font-poppins text-base font-semibold">
+              {editingDeptIndex === null ? "Add Department" : "Edit Department"}
+            </DialogTitle>
+          </DialogHeader>
+          <div className="grid gap-3 py-2">
+            <div className="grid gap-1.5">
+              <Label htmlFor="dept-name" className="font-poppins text-sm">
+                Department Name
+              </Label>
+              <Input
+                id="dept-name"
+                placeholder="Enter department name"
+                value={deptName}
+                onChange={(e) => setDeptName(e.target.value)}
+              />
+            </div>
+            <div className="grid gap-1.5">
+              <Label className="font-poppins text-sm">Department Head</Label>
+              <Input
+                id="dept-head"
+                placeholder="Enter department head"
+                value={deptHead}
+                onChange={(e) => setDeptHead(e.target.value)}
+                className="h-9"
+              />
+            </div>
+            <div className="grid gap-1.5">
+              <Label htmlFor="dept-cost" className="font-poppins text-sm">
+                Cost Center
+              </Label>
+              <Input
+                id="dept-cost"
+                placeholder="e.g., 1001"
+                value={deptCostCenter}
+                onChange={(e) => setDeptCostCenter(e.target.value)}
+              />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button
+              type="button"
+              variant="outline"
+              className="rounded-md bg-white text-[#111827] border border-[#d1d5db]"
+              onClick={() => setDeptDialogOpen(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              type="button"
+              className="rounded-md bg-[#2563eb] text-white hover:bg-[#1e40af]"
+              onClick={saveDept}
+            >
+              Save
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       {reportTarget && (
         <AddReportModalTemplate
