@@ -588,6 +588,18 @@ export default function ManageProfile() {
                 <CalendarDays className="h-4 w-4" /> Joined Date:{" "}
                 {employee.joiningDate}
               </div>
+              <div className="mt-2 flex justify-end">
+                <Badge
+                  className={cn(
+                    "border-0",
+                    employee.status === "Active"
+                      ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300"
+                      : "bg-amber-100 text-amber-700 dark:bg-amber-500/20 dark:text-amber-300",
+                  )}
+                >
+                  {employee.status}
+                </Badge>
+              </div>
             </div>
           </div>
         </div>
