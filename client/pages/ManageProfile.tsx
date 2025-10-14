@@ -1791,7 +1791,7 @@ export default function ManageProfile() {
                             Status
                           </TableHead>
                           <TableHead className="py-2 text-right font-bold uppercase">
-                            Certificate
+                            Action
                           </TableHead>
                         </TableRow>
                       </TableHeader>
@@ -1813,7 +1813,7 @@ export default function ManageProfile() {
                                 <Button
                                   variant="ghost"
                                   className="h-8 w-8 p-0 text-muted-foreground hover:bg-transparent"
-                                  aria-label="Certificate actions"
+                                  aria-label="Actions"
                                 >
                                   <EllipsisVertical className="h-4 w-4" />
                                 </Button>
