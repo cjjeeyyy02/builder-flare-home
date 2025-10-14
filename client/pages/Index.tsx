@@ -34,6 +34,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Tooltip,
   TooltipTrigger,
@@ -493,7 +494,7 @@ function OrgListView() {
             onClick={() => setMode("list")}
             className="h-8 rounded-lg px-4 text-xs font-medium bg-white text-[#111827] border border-[#d1d5db] hover:bg-gray-50"
           >
-            ← Back
+            ��� Back
           </Button>
         </div>
       )}
@@ -1553,6 +1554,7 @@ export default function Index() {
   }
 
   const [docs, setDocs] = useState<Doc[]>(DOCS);
+  const [selectedDocIds, setSelectedDocIds] = useState<Set<string>>(new Set());
 
   const filteredDocs = useMemo(() => {
     return docs.filter((d) => {
@@ -1594,7 +1596,8 @@ export default function Index() {
 
   function exportDocsCSV() {
     const headers = docColumns.map((c) => c.label);
-    const rows = sortedDocs;
+    const selected = selectedDocIds;
+    const rows = selected.size ? sortedDocs.filter((d) => selected.has(d.id)) : sortedDocs;
     const csv = [
       headers.join(","),
       ...rows.map((d) =>
@@ -2375,7 +2378,32 @@ export default function Index() {
                 <Table className="text-xs leading-tight">
                   <TableHeader>
                     <TableRow>
-                      {docColumns.map((col) => (
+                      <TableHead className="w-8 px-2 py-1">
+    {(() => {
+      const ids = sortedDocs.map((d) => d.id);
+      const all = ids.length > 0 && ids.every((id) => selectedDocIds.has(id));
+      const some = ids.some((id) => selectedDocIds.has(id));
+      const checked: boolean | "indeterminate" = all ? true : some ? "indeterminate" : false;
+      return (
+        <Checkbox
+          aria-label="Select all documents"
+          checked={checked}
+          onCheckedChange={(v) => {
+            setSelectedDocIds((prev) => {
+              const next = new Set(prev);
+              if (v === true) {
+                ids.forEach((id) => next.add(id));
+              } else {
+                ids.forEach((id) => next.delete(id));
+              }
+              return next;
+            });
+          }}
+        />
+      );
+    })()}
+  </TableHead>
+  {docColumns.map((col) => (
                         <TableHead
                           key={col.key as string}
                           className="px-2 py-1 text-xs font-semibold uppercase leading-tight"
@@ -2397,6 +2425,20 @@ export default function Index() {
                   <TableBody>
                     {sortedDocs.map((d) => (
                       <TableRow key={d.id} className="hover:bg-transparent">
+                        <TableCell className="px-2 py-1">
+                          <Checkbox
+                            aria-label={`Select ${d.title}`}
+                            checked={selectedDocIds.has(d.id)}
+                            onCheckedChange={(v) => {
+                              setSelectedDocIds((prev) => {
+                                const next = new Set(prev);
+                                if (v === true) next.add(d.id);
+                                else next.delete(d.id);
+                                return next;
+                              });
+                            }}
+                          />
+                        </TableCell>
                         <TableCell className="px-2 py-1 text-xs leading-tight">
                           {d.title}
                         </TableCell>
