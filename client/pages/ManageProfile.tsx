@@ -389,6 +389,12 @@ export default function ManageProfile() {
 
   const [trainingUploadFiles, setTrainingUploadFiles] = useState<File[]>([]);
   const trainingFileInputRef = useRef<HTMLInputElement | null>(null);
+
+  const [trainingType, setTrainingType] = useState<"training" | "certification">("training");
+  const [certName, setCertName] = useState("");
+  const [certOrg, setCertOrg] = useState("");
+  const [certIssued, setCertIssued] = useState("");
+  const [certExpiry, setCertExpiry] = useState("");
   function triggerTrainingUpload() {
     trainingFileInputRef.current?.click();
   }
@@ -1674,67 +1680,72 @@ export default function ManageProfile() {
                       <div className="grid gap-4 text-sm">
                         <div className="grid gap-1.5">
                           <Label className="text-xs font-semibold">Type</Label>
-                          <Select defaultValue="training">
+                          <Select value={trainingType} onValueChange={(v) => setTrainingType(v as "training" | "certification")}>
                             <SelectTrigger className="h-9">
                               <SelectValue placeholder="Training" />
                             </SelectTrigger>
                             <SelectContent>
                               <SelectItem value="training">Training</SelectItem>
-                              <SelectItem value="certification">
-                                Certification
-                              </SelectItem>
+                              <SelectItem value="certification">Certification</SelectItem>
                             </SelectContent>
                           </Select>
                         </div>
-                        <div className="grid gap-1.5">
-                          <Label className="text-xs font-semibold">
-                            Training Title
-                          </Label>
-                          <Input
-                            placeholder="The name or title of the training session"
-                            required
-                          />
-                        </div>
-                        <div className="grid gap-1.5">
-                          <Label className="text-xs font-semibold">
-                            Training Provider
-                          </Label>
-                          <Input placeholder="The organization or individual offering it" />
-                        </div>
-                        <div className="grid gap-1.5">
-                          <Label className="text-xs font-semibold">
-                            Status
-                          </Label>
-                          <Select>
-                            <SelectTrigger className="h-9">
-                              <SelectValue placeholder="Select status" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="ongoing">Ongoing</SelectItem>
-                              <SelectItem value="completed">
-                                Completed
-                              </SelectItem>
-                              <SelectItem value="pending">Pending</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
-                        <div className="grid gap-3 sm:grid-cols-2">
-                          <div className="grid gap-1.5">
-                            <Label className="text-xs font-semibold">
-                              Score
-                            </Label>
-                            <Input
-                              type="number"
-                              placeholder="Numeric value representing performance"
-                            />
-                          </div>
-                          <div className="grid gap-1.5">
-                            <Label className="text-xs font-semibold">
-                              Completion Date
-                            </Label>
-                            <Input type="date" placeholder="dd/mm/yyyy" />
-                          </div>
-                        </div>
+                        {trainingType === "training" ? (
+                          <>
+                            <div className="grid gap-1.5">
+                              <Label className="text-xs font-semibold">Training Title</Label>
+                              <Input placeholder="The name or title of the training session" required />
+                            </div>
+                            <div className="grid gap-1.5">
+                              <Label className="text-xs font-semibold">Training Provider</Label>
+                              <Input placeholder="The organization or individual offering it" />
+                            </div>
+                            <div className="grid gap-1.5">
+                              <Label className="text-xs font-semibold">Status</Label>
+                              <Select>
+                                <SelectTrigger className="h-9">
+                                  <SelectValue placeholder="Select status" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="ongoing">Ongoing</SelectItem>
+                                  <SelectItem value="completed">Completed</SelectItem>
+                                  <SelectItem value="pending">Pending</SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </div>
+                            <div className="grid gap-3 sm:grid-cols-2">
+                              <div className="grid gap-1.5">
+                                <Label className="text-xs font-semibold">Score</Label>
+                                <Input type="number" placeholder="Numeric value representing performance" />
+                              </div>
+                              <div className="grid gap-1.5">
+                                <Label className="text-xs font-semibold">Completion Date</Label>
+                                <Input type="date" placeholder="dd/mm/yyyy" />
+                              </div>
+                            </div>
+                          </>
+                        ) : (
+                          <>
+                            <div className="grid gap-1.5">
+                              <Label className="text-xs font-semibold">Certification Name *</Label>
+                              <Input placeholder="Enter the official name of the certification" value={certName} onChange={(e) => setCertName(e.target.value)} required />
+                            </div>
+                            <div className="grid gap-1.5">
+                              <Label className="text-xs font-semibold">Issued Organization</Label>
+                              <Input placeholder="Name of the organization that issued the certification" value={certOrg} onChange={(e) => setCertOrg(e.target.value)} />
+                            </div>
+                            <div className="grid gap-3 sm:grid-cols-2">
+                              <div className="grid gap-1.5">
+                                <Label className="text-xs font-semibold">Issued Date</Label>
+                                <Input placeholder="dd/mm/yyyy" value={certIssued} onChange={(e) => setCertIssued(e.target.value)} />
+                              </div>
+                              <div className="grid gap-1.5">
+                                <Label className="text-xs font-semibold">Expiration Date</Label>
+                                <Input placeholder="dd/mm/yyyy" value={certExpiry} onChange={(e) => setCertExpiry(e.target.value)} />
+                              </div>
+                            </div>
+                          </>
+                        )}
                       </div>
                       <div className="grid gap-1.5">
                         <input
