@@ -232,6 +232,7 @@ function OrgListView() {
   }
   function openEditDept(index: number) {
     const d = departmentsData[index];
+    setMode("manage");
     setEditingDeptIndex(index);
     setDeptName(d.department);
     setDeptHead(d.head);
@@ -370,9 +371,22 @@ function OrgListView() {
                   View Chart
                 </DropdownMenuItem>
                 <DropdownMenuItem
-                  onClick={() =>
-                    toast({ title: "Edit", description: `${node.name}` })
-                  }
+                  onClick={() => {
+                    const idx = departmentsData.findIndex(
+                      (x) => x.department === node.department,
+                    );
+                    if (idx >= 0) {
+                      openEditDept(idx);
+                    } else {
+                      setMode("manage");
+                      setEditingDeptIndex(null);
+                      setDeptName(node.department);
+                      setDeptHead(node.name);
+                      setDeptCostCenter("");
+                      setDeptMembers(0);
+                      setDeptDialogOpen(true);
+                    }
+                  }}
                 >
                   Edit
                 </DropdownMenuItem>
@@ -1999,7 +2013,7 @@ export default function Index() {
                               if (!skills.length)
                                 return (
                                   <span className="text-muted-foreground">
-                                    —
+                                    ��
                                   </span>
                                 );
                               const shown = skills.slice(0, 2);
