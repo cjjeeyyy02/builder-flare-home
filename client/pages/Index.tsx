@@ -1585,6 +1585,25 @@ export default function Index() {
     return arr;
   }, [filteredDocs, sortKey, sortDir]);
 
+  function exportDocsCSV() {
+    const headers = docColumns.map((c) => c.label);
+    const rows = sortedDocs;
+    const csv = [
+      headers.join(","),
+      ...rows.map((d) =>
+        docColumns
+          .map((c) => {
+            const v = (d as any)[c.key];
+            const s = v == null ? "" : String(v);
+            return '"' + s.replace(/"/g, '""') + '"';
+          })
+          .join(","),
+      ),
+    ].join("\n");
+    download("documents.csv", csv, "text/csv;charset=utf-8;");
+    toast({ title: "Exported CSV", description: `${rows.length} document(s)` });
+  }
+
   function handleSort(key: keyof Doc) {
     if (sortKey === key) {
       setSortDir((d) => (d === "asc" ? "desc" : "asc"));
