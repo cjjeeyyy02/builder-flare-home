@@ -1839,17 +1839,15 @@ export default function Index() {
                         </Button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end" className="w-40">
+                        <DropdownMenuItem onClick={() => setOpenAddSingle(true)}>
+                          Manual add
+                        </DropdownMenuItem>
                         <DropdownMenuItem
                           onClick={() =>
                             document.getElementById("bulk-emp-upload")?.click()
                           }
                         >
                           Bulk Upload
-                        </DropdownMenuItem>
-                        <DropdownMenuItem
-                          onClick={() => setOpenAddSingle(true)}
-                        >
-                          Manual Upload
                         </DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>
