@@ -1806,7 +1806,7 @@ export default function Index() {
                 icon={<ArrowLeftRight className="h-5 w-5" />}
               />
               <MetricCard
-                label="Late Arrival"
+                label="Today's Late Arrival"
                 value={7}
                 icon={<Clock className="h-5 w-5" />}
               />
