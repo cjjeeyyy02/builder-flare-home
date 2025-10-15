@@ -1549,7 +1549,7 @@ export default function Index() {
     if (/active/.test(text) || /on leave/.test(text)) {
       const s = /on leave/.test(text) ? "On Leave" : "Active";
       const list = EMPLOYEES.filter((e) => e.status === s);
-      return `${s} (${list.length}):\n${list.map((e) => `��� ${e.firstName} ${e.lastName} �� ${e.role}, ${e.department}`).join("\n")}`;
+      return `${s} (${list.length}):\n${list.map((e) => `• ${e.firstName} ${e.lastName} �� ${e.role}, ${e.department}`).join("\n")}`;
     }
 
     // Fallback quick answers retained
@@ -1837,10 +1837,10 @@ export default function Index() {
                 />
                 <Select value={position} onValueChange={setPosition}>
                   <SelectTrigger className="h-8 w-32 text-xs">
-                    <SelectValue placeholder="All Positions" />
+                    <SelectValue placeholder="Department Filter" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">All Positions</SelectItem>
+                    <SelectItem value="all">Department Filter</SelectItem>
                     <SelectItem value="engineer">Engineer</SelectItem>
                     <SelectItem value="designer">Designer</SelectItem>
                     <SelectItem value="manager">Manager</SelectItem>
@@ -1849,10 +1849,10 @@ export default function Index() {
                 </Select>
                 <Select value={status} onValueChange={setStatus}>
                   <SelectTrigger className="h-8 w-28 text-xs">
-                    <SelectValue placeholder="All Status" />
+                    <SelectValue placeholder="Status Filter" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">All Status</SelectItem>
+                    <SelectItem value="all">Status Filter</SelectItem>
                     <SelectItem value="active">Active</SelectItem>
                     <SelectItem value="on leave">On Leave</SelectItem>
                     <SelectItem value="inactive">Inactive</SelectItem>
@@ -2205,10 +2205,10 @@ export default function Index() {
                 />
                 <Select value={position} onValueChange={setPosition}>
                   <SelectTrigger className="h-8 w-32 text-xs">
-                    <SelectValue placeholder="All Positions" />
+                    <SelectValue placeholder="Department Filter" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">All Positions</SelectItem>
+                    <SelectItem value="all">Department Filter</SelectItem>
                     <SelectItem value="engineer">Engineer</SelectItem>
                     <SelectItem value="designer">Designer</SelectItem>
                     <SelectItem value="manager">Manager</SelectItem>
@@ -2217,10 +2217,10 @@ export default function Index() {
                 </Select>
                 <Select value={status} onValueChange={setStatus}>
                   <SelectTrigger className="h-8 w-28 text-xs">
-                    <SelectValue placeholder="All Status" />
+                    <SelectValue placeholder="Status Filter" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">All Status</SelectItem>
+                    <SelectItem value="all">Status Filter</SelectItem>
                     <SelectItem value="active">Active</SelectItem>
                     <SelectItem value="on leave">On Leave</SelectItem>
                     <SelectItem value="inactive">Inactive</SelectItem>
