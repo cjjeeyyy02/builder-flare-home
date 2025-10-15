@@ -1801,7 +1801,7 @@ export default function Index() {
                 icon={<CalendarDays className="h-5 w-5" />}
               />
               <MetricCard
-                label="Pending Approval"
+                label="Pending Leave Request"
                 value={5}
                 icon={<ArrowLeftRight className="h-5 w-5" />}
               />
