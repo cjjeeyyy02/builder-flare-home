@@ -1043,6 +1043,11 @@ export default function Index() {
   const newHiresThisMonth = 0;
   const pendingOffboarding = 0;
 
+  const activeOffboarding = 24;
+  const pendingApprovals = 7;
+  const completedThisMonth = 15;
+  const overdueItems = 3;
+
   const filtered = useMemo(() => {
     return EMPLOYEES.filter((e) => {
       const matchesSearch =
@@ -1783,23 +1788,23 @@ export default function Index() {
           <TabsContent value="records" className="mt-5">
             <section className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
               <MetricCard
-                label="Total Active Employee"
-                value={totalActive}
+                label="Active Offboarding"
+                value={activeOffboarding}
                 icon={<User className="h-5 w-5" />}
               />
               <MetricCard
-                label="New Hires This Month"
-                value={newHiresThisMonth}
+                label="Pending Approvals"
+                value={pendingApprovals}
                 icon={<Plus className="h-5 w-5" />}
               />
               <MetricCard
-                label="Pending Offboarding"
-                value={pendingOffboarding}
+                label="Completed This Month"
+                value={completedThisMonth}
                 icon={<ArrowLeftRight className="h-5 w-5" />}
               />
               <MetricCard
-                label="On Leave"
-                value={onLeave}
+                label="Overdue Items"
+                value={overdueItems}
                 icon={<CalendarDays className="h-5 w-5" />}
               />
             </section>
