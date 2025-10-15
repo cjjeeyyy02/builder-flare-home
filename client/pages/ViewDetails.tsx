@@ -59,11 +59,7 @@ export default function ViewDetails() {
             <div className="flex items-center gap-2"><Badge variant="secondary">In Progress</Badge><span className="sr-only">Status</span></div>
             <div className="text-muted-foreground">Progress</div>
             <div className="flex items-center gap-2">
-              <div className="w-40">
-                <div className="h-2 w-full rounded bg-muted">
-                  <div className="h-2 w-[65%] rounded bg-primary" />
-                </div>
-              </div>
+              <Progress value={65} className="w-40" />
               <span className="font-medium">65%</span>
             </div>
           </div>
