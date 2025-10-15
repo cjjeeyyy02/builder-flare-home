@@ -2767,91 +2767,70 @@ export default function Index() {
                 </div>
               </div>
 
-              <div className="overflow-hidden rounded-lg border">
-                <Table className="text-xs leading-tight">
-                  <TableHeader>
-                    <TableRow className="hover:bg-transparent">
-                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Employee ID</TableHead>
-                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Employee Name</TableHead>
-                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Leave Type</TableHead>
-                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Period From</TableHead>
-                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Period To</TableHead>
-                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Days</TableHead>
-                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Status</TableHead>
-                      <TableHead className="px-2 py-1 text-center text-xs font-semibold uppercase leading-tight">Actions</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {lrItems.map((l, i) => (
-                      <TableRow key={`${l.empId}-${i}`} className="hover:bg-transparent">
-                        <TableCell className="px-2 py-1 text-xs leading-tight">{l.empId}</TableCell>
-                        <TableCell className="px-2 py-1 text-xs leading-tight">{l.employee}</TableCell>
-                        <TableCell className="px-2 py-1 text-xs leading-tight">{l.type}</TableCell>
-                        <TableCell className="px-2 py-1 text-xs leading-tight">{l.from}</TableCell>
-                        <TableCell className="px-2 py-1 text-xs leading-tight">{l.to}</TableCell>
-                        <TableCell className="px-2 py-1 text-xs leading-tight">{l.days}</TableCell>
-                        <TableCell className="px-2 py-1 text-xs leading-tight">
-                          {l.status === "Pending" ? (
-                            <span className="inline-flex rounded-full bg-muted px-2.5 py-0.5 text-[11px] font-medium text-foreground/80">Pending</span>
-                          ) : (
-                            <span className="inline-flex rounded-full bg-[#6C4CF5] px-2.5 py-0.5 text-[11px] font-medium text-white">Approved</span>
-                          )}
-                        </TableCell>
-                        <TableCell className="px-2 py-1 text-center text-xs leading-tight">
-                          <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                              <Button variant="ghost" className="h-7 w-7 p-0" aria-label={`Actions for ${l.employee}`}>
-                                <EllipsisVertical className="h-4 w-4" />
-                              </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end" className="w-40">
-                              <DropdownMenuItem
-                                onClick={() =>
-                                  setLeaves((prev) =>
-                                    prev.map((x, idx) => (idx === i ? { ...x, status: "Approved" } : x)),
-                                  )
-                                }
-                              >
-                                Approve
-                              </DropdownMenuItem>
-                              <DropdownMenuItem
-                                onClick={() =>
-                                  setLeaves((prev) => prev.filter((_, idx) => idx !== i))
-                                }
-                              >
-                                Delete
-                              </DropdownMenuItem>
-                            </DropdownMenuContent>
-                          </DropdownMenu>
+              {leaveView === "requests" ? (
+                <div className="overflow-hidden rounded-lg border">
+                  <Table className="text-sm">
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead className="px-3 py-3 text-sm font-semibold text-[#4B5563]">ID</TableHead>
+                        <TableHead className="px-3 py-3 text-sm font-semibold text-[#4B5563]">Employee Name</TableHead>
+                        <TableHead className="px-3 py-3 text-sm font-semibold text-[#4B5563]">Leave Type</TableHead>
+                        <TableHead className="px-3 py-3 text-sm font-semibold text-[#4B5563]">Period From</TableHead>
+                        <TableHead className="px-3 py-3 text-sm font-semibold text-[#4B5563]">Period To</TableHead>
+                        <TableHead className="px-3 py-3 text-sm font-semibold text-[#4B5563]">Status</TableHead>
+                        <TableHead className="px-3 py-3 text-sm font-semibold text-[#4B5563]">Action</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      <TableRow className="hover:bg-[#F9FAFB]">
+                        <TableCell className="px-3 py-2">2301</TableCell>
+                        <TableCell className="px-3 py-2">Alex Chen</TableCell>
+                        <TableCell className="px-3 py-2">Annual</TableCell>
+                        <TableCell className="px-3 py-2">2025-10-15</TableCell>
+                        <TableCell className="px-3 py-2">2025-10-15</TableCell>
+                        <TableCell className="px-3 py-2">Pending</TableCell>
+                        <TableCell className="px-3 py-2">
+                          <div className="flex items-center gap-2">
+                            <Button variant="outline" className="h-8 px-3 text-xs">Approve</Button>
+                            <Button variant="outline" className="h-8 px-3 text-xs">Reject</Button>
+                          </div>
                         </TableCell>
                       </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-                <div className="flex items-center justify-end gap-2 border-t px-2 py-2 text-xs">
-                  <span className="text-muted-foreground">
-                    {lrStart + 1}-{lrEnd} of {lrTotal}
-                  </span>
-                  <Button
-                    variant="outline"
-                    className="h-7 w-7 rounded-md p-0"
-                    onClick={() => setLrPage((p) => Math.max(0, p - 1))}
-                    disabled={lrPage === 0}
-                    aria-label="Previous page"
-                  >
-                    <ChevronLeft className="h-4 w-4" />
-                  </Button>
-                  <Button
-                    variant="outline"
-                    className="h-7 w-7 rounded-md p-0"
-                    onClick={() => setLrPage((p) => Math.min(lrTotalPages - 1, p + 1))}
-                    disabled={lrPage >= lrTotalPages - 1}
-                    aria-label="Next page"
-                  >
-                    <ChevronRight className="h-4 w-4" />
-                  </Button>
+                      <TableRow className="hover:bg-[#F9FAFB]">
+                        <TableCell className="px-3 py-2">2302</TableCell>
+                        <TableCell className="px-3 py-2">Maria Gomez</TableCell>
+                        <TableCell className="px-3 py-2">Sick</TableCell>
+                        <TableCell className="px-3 py-2">2025-10-15</TableCell>
+                        <TableCell className="px-3 py-2">2025-10-15</TableCell>
+                        <TableCell className="px-3 py-2">Approved</TableCell>
+                        <TableCell className="px-3 py-2">
+                          <div className="flex items-center gap-2">
+                            <Button variant="outline" className="h-8 px-3 text-xs">Approve</Button>
+                            <Button variant="outline" className="h-8 px-3 text-xs">Reject</Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                      <TableRow className="hover:bg-[#F9FAFB]">
+                        <TableCell className="px-3 py-2">2303</TableCell>
+                        <TableCell className="px-3 py-2">Jordan Lee</TableCell>
+                        <TableCell className="px-3 py-2">WFH</TableCell>
+                        <TableCell className="px-3 py-2">2025-10-15</TableCell>
+                        <TableCell className="px-3 py-2">2025-10-15</TableCell>
+                        <TableCell className="px-3 py-2">Rejected</TableCell>
+                        <TableCell className="px-3 py-2">
+                          <div className="flex items-center gap-2">
+                            <Button variant="outline" className="h-8 px-3 text-xs">Approve</Button>
+                            <Button variant="outline" className="h-8 px-3 text-xs">Reject</Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                  <div className="px-3 py-2 text-xs text-muted-foreground">&lt;Pagination here&gt;</div>
                 </div>
-              </div>
+              ) : (
+                <div className="rounded-lg border p-6 text-sm text-muted-foreground">Balances view</div>
+              )}
             </div>
           </TabsContent>
           <TabsContent value="__disabled__" className="mt-6">
