@@ -2284,9 +2284,9 @@ export default function Index() {
           </TabsContent>
 
           <TabsContent value="org" className="mt-6">
-            <OrgListView />
           </TabsContent>
           <TabsContent value="docs" className="mt-6">
+            {false && (
             <div className="rounded-2xl border bg-card p-4 shadow-sm">
               <div className="mb-3 flex items-center justify-between gap-3">
                 <div className="flex items-center gap-2">
@@ -2624,6 +2624,7 @@ export default function Index() {
                 </Table>
               </div>
             </div>
+            )}
           </TabsContent>
         </Tabs>
 
