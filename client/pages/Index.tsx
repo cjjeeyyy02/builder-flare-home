@@ -1818,10 +1818,18 @@ export default function Index() {
                             {e.department}
                           </TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">
-                            <span className="text-muted-foreground">—</span>
+                            {e.departureType ? (
+                              e.departureType
+                            ) : (
+                              <span className="text-muted-foreground">—</span>
+                            )}
                           </TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">
-                            <span className="text-muted-foreground">—</span>
+                            {e.departureDate ? (
+                              e.departureDate
+                            ) : (
+                              <span className="text-muted-foreground">—</span>
+                            )}
                           </TableCell>
                           <TableCell className="px-2 py-1 text-center text-xs leading-tight">
                             <RowActions employee={e} />

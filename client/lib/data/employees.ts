@@ -1,4 +1,12 @@
 export type EmployeeStatus = "Active" | "On Leave" | "Inactive";
+export type DepartureType =
+  | "Resignation"
+  | "Termination"
+  | "Retirement"
+  | "Layoff"
+  | "End of Contract"
+  | "Other";
+
 export interface Employee {
   id: string;
   firstName: string;
@@ -10,6 +18,8 @@ export interface Employee {
   joiningDate: string; // MM-DD-YYYY
   contactNumber?: string;
   location?: string;
+  departureType?: DepartureType;
+  departureDate?: string; // MM-DD-YYYY
 }
 
 export const EMPLOYEES: Employee[] = [
@@ -24,6 +34,8 @@ export const EMPLOYEES: Employee[] = [
     joiningDate: "01-15-2023",
     contactNumber: "+1 (555) 010-1200",
     location: "San Francisco, CA, USA",
+    departureType: "Resignation",
+    departureDate: "10-01-2024",
   },
   {
     id: "EMP002",
@@ -36,6 +48,8 @@ export const EMPLOYEES: Employee[] = [
     joiningDate: "06-02-2022",
     contactNumber: "+1 (555) 010-1201",
     location: "New York, NY, USA",
+    departureType: "Termination",
+    departureDate: "09-15-2024",
   },
   {
     id: "EMP003",
@@ -48,6 +62,8 @@ export const EMPLOYEES: Employee[] = [
     joiningDate: "11-08-2021",
     contactNumber: "+1 (555) 010-1202",
     location: "Toronto, ON, Canada",
+    departureType: "Retirement",
+    departureDate: "12-31-2024",
   },
   {
     id: "EMP004",
@@ -60,6 +76,8 @@ export const EMPLOYEES: Employee[] = [
     joiningDate: "03-11-2020",
     contactNumber: "+1 (555) 010-1203",
     location: "Austin, TX, USA",
+    departureType: "Layoff",
+    departureDate: "08-20-2024",
   },
   {
     id: "EMP005",
@@ -72,6 +90,8 @@ export const EMPLOYEES: Employee[] = [
     joiningDate: "09-23-2019",
     contactNumber: "+1 (555) 010-1204",
     location: "Madrid, Spain",
+    departureType: "End of Contract",
+    departureDate: "11-10-2024",
   },
   {
     id: "EMP006",
@@ -84,6 +104,8 @@ export const EMPLOYEES: Employee[] = [
     joiningDate: "05-30-2023",
     contactNumber: "+971 55 010 1205",
     location: "Dubai, UAE",
+    departureType: "Resignation",
+    departureDate: "10-25-2024",
   },
   {
     id: "EMP007",
@@ -96,5 +118,7 @@ export const EMPLOYEES: Employee[] = [
     joiningDate: "02-17-2024",
     contactNumber: "+39 06 010 1206",
     location: "Rome, Italy",
+    departureType: "Other",
+    departureDate: "10-05-2024",
   },
 ];
