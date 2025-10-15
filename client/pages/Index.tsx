@@ -2082,8 +2082,7 @@ export default function Index() {
                       ))}
                     </TableBody>
                   </Table>
-                  <div className="flex items-center justify-between gap-2 border-t px-2 py-2 text-xs">
-                    <span className="font-medium text-foreground">Attendance List</span>
+                  <div className="flex items-center justify-end gap-2 border-t px-2 py-2 text-xs">
                     <div className="flex items-center gap-2">
                       <span className="text-muted-foreground">
                         {start + 1}-{end} of {filtered.length}
