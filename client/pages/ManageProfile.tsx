@@ -2360,6 +2360,22 @@ export default function ManageProfile() {
                       <TableBody>
                         {payslips.map((p) => (
                           <TableRow key={p.date} className="hover:bg-transparent">
+                            {payslipSelecting && (
+                              <TableCell className="py-2">
+                                <Checkbox
+                                  aria-label={`Select ${p.date}`}
+                                  checked={selectedPayslipDates.has(p.date)}
+                                  onCheckedChange={(v) => {
+                                    setSelectedPayslipDates((prev) => {
+                                      const next = new Set(prev);
+                                      if (v === true) next.add(p.date);
+                                      else next.delete(p.date);
+                                      return next;
+                                    });
+                                  }}
+                                />
+                              </TableCell>
+                            )}
                             <TableCell className="py-2">{p.date}</TableCell>
                             <TableCell className="py-2">{p.gross}</TableCell>
                             <TableCell className="py-2">{p.deductions}</TableCell>
