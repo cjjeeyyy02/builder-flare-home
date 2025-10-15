@@ -1075,6 +1075,11 @@ export default function Index() {
     { empId: "E-1003", name: "Jordan Lee", scheduled: "8h", worked: "8.92h", day: "Remote • 09:05–18:00" },
     { empId: "E-1004", name: "Priya Patel", scheduled: "8h", worked: "0.00h", day: "On Leave" },
   ];
+  type MonthlyRow = { empId: string; name: string; days: (string | number)[]; hoursWorked: string; scheduled: string };
+  const MONTHLY_DATA: MonthlyRow[] = [
+    { empId: "E-1001", name: "Alex Chen", days: [0, 0, 0, "H", "H", 0, 0, 0, 0, "9.0/8h", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "H", "H", 0, 0, 0, 0, 0, 0, 0, 0, 0], hoursWorked: "152", scheduled: "160" },
+    { empId: "E-1002", name: "Maria Gomez", days: [0, 0, 0, 0, 0, 0, 0, 0, 0, "L", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "H", "H", 0, 0, 0, 0, 0, 0, 0, 0, 0], hoursWorked: "0", scheduled: "160" },
+  ];
   type ShiftSlot = { name: string; time: string };
   type ShiftDay = { day: string; slots: ShiftSlot[] };
   const SHIFT_DAYS: ShiftDay[] = [
