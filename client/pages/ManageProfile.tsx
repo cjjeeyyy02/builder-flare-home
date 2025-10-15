@@ -37,7 +37,6 @@ import {
   Pencil,
   Shield,
   ShieldCheck,
-  Trash2,
   User,
   EllipsisVertical,
 } from "lucide-react";
@@ -602,12 +601,11 @@ export default function ManageProfile() {
           <AlertDialog>
             <AlertDialogTrigger asChild>
               <Button
-                variant="ghost"
-                className="h-8 w-8 p-0 text-red-600 hover:text-red-700"
+                variant="destructive"
+                className="h-8 px-3 text-xs"
                 aria-label="Delete Record"
-                title="Delete Record"
               >
-                <Trash2 className="h-4 w-4" />
+                Delete Record
               </Button>
             </AlertDialogTrigger>
             <AlertDialogContent className="rounded-2xl">
