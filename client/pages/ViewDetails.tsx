@@ -63,7 +63,7 @@ export default function ViewDetails() {
             {/* Middle: Exit Details + Employment Info */}
             <div className="flex-1 grid grid-cols-1 gap-10 md:grid-cols-2">
               <div>
-                <div className="mb-2 text-[16px] font-bold text-[#111827]">Exit Details</div>
+                <div className="mb-2 text-[16px] font-semibold text-[#111827]">Exit Details</div>
                 <div className="space-y-[6px] text-[13px]">
                   <div className="text-[#6B7280]">Type</div>
                   <div className="text-[#111827] font-medium">Resignation</div>
@@ -76,7 +76,7 @@ export default function ViewDetails() {
                 </div>
               </div>
               <div>
-                <div className="mb-2 text-[16px] font-bold text-[#111827]">Employment Info</div>
+                <div className="mb-2 text-[16px] font-semibold text-[#111827]">Employment Info</div>
                 <div className="space-y-[6px] text-[13px]">
                   <div className="text-[#6B7280]">Department</div>
                   <div className="text-[#111827] font-medium">Engineering</div>
@@ -99,7 +99,7 @@ export default function ViewDetails() {
               </div>
 
               <div className="mt-4">
-                <div className="mb-2 text-[16px] font-bold text-[#111827]">Case Info</div>
+                <div className="mb-2 text-[16px] font-semibold text-[#111827]">Case Info</div>
                 <div className="space-y-[6px] text-[13px]">
                   <div className="text-[#6B7280]">Assigned To</div>
                   <div className="text-[#111827] font-medium">HR Team</div>
