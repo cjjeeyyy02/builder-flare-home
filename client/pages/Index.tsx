@@ -1046,6 +1046,7 @@ export default function Index() {
   const [dateFilter, setDateFilter] = useState<string>(new Date().toISOString().slice(0, 10));
   const [subTab, setSubTab] = useState<"logs" | "timesheets" | "shift">("timesheets");
   const [tsRange, setTsRange] = useState<"daily" | "weekly" | "monthly">("daily");
+  const [leaveView, setLeaveView] = useState<"requests" | "balances">("requests");
   const todaySlash = useMemo(() => {
     const d = new Date();
     const mm = String(d.getMonth() + 1).padStart(2, "0");
