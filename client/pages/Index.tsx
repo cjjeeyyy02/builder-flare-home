@@ -1045,6 +1045,28 @@ export default function Index() {
   const [tab, setTab] = useState<string>("attendance");
   const [dateFilter, setDateFilter] = useState<string>(new Date().toISOString().slice(0, 10));
   const [subTab, setSubTab] = useState<"logs" | "timesheets" | "shift">("timesheets");
+  const [tsRange, setTsRange] = useState<"daily" | "weekly" | "monthly">("daily");
+  const todaySlash = useMemo(() => {
+    const d = new Date();
+    const mm = String(d.getMonth() + 1).padStart(2, "0");
+    const dd = String(d.getDate()).padStart(2, "0");
+    const yyyy = d.getFullYear();
+    return `${mm}/${dd}/${yyyy}`;
+  }, []);
+  const tsDayHeader = useMemo(() => {
+    const d = new Date();
+    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const mm = String(d.getMonth() + 1).padStart(2, "0");
+    const dd = String(d.getDate()).padStart(2, "0");
+    return `${days[d.getDay()]} ${mm}/${dd}`;
+  }, []);
+  type TimesheetRow = { empId: string; name: string; scheduled: string; worked: string; day: string };
+  const TS_ROWS: TimesheetRow[] = [
+    { empId: "E-1001", name: "Alex Chen", scheduled: "8h", worked: "9.02h", day: "Present • 09:02–18:03" },
+    { empId: "E-1002", name: "Maria Gomez", scheduled: "8h", worked: "8.57h", day: "On Leave" },
+    { empId: "E-1003", name: "Jordan Lee", scheduled: "8h", worked: "8.92h", day: "Remote • 09:05–18:00" },
+    { empId: "E-1004", name: "Priya Patel", scheduled: "8h", worked: "0.00h", day: "On Leave" },
+  ];
   const navigate = useNavigate();
 
   // Role-based permissions (admin | hr | employee)
@@ -2204,7 +2226,93 @@ export default function Index() {
                 </div>
               </TabsContent>
               <TabsContent value="timesheets">
-                <div className="rounded-2xl border bg-card p-4 shadow-sm mt-4">
+                <div className="flex flex-col gap-4 rounded-[8px] bg-white p-6 shadow-[0_1px_3px_rgba(0,0,0,0.08)] font-poppins">
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setSubTab("logs")}
+                      className={cn(
+                        "rounded-full px-5 py-2 text-sm font-medium transition",
+                        subTab === "logs" ? "bg-[#F3F4F6] text-[#111827]" : "text-[#9CA3AF]",
+                      )}
+                    >
+                      Logs
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setSubTab("timesheets")}
+                      className={cn(
+                        "rounded-full px-5 py-2 text-sm font-medium transition",
+                        subTab === "timesheets" ? "bg-[#F3F4F6] text-[#111827]" : "text-[#9CA3AF]",
+                      )}
+                    >
+                      Timesheets
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setSubTab("shift")}
+                      className={cn(
+                        "rounded-full px-5 py-2 text-sm font-medium transition",
+                        subTab === "shift" ? "bg-[#F3F4F6] text-[#111827]" : "text-[#9CA3AF]",
+                      )}
+                    >
+                      Shifts
+                    </button>
+                  </div>
+
+                  <div className="flex items-center justify-between">
+                    <Input
+                      placeholder="Search by name"
+                      className="h-10 w-[280px] rounded-[6px] border border-[#D1D5DB] px-3 text-[14px] font-normal text-[#111827] placeholder:text-[#9CA3AF]"
+                    />
+                    <div className="flex items-center gap-3">
+                      <span className="text-sm text-[#6B7280]">Today • {todaySlash}</span>
+                      <div className="flex items-center gap-1">
+                        {(["daily", "weekly", "monthly"] as const).map((k) => (
+                          <button
+                            key={k}
+                            type="button"
+                            onClick={() => setTsRange(k)}
+                            className={cn(
+                              "rounded-full px-4 py-1.5 text-[13px] transition",
+                              tsRange === k
+                                ? "bg-[#E9D5FF] text-[#6D28D9]"
+                                : "text-[#9CA3AF]",
+                            )}
+                          >
+                            {k[0].toUpperCase() + k.slice(1)}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="overflow-hidden rounded-lg border border-[#E5E7EB]">
+                    <Table className="text-sm">
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">Employee ID</TableHead>
+                          <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">Employee Name</TableHead>
+                          <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">Scheduled</TableHead>
+                          <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">Worked</TableHead>
+                          <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">{tsDayHeader}</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {TS_ROWS.map((r) => (
+                          <TableRow key={r.empId} className="hover:bg-[#F9FAFB]">
+                            <TableCell className="px-3 py-2 text-[#111827]">{r.empId}</TableCell>
+                            <TableCell className="px-3 py-2 text-[#111827]">{r.name}</TableCell>
+                            <TableCell className="px-3 py-2 text-[#111827]">{r.scheduled}</TableCell>
+                            <TableCell className="px-3 py-2 text-[#111827]">{r.worked}</TableCell>
+                            <TableCell className="px-3 py-2 text-[#111827]">{r.day}</TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </div>
+                </div>
+                <div className="hidden rounded-2xl border bg-card p-4 shadow-sm mt-4">
             <section className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex w-full flex-1 items-center gap-2">
                 <Input
