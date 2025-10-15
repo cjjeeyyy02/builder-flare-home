@@ -2310,8 +2310,8 @@ export default function Index() {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {filteredLeaves.map((l, i) => (
-                      <TableRow key={i} className="hover:bg-transparent">
+                    {lrItems.map((l, i) => (
+                      <TableRow key={`${l.empId}-${i}`} className="hover:bg-transparent">
                         <TableCell className="px-2 py-1 text-xs leading-tight">{l.empId}</TableCell>
                         <TableCell className="px-2 py-1 text-xs leading-tight">{l.employee}</TableCell>
                         <TableCell className="px-2 py-1 text-xs leading-tight">{l.type}</TableCell>
