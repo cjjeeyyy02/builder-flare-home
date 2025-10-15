@@ -2,8 +2,6 @@ import { useEffect, useMemo, useState } from "react";
 import {
   Tabs,
   TabsContent,
-  TabsList,
-  TabsTrigger,
 } from "@/components/local/tabs";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -1743,65 +1741,6 @@ export default function Index() {
 
 
         <Tabs value={tab} onValueChange={setTab} className="w-full">
-          {/* Mobile dropdown */}
-          <div className="sm:hidden">
-            <Select value={tab} onValueChange={setTab}>
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Select section" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="records">Attendance List</SelectItem>
-                <SelectItem value="org">Leave Requests</SelectItem>
-                <SelectItem value="docs">Employee Shift</SelectItem>
-                <SelectItem value="balance">Leave Balance</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-          {/* Desktop single-row tabs */}
-          <TabsList className="hidden sm:block w-full">
-            <div className="flex flex-nowrap items-center gap-2">
-              <TabsTrigger
-                value="records"
-                className={cn(
-                  "flex-1 rounded-[12px] px-4 py-2 text-sm transition-colors",
-                  "data-[state=active]:bg-[#3B82F6] data-[state=active]:text-white data-[state=active]:font-bold",
-                  "data-[state=inactive]:bg-transparent data-[state=inactive]:text-black data-[state=inactive]:font-medium data-[state=inactive]:hover:bg-[#E0F2FE]",
-                )}
-              >
-                Attendance List
-              </TabsTrigger>
-              <TabsTrigger
-                value="org"
-                className={cn(
-                  "flex-1 rounded-[12px] px-4 py-2 text-sm transition-colors",
-                  "data-[state=active]:bg-[#3B82F6] data-[state=active]:text-white data-[state=active]:font-bold",
-                  "data-[state=inactive]:bg-transparent data-[state=inactive]:text-black data-[state=inactive]:font-medium data-[state=inactive]:hover:bg-[#E0F2FE]",
-                )}
-              >
-                Leave Requests
-              </TabsTrigger>
-              <TabsTrigger
-                value="docs"
-                className={cn(
-                  "flex-1 rounded-[12px] px-4 py-2 text-sm transition-colors",
-                  "data-[state=active]:bg-[#3B82F6] data-[state=active]:text-white data-[state=active]:font-bold",
-                  "data-[state=inactive]:bg-transparent data-[state=inactive]:text-black data-[state=inactive]:font-medium data-[state=inactive]:hover:bg-[#E0F2FE]",
-                )}
-              >
-                Employee Shift
-              </TabsTrigger>
-              <TabsTrigger
-                value="balance"
-                className={cn(
-                  "flex-1 rounded-[12px] px-4 py-2 text-sm transition-colors",
-                  "data-[state=active]:bg-[#3B82F6] data-[state=active]:text-white data-[state=active]:font-bold",
-                  "data-[state=inactive]:bg-transparent data-[state=inactive]:text-black data-[state=inactive]:font-medium data-[state=inactive]:hover:bg-[#E0F2FE]",
-                )}
-              >
-                Leave Balance
-              </TabsTrigger>
-            </div>
-          </TabsList>
 
           <TabsContent value="records" className="mt-5">
             <section className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
