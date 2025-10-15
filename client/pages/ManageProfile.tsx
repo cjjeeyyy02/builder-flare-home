@@ -741,6 +741,17 @@ export default function ManageProfile() {
     { date: "12-31-2023", gross: "$95,000", deductions: "$5,000", net: "$90,000" },
     { date: "11-30-2023", gross: "$95,000", deductions: "$5,000", net: "$90,000" },
   ]);
+  const [payslipSelecting, setPayslipSelecting] = useState(false);
+  const [selectedPayslipDates, setSelectedPayslipDates] = useState<Set<string>>(new Set());
+  function exportPayslipsCSV() {
+    const rows = selectedPayslipDates.size
+      ? payslips.filter((p) => selectedPayslipDates.has(p.date))
+      : payslips;
+    const headers = ["Payroll Date", "Gross Pay", "Deductions", "Net Pay"];
+    const csv = [headers.join(","), ...rows.map((r) => [r.date, r.gross, r.deductions, r.net].map((v)=>`"${String(v).replaceAll('"','""')}"`).join(","))].join("\n");
+    downloadFile("payslips.csv", csv, "text/csv;charset=utf-8;");
+    toast({ title: "Payslips exported", description: `${rows.length} item(s)` });
+  }
 
   return (
     <div className="min-h-screen bg-background font-poppins text-[13px] leading-[1.4]">
