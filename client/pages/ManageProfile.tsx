@@ -734,6 +734,13 @@ export default function ManageProfile() {
     title: "",
   });
 
+  type Payslip = { date: string; gross: string; deductions: string; net: string };
+  const [payslips] = useState<Payslip[]>([
+    { date: "01-31-2024", gross: "$95,000", deductions: "$5,000", net: "$90,000" },
+    { date: "12-31-2023", gross: "$95,000", deductions: "$5,000", net: "$90,000" },
+    { date: "11-30-2023", gross: "$95,000", deductions: "$5,000", net: "$90,000" },
+  ]);
+
   return (
     <div className="min-h-screen bg-background font-poppins text-[13px] leading-[1.4]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
