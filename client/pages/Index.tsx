@@ -1045,7 +1045,7 @@ export default function Index() {
   const [tab, setTab] = useState<string>("attendance");
   const [dateFilter, setDateFilter] = useState<string>(new Date().toISOString().slice(0, 10));
   const [subTab, setSubTab] = useState<"logs" | "timesheets" | "shift">("timesheets");
-  const [tsRange, setTsRange] = useState<"daily" | "weekly" | "monthly">("daily");
+  const [tsRange, setTsRange] = useState<"daily" | "weekly" | "monthly">("weekly");
   const [leaveView, setLeaveView] = useState<"requests" | "balances">("requests");
   type WeeklyRow = { empId: string; name: string; mon: string; tue: string; wed: string; thu: string; fri: string; sat: string; sun: string; scheduled: string; worked: string };
   const WEEKLY_DATA: WeeklyRow[] = [
