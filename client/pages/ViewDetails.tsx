@@ -39,7 +39,7 @@ export default function ViewDetails() {
       </div>
 
       <div className="mt-6">
-        <Card className="bg-white rounded-[12px] p-6 border" style={{ borderColor: "#E5E7EB", boxShadow: "0 1px 2px rgba(0,0,0,0.04)" }}>
+        <Card className="bg-white rounded-[12px] p-6 border" style={{ borderColor: "#E5E7EB", boxShadow: "0px 2px 6px rgba(0,0,0,0.05)", fontFamily: 'Poppins, sans-serif' }}>
           <div className="flex flex-col gap-10 md:flex-row">
             {/* Left: Employee Profile */}
             <div className="min-w-[240px]">
