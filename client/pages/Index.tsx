@@ -2,6 +2,8 @@ import { useEffect, useMemo, useState } from "react";
 import {
   Tabs,
   TabsContent,
+  TabsList,
+  TabsTrigger,
 } from "@/components/local/tabs";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -1040,7 +1042,7 @@ export default function Index() {
   const [position, setPosition] = useState<string>("all");
   const [status, setStatus] = useState<string>("all");
   const [view, setView] = useState<"table" | "card">("table");
-  const [tab, setTab] = useState<string>("records");
+  const [tab, setTab] = useState<string>("attendance");
   const navigate = useNavigate();
 
   // Role-based permissions (admin | hr | employee)
@@ -1742,7 +1744,32 @@ export default function Index() {
 
         <Tabs value={tab} onValueChange={setTab} className="w-full">
 
-          <TabsContent value="records" className="mt-5">
+          <TabsList className="w-full">
+            <div className="flex flex-nowrap items-center gap-2">
+              <TabsTrigger
+                value="attendance"
+                className={cn(
+                  "flex-1 rounded-[12px] px-4 py-2 text-sm transition-colors",
+                  "data-[state=active]:bg-[#3B82F6] data-[state=active]:text-white data-[state=active]:font-bold",
+                  "data-[state=inactive]:bg-transparent data-[state=inactive]:text-black data-[state=inactive]:font-medium data-[state=inactive]:hover:bg-[#E0F2FE]",
+                )}
+              >
+                Attendance
+              </TabsTrigger>
+              <TabsTrigger
+                value="leave"
+                className={cn(
+                  "flex-1 rounded-[12px] px-4 py-2 text-sm transition-colors",
+                  "data-[state=active]:bg-[#3B82F6] data-[state=active]:text-white data-[state=active]:font-bold",
+                  "data-[state=inactive]:bg-transparent data-[state=inactive]:text-black data-[state=inactive]:font-medium data-[state=inactive]:hover:bg-[#E0F2FE]",
+                )}
+              >
+                Leave
+              </TabsTrigger>
+            </div>
+          </TabsList>
+
+          <TabsContent value="attendance" className="mt-5">
             <section className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
               <MetricCard
                 label="Total Present Today"
@@ -2132,7 +2159,7 @@ export default function Index() {
             )}
           </TabsContent>
 
-          <TabsContent value="org" className="mt-6">
+          <TabsContent value="leave" className="mt-6">
             <div className="rounded-2xl border bg-card p-4 shadow-sm">
               <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
                 <Input
@@ -2315,7 +2342,7 @@ export default function Index() {
               </div>
             </div>
           </TabsContent>
-          <TabsContent value="docs" className="mt-6">
+          <TabsContent value="attendance" className="mt-6">
             <div className="rounded-2xl border bg-card p-4 shadow-sm">
               <div className="overflow-hidden rounded-lg border">
                 <Table className="text-xs leading-tight">
@@ -2400,7 +2427,7 @@ export default function Index() {
                 </Dialog>
             </div>
           </TabsContent>
-          <TabsContent value="balance" className="mt-6">
+          <TabsContent value="leave" className="mt-6">
             <div className="rounded-2xl border bg-card p-4 shadow-sm">
               <div className="overflow-hidden rounded-lg border">
                 <Table className="text-xs leading-tight">
