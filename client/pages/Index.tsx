@@ -2294,9 +2294,9 @@ export default function Index() {
                     <TableRow className="hover:bg-transparent">
                       <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Employee ID</TableHead>
                       <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Employee Name</TableHead>
-                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Type</TableHead>
-                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">From</TableHead>
-                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">To</TableHead>
+                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Leave Type</TableHead>
+                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Period From</TableHead>
+                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Period To</TableHead>
                       <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Days</TableHead>
                       <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">Status</TableHead>
                       <TableHead className="px-2 py-1 text-center text-xs font-semibold uppercase leading-tight">Actions</TableHead>
