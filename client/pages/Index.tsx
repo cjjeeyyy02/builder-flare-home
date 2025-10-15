@@ -66,6 +66,7 @@ import {
   X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { LogOut, Clock, CheckCircle, AlertTriangle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import {
   DropdownMenu,
@@ -1790,22 +1791,22 @@ export default function Index() {
               <MetricCard
                 label="Active Offboarding"
                 value={activeOffboarding}
-                icon={<User className="h-5 w-5" />}
+                icon={<LogOut className="h-5 w-5" />}
               />
               <MetricCard
                 label="Pending Approvals"
                 value={pendingApprovals}
-                icon={<Plus className="h-5 w-5" />}
+                icon={<Clock className="h-5 w-5" />}
               />
               <MetricCard
                 label="Completed This Month"
                 value={completedThisMonth}
-                icon={<ArrowLeftRight className="h-5 w-5" />}
+                icon={<CheckCircle className="h-5 w-5" />}
               />
               <MetricCard
                 label="Overdue Items"
                 value={overdueItems}
-                icon={<CalendarDays className="h-5 w-5" />}
+                icon={<AlertTriangle className="h-5 w-5" />}
               />
             </section>
 
