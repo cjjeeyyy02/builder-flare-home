@@ -40,65 +40,69 @@ export default function ViewDetails() {
         </div>
       </div>
 
-      <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div className="mt-6">
         <Card className="p-4">
-          <h2 className="mb-3 text-sm font-semibold uppercase text-muted-foreground">Employee Information</h2>
-          <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-            <div className="text-muted-foreground">Name</div>
-            <div className="font-medium">Sarah Johnson</div>
-            <div className="text-muted-foreground">Position</div>
-            <div className="font-medium">Senior Developer</div>
-            <div className="text-muted-foreground">Employee ID</div>
-            <div className="font-medium">{id ?? "EMP001"}</div>
-            <div className="text-muted-foreground">Email</div>
-            <div className="font-medium">sarah.johnson@ai2aim.com</div>
-            <div className="text-muted-foreground">Location</div>
-            <div className="font-medium">New York, NY</div>
-            <div className="text-muted-foreground">Status</div>
-            <div className="flex items-center gap-2"><Badge variant="secondary">In Progress</Badge><span className="sr-only">Status</span></div>
-            <div className="text-muted-foreground">Progress</div>
-            <div className="flex items-center gap-2">
-              <Progress value={65} className="w-40" />
-              <span className="font-medium">65%</span>
-            </div>
-          </div>
-        </Card>
+          <div className="space-y-6">
+            <section>
+              <h2 className="mb-3 text-sm font-semibold uppercase text-muted-foreground">Employee Information</h2>
+              <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                <div className="text-muted-foreground">Name</div>
+                <div className="font-medium">Sarah Johnson</div>
+                <div className="text-muted-foreground">Position</div>
+                <div className="font-medium">Senior Developer</div>
+                <div className="text-muted-foreground">Employee ID</div>
+                <div className="font-medium">{id ?? "EMP001"}</div>
+                <div className="text-muted-foreground">Email</div>
+                <div className="font-medium">sarah.johnson@ai2aim.com</div>
+                <div className="text-muted-foreground">Location</div>
+                <div className="font-medium">New York, NY</div>
+                <div className="text-muted-foreground">Status</div>
+                <div className="flex items-center gap-2"><Badge variant="secondary">In Progress</Badge><span className="sr-only">Status</span></div>
+                <div className="text-muted-foreground">Progress</div>
+                <div className="flex items-center gap-2">
+                  <Progress value={65} className="w-40" />
+                  <span className="font-medium">65%</span>
+                </div>
+              </div>
+            </section>
 
-        <Card className="p-4">
-          <h2 className="mb-3 text-sm font-semibold uppercase text-muted-foreground">Exit Details</h2>
-          <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-            <div className="text-muted-foreground">Type</div>
-            <div className="font-medium">Resignation</div>
-            <div className="text-muted-foreground">Last Working Day</div>
-            <div className="font-medium">2024-01-15</div>
-            <div className="text-muted-foreground">Notice Given</div>
-            <div className="font-medium">2-weeks</div>
-            <div className="text-muted-foreground">Reason for Departure</div>
-            <div className="font-medium">Career advancement opportunity</div>
-          </div>
-        </Card>
+            <section>
+              <h2 className="mb-3 text-sm font-semibold uppercase text-muted-foreground">Exit Details</h2>
+              <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                <div className="text-muted-foreground">Type</div>
+                <div className="font-medium">Resignation</div>
+                <div className="text-muted-foreground">Last Working Day</div>
+                <div className="font-medium">2024-01-15</div>
+                <div className="text-muted-foreground">Notice Given</div>
+                <div className="font-medium">2-weeks</div>
+                <div className="text-muted-foreground">Reason for Departure</div>
+                <div className="font-medium">Career advancement opportunity</div>
+              </div>
+            </section>
 
-        <Card className="p-4">
-          <h2 className="mb-3 text-sm font-semibold uppercase text-muted-foreground">Employment Info</h2>
-          <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-            <div className="text-muted-foreground">Department</div>
-            <div className="font-medium">Engineering</div>
-            <div className="text-muted-foreground">Manager</div>
-            <div className="font-medium">John Smith</div>
-            <div className="text-muted-foreground">Start Date</div>
-            <div className="font-medium">2022-03-15</div>
-          </div>
-        </Card>
+            <section>
+              <h2 className="mb-3 text-sm font-semibold uppercase text-muted-foreground">Employment Info</h2>
+              <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                <div className="text-muted-foreground">Department</div>
+                <div className="font-medium">Engineering</div>
+                <div className="text-muted-foreground">Manager</div>
+                <div className="font-medium">John Smith</div>
+                <div className="text-muted-foreground">Start Date</div>
+                <div className="font-medium">2022-03-15</div>
+              </div>
+            </section>
 
-        <Card className="p-4">
-          <h2 className="mb-3 text-sm font-semibold uppercase text-muted-foreground">Case Info</h2>
-          <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-            <div className="text-muted-foreground">Assigned To</div>
-            <div className="font-medium">HR Team</div>
-            <div className="text-muted-foreground">Rehire Eligible</div>
-            <div className="font-medium">Yes</div>
-            <div className="text-muted-foreground">Urgent</div>
-            <div className="font-medium">No</div>
+            <section>
+              <h2 className="mb-3 text-sm font-semibold uppercase text-muted-foreground">Case Info</h2>
+              <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                <div className="text-muted-foreground">Assigned To</div>
+                <div className="font-medium">HR Team</div>
+                <div className="text-muted-foreground">Rehire Eligible</div>
+                <div className="font-medium">Yes</div>
+                <div className="text-muted-foreground">Urgent</div>
+                <div className="font-medium">No</div>
+              </div>
+            </section>
           </div>
         </Card>
       </div>
