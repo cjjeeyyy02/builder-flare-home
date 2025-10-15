@@ -1,8 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/local/tabs";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
 import { useParams, useNavigate } from "react-router-dom";
 
 export default function ViewDetails() {
@@ -41,68 +39,77 @@ export default function ViewDetails() {
       </div>
 
       <div className="mt-6">
-        <Card className="p-4">
-          <div className="space-y-6">
-            <section>
-              <h2 className="mb-3 text-sm font-semibold uppercase text-muted-foreground">Employee Information</h2>
-              <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-                <div className="text-muted-foreground">Name</div>
-                <div className="font-medium">Sarah Johnson</div>
-                <div className="text-muted-foreground">Position</div>
-                <div className="font-medium">Senior Developer</div>
-                <div className="text-muted-foreground">Employee ID</div>
-                <div className="font-medium">{id ?? "EMP001"}</div>
-                <div className="text-muted-foreground">Email</div>
-                <div className="font-medium">sarah.johnson@ai2aim.com</div>
-                <div className="text-muted-foreground">Location</div>
-                <div className="font-medium">New York, NY</div>
-                <div className="text-muted-foreground">Status</div>
-                <div className="flex items-center gap-2"><Badge variant="secondary">In Progress</Badge><span className="sr-only">Status</span></div>
-                <div className="text-muted-foreground">Progress</div>
-                <div className="flex items-center gap-2">
-                  <Progress value={65} className="w-40" />
-                  <span className="font-medium">65%</span>
+        <Card className="bg-white rounded-[12px] p-6 border" style={{ borderColor: "#E5E7EB", boxShadow: "0 1px 2px rgba(0,0,0,0.04)" }}>
+          <div className="flex flex-col gap-10 md:flex-row">
+            {/* Left: Employee Profile */}
+            <div className="min-w-[240px]">
+              <div className="flex items-center gap-3">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#E5E7EB] text-[#111827] font-semibold">SJ</div>
+                <div>
+                  <div className="text-[16px] font-bold text-[#111827]">Sarah Johnson</div>
+                  <div className="text-sm text-[#6B7280]">Senior Developer</div>
                 </div>
               </div>
-            </section>
-
-            <section>
-              <h2 className="mb-3 text-sm font-semibold uppercase text-muted-foreground">Exit Details</h2>
-              <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-                <div className="text-muted-foreground">Type</div>
-                <div className="font-medium">Resignation</div>
-                <div className="text-muted-foreground">Last Working Day</div>
-                <div className="font-medium">2024-01-15</div>
-                <div className="text-muted-foreground">Notice Given</div>
-                <div className="font-medium">2-weeks</div>
-                <div className="text-muted-foreground">Reason for Departure</div>
-                <div className="font-medium">Career advancement opportunity</div>
+              <div className="mt-4 space-y-1 text-sm">
+                <div className="text-[#6B7280]">Employee ID</div>
+                <div className="text-[#111827] font-medium">{id ?? "EMP001"}</div>
+                <div className="text-[#6B7280]">Email</div>
+                <div className="text-[#111827] font-medium">sarah.johnson@ai2aim.com</div>
+                <div className="text-[#6B7280]">Location</div>
+                <div className="text-[#111827] font-medium">New York, NY</div>
               </div>
-            </section>
+            </div>
 
-            <section>
-              <h2 className="mb-3 text-sm font-semibold uppercase text-muted-foreground">Employment Info</h2>
-              <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-                <div className="text-muted-foreground">Department</div>
-                <div className="font-medium">Engineering</div>
-                <div className="text-muted-foreground">Manager</div>
-                <div className="font-medium">John Smith</div>
-                <div className="text-muted-foreground">Start Date</div>
-                <div className="font-medium">2022-03-15</div>
+            {/* Middle: Exit Details + Employment Info */}
+            <div className="flex-1 grid grid-cols-1 gap-10 md:grid-cols-2">
+              <div>
+                <div className="mb-2 text-[16px] font-bold text-[#111827]">Exit Details</div>
+                <div className="space-y-1 text-sm">
+                  <div className="text-[#6B7280]">Type</div>
+                  <div className="text-[#111827] font-medium">Resignation</div>
+                  <div className="text-[#6B7280]">Last Working Day</div>
+                  <div className="text-[#111827] font-medium">2024-01-15</div>
+                  <div className="text-[#6B7280]">Notice Given</div>
+                  <div className="text-[#111827] font-medium">2-weeks</div>
+                  <div className="pt-2 text-[#6B7280]">Reason for Departure</div>
+                  <div className="text-[#111827] font-medium">Career advancement opportunity</div>
+                </div>
               </div>
-            </section>
+              <div>
+                <div className="mb-2 text-[16px] font-bold text-[#111827]">Employment Info</div>
+                <div className="space-y-1 text-sm">
+                  <div className="text-[#6B7280]">Department</div>
+                  <div className="text-[#111827] font-medium">Engineering</div>
+                  <div className="text-[#6B7280]">Manager</div>
+                  <div className="text-[#111827] font-medium">John Smith</div>
+                  <div className="text-[#6B7280]">Start Date</div>
+                  <div className="text-[#111827] font-medium">2022-03-15</div>
+                </div>
+              </div>
+            </div>
 
-            <section>
-              <h2 className="mb-3 text-sm font-semibold uppercase text-muted-foreground">Case Info</h2>
-              <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-                <div className="text-muted-foreground">Assigned To</div>
-                <div className="font-medium">HR Team</div>
-                <div className="text-muted-foreground">Rehire Eligible</div>
-                <div className="font-medium">Yes</div>
-                <div className="text-muted-foreground">Urgent</div>
-                <div className="font-medium">No</div>
+            {/* Right: Case Info + Progress */}
+            <div className="w-full md:w-[260px]">
+              <div className="flex items-center justify-between">
+                <span className="rounded-full bg-[#E0F2FE] px-3 py-1 text-sm font-medium text-[#1D4ED8]">In Progress</span>
+                <span className="text-sm font-medium text-[#111827]">65%</span>
               </div>
-            </section>
+              <div className="mt-2 h-2 w-full rounded-full bg-[#E5E7EB]">
+                <div className="h-2 w-[65%] rounded-full bg-[#3B82F6]" />
+              </div>
+
+              <div className="mt-4">
+                <div className="mb-2 text-[16px] font-bold text-[#111827]">Case Info</div>
+                <div className="space-y-1 text-sm">
+                  <div className="text-[#6B7280]">Assigned To</div>
+                  <div className="text-[#111827] font-medium">HR Team</div>
+                  <div className="text-[#6B7280]">Rehire Eligible</div>
+                  <div className="text-[#111827] font-medium">Yes</div>
+                  <div className="text-[#6B7280]">Urgent</div>
+                  <div className="text-[#111827] font-medium">No</div>
+                </div>
+              </div>
+            </div>
           </div>
         </Card>
       </div>
