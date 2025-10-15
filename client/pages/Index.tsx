@@ -1738,9 +1738,9 @@ export default function Index() {
                 <SelectValue placeholder="Select section" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="records">Employee Records</SelectItem>
-                <SelectItem value="org">Organizational Chart</SelectItem>
-                <SelectItem value="docs">Document Center</SelectItem>
+                <SelectItem value="records">Start Offboarding</SelectItem>
+                <SelectItem value="org">View Tasks</SelectItem>
+                <SelectItem value="docs">Exit Interviews</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -1755,7 +1755,7 @@ export default function Index() {
                   "data-[state=inactive]:bg-transparent data-[state=inactive]:text-black data-[state=inactive]:font-medium data-[state=inactive]:hover:bg-[#E0F2FE]",
                 )}
               >
-                Employee Records
+                Start Offboarding
               </TabsTrigger>
               <TabsTrigger
                 value="org"
@@ -1765,7 +1765,7 @@ export default function Index() {
                   "data-[state=inactive]:bg-transparent data-[state=inactive]:text-black data-[state=inactive]:font-medium data-[state=inactive]:hover:bg-[#E0F2FE]",
                 )}
               >
-                Organizational Chart
+                View Tasks
               </TabsTrigger>
               <TabsTrigger
                 value="docs"
@@ -1775,7 +1775,7 @@ export default function Index() {
                   "data-[state=inactive]:bg-transparent data-[state=inactive]:text-black data-[state=inactive]:font-medium data-[state=inactive]:hover:bg-[#E0F2FE]",
                 )}
               >
-                Document Center
+                Exit Interviews
               </TabsTrigger>
             </div>
           </TabsList>
