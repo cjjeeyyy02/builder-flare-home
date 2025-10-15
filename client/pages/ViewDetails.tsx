@@ -44,7 +44,7 @@ export default function ViewDetails() {
             {/* Left: Employee Profile */}
             <div className="min-w-[240px]">
               <div className="flex items-center gap-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#E5E7EB] text-[#111827] font-semibold">SJ</div>
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#F3F4F6] text-[#111827] font-semibold">SJ</div>
                 <div>
                   <div className="text-[16px] font-bold text-[#111827]">Sarah Johnson</div>
                   <div className="text-sm text-[#6B7280]">Senior Developer</div>
