@@ -2409,6 +2409,7 @@ export default function Index() {
                       <TableHead className="px-3 py-2 text-xs font-semibold uppercase leading-tight">Employee Name</TableHead>
                       <TableHead className="px-3 py-2 text-xs font-semibold uppercase leading-tight">Dept</TableHead>
                       <TableHead className="px-3 py-2 text-xs font-semibold uppercase leading-tight">Shift</TableHead>
+                      <TableHead className="px-3 py-2 text-center text-xs font-semibold uppercase leading-tight">Action</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -2417,26 +2418,16 @@ export default function Index() {
                         <TableCell className="px-2 py-1 text-xs leading-tight">{r.empId}</TableCell>
                         <TableCell className="px-3 py-2 text-xs leading-tight">{r.employee}</TableCell>
                         <TableCell className="px-3 py-2 text-xs leading-tight">{r.dept}</TableCell>
-                        <TableCell className="px-3 py-2 text-xs leading-tight">
-                          <Select
-                            value={r.shift}
-                            onValueChange={(v) =>
-                              setShiftRows((prev) =>
-                                prev.map((x, idx) =>
-                                  idx === i ? { ...x, shift: v as ShiftRow["shift"] } : x,
-                                ),
-                              )
-                            }
+                        <TableCell className="px-3 py-2 text-xs leading-tight">{r.shift}</TableCell>
+                        <TableCell className="px-3 py-2 text-center text-xs leading-tight">
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            className="h-7 w-7 p-0"
+                            aria-label={`Edit shift for ${r.employee}`}
                           >
-                            <SelectTrigger className="h-8 w-32 text-xs">
-                              <SelectValue />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="Day">Day</SelectItem>
-                              <SelectItem value="Night">Night</SelectItem>
-                              <SelectItem value="Early">Early</SelectItem>
-                            </SelectContent>
-                          </Select>
+                            <EllipsisVertical className="h-4 w-4" />
+                          </Button>
                         </TableCell>
                       </TableRow>
                     ))}
