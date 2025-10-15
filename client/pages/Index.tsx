@@ -1778,8 +1778,8 @@ export default function Index() {
                           Employee ID
                         </TableHead>
                         <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
-                          Name
-                        </TableHead>
+          Employee Name
+        </TableHead>
                         <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
                           Position
                         </TableHead>
@@ -1787,14 +1787,11 @@ export default function Index() {
                           Department
                         </TableHead>
                         <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
-                          Skills
-                        </TableHead>
-                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
-                          Status
-                        </TableHead>
-                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
-                          Joined Date
-                        </TableHead>
+          Departure Type
+        </TableHead>
+                                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
+          Date
+        </TableHead>
                         <TableHead className="px-2 py-1 text-center text-xs font-semibold uppercase leading-tight">
                           Action
                         </TableHead>
@@ -1865,9 +1862,6 @@ export default function Index() {
                                 </TooltipProvider>
                               );
                             })()}
-                          </TableCell>
-                          <TableCell className="px-2 py-1 text-xs leading-tight">
-                            {e.status}
                           </TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">
                             {e.joiningDate}
