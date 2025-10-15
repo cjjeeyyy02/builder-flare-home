@@ -2281,6 +2281,31 @@ export default function ManageProfile() {
                     </Dialog>
                   </div>
                 </div>
+                <div className="mt-6">
+                  <h3 className="text-base font-bold">Payslips</h3>
+                  <div className="mt-3">
+                    <Table className="text-[13px]">
+                      <TableHeader>
+                        <TableRow className="hover:bg-transparent">
+                          <TableHead className="py-2 font-bold uppercase">Payroll Date</TableHead>
+                          <TableHead className="py-2 font-bold uppercase">Gross Pay</TableHead>
+                          <TableHead className="py-2 font-bold uppercase">Deductions</TableHead>
+                          <TableHead className="py-2 font-bold uppercase">Net Pay</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {payslips.map((p) => (
+                          <TableRow key={p.date} className="hover:bg-transparent">
+                            <TableCell className="py-2">{p.date}</TableCell>
+                            <TableCell className="py-2">{p.gross}</TableCell>
+                            <TableCell className="py-2">{p.deductions}</TableCell>
+                            <TableCell className="py-2">{p.net}</TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </div>
+                </div>
               </TabsContent>
               <TabsContent value="perf" className="space-y-2">
                 <div className="rounded-none p-0 shadow-none">
