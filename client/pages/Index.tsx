@@ -1043,6 +1043,7 @@ export default function Index() {
   const [status, setStatus] = useState<string>("all");
   const [view, setView] = useState<"table" | "card">("table");
   const [tab, setTab] = useState<string>("attendance");
+  const [subTab, setSubTab] = useState<"logs" | "timesheets" | "shift">("logs");
   const navigate = useNavigate();
 
   // Role-based permissions (admin | hr | employee)
@@ -1791,6 +1792,40 @@ export default function Index() {
               />
             </section>
 
+            <Tabs value={subTab} onValueChange={setSubTab} className="w-full">
+              <TabsList className="mt-4 inline-flex items-center gap-1 rounded-full bg-muted p-1 shadow-sm font-poppins">
+                <TabsTrigger
+                  value="logs"
+                  className={cn(
+                    "rounded-full px-3 py-1.5 text-xs transition-colors",
+                    "data-[state=active]:bg-white data-[state=active]:text-foreground data-[state=active]:font-semibold",
+                    "data-[state=inactive]:bg-transparent data-[state=inactive]:text-muted-foreground",
+                  )}
+                >
+                  Logs
+                </TabsTrigger>
+                <TabsTrigger
+                  value="timesheets"
+                  className={cn(
+                    "rounded-full px-3 py-1.5 text-xs transition-colors",
+                    "data-[state=active]:bg-white data-[state=active]:text-foreground data-[state=active]:font-semibold",
+                    "data-[state=inactive]:bg-transparent data-[state=inactive]:text-muted-foreground",
+                  )}
+                >
+                  Timesheets
+                </TabsTrigger>
+                <TabsTrigger
+                  value="shift"
+                  className={cn(
+                    "rounded-full px-3 py-1.5 text-xs transition-colors",
+                    "data-[state=active]:bg-white data-[state=active]:text-foreground data-[state=active]:font-semibold",
+                    "data-[state=inactive]:bg-transparent data-[state=inactive]:text-muted-foreground",
+                  )}
+                >
+                  Shift
+                </TabsTrigger>
+              </TabsList>
+              <TabsContent value="logs">
             <section className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex w-full flex-1 items-center gap-2">
                 <Input
@@ -2155,6 +2190,459 @@ export default function Index() {
                 ))}
               </section>
             )}
+              </TabsContent>
+              <TabsContent value="timesheets">
+            <section className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex w-full flex-1 items-center gap-2">
+                <Input
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  placeholder="Search by name, dept, or date"
+                  className="h-8 text-xs max-w-md"
+                />
+                <Select value={position} onValueChange={setPosition}>
+                  <SelectTrigger className="h-8 w-32 text-xs">
+                    <SelectValue placeholder="All Positions" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Positions</SelectItem>
+                    <SelectItem value="engineer">Engineer</SelectItem>
+                    <SelectItem value="designer">Designer</SelectItem>
+                    <SelectItem value="manager">Manager</SelectItem>
+                    <SelectItem value="hr">HR</SelectItem>
+                  </SelectContent>
+                </Select>
+                <Select value={status} onValueChange={setStatus}>
+                  <SelectTrigger className="h-8 w-28 text-xs">
+                    <SelectValue placeholder="All Status" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Status</SelectItem>
+                    <SelectItem value="active">Active</SelectItem>
+                    <SelectItem value="on leave">On Leave</SelectItem>
+                    <SelectItem value="inactive">Inactive</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="flex items-center gap-3 self-end">
+                <div className="flex items-center gap-3">
+                  <Dialog open={openAddSingle} onOpenChange={setOpenAddSingle}>
+                    <DialogContent className="rounded-2xl p-6 shadow-xl">
+                      <DialogHeader>
+                        <DialogTitle>Add Employee</DialogTitle>
+                      </DialogHeader>
+                      <div className="grid gap-3 text-sm">
+                        <div className="grid gap-1.5 sm:grid-cols-2 sm:gap-3">
+                          <div className="grid gap-1.5">
+                            <Label
+                              className="text-xs font-semibold"
+                              htmlFor="emp-first"
+                            >
+                              First Name
+                            </Label>
+                            <Input
+                              id="emp-first"
+                              placeholder="First name"
+                              required
+                            />
+                          </div>
+                          <div className="grid gap-1.5">
+                            <Label
+                              className="text-xs font-semibold"
+                              htmlFor="emp-last"
+                            >
+                              Last Name
+                            </Label>
+                            <Input
+                              id="emp-last"
+                              placeholder="Last name"
+                              required
+                            />
+                          </div>
+                        </div>
+                        <div className="grid gap-1.5">
+                          <Label
+                            className="text-xs font-semibold"
+                            htmlFor="emp-email"
+                          >
+                            Email
+                          </Label>
+                          <Input
+                            id="emp-email"
+                            type="email"
+                            placeholder="email@company.com"
+                            required
+                          />
+                        </div>
+                        <div className="grid gap-1.5 sm:grid-cols-2 sm:gap-3">
+                          <div className="grid gap-1.5">
+                            <Label
+                              className="text-xs font-semibold"
+                              htmlFor="emp-role"
+                            >
+                              Role / Position
+                            </Label>
+                            <Input
+                              id="emp-role"
+                              placeholder="e.g., Software Engineer"
+                            />
+                          </div>
+                          <div className="grid gap-1.5">
+                            <Label className="text-xs font-semibold">
+                              Department
+                            </Label>
+                            <Select>
+                              <SelectTrigger className="h-9">
+                                <SelectValue placeholder="Select department" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {departments.map((d) => (
+                                  <SelectItem key={d} value={d.toLowerCase()}>
+                                    {d}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          </div>
+                        </div>
+                        <div className="grid gap-1.5 sm:grid-cols-2 sm:gap-3">
+                          <div className="grid gap-1.5">
+                            <Label className="text-xs font-semibold">
+                              Status
+                            </Label>
+                            <Select>
+                              <SelectTrigger className="h-9">
+                                <SelectValue placeholder="Select status" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="active">Active</SelectItem>
+                                <SelectItem value="on leave">
+                                  On Leave
+                                </SelectItem>
+                                <SelectItem value="inactive">
+                                  Inactive
+                                </SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                          <div className="grid gap-1.5">
+                            <Label
+                              className="text-xs font-semibold"
+                              htmlFor="emp-join"
+                            >
+                              Joined Date
+                            </Label>
+                            <Input id="emp-join" type="date" />
+                          </div>
+                        </div>
+                      </div>
+                      <DialogFooter>
+                        <DialogClose asChild>
+                          <Button
+                            variant="outline"
+                            className="rounded-md border px-4"
+                          >
+                            Cancel
+                          </Button>
+                        </DialogClose>
+                        <DialogClose asChild>
+                          <Button
+                            className="rounded-md bg-[#2563eb] px-4 text-white hover:bg-[#1d4ed8]"
+                            onClick={() =>
+                              toast({
+                                title: "Employee added",
+                                description: "New employee has been added.",
+                              })
+                            }
+                          >
+                            Save
+                          </Button>
+                        </DialogClose>
+                      </DialogFooter>
+                    </DialogContent>
+                  </Dialog>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    className="h-8 rounded-md px-3 text-xs bg-white text-[#374151] border border-[#d1d5db] hover:bg-gray-50"
+                  >
+                    <Download className="mr-1.5 h-4 w-4" /> Export
+                  </Button>
+                </div>
+                <Button
+                  variant="outline"
+                  className={cn(
+                    "h-8 w-8 rounded-md p-0",
+                    view === "table"
+                      ? "bg-brand text-brand-foreground border-transparent"
+                      : "",
+                  )}
+                  onClick={() => setView("table")}
+                >
+                  <TableIcon className="h-4 w-4" />
+                </Button>
+                <Button
+                  variant="outline"
+                  className={cn(
+                    "h-8 w-8 rounded-md p-0",
+                    view === "card"
+                      ? "bg-brand text-brand-foreground border-transparent"
+                      : "",
+                  )}
+                  onClick={() => setView("card")}
+                >
+                  <LayoutGrid className="h-4 w-4" />
+                </Button>
+              </div>
+            </section>
+
+            {view === "table" ? (
+              <section className="mt-4">
+                <div className="overflow-hidden rounded-lg border">
+                  <Table className="text-xs leading-tight">
+                    <TableHeader>
+                      <TableRow className="hover:bg-transparent">
+                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
+                          Employee ID
+                        </TableHead>
+                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
+                          Employee Name
+                        </TableHead>
+                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
+                          Date
+                        </TableHead>
+                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
+                          Department
+                        </TableHead>
+                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
+                          Punch In
+                        </TableHead>
+                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
+                          Punch Out
+                        </TableHead>
+                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
+                          Status
+                        </TableHead>
+                        <TableHead className="px-2 py-1 text-center text-xs font-semibold uppercase leading-tight">
+                          Action
+                        </TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {pageItems.map((e) => (
+                        <TableRow key={e.id} className={cn("hover:bg-transparent")}>
+                          <TableCell className="px-2 py-1 text-xs leading-tight font-medium text-foreground/90">
+                            {e.id}
+                          </TableCell>
+                          <TableCell className="px-2 py-1 text-xs leading-tight">
+                            <div className="flex items-center gap-2">
+                              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#1E4DD8] text-white font-semibold text-[10px]">
+                                {(e.firstName?.[0] || "").toUpperCase()}
+                                {(e.lastName?.[0] || "").toUpperCase()}
+                              </div>
+                              <span className="text-xs font-semibold text-foreground">
+                                {e.firstName} {e.lastName}
+                              </span>
+                            </div>
+                          </TableCell>
+                          <TableCell className="px-2 py-1 text-xs leading-tight">
+                            {todayStr}
+                          </TableCell>
+                          <TableCell className="px-2 py-1 text-xs leading-tight">
+                            {e.department}
+                          </TableCell>
+                          <TableCell className="px-2 py-1 text-xs leading-tight">{getInOutTimes(e).in}</TableCell>
+                          <TableCell className="px-2 py-1 text-xs leading-tight">{getInOutTimes(e).out}</TableCell>
+                          <TableCell className="px-2 py-1 text-xs leading-tight">{getAttendanceStatus(e)}</TableCell>
+                          <TableCell className="px-2 py-1 text-center text-xs leading-tight">
+                            <RowActions employee={e} />
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                  <div className="flex items-center justify-end gap-2 border-t px-2 py-2 text-xs">
+                    <div className="flex items-center gap-2">
+                      <span className="text-muted-foreground">
+                        {start + 1}-{end} of {filtered.length}
+                      </span>
+                      <Button
+                        variant="outline"
+                        className="h-7 w-7 rounded-md p-0"
+                        onClick={() => setPage((p) => Math.max(0, p - 1))}
+                        disabled={page === 0}
+                        aria-label="Previous page"
+                      >
+                        <ChevronLeft className="h-4 w-4" />
+                      </Button>
+                      <Button
+                        variant="outline"
+                        className="h-7 w-7 rounded-md p-0"
+                        onClick={() =>
+                          setPage((p) => Math.min(totalPages - 1, p + 1))
+                        }
+                        disabled={page >= totalPages - 1}
+                        aria-label="Next page"
+                      >
+                        <ChevronRight className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            ) : (
+              <section className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {pageItems.map((e) => (
+                  <div
+                    key={e.id}
+                    className="bg-white rounded-[12px] py-4 px-5"
+                    style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.1)" }}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1E4DD8] text-white font-semibold text-[14px]">
+                          {(e.firstName?.[0] || "").toUpperCase()}
+                          {(e.lastName?.[0] || "").toUpperCase()}
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <div className="text-[16px] font-bold text-[#1A1A1A]">
+                              {e.firstName} {e.lastName}
+                            </div>
+                          </div>
+                          <div className="text-[11px] text-muted-foreground">
+                            ID: {e.id}
+                          </div>
+                        </div>
+                      </div>
+                      <RowActions employee={e} />
+                    </div>
+                    <div className="mt-3 grid grid-cols-2 gap-2 text-sm">
+                      <div>
+                        <div className="text-[11px] text-muted-foreground">
+                          Date
+                        </div>
+                        <div className="text-foreground">{todayStr}</div>
+                      </div>
+                      <div>
+                        <div className="text-[11px] text-muted-foreground">
+                          Department
+                        </div>
+                        <div className="truncate text-foreground">
+                          {e.department}
+                        </div>
+                      </div>
+                      <div>
+                        <div className="text-[11px] text-muted-foreground">
+                          In
+                        </div>
+                        <div className="text-foreground">{getInOutTimes(e).in}</div>
+                      </div>
+                      <div>
+                        <div className="text-[11px] text-muted-foreground">
+                          Out
+                        </div>
+                        <div className="text-foreground">{getInOutTimes(e).out}</div>
+                      </div>
+                      <div className="col-span-2">
+                        <div className="text-[11px] text-muted-foreground">
+                          Status
+                        </div>
+                        <div className="text-foreground">{getAttendanceStatus(e)}</div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </section>
+            )}
+              </TabsContent>
+              <TabsContent value="shift">
+                <div className="rounded-2xl border bg-card p-4 shadow-sm mt-4">
+                  <div className="overflow-hidden rounded-lg border">
+                    <Table className="text-xs leading-tight">
+                      <TableHeader>
+                        <TableRow className="hover:bg-transparent">
+                          <TableHead className="px-3 py-2 text-xs font-semibold uppercase leading-tight">Employee ID</TableHead>
+                          <TableHead className="px-3 py-2 text-xs font-semibold uppercase leading-tight">Employee Name</TableHead>
+                          <TableHead className="px-3 py-2 text-xs font-semibold uppercase leading-tight">Dept</TableHead>
+                          <TableHead className="px-3 py-2 text-xs font-semibold uppercase leading-tight">Shift</TableHead>
+                          <TableHead className="px-3 py-2 text-center text-xs font-semibold uppercase leading-tight">Action</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {shiftRows.map((r, i) => (
+                          <TableRow key={i} className="hover:bg-transparent">
+                            <TableCell className="px-2 py-1 text-xs leading-tight">{r.empId}</TableCell>
+                            <TableCell className="px-3 py-2 text-xs leading-tight">{r.employee}</TableCell>
+                            <TableCell className="px-3 py-2 text-xs leading-tight">{r.dept}</TableCell>
+                            <TableCell className="px-3 py-2 text-xs leading-tight">{r.shift}</TableCell>
+                            <TableCell className="px-3 py-2 text-center text-xs leading-tight">
+                              <DropdownMenu>
+                                <DropdownMenuTrigger asChild>
+                                  <Button
+                                    type="button"
+                                    variant="ghost"
+                                    className="h-7 w-7 p-0"
+                                    aria-label={`Edit shift for ${r.employee}`}
+                                  >
+                                    <EllipsisVertical className="h-4 w-4" />
+                                  </Button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent align="end" className="w-40">
+                                  <DropdownMenuItem onClick={() => { setShiftEditIndex(i); setShiftEditValue(r.shift); }}>
+                                    Edit Shift
+                                  </DropdownMenuItem>
+                                </DropdownMenuContent>
+                              </DropdownMenu>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </div>
+                  <Dialog open={shiftEditIndex !== null} onOpenChange={(o) => { if (!o) setShiftEditIndex(null); }}>
+                    <DialogContent className="sm:max-w-md">
+                      <DialogHeader>
+                        <DialogTitle className="text-base font-semibold">Edit Shift</DialogTitle>
+                      </DialogHeader>
+                      <div className="space-y-2">
+                        <div className="text-xs text-muted-foreground">Select shift</div>
+                        <div className="flex items-center gap-2">
+                          {(["Day","Night","Early"] as const).map((opt) => (
+                            <Button
+                              key={opt}
+                              type="button"
+                              variant={shiftEditValue === opt ? "default" : "outline"}
+                              className="h-8 rounded-md px-3 text-xs"
+                              onClick={() => setShiftEditValue(opt)}
+                            >
+                              {opt}
+                            </Button>
+                          ))}
+                        </div>
+                      </div>
+                      <DialogFooter>
+                        <Button variant="outline" onClick={() => setShiftEditIndex(null)}>Cancel</Button>
+                        <Button
+                          className="h-9 rounded-md bg-[#2563EB] px-4 text-sm font-medium text-white hover:bg-[#1D4ED8]"
+                          onClick={() => {
+                            if (shiftEditIndex !== null) {
+                              setShiftRows((prev) =>
+                                prev.map((x, idx) => (idx === shiftEditIndex ? { ...x, shift: shiftEditValue } : x)),
+                              );
+                            }
+                            setShiftEditIndex(null);
+                          }}
+                        >
+                          Save
+                        </Button>
+                      </DialogFooter>
+                    </DialogContent>
+                  </Dialog>
+                </div>
+              </TabsContent>
+            </Tabs>
           </TabsContent>
 
           <TabsContent value="leave" className="mt-6">
@@ -2340,7 +2828,7 @@ export default function Index() {
               </div>
             </div>
           </TabsContent>
-          <TabsContent value="attendance" className="mt-6">
+          <TabsContent value="__disabled__" className="mt-6">
             <div className="rounded-2xl border bg-card p-4 shadow-sm">
               <div className="overflow-hidden rounded-lg border">
                 <Table className="text-xs leading-tight">
