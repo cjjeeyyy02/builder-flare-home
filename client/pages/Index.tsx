@@ -2953,7 +2953,39 @@ export default function Index() {
                   <div className="px-3 py-2 text-xs text-muted-foreground">&lt;Pagination here&gt;</div>
                 </div>
               ) : (
-                <div className="rounded-lg border p-6 text-sm text-muted-foreground">Balances view</div>
+                <div className="rounded-lg border">
+                  {EMPLOYEE_LEAVE_BALANCES.map((emp) => (
+                    <div key={emp.empId}>
+                      <button
+                        type="button"
+                        onClick={() => setExpandedEmployee(expandedEmployee === emp.empId ? null : emp.empId)}
+                        className="w-full px-4 py-3 flex items-center justify-between hover:bg-[#F9FAFB] transition"
+                      >
+                        <span className="text-sm font-medium text-[#111827]">{emp.name}</span>
+                        <span className="text-sm text-[#2563EB]">Click to view leave types {expandedEmployee === emp.empId ? "▲" : "▼"}</span>
+                      </button>
+                      {expandedEmployee === emp.empId && (
+                        <div className="bg-[#F9FAFB] px-4 py-3 border-t">
+                          {emp.balances.map((balance, idx) => (
+                            <div key={idx} className="py-2 text-sm">
+                              <div className="flex justify-between items-center">
+                                <span className="text-[#4B5563]">{balance.leaveType}</span>
+                                <span className="text-[#111827] font-medium">{balance.balance - balance.used} / {balance.balance} days</span>
+                              </div>
+                              <div className="mt-1 bg-[#E5E7EB] rounded-full h-1.5 w-full">
+                                <div
+                                  className="bg-[#2563EB] h-1.5 rounded-full"
+                                  style={{ width: `${((balance.balance - balance.used) / balance.balance) * 100}%` }}
+                                ></div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                      <div className="border-b border-[#E5E7EB]"></div>
+                    </div>
+                  ))}
+                </div>
               )}
             </div>
           </TabsContent>
