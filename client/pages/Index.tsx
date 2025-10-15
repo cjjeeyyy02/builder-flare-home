@@ -1806,7 +1806,7 @@ export default function Index() {
               value="attendance"
               className={cn(
                 "rounded-full px-3 py-1.5 text-xs transition-colors",
-                "data-[state=active]:bg-white data-[state=active]:text-foreground data-[state=active]:font-semibold",
+                "data-[state=active]:bg-[#2563EB] data-[state=active]:text-white data-[state=active]:font-semibold",
                 "data-[state=inactive]:bg-transparent data-[state=inactive]:text-muted-foreground",
               )}
             >
@@ -1816,7 +1816,7 @@ export default function Index() {
               value="leave"
               className={cn(
                 "rounded-full px-3 py-1.5 text-xs transition-colors",
-                "data-[state=active]:bg-white data-[state=active]:text-foreground data-[state=active]:font-semibold",
+                "data-[state=active]:bg-[#2563EB] data-[state=active]:text-white data-[state=active]:font-semibold",
                 "data-[state=inactive]:bg-transparent data-[state=inactive]:text-muted-foreground",
               )}
             >
@@ -1854,7 +1854,7 @@ export default function Index() {
                   value="logs"
                   className={cn(
                     "rounded-full px-2 py-1 text-[11px] transition-colors",
-                    "data-[state=active]:bg-white data-[state=active]:text-foreground data-[state=active]:font-semibold",
+                    "data-[state=active]:bg-[#2563EB] data-[state=active]:text-white data-[state=active]:font-semibold",
                     "data-[state=inactive]:bg-transparent data-[state=inactive]:text-muted-foreground",
                   )}
                 >
@@ -1864,7 +1864,7 @@ export default function Index() {
                   value="timesheets"
                   className={cn(
                     "rounded-full px-2 py-1 text-[11px] transition-colors",
-                    "data-[state=active]:bg-white data-[state=active]:text-foreground data-[state=active]:font-semibold",
+                    "data-[state=active]:bg-[#2563EB] data-[state=active]:text-white data-[state=active]:font-semibold",
                     "data-[state=inactive]:bg-transparent data-[state=inactive]:text-muted-foreground",
                   )}
                 >
@@ -1874,7 +1874,7 @@ export default function Index() {
                   value="shift"
                   className={cn(
                     "rounded-full px-2 py-1 text-[11px] transition-colors",
-                    "data-[state=active]:bg-white data-[state=active]:text-foreground data-[state=active]:font-semibold",
+                    "data-[state=active]:bg-[#2563EB] data-[state=active]:text-white data-[state=active]:font-semibold",
                     "data-[state=inactive]:bg-transparent data-[state=inactive]:text-muted-foreground",
                   )}
                 >
@@ -2737,7 +2737,7 @@ export default function Index() {
                     onClick={() => setLeaveView("requests")}
                     className={cn(
                       "rounded-full px-5 py-2 text-sm font-medium transition",
-                      leaveView === "requests" ? "bg-[#F3F4F6] text-[#111827]" : "text-[#9CA3AF]",
+                      leaveView === "requests" ? "bg-[#2563EB] text-white" : "text-[#9CA3AF]",
                     )}
                   >
                     Requests
@@ -2747,7 +2747,7 @@ export default function Index() {
                     onClick={() => setLeaveView("balances")}
                     className={cn(
                       "rounded-full px-5 py-2 text-sm font-medium transition",
-                      leaveView === "balances" ? "bg-[#F3F4F6] text-[#111827]" : "text-[#9CA3AF]",
+                      leaveView === "balances" ? "bg-[#2563EB] text-white" : "text-[#9CA3AF]",
                     )}
                   >
                     Balances
