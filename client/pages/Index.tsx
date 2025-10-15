@@ -1610,7 +1610,9 @@ export default function Index() {
   function exportDocsCSV() {
     const headers = docColumns.map((c) => c.label);
     const selected = selectedDocIds;
-    const rows = selected.size ? sortedDocs.filter((d) => selected.has(d.id)) : sortedDocs;
+    const rows = selected.size
+      ? sortedDocs.filter((d) => selected.has(d.id))
+      : sortedDocs;
     const csv = [
       headers.join(","),
       ...rows.map((d) =>
@@ -1639,22 +1641,44 @@ export default function Index() {
     const t = f.type.toLowerCase();
     const name = f.name.toLowerCase();
     if (t.includes("pdf") || name.endsWith(".pdf")) return "PDF";
-    if (t.includes("word") || name.endsWith(".doc") || name.endsWith(".docx")) return "Word";
-    if (t.includes("excel") || t.includes("spreadsheet") || name.endsWith(".xls") || name.endsWith(".xlsx")) return "Excel";
-    if (t.startsWith("image/") || [".png", ".jpg", ".jpeg", ".gif", ".webp"].some((x) => name.endsWith(x))) return "Image";
+    if (t.includes("word") || name.endsWith(".doc") || name.endsWith(".docx"))
+      return "Word";
+    if (
+      t.includes("excel") ||
+      t.includes("spreadsheet") ||
+      name.endsWith(".xls") ||
+      name.endsWith(".xlsx")
+    )
+      return "Excel";
+    if (
+      t.startsWith("image/") ||
+      [".png", ".jpg", ".jpeg", ".gif", ".webp"].some((x) => name.endsWith(x))
+    )
+      return "Image";
     return t.split("/")[1]?.toUpperCase() || "Unknown";
   }
 
   function submitUpload() {
     if (!dcFile || !dcTitle.trim()) {
-      return toast({ title: "Missing info", description: "Please select a file and enter a title." });
+      return toast({
+        title: "Missing info",
+        description: "Please select a file and enter a title.",
+      });
     }
-    const uploader = currentRole === "hr" ? "HR Admin" : currentRole === "admin" ? "Admin" : "Employee";
+    const uploader =
+      currentRole === "hr"
+        ? "HR Admin"
+        : currentRole === "admin"
+          ? "Admin"
+          : "Employee";
     const newDoc: Doc = {
       id: `d${Date.now()}`,
       title: dcTitle.trim(),
       employeeName: "—",
-      department: dcDeptSel === "all" ? "General" : departments.find((d) => d.toLowerCase() === dcDeptSel) || dcDeptSel,
+      department:
+        dcDeptSel === "all"
+          ? "General"
+          : departments.find((d) => d.toLowerCase() === dcDeptSel) || dcDeptSel,
       type: getFileType(dcFile),
       category: dcCategory,
       uploadDate: formatDMY(new Date()),
@@ -1839,7 +1863,9 @@ export default function Index() {
                         </Button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end" className="w-40">
-                        <DropdownMenuItem onClick={() => setOpenAddSingle(true)}>
+                        <DropdownMenuItem
+                          onClick={() => setOpenAddSingle(true)}
+                        >
                           Manual add
                         </DropdownMenuItem>
                         <DropdownMenuItem
@@ -2266,18 +2292,30 @@ export default function Index() {
                   />
                 </div>
                 <div className="flex items-center gap-2">
-                  <Button type="button" onClick={() => setDcUploadOpen(true)} className="h-8 gap-1 px-2 text-xs bg-blue-600 text-white hover:bg-blue-700">
-                    <Upload className="h-4 w-4" /> {currentRole === "employee" ? "Upload My Document" : "Upload Document"}
+                  <Button
+                    type="button"
+                    onClick={() => setDcUploadOpen(true)}
+                    className="h-8 gap-1 px-2 text-xs bg-blue-600 text-white hover:bg-blue-700"
+                  >
+                    <Upload className="h-4 w-4" />{" "}
+                    {currentRole === "employee"
+                      ? "Upload My Document"
+                      : "Upload Document"}
                   </Button>
-                  <Button type="button" onClick={() => {
-                    if (!dcSelecting) {
-                      setDcSelecting(true);
-                    } else {
-                      exportDocsCSV();
-                      setDcSelecting(false);
-                      setSelectedDocIds(new Set());
-                    }
-                  }} variant="outline" className="h-8 rounded-md px-3 text-xs bg-white text-[#374151] border border-[#d1d5db] hover:bg-gray-50 gap-1">
+                  <Button
+                    type="button"
+                    onClick={() => {
+                      if (!dcSelecting) {
+                        setDcSelecting(true);
+                      } else {
+                        exportDocsCSV();
+                        setDcSelecting(false);
+                        setSelectedDocIds(new Set());
+                      }
+                    }}
+                    variant="outline"
+                    className="h-8 rounded-md px-3 text-xs bg-white text-[#374151] border border-[#d1d5db] hover:bg-gray-50 gap-1"
+                  >
                     <Download className="mr-1.5 h-4 w-4" /> Export
                   </Button>
                 </div>
@@ -2290,45 +2328,84 @@ export default function Index() {
                   </DialogHeader>
                   <div className="grid gap-3 py-2">
                     <div className="grid gap-1.5">
-                      <Label className="text-xs font-semibold">Select File</Label>
-                      <Input type="file" accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,image/*" onChange={(e) => setDcFile(e.target.files?.[0] || null)} />
+                      <Label className="text-xs font-semibold">
+                        Select File
+                      </Label>
+                      <Input
+                        type="file"
+                        accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,image/*"
+                        onChange={(e) => setDcFile(e.target.files?.[0] || null)}
+                      />
                     </div>
                     <div className="grid gap-1.5">
-                      <Label className="text-xs font-semibold">Document Title</Label>
-                      <Input value={dcTitle} onChange={(e) => setDcTitle(e.target.value)} placeholder="Descriptive title" />
+                      <Label className="text-xs font-semibold">
+                        Document Title
+                      </Label>
+                      <Input
+                        value={dcTitle}
+                        onChange={(e) => setDcTitle(e.target.value)}
+                        placeholder="Descriptive title"
+                      />
                     </div>
                     <div className="grid gap-1.5 sm:grid-cols-2 sm:gap-3">
                       <div className="grid gap-1.5">
-                        <Label className="text-xs font-semibold">Document Category</Label>
-                        <Select value={dcCategory} onValueChange={setDcCategory}>
-                          <SelectTrigger className="h-9"><SelectValue placeholder="Select category" /></SelectTrigger>
+                        <Label className="text-xs font-semibold">
+                          Document Category
+                        </Label>
+                        <Select
+                          value={dcCategory}
+                          onValueChange={setDcCategory}
+                        >
+                          <SelectTrigger className="h-9">
+                            <SelectValue placeholder="Select category" />
+                          </SelectTrigger>
                           <SelectContent>
                             {docCategories.map((c) => (
-                              <SelectItem key={c.value} value={c.value}>{c.label}</SelectItem>
+                              <SelectItem key={c.value} value={c.value}>
+                                {c.label}
+                              </SelectItem>
                             ))}
                           </SelectContent>
                         </Select>
                       </div>
                       <div className="grid gap-1.5">
-                        <Label className="text-xs font-semibold">Department</Label>
+                        <Label className="text-xs font-semibold">
+                          Department
+                        </Label>
                         <Select value={dcDeptSel} onValueChange={setDcDeptSel}>
-                          <SelectTrigger className="h-9"><SelectValue placeholder="Select department" /></SelectTrigger>
+                          <SelectTrigger className="h-9">
+                            <SelectValue placeholder="Select department" />
+                          </SelectTrigger>
                           <SelectContent>
                             <SelectItem value="all">All Departments</SelectItem>
                             {departments.map((d) => (
-                              <SelectItem key={d} value={d.toLowerCase()}>{d}</SelectItem>
+                              <SelectItem key={d} value={d.toLowerCase()}>
+                                {d}
+                              </SelectItem>
                             ))}
                           </SelectContent>
                         </Select>
                       </div>
                     </div>
                     <div className="grid gap-1.5 sm:max-w-xs">
-                      <Label className="text-xs font-semibold">Expiration Date (optional)</Label>
-                      <Input type="date" value={dcExpiry} onChange={(e) => setDcExpiry(e.target.value)} placeholder="dd/mm/yyyy" />
+                      <Label className="text-xs font-semibold">
+                        Expiration Date (optional)
+                      </Label>
+                      <Input
+                        type="date"
+                        value={dcExpiry}
+                        onChange={(e) => setDcExpiry(e.target.value)}
+                        placeholder="dd/mm/yyyy"
+                      />
                     </div>
                   </div>
                   <DialogFooter>
-                    <Button variant="outline" onClick={() => setDcUploadOpen(false)}>Cancel</Button>
+                    <Button
+                      variant="outline"
+                      onClick={() => setDcUploadOpen(false)}
+                    >
+                      Cancel
+                    </Button>
                     <Button onClick={submitUpload}>Save</Button>
                   </DialogFooter>
                 </DialogContent>
@@ -2401,9 +2478,17 @@ export default function Index() {
                         <TableHead className="w-8 px-2 py-1">
                           {(() => {
                             const ids = sortedDocs.map((d) => d.id);
-                            const all = ids.length > 0 && ids.every((id) => selectedDocIds.has(id));
-                            const some = ids.some((id) => selectedDocIds.has(id));
-                            const checked: boolean | "indeterminate" = all ? true : some ? "indeterminate" : false;
+                            const all =
+                              ids.length > 0 &&
+                              ids.every((id) => selectedDocIds.has(id));
+                            const some = ids.some((id) =>
+                              selectedDocIds.has(id),
+                            );
+                            const checked: boolean | "indeterminate" = all
+                              ? true
+                              : some
+                                ? "indeterminate"
+                                : false;
                             return (
                               <Checkbox
                                 aria-label="Select all documents"

@@ -390,7 +390,9 @@ export default function ManageProfile() {
   const [trainingUploadFiles, setTrainingUploadFiles] = useState<File[]>([]);
   const trainingFileInputRef = useRef<HTMLInputElement | null>(null);
 
-  const [trainingType, setTrainingType] = useState<"training" | "certification">("training");
+  const [trainingType, setTrainingType] = useState<
+    "training" | "certification"
+  >("training");
   // Certification fields
   const [certName, setCertName] = useState("");
   const [certOrg, setCertOrg] = useState("");
@@ -529,46 +531,148 @@ export default function ManageProfile() {
   const ecPhone = isSarah ? "+1 456 789 123" : "—";
   const ecAltPhone = isSarah ? "+1 321 654 987" : "—";
 
-  type PersonalInfo = { firstName: string; middleName: string; lastName: string; dob: string; gender: string; marital: string; nationality: string };
-  const [personal, setPersonal] = useState<PersonalInfo>({ firstName: piFirstName, middleName: piMiddleName, lastName: piLastName, dob: piDOB, gender: piGender, marital: piMarital, nationality: piNationality });
+  type PersonalInfo = {
+    firstName: string;
+    middleName: string;
+    lastName: string;
+    dob: string;
+    gender: string;
+    marital: string;
+    nationality: string;
+  };
+  const [personal, setPersonal] = useState<PersonalInfo>({
+    firstName: piFirstName,
+    middleName: piMiddleName,
+    lastName: piLastName,
+    dob: piDOB,
+    gender: piGender,
+    marital: piMarital,
+    nationality: piNationality,
+  });
   const [piEditOpen, setPiEditOpen] = useState(false);
   const [piDraft, setPiDraft] = useState<PersonalInfo>({ ...personal });
 
-  type ContactDetails = { phone: string; altPhone: string; email: string; workEmail: string };
-  const [contact, setContact] = useState<ContactDetails>({ phone: cdPhone, altPhone: cdAltPhone, email: cdEmail, workEmail: cdWorkEmail });
+  type ContactDetails = {
+    phone: string;
+    altPhone: string;
+    email: string;
+    workEmail: string;
+  };
+  const [contact, setContact] = useState<ContactDetails>({
+    phone: cdPhone,
+    altPhone: cdAltPhone,
+    email: cdEmail,
+    workEmail: cdWorkEmail,
+  });
   const [cdEditOpen, setCdEditOpen] = useState(false);
   const [cdDraft, setCdDraft] = useState<ContactDetails>({ ...contact });
 
-  type AddressInfo = { street: string; city: string; state: string; zip: string };
-  const [address, setAddress] = useState<AddressInfo>({ street: addrStreet, city: addrCity, state: addrState, zip: addrZip });
+  type AddressInfo = {
+    street: string;
+    city: string;
+    state: string;
+    zip: string;
+  };
+  const [address, setAddress] = useState<AddressInfo>({
+    street: addrStreet,
+    city: addrCity,
+    state: addrState,
+    zip: addrZip,
+  });
   const [addrEditOpen, setAddrEditOpen] = useState(false);
   const [addrDraft, setAddrDraft] = useState<AddressInfo>({ ...address });
 
-  type EmergencyContact = { name: string; relation: string; phone: string; altPhone: string };
-  const [emergency, setEmergency] = useState<EmergencyContact>({ name: ecName, relation: ecRelation, phone: ecPhone, altPhone: ecAltPhone });
+  type EmergencyContact = {
+    name: string;
+    relation: string;
+    phone: string;
+    altPhone: string;
+  };
+  const [emergency, setEmergency] = useState<EmergencyContact>({
+    name: ecName,
+    relation: ecRelation,
+    phone: ecPhone,
+    altPhone: ecAltPhone,
+  });
   const [ecEditOpen, setEcEditOpen] = useState(false);
   const [ecDraft, setEcDraft] = useState<EmergencyContact>({ ...emergency });
 
-  type WorkDetails = { position: string; department: string; manager: string; status: string; employmentType: string; dateHired: string; probationEnd: string; workLocation: string; shift: string; workEmail: string; workPhone: string };
-  const [work, setWork] = useState<WorkDetails>({ position: "Senior Software Engineer", department: "Engineering", manager: "Michael Rodriguez", status: "Active", employmentType: "Full-Time", dateHired: "01/15/2023", probationEnd: "07-15-2023", workLocation: "Head Office", shift: "Day", workEmail: "sarah.mitchell@company.com", workPhone: "+1 (555) 123-4567 ext. 1234" });
+  type WorkDetails = {
+    position: string;
+    department: string;
+    manager: string;
+    status: string;
+    employmentType: string;
+    dateHired: string;
+    probationEnd: string;
+    workLocation: string;
+    shift: string;
+    workEmail: string;
+    workPhone: string;
+  };
+  const [work, setWork] = useState<WorkDetails>({
+    position: "Senior Software Engineer",
+    department: "Engineering",
+    manager: "Michael Rodriguez",
+    status: "Active",
+    employmentType: "Full-Time",
+    dateHired: "01/15/2023",
+    probationEnd: "07-15-2023",
+    workLocation: "Head Office",
+    shift: "Day",
+    workEmail: "sarah.mitchell@company.com",
+    workPhone: "+1 (555) 123-4567 ext. 1234",
+  });
   const [wdEditOpen, setWdEditOpen] = useState(false);
   const [wdDraft, setWdDraft] = useState<WorkDetails>({ ...work });
 
   type PositionItem = { title: string; range: string; reason: string };
   const [positionHistory, setPositionHistory] = useState<PositionItem[]>([
-    { title: "Senior Analyst", range: "Jan 2022 – Aug 2023", reason: "Promoted" },
+    {
+      title: "Senior Analyst",
+      range: "Jan 2022 – Aug 2023",
+      reason: "Promoted",
+    },
     { title: "HR Assistant", range: "Jun 2020 – Dec 2021", reason: "Transfer" },
   ]);
   const [phEditOpen, setPhEditOpen] = useState(false);
   const [phDraft, setPhDraft] = useState<PositionItem[]>([...positionHistory]);
 
-  type WorkHistoryItem = { company: string; position: string; duration: string; location: string; type: string; reason: string };
+  type WorkHistoryItem = {
+    company: string;
+    position: string;
+    duration: string;
+    location: string;
+    type: string;
+    reason: string;
+  };
   const [workHistory, setWorkHistory] = useState<WorkHistoryItem[]>([
-    { company: "Nimbus Labs", position: "Software Engineer", duration: "2 years", location: "Vancouver, Canada", type: "Full-time", reason: "Career growth" },
-    { company: "Aster Corp", position: "Junior Developer", duration: "1.5 years", location: "Seattle, USA", type: "Full-time", reason: "Relocation" },
+    {
+      company: "Nimbus Labs",
+      position: "Software Engineer",
+      duration: "2 years",
+      location: "Vancouver, Canada",
+      type: "Full-time",
+      reason: "Career growth",
+    },
+    {
+      company: "Aster Corp",
+      position: "Junior Developer",
+      duration: "1.5 years",
+      location: "Seattle, USA",
+      type: "Full-time",
+      reason: "Relocation",
+    },
   ]);
   const [whOpen, setWhOpen] = useState(false);
-  const [whDraft, setWhDraft] = useState<WorkHistoryItem>({ company: "", position: "", duration: "", location: "", type: "Full-time", reason: "" });
+  const [whDraft, setWhDraft] = useState<WorkHistoryItem>({
+    company: "",
+    position: "",
+    duration: "",
+    location: "",
+    type: "Full-time",
+    reason: "",
+  });
 
   type SkillItem = { name: string; years: number; level: string };
   const [skillsList, setSkillsList] = useState<SkillItem[]>([
@@ -580,22 +684,65 @@ export default function ManageProfile() {
     { name: "Docker", years: 1, level: "Beginner" },
   ]);
   const [skillOpen, setSkillOpen] = useState(false);
-  const [skillDraft, setSkillDraft] = useState<SkillItem>({ name: "", years: 0, level: "Beginner" });
+  const [skillDraft, setSkillDraft] = useState<SkillItem>({
+    name: "",
+    years: 0,
+    level: "Beginner",
+  });
 
-  type CompItem = { date: string; salary: string; pct: string; type: string; currency: string; title: string };
+  type CompItem = {
+    date: string;
+    salary: string;
+    pct: string;
+    type: string;
+    currency: string;
+    title: string;
+  };
   const [compHistory, setCompHistory] = useState<CompItem[]>([
-    { date: "01-15-2024", salary: "$95,000", pct: "+3.16%", type: "Merit Increase", currency: "USD", title: "Senior Software Engineer" },
-    { date: "01-15-2023", salary: "$90,000", pct: "+5.56%", type: "Promotion", currency: "USD", title: "Senior Software Engineer" },
-    { date: "01-15-2022", salary: "$80,000", pct: "+12.50%", type: "Adjustment", currency: "USD", title: "Software Engineer" },
+    {
+      date: "01-15-2024",
+      salary: "$95,000",
+      pct: "+3.16%",
+      type: "Merit Increase",
+      currency: "USD",
+      title: "Senior Software Engineer",
+    },
+    {
+      date: "01-15-2023",
+      salary: "$90,000",
+      pct: "+5.56%",
+      type: "Promotion",
+      currency: "USD",
+      title: "Senior Software Engineer",
+    },
+    {
+      date: "01-15-2022",
+      salary: "$80,000",
+      pct: "+12.50%",
+      type: "Adjustment",
+      currency: "USD",
+      title: "Software Engineer",
+    },
   ]);
   const [compOpen, setCompOpen] = useState(false);
-  const [compDraft, setCompDraft] = useState<CompItem>({ date: "", salary: "", pct: "", type: "", currency: "USD", title: "" });
+  const [compDraft, setCompDraft] = useState<CompItem>({
+    date: "",
+    salary: "",
+    pct: "",
+    type: "",
+    currency: "USD",
+    title: "",
+  });
 
   return (
     <div className="min-h-screen bg-background font-poppins text-[13px] leading-[1.4]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="py-2 flex items-center justify-between">
-          <Button variant="ghost" onClick={() => navigate(-1)} className="h-8 px-2 text-xs">
+          <Button
+            variant="ghost"
+            onClick={() => navigate(-1)}
+            className="h-8 px-2 text-xs"
+          >
             <ArrowLeft className="mr-2 h-4 w-4" /> Back
           </Button>
           <AlertDialog>
@@ -612,7 +759,10 @@ export default function ManageProfile() {
               <AlertDialogHeader>
                 <AlertDialogTitle>Delete this record?</AlertDialogTitle>
               </AlertDialogHeader>
-              <p className="text-sm text-muted-foreground">This action cannot be undone. This will permanently delete the employee record.</p>
+              <p className="text-sm text-muted-foreground">
+                This action cannot be undone. This will permanently delete the
+                employee record.
+              </p>
               <AlertDialogFooter>
                 <AlertDialogCancel>Cancel</AlertDialogCancel>
                 <AlertDialogAction
@@ -711,8 +861,20 @@ export default function ManageProfile() {
               <TabsContent value="personal" className="space-y-6">
                 <section>
                   <div className="flex items-center justify-between">
-                    <h3 className="text-base font-bold text-foreground">Personal Information</h3>
-                    <Button variant="ghost" className="h-7 w-7 p-0" aria-label="Edit Personal Information" onClick={() => { setPiDraft(personal); setPiEditOpen(true); }}><Pencil className="h-4 w-4" /></Button>
+                    <h3 className="text-base font-bold text-foreground">
+                      Personal Information
+                    </h3>
+                    <Button
+                      variant="ghost"
+                      className="h-7 w-7 p-0"
+                      aria-label="Edit Personal Information"
+                      onClick={() => {
+                        setPiDraft(personal);
+                        setPiEditOpen(true);
+                      }}
+                    >
+                      <Pencil className="h-4 w-4" />
+                    </Button>
                   </div>
                   <div className="mt-3 grid grid-cols-1 gap-4 md:grid-cols-2">
                     <div className="space-y-2">
@@ -766,8 +928,20 @@ export default function ManageProfile() {
 
                 <section className="border-t pt-6">
                   <div className="flex items-center justify-between">
-                    <h3 className="text-base font-bold text-foreground">Contact Details</h3>
-                    <Button variant="ghost" className="h-7 w-7 p-0" aria-label="Edit Contact Details" onClick={() => { setCdDraft(contact); setCdEditOpen(true); }}><Pencil className="h-4 w-4" /></Button>
+                    <h3 className="text-base font-bold text-foreground">
+                      Contact Details
+                    </h3>
+                    <Button
+                      variant="ghost"
+                      className="h-7 w-7 p-0"
+                      aria-label="Edit Contact Details"
+                      onClick={() => {
+                        setCdDraft(contact);
+                        setCdEditOpen(true);
+                      }}
+                    >
+                      <Pencil className="h-4 w-4" />
+                    </Button>
                   </div>
                   <div className="mt-3 grid grid-cols-1 gap-4 md:grid-cols-2">
                     <div className="space-y-2">
@@ -803,8 +977,20 @@ export default function ManageProfile() {
 
                 <section className="border-t pt-6">
                   <div className="flex items-center justify-between">
-                    <h3 className="text-base font-bold text-foreground">Address Information</h3>
-                    <Button variant="ghost" className="h-7 w-7 p-0" aria-label="Edit Address Information" onClick={() => { setAddrDraft(address); setAddrEditOpen(true); }}><Pencil className="h-4 w-4" /></Button>
+                    <h3 className="text-base font-bold text-foreground">
+                      Address Information
+                    </h3>
+                    <Button
+                      variant="ghost"
+                      className="h-7 w-7 p-0"
+                      aria-label="Edit Address Information"
+                      onClick={() => {
+                        setAddrDraft(address);
+                        setAddrEditOpen(true);
+                      }}
+                    >
+                      <Pencil className="h-4 w-4" />
+                    </Button>
                   </div>
                   <div className="mt-3 grid grid-cols-1 gap-4 md:grid-cols-2">
                     <div className="space-y-2">
@@ -836,8 +1022,20 @@ export default function ManageProfile() {
 
                 <section className="border-t pt-6">
                   <div className="flex items-center justify-between">
-                    <h3 className="text-base font-bold text-foreground">Emergency Contact</h3>
-                    <Button variant="ghost" className="h-7 w-7 p-0" aria-label="Edit Emergency Contact" onClick={() => { setEcDraft(emergency); setEcEditOpen(true); }}><Pencil className="h-4 w-4" /></Button>
+                    <h3 className="text-base font-bold text-foreground">
+                      Emergency Contact
+                    </h3>
+                    <Button
+                      variant="ghost"
+                      className="h-7 w-7 p-0"
+                      aria-label="Edit Emergency Contact"
+                      onClick={() => {
+                        setEcDraft(emergency);
+                        setEcEditOpen(true);
+                      }}
+                    >
+                      <Pencil className="h-4 w-4" />
+                    </Button>
                   </div>
                   <div className="mt-3 grid grid-cols-1 gap-4 md:grid-cols-2">
                     <div className="space-y-2">
@@ -873,159 +1071,348 @@ export default function ManageProfile() {
               </TabsContent>
 
               {/* Edit Personal Information Dialog */}
-              <Dialog open={piEditOpen} onOpenChange={(o) => !o && setPiEditOpen(false)}>
+              <Dialog
+                open={piEditOpen}
+                onOpenChange={(o) => !o && setPiEditOpen(false)}
+              >
                 <DialogContent className="rounded-2xl p-6 shadow-xl">
                   <DialogHeader>
                     <DialogTitle>Edit Personal Information</DialogTitle>
                   </DialogHeader>
                   <div className="grid gap-3 text-sm sm:grid-cols-2">
                     <div className="grid gap-1.5">
-                      <Label className="text-xs font-semibold">First Name</Label>
-                      <Input value={piDraft.firstName} onChange={(e) => setPiDraft({ ...piDraft, firstName: e.target.value })} />
+                      <Label className="text-xs font-semibold">
+                        First Name
+                      </Label>
+                      <Input
+                        value={piDraft.firstName}
+                        onChange={(e) =>
+                          setPiDraft({ ...piDraft, firstName: e.target.value })
+                        }
+                      />
                     </div>
                     <div className="grid gap-1.5">
-                      <Label className="text-xs font-semibold">Middle Name</Label>
-                      <Input value={piDraft.middleName} onChange={(e) => setPiDraft({ ...piDraft, middleName: e.target.value })} />
+                      <Label className="text-xs font-semibold">
+                        Middle Name
+                      </Label>
+                      <Input
+                        value={piDraft.middleName}
+                        onChange={(e) =>
+                          setPiDraft({ ...piDraft, middleName: e.target.value })
+                        }
+                      />
                     </div>
                     <div className="grid gap-1.5">
                       <Label className="text-xs font-semibold">Last Name</Label>
-                      <Input value={piDraft.lastName} onChange={(e) => setPiDraft({ ...piDraft, lastName: e.target.value })} />
+                      <Input
+                        value={piDraft.lastName}
+                        onChange={(e) =>
+                          setPiDraft({ ...piDraft, lastName: e.target.value })
+                        }
+                      />
                     </div>
                     <div className="grid gap-1.5">
-                      <Label className="text-xs font-semibold">Date of Birth</Label>
-                      <Input value={piDraft.dob} onChange={(e) => setPiDraft({ ...piDraft, dob: e.target.value })} />
+                      <Label className="text-xs font-semibold">
+                        Date of Birth
+                      </Label>
+                      <Input
+                        value={piDraft.dob}
+                        onChange={(e) =>
+                          setPiDraft({ ...piDraft, dob: e.target.value })
+                        }
+                      />
                     </div>
                     <div className="grid gap-1.5">
                       <Label className="text-xs font-semibold">Gender</Label>
-                      <Input value={piDraft.gender} onChange={(e) => setPiDraft({ ...piDraft, gender: e.target.value })} />
+                      <Input
+                        value={piDraft.gender}
+                        onChange={(e) =>
+                          setPiDraft({ ...piDraft, gender: e.target.value })
+                        }
+                      />
                     </div>
                     <div className="grid gap-1.5">
-                      <Label className="text-xs font-semibold">Marital Status</Label>
-                      <Input value={piDraft.marital} onChange={(e) => setPiDraft({ ...piDraft, marital: e.target.value })} />
+                      <Label className="text-xs font-semibold">
+                        Marital Status
+                      </Label>
+                      <Input
+                        value={piDraft.marital}
+                        onChange={(e) =>
+                          setPiDraft({ ...piDraft, marital: e.target.value })
+                        }
+                      />
                     </div>
                     <div className="grid gap-1.5 sm:col-span-2">
-                      <Label className="text-xs font-semibold">Nationality</Label>
-                      <Input value={piDraft.nationality} onChange={(e) => setPiDraft({ ...piDraft, nationality: e.target.value })} />
+                      <Label className="text-xs font-semibold">
+                        Nationality
+                      </Label>
+                      <Input
+                        value={piDraft.nationality}
+                        onChange={(e) =>
+                          setPiDraft({
+                            ...piDraft,
+                            nationality: e.target.value,
+                          })
+                        }
+                      />
                     </div>
                   </div>
                   <DialogFooter>
                     <DialogClose asChild>
-                      <Button variant="outline" className="rounded-md border px-4">Cancel</Button>
+                      <Button
+                        variant="outline"
+                        className="rounded-md border px-4"
+                      >
+                        Cancel
+                      </Button>
                     </DialogClose>
                     <DialogClose asChild>
-                      <Button className="rounded-md bg-[#2563eb] px-4 text-white hover:bg-[#1d4ed8]" onClick={() => { setPersonal(piDraft); }}>Save</Button>
+                      <Button
+                        className="rounded-md bg-[#2563eb] px-4 text-white hover:bg-[#1d4ed8]"
+                        onClick={() => {
+                          setPersonal(piDraft);
+                        }}
+                      >
+                        Save
+                      </Button>
                     </DialogClose>
                   </DialogFooter>
                 </DialogContent>
               </Dialog>
 
               {/* Edit Contact Details Dialog */}
-              <Dialog open={cdEditOpen} onOpenChange={(o) => !o && setCdEditOpen(false)}>
+              <Dialog
+                open={cdEditOpen}
+                onOpenChange={(o) => !o && setCdEditOpen(false)}
+              >
                 <DialogContent className="rounded-2xl p-6 shadow-xl">
                   <DialogHeader>
                     <DialogTitle>Edit Contact Details</DialogTitle>
                   </DialogHeader>
                   <div className="grid gap-3 text-sm sm:grid-cols-2">
                     <div className="grid gap-1.5">
-                      <Label className="text-xs font-semibold">Phone Number</Label>
-                      <Input value={cdDraft.phone} onChange={(e) => setCdDraft({ ...cdDraft, phone: e.target.value })} />
+                      <Label className="text-xs font-semibold">
+                        Phone Number
+                      </Label>
+                      <Input
+                        value={cdDraft.phone}
+                        onChange={(e) =>
+                          setCdDraft({ ...cdDraft, phone: e.target.value })
+                        }
+                      />
                     </div>
                     <div className="grid gap-1.5">
-                      <Label className="text-xs font-semibold">Alternate Number</Label>
-                      <Input value={cdDraft.altPhone} onChange={(e) => setCdDraft({ ...cdDraft, altPhone: e.target.value })} />
+                      <Label className="text-xs font-semibold">
+                        Alternate Number
+                      </Label>
+                      <Input
+                        value={cdDraft.altPhone}
+                        onChange={(e) =>
+                          setCdDraft({ ...cdDraft, altPhone: e.target.value })
+                        }
+                      />
                     </div>
                     <div className="grid gap-1.5">
-                      <Label className="text-xs font-semibold">Email Address</Label>
-                      <Input value={cdDraft.email} onChange={(e) => setCdDraft({ ...cdDraft, email: e.target.value })} />
+                      <Label className="text-xs font-semibold">
+                        Email Address
+                      </Label>
+                      <Input
+                        value={cdDraft.email}
+                        onChange={(e) =>
+                          setCdDraft({ ...cdDraft, email: e.target.value })
+                        }
+                      />
                     </div>
                     <div className="grid gap-1.5">
-                      <Label className="text-xs font-semibold">Work Email</Label>
-                      <Input value={cdDraft.workEmail} onChange={(e) => setCdDraft({ ...cdDraft, workEmail: e.target.value })} />
+                      <Label className="text-xs font-semibold">
+                        Work Email
+                      </Label>
+                      <Input
+                        value={cdDraft.workEmail}
+                        onChange={(e) =>
+                          setCdDraft({ ...cdDraft, workEmail: e.target.value })
+                        }
+                      />
                     </div>
                   </div>
                   <DialogFooter>
                     <DialogClose asChild>
-                      <Button variant="outline" className="rounded-md border px-4">Cancel</Button>
+                      <Button
+                        variant="outline"
+                        className="rounded-md border px-4"
+                      >
+                        Cancel
+                      </Button>
                     </DialogClose>
                     <DialogClose asChild>
-                      <Button className="rounded-md bg-[#2563eb] px-4 text-white hover:bg-[#1d4ed8]" onClick={() => { setContact(cdDraft); }}>Save</Button>
+                      <Button
+                        className="rounded-md bg-[#2563eb] px-4 text-white hover:bg-[#1d4ed8]"
+                        onClick={() => {
+                          setContact(cdDraft);
+                        }}
+                      >
+                        Save
+                      </Button>
                     </DialogClose>
                   </DialogFooter>
                 </DialogContent>
               </Dialog>
 
               {/* Edit Address Information Dialog */}
-              <Dialog open={addrEditOpen} onOpenChange={(o) => !o && setAddrEditOpen(false)}>
+              <Dialog
+                open={addrEditOpen}
+                onOpenChange={(o) => !o && setAddrEditOpen(false)}
+              >
                 <DialogContent className="rounded-2xl p-6 shadow-xl">
                   <DialogHeader>
                     <DialogTitle>Edit Address Information</DialogTitle>
                   </DialogHeader>
                   <div className="grid gap-3 text-sm sm:grid-cols-2">
                     <div className="grid gap-1.5">
-                      <Label className="text-xs font-semibold">Street Address</Label>
-                      <Input value={addrDraft.street} onChange={(e) => setAddrDraft({ ...addrDraft, street: e.target.value })} />
+                      <Label className="text-xs font-semibold">
+                        Street Address
+                      </Label>
+                      <Input
+                        value={addrDraft.street}
+                        onChange={(e) =>
+                          setAddrDraft({ ...addrDraft, street: e.target.value })
+                        }
+                      />
                     </div>
                     <div className="grid gap-1.5">
                       <Label className="text-xs font-semibold">City</Label>
-                      <Input value={addrDraft.city} onChange={(e) => setAddrDraft({ ...addrDraft, city: e.target.value })} />
+                      <Input
+                        value={addrDraft.city}
+                        onChange={(e) =>
+                          setAddrDraft({ ...addrDraft, city: e.target.value })
+                        }
+                      />
                     </div>
                     <div className="grid gap-1.5">
                       <Label className="text-xs font-semibold">State</Label>
-                      <Input value={addrDraft.state} onChange={(e) => setAddrDraft({ ...addrDraft, state: e.target.value })} />
+                      <Input
+                        value={addrDraft.state}
+                        onChange={(e) =>
+                          setAddrDraft({ ...addrDraft, state: e.target.value })
+                        }
+                      />
                     </div>
                     <div className="grid gap-1.5">
                       <Label className="text-xs font-semibold">Zip Code</Label>
-                      <Input value={addrDraft.zip} onChange={(e) => setAddrDraft({ ...addrDraft, zip: e.target.value })} />
+                      <Input
+                        value={addrDraft.zip}
+                        onChange={(e) =>
+                          setAddrDraft({ ...addrDraft, zip: e.target.value })
+                        }
+                      />
                     </div>
                   </div>
                   <DialogFooter>
                     <DialogClose asChild>
-                      <Button variant="outline" className="rounded-md border px-4">Cancel</Button>
+                      <Button
+                        variant="outline"
+                        className="rounded-md border px-4"
+                      >
+                        Cancel
+                      </Button>
                     </DialogClose>
                     <DialogClose asChild>
-                      <Button className="rounded-md bg-[#2563eb] px-4 text-white hover:bg-[#1d4ed8]" onClick={() => { setAddress(addrDraft); }}>Save</Button>
+                      <Button
+                        className="rounded-md bg-[#2563eb] px-4 text-white hover:bg-[#1d4ed8]"
+                        onClick={() => {
+                          setAddress(addrDraft);
+                        }}
+                      >
+                        Save
+                      </Button>
                     </DialogClose>
                   </DialogFooter>
                 </DialogContent>
               </Dialog>
 
               {/* Edit Emergency Contact Dialog */}
-              <Dialog open={ecEditOpen} onOpenChange={(o) => !o && setEcEditOpen(false)}>
+              <Dialog
+                open={ecEditOpen}
+                onOpenChange={(o) => !o && setEcEditOpen(false)}
+              >
                 <DialogContent className="rounded-2xl p-6 shadow-xl">
                   <DialogHeader>
                     <DialogTitle>Edit Emergency Contact</DialogTitle>
                   </DialogHeader>
                   <div className="grid gap-3 text-sm sm:grid-cols-2">
                     <div className="grid gap-1.5">
-                      <Label className="text-xs font-semibold">Contact Name</Label>
-                      <Input value={ecDraft.name} onChange={(e) => setEcDraft({ ...ecDraft, name: e.target.value })} />
+                      <Label className="text-xs font-semibold">
+                        Contact Name
+                      </Label>
+                      <Input
+                        value={ecDraft.name}
+                        onChange={(e) =>
+                          setEcDraft({ ...ecDraft, name: e.target.value })
+                        }
+                      />
                     </div>
                     <div className="grid gap-1.5">
-                      <Label className="text-xs font-semibold">Relationship</Label>
-                      <Input value={ecDraft.relation} onChange={(e) => setEcDraft({ ...ecDraft, relation: e.target.value })} />
+                      <Label className="text-xs font-semibold">
+                        Relationship
+                      </Label>
+                      <Input
+                        value={ecDraft.relation}
+                        onChange={(e) =>
+                          setEcDraft({ ...ecDraft, relation: e.target.value })
+                        }
+                      />
                     </div>
                     <div className="grid gap-1.5">
-                      <Label className="text-xs font-semibold">Contact Number</Label>
-                      <Input value={ecDraft.phone} onChange={(e) => setEcDraft({ ...ecDraft, phone: e.target.value })} />
+                      <Label className="text-xs font-semibold">
+                        Contact Number
+                      </Label>
+                      <Input
+                        value={ecDraft.phone}
+                        onChange={(e) =>
+                          setEcDraft({ ...ecDraft, phone: e.target.value })
+                        }
+                      />
                     </div>
                     <div className="grid gap-1.5">
-                      <Label className="text-xs font-semibold">Alternate Number</Label>
-                      <Input value={ecDraft.altPhone} onChange={(e) => setEcDraft({ ...ecDraft, altPhone: e.target.value })} />
+                      <Label className="text-xs font-semibold">
+                        Alternate Number
+                      </Label>
+                      <Input
+                        value={ecDraft.altPhone}
+                        onChange={(e) =>
+                          setEcDraft({ ...ecDraft, altPhone: e.target.value })
+                        }
+                      />
                     </div>
                   </div>
                   <DialogFooter>
                     <DialogClose asChild>
-                      <Button variant="outline" className="rounded-md border px-4">Cancel</Button>
+                      <Button
+                        variant="outline"
+                        className="rounded-md border px-4"
+                      >
+                        Cancel
+                      </Button>
                     </DialogClose>
                     <DialogClose asChild>
-                      <Button className="rounded-md bg-[#2563eb] px-4 text-white hover:bg-[#1d4ed8]" onClick={() => { setEmergency(ecDraft); }}>Save</Button>
+                      <Button
+                        className="rounded-md bg-[#2563eb] px-4 text-white hover:bg-[#1d4ed8]"
+                        onClick={() => {
+                          setEmergency(ecDraft);
+                        }}
+                      >
+                        Save
+                      </Button>
                     </DialogClose>
                   </DialogFooter>
                 </DialogContent>
               </Dialog>
 
               {/* Edit Work Details Dialog */}
-              <Dialog open={wdEditOpen} onOpenChange={(o) => !o && setWdEditOpen(false)}>
+              <Dialog
+                open={wdEditOpen}
+                onOpenChange={(o) => !o && setWdEditOpen(false)}
+              >
                 <DialogContent className="rounded-2xl p-6 shadow-xl">
                   <DialogHeader>
                     <DialogTitle>Edit Work Details</DialogTitle>
@@ -1033,62 +1420,161 @@ export default function ManageProfile() {
                   <div className="grid gap-3 text-sm sm:grid-cols-2">
                     <div className="grid gap-1.5">
                       <Label className="text-xs font-semibold">Position</Label>
-                      <Input value={wdDraft.position} onChange={(e) => setWdDraft({ ...wdDraft, position: e.target.value })} />
+                      <Input
+                        value={wdDraft.position}
+                        onChange={(e) =>
+                          setWdDraft({ ...wdDraft, position: e.target.value })
+                        }
+                      />
                     </div>
                     <div className="grid gap-1.5">
-                      <Label className="text-xs font-semibold">Department</Label>
-                      <Input value={wdDraft.department} onChange={(e) => setWdDraft({ ...wdDraft, department: e.target.value })} />
+                      <Label className="text-xs font-semibold">
+                        Department
+                      </Label>
+                      <Input
+                        value={wdDraft.department}
+                        onChange={(e) =>
+                          setWdDraft({ ...wdDraft, department: e.target.value })
+                        }
+                      />
                     </div>
                     <div className="grid gap-1.5">
-                      <Label className="text-xs font-semibold">Reporting Manager</Label>
-                      <Input value={wdDraft.manager} onChange={(e) => setWdDraft({ ...wdDraft, manager: e.target.value })} />
+                      <Label className="text-xs font-semibold">
+                        Reporting Manager
+                      </Label>
+                      <Input
+                        value={wdDraft.manager}
+                        onChange={(e) =>
+                          setWdDraft({ ...wdDraft, manager: e.target.value })
+                        }
+                      />
                     </div>
                     <div className="grid gap-1.5">
-                      <Label className="text-xs font-semibold">Employment Status</Label>
-                      <Input value={wdDraft.status} onChange={(e) => setWdDraft({ ...wdDraft, status: e.target.value })} />
+                      <Label className="text-xs font-semibold">
+                        Employment Status
+                      </Label>
+                      <Input
+                        value={wdDraft.status}
+                        onChange={(e) =>
+                          setWdDraft({ ...wdDraft, status: e.target.value })
+                        }
+                      />
                     </div>
                     <div className="grid gap-1.5">
-                      <Label className="text-xs font-semibold">Employment Type</Label>
-                      <Input value={wdDraft.employmentType} onChange={(e) => setWdDraft({ ...wdDraft, employmentType: e.target.value })} />
+                      <Label className="text-xs font-semibold">
+                        Employment Type
+                      </Label>
+                      <Input
+                        value={wdDraft.employmentType}
+                        onChange={(e) =>
+                          setWdDraft({
+                            ...wdDraft,
+                            employmentType: e.target.value,
+                          })
+                        }
+                      />
                     </div>
                     <div className="grid gap-1.5">
-                      <Label className="text-xs font-semibold">Date Hired</Label>
-                      <Input value={wdDraft.dateHired} onChange={(e) => setWdDraft({ ...wdDraft, dateHired: e.target.value })} />
+                      <Label className="text-xs font-semibold">
+                        Date Hired
+                      </Label>
+                      <Input
+                        value={wdDraft.dateHired}
+                        onChange={(e) =>
+                          setWdDraft({ ...wdDraft, dateHired: e.target.value })
+                        }
+                      />
                     </div>
                     <div className="grid gap-1.5">
-                      <Label className="text-xs font-semibold">Probation End Date</Label>
-                      <Input value={wdDraft.probationEnd} onChange={(e) => setWdDraft({ ...wdDraft, probationEnd: e.target.value })} />
+                      <Label className="text-xs font-semibold">
+                        Probation End Date
+                      </Label>
+                      <Input
+                        value={wdDraft.probationEnd}
+                        onChange={(e) =>
+                          setWdDraft({
+                            ...wdDraft,
+                            probationEnd: e.target.value,
+                          })
+                        }
+                      />
                     </div>
                     <div className="grid gap-1.5">
-                      <Label className="text-xs font-semibold">Work Location / Site</Label>
-                      <Input value={wdDraft.workLocation} onChange={(e) => setWdDraft({ ...wdDraft, workLocation: e.target.value })} />
+                      <Label className="text-xs font-semibold">
+                        Work Location / Site
+                      </Label>
+                      <Input
+                        value={wdDraft.workLocation}
+                        onChange={(e) =>
+                          setWdDraft({
+                            ...wdDraft,
+                            workLocation: e.target.value,
+                          })
+                        }
+                      />
                     </div>
                     <div className="grid gap-1.5">
-                      <Label className="text-xs font-semibold">Shift Schedule</Label>
-                      <Input value={wdDraft.shift} onChange={(e) => setWdDraft({ ...wdDraft, shift: e.target.value })} />
+                      <Label className="text-xs font-semibold">
+                        Shift Schedule
+                      </Label>
+                      <Input
+                        value={wdDraft.shift}
+                        onChange={(e) =>
+                          setWdDraft({ ...wdDraft, shift: e.target.value })
+                        }
+                      />
                     </div>
                     <div className="grid gap-1.5">
-                      <Label className="text-xs font-semibold">Work Email</Label>
-                      <Input value={wdDraft.workEmail} onChange={(e) => setWdDraft({ ...wdDraft, workEmail: e.target.value })} />
+                      <Label className="text-xs font-semibold">
+                        Work Email
+                      </Label>
+                      <Input
+                        value={wdDraft.workEmail}
+                        onChange={(e) =>
+                          setWdDraft({ ...wdDraft, workEmail: e.target.value })
+                        }
+                      />
                     </div>
                     <div className="grid gap-1.5 sm:col-span-2">
-                      <Label className="text-xs font-semibold">Work Phone / Extension</Label>
-                      <Input value={wdDraft.workPhone} onChange={(e) => setWdDraft({ ...wdDraft, workPhone: e.target.value })} />
+                      <Label className="text-xs font-semibold">
+                        Work Phone / Extension
+                      </Label>
+                      <Input
+                        value={wdDraft.workPhone}
+                        onChange={(e) =>
+                          setWdDraft({ ...wdDraft, workPhone: e.target.value })
+                        }
+                      />
                     </div>
                   </div>
                   <DialogFooter>
                     <DialogClose asChild>
-                      <Button variant="outline" className="rounded-md border px-4">Cancel</Button>
+                      <Button
+                        variant="outline"
+                        className="rounded-md border px-4"
+                      >
+                        Cancel
+                      </Button>
                     </DialogClose>
                     <DialogClose asChild>
-                      <Button className="rounded-md bg-[#2563eb] px-4 text-white hover:bg-[#1d4ed8]" onClick={() => { setWork(wdDraft); }}>Save</Button>
+                      <Button
+                        className="rounded-md bg-[#2563eb] px-4 text-white hover:bg-[#1d4ed8]"
+                        onClick={() => {
+                          setWork(wdDraft);
+                        }}
+                      >
+                        Save
+                      </Button>
                     </DialogClose>
                   </DialogFooter>
                 </DialogContent>
               </Dialog>
 
               {/* Edit Position History Dialog */}
-              <Dialog open={phEditOpen} onOpenChange={(o) => !o && setPhEditOpen(false)}>
+              <Dialog
+                open={phEditOpen}
+                onOpenChange={(o) => !o && setPhEditOpen(false)}
+              >
                 <DialogContent className="rounded-2xl p-6 shadow-xl">
                   <DialogHeader>
                     <DialogTitle>Edit Position History</DialogTitle>
@@ -1098,25 +1584,62 @@ export default function ManageProfile() {
                       <div key={i} className="grid gap-2 sm:grid-cols-3">
                         <div className="grid gap-1.5">
                           <Label className="text-xs font-semibold">Title</Label>
-                          <Input value={item.title} onChange={(e) => { const next = [...phDraft]; next[i] = { ...next[i], title: e.target.value }; setPhDraft(next); }} />
+                          <Input
+                            value={item.title}
+                            onChange={(e) => {
+                              const next = [...phDraft];
+                              next[i] = { ...next[i], title: e.target.value };
+                              setPhDraft(next);
+                            }}
+                          />
                         </div>
                         <div className="grid gap-1.5">
-                          <Label className="text-xs font-semibold">Duration</Label>
-                          <Input value={item.range} onChange={(e) => { const next = [...phDraft]; next[i] = { ...next[i], range: e.target.value }; setPhDraft(next); }} />
+                          <Label className="text-xs font-semibold">
+                            Duration
+                          </Label>
+                          <Input
+                            value={item.range}
+                            onChange={(e) => {
+                              const next = [...phDraft];
+                              next[i] = { ...next[i], range: e.target.value };
+                              setPhDraft(next);
+                            }}
+                          />
                         </div>
                         <div className="grid gap-1.5">
-                          <Label className="text-xs font-semibold">Reason</Label>
-                          <Input value={item.reason} onChange={(e) => { const next = [...phDraft]; next[i] = { ...next[i], reason: e.target.value }; setPhDraft(next); }} />
+                          <Label className="text-xs font-semibold">
+                            Reason
+                          </Label>
+                          <Input
+                            value={item.reason}
+                            onChange={(e) => {
+                              const next = [...phDraft];
+                              next[i] = { ...next[i], reason: e.target.value };
+                              setPhDraft(next);
+                            }}
+                          />
                         </div>
                       </div>
                     ))}
                   </div>
                   <DialogFooter>
                     <DialogClose asChild>
-                      <Button variant="outline" className="rounded-md border px-4">Cancel</Button>
+                      <Button
+                        variant="outline"
+                        className="rounded-md border px-4"
+                      >
+                        Cancel
+                      </Button>
                     </DialogClose>
                     <DialogClose asChild>
-                      <Button className="rounded-md bg-[#2563eb] px-4 text-white hover:bg-[#1d4ed8]" onClick={() => { setPositionHistory(phDraft); }}>Save</Button>
+                      <Button
+                        className="rounded-md bg-[#2563eb] px-4 text-white hover:bg-[#1d4ed8]"
+                        onClick={() => {
+                          setPositionHistory(phDraft);
+                        }}
+                      >
+                        Save
+                      </Button>
                     </DialogClose>
                   </DialogFooter>
                 </DialogContent>
@@ -1127,20 +1650,36 @@ export default function ManageProfile() {
                   <div>
                     <div className="flex items-center gap-2">
                       <h3 className="text-base font-bold">Work Details</h3>
-                      <Button variant="ghost" className="h-7 w-7 p-0" aria-label="Edit Work Details" onClick={() => { setWdDraft(work); setWdEditOpen(true); }}><Pencil className="h-4 w-4" /></Button>
+                      <Button
+                        variant="ghost"
+                        className="h-7 w-7 p-0"
+                        aria-label="Edit Work Details"
+                        onClick={() => {
+                          setWdDraft(work);
+                          setWdEditOpen(true);
+                        }}
+                      >
+                        <Pencil className="h-4 w-4" />
+                      </Button>
                     </div>
                     <div className="mt-3 grid grid-cols-1 gap-3">
+                      <LabeledField label="Position" value={work.position} />
                       <LabeledField
-                        label="Position"
-                        value={work.position}
+                        label="Department"
+                        value={work.department}
                       />
-                      <LabeledField label="Department" value={work.department} />
                       <LabeledField
                         label="Reporting Manager"
                         value={work.manager}
                       />
-                      <LabeledField label="Employment Status" value={work.status} />
-                      <LabeledField label="Employment Type" value={work.employmentType} />
+                      <LabeledField
+                        label="Employment Status"
+                        value={work.status}
+                      />
+                      <LabeledField
+                        label="Employment Type"
+                        value={work.employmentType}
+                      />
                       <LabeledField label="Date Hired" value={work.dateHired} />
                       <LabeledField
                         label="Probation End Date"
@@ -1151,10 +1690,7 @@ export default function ManageProfile() {
                         value={work.workLocation}
                       />
                       <LabeledField label="Shift Schedule" value={work.shift} />
-                      <LabeledField
-                        label="Work Email"
-                        value={work.workEmail}
-                      />
+                      <LabeledField label="Work Email" value={work.workEmail} />
                       <LabeledField
                         label="Work Phone / Extension"
                         value={work.workPhone}
@@ -1164,7 +1700,17 @@ export default function ManageProfile() {
                   <div>
                     <div className="flex items-center gap-2">
                       <h3 className="text-base font-bold">Position History</h3>
-                      <Button variant="ghost" className="h-7 w-7 p-0" aria-label="Edit Position History" onClick={() => { setPhDraft([...positionHistory]); setPhEditOpen(true); }}><Pencil className="h-4 w-4" /></Button>
+                      <Button
+                        variant="ghost"
+                        className="h-7 w-7 p-0"
+                        aria-label="Edit Position History"
+                        onClick={() => {
+                          setPhDraft([...positionHistory]);
+                          setPhEditOpen(true);
+                        }}
+                      >
+                        <Pencil className="h-4 w-4" />
+                      </Button>
                     </div>
                     <ul className="mt-3 space-y-4">
                       {positionHistory.map((item, i) => (
@@ -1235,7 +1781,12 @@ export default function ManageProfile() {
                       <TableFooter>
                         <TableRow className="hover:bg-transparent">
                           <TableCell colSpan={6} className="py-2 text-right">
-                            <Button onClick={() => setWhOpen(true)} className="h-7 rounded-md bg-blue-600 px-2 text-xs text-white hover:bg-blue-700">Add Work History</Button>
+                            <Button
+                              onClick={() => setWhOpen(true)}
+                              className="h-7 rounded-md bg-blue-600 px-2 text-xs text-white hover:bg-blue-700"
+                            >
+                              Add Work History
+                            </Button>
                           </TableCell>
                         </TableRow>
                       </TableFooter>
@@ -1249,40 +1800,123 @@ export default function ManageProfile() {
                         <div className="grid gap-3 py-2">
                           <div className="grid gap-1.5">
                             <Label htmlFor="wh-company">Company Name</Label>
-                            <Input id="wh-company" value={whDraft.company} onChange={(e) => setWhDraft({ ...whDraft, company: e.target.value })} />
+                            <Input
+                              id="wh-company"
+                              value={whDraft.company}
+                              onChange={(e) =>
+                                setWhDraft({
+                                  ...whDraft,
+                                  company: e.target.value,
+                                })
+                              }
+                            />
                           </div>
                           <div className="grid gap-1.5">
                             <Label htmlFor="wh-position">Position</Label>
-                            <Input id="wh-position" value={whDraft.position} onChange={(e) => setWhDraft({ ...whDraft, position: e.target.value })} />
+                            <Input
+                              id="wh-position"
+                              value={whDraft.position}
+                              onChange={(e) =>
+                                setWhDraft({
+                                  ...whDraft,
+                                  position: e.target.value,
+                                })
+                              }
+                            />
                           </div>
                           <div className="grid gap-1.5">
                             <Label htmlFor="wh-duration">Duration</Label>
-                            <Input id="wh-duration" placeholder="e.g., 2 years" value={whDraft.duration} onChange={(e) => setWhDraft({ ...whDraft, duration: e.target.value })} />
+                            <Input
+                              id="wh-duration"
+                              placeholder="e.g., 2 years"
+                              value={whDraft.duration}
+                              onChange={(e) =>
+                                setWhDraft({
+                                  ...whDraft,
+                                  duration: e.target.value,
+                                })
+                              }
+                            />
                           </div>
                           <div className="grid gap-1.5">
                             <Label htmlFor="wh-location">Location</Label>
-                            <Input id="wh-location" value={whDraft.location} onChange={(e) => setWhDraft({ ...whDraft, location: e.target.value })} />
+                            <Input
+                              id="wh-location"
+                              value={whDraft.location}
+                              onChange={(e) =>
+                                setWhDraft({
+                                  ...whDraft,
+                                  location: e.target.value,
+                                })
+                              }
+                            />
                           </div>
                           <div className="grid gap-1.5">
                             <Label>Employment Type</Label>
-                            <Select value={whDraft.type} onValueChange={(v) => setWhDraft({ ...whDraft, type: v })}>
-                              <SelectTrigger className="h-9"><SelectValue placeholder="Select type" /></SelectTrigger>
+                            <Select
+                              value={whDraft.type}
+                              onValueChange={(v) =>
+                                setWhDraft({ ...whDraft, type: v })
+                              }
+                            >
+                              <SelectTrigger className="h-9">
+                                <SelectValue placeholder="Select type" />
+                              </SelectTrigger>
                               <SelectContent>
-                                <SelectItem value="Full-time">Full-time</SelectItem>
-                                <SelectItem value="Part-time">Part-time</SelectItem>
-                                <SelectItem value="Contract">Contract</SelectItem>
-                                <SelectItem value="Internship">Internship</SelectItem>
+                                <SelectItem value="Full-time">
+                                  Full-time
+                                </SelectItem>
+                                <SelectItem value="Part-time">
+                                  Part-time
+                                </SelectItem>
+                                <SelectItem value="Contract">
+                                  Contract
+                                </SelectItem>
+                                <SelectItem value="Internship">
+                                  Internship
+                                </SelectItem>
                               </SelectContent>
                             </Select>
                           </div>
                           <div className="grid gap-1.5">
-                            <Label htmlFor="wh-reason">Reason for Leaving</Label>
-                            <Input id="wh-reason" value={whDraft.reason} onChange={(e) => setWhDraft({ ...whDraft, reason: e.target.value })} />
+                            <Label htmlFor="wh-reason">
+                              Reason for Leaving
+                            </Label>
+                            <Input
+                              id="wh-reason"
+                              value={whDraft.reason}
+                              onChange={(e) =>
+                                setWhDraft({
+                                  ...whDraft,
+                                  reason: e.target.value,
+                                })
+                              }
+                            />
                           </div>
                         </div>
                         <DialogFooter>
-                          <Button variant="outline" onClick={() => setWhOpen(false)}>Cancel</Button>
-                          <Button onClick={() => { setWorkHistory((arr) => [...arr, whDraft]); setWhOpen(false); setWhDraft({ company: "", position: "", duration: "", location: "", type: "Full-time", reason: "" }); }}>Save</Button>
+                          <Button
+                            variant="outline"
+                            onClick={() => setWhOpen(false)}
+                          >
+                            Cancel
+                          </Button>
+                          <Button
+                            onClick={() => {
+                              setWorkHistory((arr) => [...arr, whDraft]);
+                              setWhOpen(false);
+                              setWhDraft({
+                                company: "",
+                                position: "",
+                                duration: "",
+                                location: "",
+                                type: "Full-time",
+                                reason: "",
+                              });
+                            }}
+                          >
+                            Save
+                          </Button>
                         </DialogFooter>
                       </DialogContent>
                     </Dialog>
@@ -1315,8 +1949,15 @@ export default function ManageProfile() {
                     <TableBody>
                       {skillsList.map((s) => (
                         <TableRow key={s.name} className="hover:bg-transparent">
-                          <TableCell className="py-2"><span className="inline-flex items-center gap-1"><Check className="h-4 w-4 text-muted-foreground" /> {s.name}</span></TableCell>
-                          <TableCell className="py-2 text-center">{s.years}</TableCell>
+                          <TableCell className="py-2">
+                            <span className="inline-flex items-center gap-1">
+                              <Check className="h-4 w-4 text-muted-foreground" />{" "}
+                              {s.name}
+                            </span>
+                          </TableCell>
+                          <TableCell className="py-2 text-center">
+                            {s.years}
+                          </TableCell>
                           <TableCell className="py-2">{s.level}</TableCell>
                           <TableCell className="py-2 text-center">
                             <DropdownMenu>
@@ -1341,7 +1982,12 @@ export default function ManageProfile() {
                     <TableFooter>
                       <TableRow className="hover:bg-transparent">
                         <TableCell colSpan={4} className="py-2 text-right">
-                          <Button onClick={() => setSkillOpen(true)} className="h-7 rounded-md bg-blue-600 px-2 text-xs text-white hover:bg-blue-700">Add Skill</Button>
+                          <Button
+                            onClick={() => setSkillOpen(true)}
+                            className="h-7 rounded-md bg-blue-600 px-2 text-xs text-white hover:bg-blue-700"
+                          >
+                            Add Skill
+                          </Button>
                         </TableCell>
                       </TableRow>
                     </TableFooter>
@@ -1355,19 +2001,48 @@ export default function ManageProfile() {
                       <div className="grid gap-3 py-2">
                         <div className="grid gap-1.5">
                           <Label htmlFor="sk-name">Skill Name</Label>
-                          <Input id="sk-name" value={skillDraft.name} onChange={(e) => setSkillDraft({ ...skillDraft, name: e.target.value })} />
+                          <Input
+                            id="sk-name"
+                            value={skillDraft.name}
+                            onChange={(e) =>
+                              setSkillDraft({
+                                ...skillDraft,
+                                name: e.target.value,
+                              })
+                            }
+                          />
                         </div>
                         <div className="grid gap-1.5">
                           <Label htmlFor="sk-years">Experience (Years)</Label>
-                          <Input id="sk-years" type="number" min={0} value={skillDraft.years} onChange={(e) => setSkillDraft({ ...skillDraft, years: Number(e.target.value) })} />
+                          <Input
+                            id="sk-years"
+                            type="number"
+                            min={0}
+                            value={skillDraft.years}
+                            onChange={(e) =>
+                              setSkillDraft({
+                                ...skillDraft,
+                                years: Number(e.target.value),
+                              })
+                            }
+                          />
                         </div>
                         <div className="grid gap-1.5">
                           <Label>Skill Level</Label>
-                          <Select value={skillDraft.level} onValueChange={(v) => setSkillDraft({ ...skillDraft, level: v })}>
-                            <SelectTrigger className="h-9"><SelectValue placeholder="Select level" /></SelectTrigger>
+                          <Select
+                            value={skillDraft.level}
+                            onValueChange={(v) =>
+                              setSkillDraft({ ...skillDraft, level: v })
+                            }
+                          >
+                            <SelectTrigger className="h-9">
+                              <SelectValue placeholder="Select level" />
+                            </SelectTrigger>
                             <SelectContent>
                               <SelectItem value="Beginner">Beginner</SelectItem>
-                              <SelectItem value="Intermediate">Intermediate</SelectItem>
+                              <SelectItem value="Intermediate">
+                                Intermediate
+                              </SelectItem>
                               <SelectItem value="Advanced">Advanced</SelectItem>
                               <SelectItem value="Expert">Expert</SelectItem>
                             </SelectContent>
@@ -1375,8 +2050,25 @@ export default function ManageProfile() {
                         </div>
                       </div>
                       <DialogFooter>
-                        <Button variant="outline" onClick={() => setSkillOpen(false)}>Cancel</Button>
-                        <Button onClick={() => { setSkillsList((arr) => [...arr, skillDraft]); setSkillOpen(false); setSkillDraft({ name: "", years: 0, level: "Beginner" }); }}>Save</Button>
+                        <Button
+                          variant="outline"
+                          onClick={() => setSkillOpen(false)}
+                        >
+                          Cancel
+                        </Button>
+                        <Button
+                          onClick={() => {
+                            setSkillsList((arr) => [...arr, skillDraft]);
+                            setSkillOpen(false);
+                            setSkillDraft({
+                              name: "",
+                              years: 0,
+                              level: "Beginner",
+                            });
+                          }}
+                        >
+                          Save
+                        </Button>
                       </DialogFooter>
                     </DialogContent>
                   </Dialog>
@@ -1386,7 +2078,9 @@ export default function ManageProfile() {
               <TabsContent value="comp" className="space-y-6">
                 <div>
                   <div className="flex items-center justify-between">
-                    <h3 className="text-base font-bold">Compensation Information</h3>
+                    <h3 className="text-base font-bold">
+                      Compensation Information
+                    </h3>
                   </div>
                   <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-3">
                     <div className="rounded-lg border p-4">
@@ -1425,16 +2119,29 @@ export default function ManageProfile() {
                           <TableHead className="py-2 font-bold uppercase">
                             Date of Change
                           </TableHead>
-                          <TableHead className="py-2 font-bold uppercase">Salary</TableHead>
-                          <TableHead className="py-2 font-bold uppercase">Change %</TableHead>
-                          <TableHead className="py-2 font-bold uppercase">Type</TableHead>
-                          <TableHead className="py-2 font-bold uppercase">Currency</TableHead>
-                          <TableHead className="py-2 font-bold uppercase">Position</TableHead>
+                          <TableHead className="py-2 font-bold uppercase">
+                            Salary
+                          </TableHead>
+                          <TableHead className="py-2 font-bold uppercase">
+                            Change %
+                          </TableHead>
+                          <TableHead className="py-2 font-bold uppercase">
+                            Type
+                          </TableHead>
+                          <TableHead className="py-2 font-bold uppercase">
+                            Currency
+                          </TableHead>
+                          <TableHead className="py-2 font-bold uppercase">
+                            Position
+                          </TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
                         {compHistory.map((r) => (
-                          <TableRow key={r.date + r.title} className="hover:bg-transparent">
+                          <TableRow
+                            key={r.date + r.title}
+                            className="hover:bg-transparent"
+                          >
                             <TableCell className="py-2">{r.date}</TableCell>
                             <TableCell className="py-2">{r.salary}</TableCell>
                             <TableCell className="py-2">{r.pct}</TableCell>
@@ -1447,7 +2154,12 @@ export default function ManageProfile() {
                       <TableFooter>
                         <TableRow className="hover:bg-transparent">
                           <TableCell colSpan={6} className="py-2 text-right">
-                            <Button onClick={() => setCompOpen(true)} className="h-7 rounded-md bg-blue-600 px-2 text-xs text-white hover:bg-blue-700">Add Compensation History</Button>
+                            <Button
+                              onClick={() => setCompOpen(true)}
+                              className="h-7 rounded-md bg-blue-600 px-2 text-xs text-white hover:bg-blue-700"
+                            >
+                              Add Compensation History
+                            </Button>
                           </TableCell>
                         </TableRow>
                       </TableFooter>
@@ -1461,24 +2173,70 @@ export default function ManageProfile() {
                         <div className="grid gap-3 py-2">
                           <div className="grid gap-1.5">
                             <Label htmlFor="ch-date">Date of Change</Label>
-                            <Input id="ch-date" placeholder="MM-DD-YYYY" value={compDraft.date} onChange={(e) => setCompDraft({ ...compDraft, date: e.target.value })} />
+                            <Input
+                              id="ch-date"
+                              placeholder="MM-DD-YYYY"
+                              value={compDraft.date}
+                              onChange={(e) =>
+                                setCompDraft({
+                                  ...compDraft,
+                                  date: e.target.value,
+                                })
+                              }
+                            />
                           </div>
                           <div className="grid gap-1.5">
                             <Label htmlFor="ch-salary">Salary</Label>
-                            <Input id="ch-salary" placeholder="$95,000" value={compDraft.salary} onChange={(e) => setCompDraft({ ...compDraft, salary: e.target.value })} />
+                            <Input
+                              id="ch-salary"
+                              placeholder="$95,000"
+                              value={compDraft.salary}
+                              onChange={(e) =>
+                                setCompDraft({
+                                  ...compDraft,
+                                  salary: e.target.value,
+                                })
+                              }
+                            />
                           </div>
                           <div className="grid gap-1.5">
                             <Label htmlFor="ch-pct">Change %</Label>
-                            <Input id="ch-pct" placeholder="+5.00%" value={compDraft.pct} onChange={(e) => setCompDraft({ ...compDraft, pct: e.target.value })} />
+                            <Input
+                              id="ch-pct"
+                              placeholder="+5.00%"
+                              value={compDraft.pct}
+                              onChange={(e) =>
+                                setCompDraft({
+                                  ...compDraft,
+                                  pct: e.target.value,
+                                })
+                              }
+                            />
                           </div>
                           <div className="grid gap-1.5">
                             <Label htmlFor="ch-type">Type</Label>
-                            <Input id="ch-type" value={compDraft.type} onChange={(e) => setCompDraft({ ...compDraft, type: e.target.value })} />
+                            <Input
+                              id="ch-type"
+                              value={compDraft.type}
+                              onChange={(e) =>
+                                setCompDraft({
+                                  ...compDraft,
+                                  type: e.target.value,
+                                })
+                              }
+                            />
                           </div>
                           <div className="grid gap-1.5">
                             <Label>Currency</Label>
-                            <Select value={compDraft.currency} onValueChange={(v) => setCompDraft({ ...compDraft, currency: v })}>
-                              <SelectTrigger className="h-9"><SelectValue placeholder="Select currency" /></SelectTrigger>
+                            <Select
+                              value={compDraft.currency}
+                              onValueChange={(v) =>
+                                setCompDraft({ ...compDraft, currency: v })
+                              }
+                            >
+                              <SelectTrigger className="h-9">
+                                <SelectValue placeholder="Select currency" />
+                              </SelectTrigger>
                               <SelectContent>
                                 <SelectItem value="USD">USD</SelectItem>
                                 <SelectItem value="EUR">EUR</SelectItem>
@@ -1488,12 +2246,41 @@ export default function ManageProfile() {
                           </div>
                           <div className="grid gap-1.5">
                             <Label htmlFor="ch-title">Position</Label>
-                            <Input id="ch-title" value={compDraft.title} onChange={(e) => setCompDraft({ ...compDraft, title: e.target.value })} />
+                            <Input
+                              id="ch-title"
+                              value={compDraft.title}
+                              onChange={(e) =>
+                                setCompDraft({
+                                  ...compDraft,
+                                  title: e.target.value,
+                                })
+                              }
+                            />
                           </div>
                         </div>
                         <DialogFooter>
-                          <Button variant="outline" onClick={() => setCompOpen(false)}>Cancel</Button>
-                          <Button onClick={() => { setCompHistory((arr) => [...arr, compDraft]); setCompOpen(false); setCompDraft({ date: "", salary: "", pct: "", type: "", currency: "USD", title: "" }); }}>Save</Button>
+                          <Button
+                            variant="outline"
+                            onClick={() => setCompOpen(false)}
+                          >
+                            Cancel
+                          </Button>
+                          <Button
+                            onClick={() => {
+                              setCompHistory((arr) => [...arr, compDraft]);
+                              setCompOpen(false);
+                              setCompDraft({
+                                date: "",
+                                salary: "",
+                                pct: "",
+                                type: "",
+                                currency: "USD",
+                                title: "",
+                              });
+                            }}
+                          >
+                            Save
+                          </Button>
                         </DialogFooter>
                       </DialogContent>
                     </Dialog>
@@ -1716,68 +2503,150 @@ export default function ManageProfile() {
                       <div className="grid gap-4 text-sm">
                         <div className="grid gap-1.5">
                           <Label className="text-xs font-semibold">Type</Label>
-                          <Select value={trainingType} onValueChange={(v) => setTrainingType(v as "training" | "certification")}>
+                          <Select
+                            value={trainingType}
+                            onValueChange={(v) =>
+                              setTrainingType(v as "training" | "certification")
+                            }
+                          >
                             <SelectTrigger className="h-9">
                               <SelectValue placeholder="Training" />
                             </SelectTrigger>
                             <SelectContent>
                               <SelectItem value="training">Training</SelectItem>
-                              <SelectItem value="certification">Certification</SelectItem>
+                              <SelectItem value="certification">
+                                Certification
+                              </SelectItem>
                             </SelectContent>
                           </Select>
                         </div>
                         {trainingType === "training" ? (
                           <>
                             <div className="grid gap-1.5">
-                              <Label className="text-xs font-semibold">Training Title</Label>
-                              <Input value={trainingTitleInput} onChange={(e) => setTrainingTitleInput(e.target.value)} placeholder="The name or title of the training session" required />
+                              <Label className="text-xs font-semibold">
+                                Training Title
+                              </Label>
+                              <Input
+                                value={trainingTitleInput}
+                                onChange={(e) =>
+                                  setTrainingTitleInput(e.target.value)
+                                }
+                                placeholder="The name or title of the training session"
+                                required
+                              />
                             </div>
                             <div className="grid gap-1.5">
-                              <Label className="text-xs font-semibold">Training Provider</Label>
-                              <Input value={trainingProviderInput} onChange={(e) => setTrainingProviderInput(e.target.value)} placeholder="The organization or individual offering it" />
+                              <Label className="text-xs font-semibold">
+                                Training Provider
+                              </Label>
+                              <Input
+                                value={trainingProviderInput}
+                                onChange={(e) =>
+                                  setTrainingProviderInput(e.target.value)
+                                }
+                                placeholder="The organization or individual offering it"
+                              />
                             </div>
                             <div className="grid gap-1.5">
-                              <Label className="text-xs font-semibold">Status</Label>
-                              <Select value={trainingStatusInput} onValueChange={(v) => setTrainingStatusInput(v)}>
+                              <Label className="text-xs font-semibold">
+                                Status
+                              </Label>
+                              <Select
+                                value={trainingStatusInput}
+                                onValueChange={(v) => setTrainingStatusInput(v)}
+                              >
                                 <SelectTrigger className="h-9">
                                   <SelectValue placeholder="Select status" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                  <SelectItem value="ongoing">Ongoing</SelectItem>
-                                  <SelectItem value="completed">Completed</SelectItem>
-                                  <SelectItem value="pending">Pending</SelectItem>
+                                  <SelectItem value="ongoing">
+                                    Ongoing
+                                  </SelectItem>
+                                  <SelectItem value="completed">
+                                    Completed
+                                  </SelectItem>
+                                  <SelectItem value="pending">
+                                    Pending
+                                  </SelectItem>
                                 </SelectContent>
                               </Select>
                             </div>
                             <div className="grid gap-3 sm:grid-cols-2">
                               <div className="grid gap-1.5">
-                                <Label className="text-xs font-semibold">Score</Label>
-                                <Input type="number" value={trainingScoreInput} onChange={(e) => setTrainingScoreInput(e.target.value)} placeholder="Numeric value representing performance" />
+                                <Label className="text-xs font-semibold">
+                                  Score
+                                </Label>
+                                <Input
+                                  type="number"
+                                  value={trainingScoreInput}
+                                  onChange={(e) =>
+                                    setTrainingScoreInput(e.target.value)
+                                  }
+                                  placeholder="Numeric value representing performance"
+                                />
                               </div>
                               <div className="grid gap-1.5">
-                                <Label className="text-xs font-semibold">Completion Date</Label>
-                                <Input type="date" value={trainingCompletionInput} onChange={(e) => setTrainingCompletionInput(e.target.value)} placeholder="dd/mm/yyyy" />
+                                <Label className="text-xs font-semibold">
+                                  Completion Date
+                                </Label>
+                                <Input
+                                  type="date"
+                                  value={trainingCompletionInput}
+                                  onChange={(e) =>
+                                    setTrainingCompletionInput(e.target.value)
+                                  }
+                                  placeholder="dd/mm/yyyy"
+                                />
                               </div>
                             </div>
                           </>
                         ) : (
                           <>
                             <div className="grid gap-1.5">
-                              <Label className="text-xs font-semibold">Certification Name *</Label>
-                              <Input placeholder="Enter the official name of the certification" value={certName} onChange={(e) => setCertName(e.target.value)} required />
+                              <Label className="text-xs font-semibold">
+                                Certification Name *
+                              </Label>
+                              <Input
+                                placeholder="Enter the official name of the certification"
+                                value={certName}
+                                onChange={(e) => setCertName(e.target.value)}
+                                required
+                              />
                             </div>
                             <div className="grid gap-1.5">
-                              <Label className="text-xs font-semibold">Issued Organization</Label>
-                              <Input placeholder="Name of the organization that issued the certification" value={certOrg} onChange={(e) => setCertOrg(e.target.value)} />
+                              <Label className="text-xs font-semibold">
+                                Issued Organization
+                              </Label>
+                              <Input
+                                placeholder="Name of the organization that issued the certification"
+                                value={certOrg}
+                                onChange={(e) => setCertOrg(e.target.value)}
+                              />
                             </div>
                             <div className="grid gap-3 sm:grid-cols-2">
                               <div className="grid gap-1.5">
-                                <Label className="text-xs font-semibold">Issued Date</Label>
-                                <Input placeholder="dd/mm/yyyy" value={certIssued} onChange={(e) => setCertIssued(e.target.value)} />
+                                <Label className="text-xs font-semibold">
+                                  Issued Date
+                                </Label>
+                                <Input
+                                  placeholder="dd/mm/yyyy"
+                                  value={certIssued}
+                                  onChange={(e) =>
+                                    setCertIssued(e.target.value)
+                                  }
+                                />
                               </div>
                               <div className="grid gap-1.5">
-                                <Label className="text-xs font-semibold">Expiration Date</Label>
-                                <Input placeholder="dd/mm/yyyy" value={certExpiry} onChange={(e) => setCertExpiry(e.target.value)} />
+                                <Label className="text-xs font-semibold">
+                                  Expiration Date
+                                </Label>
+                                <Input
+                                  placeholder="dd/mm/yyyy"
+                                  value={certExpiry}
+                                  onChange={(e) =>
+                                    setCertExpiry(e.target.value)
+                                  }
+                                />
                               </div>
                             </div>
                           </>
@@ -2185,9 +3054,15 @@ export default function ManageProfile() {
                     <Table className="text-[13px]">
                       <TableHeader>
                         <TableRow>
-                          <TableHead className="py-2 font-bold uppercase">Leave Type</TableHead>
-                          <TableHead className="py-2 text-center font-bold uppercase">Leave Taken</TableHead>
-                          <TableHead className="py-2 text-center font-bold uppercase">Leave Balance</TableHead>
+                          <TableHead className="py-2 font-bold uppercase">
+                            Leave Type
+                          </TableHead>
+                          <TableHead className="py-2 text-center font-bold uppercase">
+                            Leave Taken
+                          </TableHead>
+                          <TableHead className="py-2 text-center font-bold uppercase">
+                            Leave Balance
+                          </TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
@@ -2198,8 +3073,12 @@ export default function ManageProfile() {
                         ].map((x) => (
                           <TableRow key={x.type}>
                             <TableCell className="py-2">{x.type}</TableCell>
-                            <TableCell className="py-2 text-center">{x.taken}</TableCell>
-                            <TableCell className="py-2 text-center">{x.balance}</TableCell>
+                            <TableCell className="py-2 text-center">
+                              {x.taken}
+                            </TableCell>
+                            <TableCell className="py-2 text-center">
+                              {x.balance}
+                            </TableCell>
                           </TableRow>
                         ))}
                       </TableBody>
@@ -2591,9 +3470,27 @@ export default function ManageProfile() {
                       Employee Documents
                     </div>
                     <div className="flex items-center gap-2">
-                      <input ref={uploadRef} type="file" className="hidden" multiple onChange={onFilesSelected} accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,image/*" />
-                      <Button onClick={onUploadClick} className="h-8 rounded-md bg-blue-600 px-3 text-xs text-white hover:bg-blue-700">+ Bulk Upload</Button>
-                      <Button variant="outline" className="h-8 rounded-md px-3 text-xs" onClick={handleDocsDownloadClick}>{docsSelectMode ? "Download All" : "Download"}</Button>
+                      <input
+                        ref={uploadRef}
+                        type="file"
+                        className="hidden"
+                        multiple
+                        onChange={onFilesSelected}
+                        accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,image/*"
+                      />
+                      <Button
+                        onClick={onUploadClick}
+                        className="h-8 rounded-md bg-blue-600 px-3 text-xs text-white hover:bg-blue-700"
+                      >
+                        + Bulk Upload
+                      </Button>
+                      <Button
+                        variant="outline"
+                        className="h-8 rounded-md px-3 text-xs"
+                        onClick={handleDocsDownloadClick}
+                      >
+                        {docsSelectMode ? "Download All" : "Download"}
+                      </Button>
                     </div>
                   </div>
                   <div className="overflow-hidden rounded-lg border border-[#e5e7eb] shadow-sm">
@@ -2607,7 +3504,8 @@ export default function ManageProfile() {
                                 aria-label="Select all"
                                 onChange={(e) => {
                                   const all = new Set<string>();
-                                  if (e.target.checked) docs.forEach((x) => all.add(x.id));
+                                  if (e.target.checked)
+                                    docs.forEach((x) => all.add(x.id));
                                   setSelectedDocs(all);
                                 }}
                                 className="transition-opacity duration-200"
@@ -2635,7 +3533,14 @@ export default function ManageProfile() {
                         {docs.map((d) => (
                           <TableRow key={d.id}>
                             <TableCell className="w-6 py-2">
-                              <span className={cn("inline-flex transition-opacity duration-200", docsSelectMode ? "opacity-100" : "opacity-0 pointer-events-none")}>
+                              <span
+                                className={cn(
+                                  "inline-flex transition-opacity duration-200",
+                                  docsSelectMode
+                                    ? "opacity-100"
+                                    : "opacity-0 pointer-events-none",
+                                )}
+                              >
                                 <input
                                   type="checkbox"
                                   checked={selectedDocs.has(d.id)}
@@ -2668,10 +3573,23 @@ export default function ManageProfile() {
                                     <EllipsisVertical className="h-4 w-4" />
                                   </Button>
                                 </DropdownMenuTrigger>
-                                <DropdownMenuContent align="end" className="w-40">
-                                  <DropdownMenuItem onClick={() => viewDoc(d)}>View</DropdownMenuItem>
-                                  <DropdownMenuItem onClick={() => downloadDoc(d)}>Download</DropdownMenuItem>
-                                  <DropdownMenuItem onClick={() => deleteDoc(d)}>Delete</DropdownMenuItem>
+                                <DropdownMenuContent
+                                  align="end"
+                                  className="w-40"
+                                >
+                                  <DropdownMenuItem onClick={() => viewDoc(d)}>
+                                    View
+                                  </DropdownMenuItem>
+                                  <DropdownMenuItem
+                                    onClick={() => downloadDoc(d)}
+                                  >
+                                    Download
+                                  </DropdownMenuItem>
+                                  <DropdownMenuItem
+                                    onClick={() => deleteDoc(d)}
+                                  >
+                                    Delete
+                                  </DropdownMenuItem>
                                 </DropdownMenuContent>
                               </DropdownMenu>
                             </TableCell>
@@ -2717,14 +3635,22 @@ export default function ManageProfile() {
                   <div className="grid gap-3 sm:grid-cols-2">
                     <div className="flex items-center justify-between rounded-md border p-3 text-sm">
                       <div className="text-muted-foreground">Job ID</div>
-                      <div className="font-semibold text-foreground">JOB-101</div>
+                      <div className="font-semibold text-foreground">
+                        JOB-101
+                      </div>
                     </div>
                     <div className="flex items-center justify-between rounded-md border p-3 text-sm">
-                      <div className="text-muted-foreground">Application Date</div>
-                      <div className="font-semibold text-foreground">01-15-2024</div>
+                      <div className="text-muted-foreground">
+                        Application Date
+                      </div>
+                      <div className="font-semibold text-foreground">
+                        01-15-2024
+                      </div>
                     </div>
                     <div className="flex items-center justify-between rounded-md border p-3 text-sm sm:col-span-2">
-                      <div className="text-muted-foreground">Application Method</div>
+                      <div className="text-muted-foreground">
+                        Application Method
+                      </div>
                       <div className="font-semibold text-foreground">—</div>
                     </div>
                   </div>
@@ -2732,7 +3658,9 @@ export default function ManageProfile() {
 
                 {/* 1. Screening Details */}
                 <div className="rounded-2xl border bg-card p-4 shadow-sm">
-                  <div className="mb-2 text-sm font-semibold">1. Screening Details</div>
+                  <div className="mb-2 text-sm font-semibold">
+                    1. Screening Details
+                  </div>
                   <div className="grid gap-2 text-sm">
                     <div className="grid grid-cols-2 items-center">
                       <div className="text-muted-foreground">Date Added</div>
@@ -2755,7 +3683,9 @@ export default function ManageProfile() {
 
                 {/* 2. Interview Details */}
                 <div className="rounded-2xl border bg-card p-4 shadow-sm">
-                  <div className="mb-2 text-sm font-semibold">2. Interview Details</div>
+                  <div className="mb-2 text-sm font-semibold">
+                    2. Interview Details
+                  </div>
                   <div className="grid gap-2 text-sm">
                     <div className="grid grid-cols-2 items-center">
                       <div className="text-muted-foreground">Step 1</div>
@@ -2770,7 +3700,9 @@ export default function ManageProfile() {
                       <div className="text-right font-semibold">—</div>
                     </div>
                     <div className="grid grid-cols-2 items-center">
-                      <div className="text-muted-foreground">Date Moved to Activation</div>
+                      <div className="text-muted-foreground">
+                        Date Moved to Activation
+                      </div>
                       <div className="text-right font-semibold">—</div>
                     </div>
                     <div className="grid grid-cols-2 items-center">
@@ -2782,14 +3714,18 @@ export default function ManageProfile() {
 
                 {/* 3. Activation Details */}
                 <div className="rounded-2xl border bg-card p-4 shadow-sm">
-                  <div className="mb-2 text-sm font-semibold">3. Activation Details</div>
+                  <div className="mb-2 text-sm font-semibold">
+                    3. Activation Details
+                  </div>
                   <div className="grid gap-2 text-sm">
                     <div className="grid grid-cols-2 items-center">
                       <div className="text-muted-foreground">Date Added</div>
                       <div className="text-right font-semibold">—</div>
                     </div>
                     <div className="grid grid-cols-2 items-center">
-                      <div className="text-muted-foreground">Activation Confirmed Date</div>
+                      <div className="text-muted-foreground">
+                        Activation Confirmed Date
+                      </div>
                       <div className="text-right font-semibold">—</div>
                     </div>
                     <div className="grid grid-cols-2 items-center">
@@ -2810,11 +3746,15 @@ export default function ManageProfile() {
                       <div className="text-right font-semibold">—</div>
                     </div>
                     <div className="grid grid-cols-2 items-center">
-                      <div className="text-muted-foreground">Orientation Stage Completed</div>
+                      <div className="text-muted-foreground">
+                        Orientation Stage Completed
+                      </div>
                       <div className="text-right font-semibold">—</div>
                     </div>
                     <div className="grid grid-cols-2 items-center">
-                      <div className="text-muted-foreground">Integration Stage Completed</div>
+                      <div className="text-muted-foreground">
+                        Integration Stage Completed
+                      </div>
                       <div className="text-right font-semibold">—</div>
                     </div>
                   </div>
@@ -2862,7 +3802,6 @@ export default function ManageProfile() {
                     </Button>
                   </div>
                 </div>
-
               </TabsContent>
             </div>
           </Tabs>
