@@ -66,6 +66,7 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
+  AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 
 export default function ManageProfile() {
@@ -594,10 +595,40 @@ export default function ManageProfile() {
   return (
     <div className="min-h-screen bg-background font-poppins text-[13px] leading-[1.4]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="py-2">
+        <div className="py-2 flex items-center justify-between">
           <Button variant="ghost" onClick={() => navigate(-1)} className="h-8 px-2 text-xs">
             <ArrowLeft className="mr-2 h-4 w-4" /> Back
           </Button>
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button
+                variant="ghost"
+                className="h-8 w-8 p-0 text-red-600 hover:text-red-700"
+                aria-label="Delete Record"
+                title="Delete Record"
+              >
+                <Trash2 className="h-4 w-4" />
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent className="rounded-2xl">
+              <AlertDialogHeader>
+                <AlertDialogTitle>Delete this record?</AlertDialogTitle>
+              </AlertDialogHeader>
+              <p className="text-sm text-muted-foreground">This action cannot be undone. This will permanently delete the employee record.</p>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction
+                  className="bg-red-600 text-white hover:bg-red-700"
+                  onClick={() => {
+                    toast({ title: "Record deleted" });
+                    navigate(-1);
+                  }}
+                >
+                  Delete
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         </div>
         <div className="py-4">
           <div className="flex items-start justify-between gap-4 rounded-2xl border bg-white p-3 shadow-sm">
