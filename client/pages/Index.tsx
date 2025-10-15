@@ -1549,7 +1549,7 @@ export default function Index() {
     if (/active/.test(text) || /on leave/.test(text)) {
       const s = /on leave/.test(text) ? "On Leave" : "Active";
       const list = EMPLOYEES.filter((e) => e.status === s);
-      return `${s} (${list.length}):\n${list.map((e) => `• ${e.firstName} ${e.lastName} �� ${e.role}, ${e.department}`).join("\n")}`;
+      return `${s} (${list.length}):\n${list.map((e) => `��� ${e.firstName} ${e.lastName} �� ${e.role}, ${e.department}`).join("\n")}`;
     }
 
     // Fallback quick answers retained
@@ -1826,6 +1826,7 @@ export default function Index() {
                 </TabsTrigger>
               </TabsList>
               <TabsContent value="logs">
+                <div className="rounded-2xl border bg-card p-4 shadow-sm mt-4">
             <section className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex w-full flex-1 items-center gap-2">
                 <Input
@@ -2190,8 +2191,10 @@ export default function Index() {
                 ))}
               </section>
             )}
+                </div>
               </TabsContent>
               <TabsContent value="timesheets">
+                <div className="rounded-2xl border bg-card p-4 shadow-sm mt-4">
             <section className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex w-full flex-1 items-center gap-2">
                 <Input
@@ -2556,6 +2559,7 @@ export default function Index() {
                 ))}
               </section>
             )}
+                </div>
               </TabsContent>
               <TabsContent value="shift">
                 <div className="rounded-2xl border bg-card p-4 shadow-sm mt-4">
