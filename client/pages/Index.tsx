@@ -2841,9 +2841,13 @@ export default function Index() {
                   >
                     Create Leave Request
                   </Button>
-                  <button type="button" className="text-sm text-[#2563EB] underline" onClick={exportLeavesCSV}>
+                  <Button
+                    type="button"
+                    className="h-9 rounded-md px-3 text-sm font-medium bg-[#2563EB] text-white hover:bg-[#1D4ED8]"
+                    onClick={exportLeavesCSV}
+                  >
                     Export
-                  </button>
+                  </Button>
                 </div>
               </div>
 
