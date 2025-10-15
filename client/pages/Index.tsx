@@ -1375,7 +1375,7 @@ export default function Index() {
       if (/(phone|contact|number)/.test(text))
         return `${ref.firstName} ${ref.lastName} phone: ${ref.contactNumber ?? "—"}`;
       if (/location/.test(text))
-        return `${ref.firstName} ${ref.lastName} location: ${ref.location ?? "—"}`;
+        return `${ref.firstName} ${ref.lastName} location: ${ref.location ?? "���"}`;
       if (/(status|role|position|department)/.test(text)) return fmtEmp(ref);
       return fmtEmp(ref);
     }
@@ -1760,6 +1760,12 @@ export default function Index() {
                 icon={<AlertTriangle className="h-5 w-5" />}
               />
             </section>
+
+            <div className="mt-4 flex flex-wrap items-center gap-2">
+              <Button className="h-9">Start Offboarding</Button>
+              <Button variant="outline" className="h-9">View Task</Button>
+              <Button variant="outline" className="h-9">Exit Interviews</Button>
+            </div>
 
             <section className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex w-full flex-1 items-center gap-2">
