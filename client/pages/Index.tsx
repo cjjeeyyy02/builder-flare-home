@@ -1716,7 +1716,7 @@ export default function Index() {
       <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
         <header className="mb-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-bold text-foreground">Leave and Attendance</h2>
+            <h2 className="text-2xl font-bold text-foreground">Leave and Attendance Management</h2>
             <Button type="button" variant="ghost" className="h-8 w-8 p-0" aria-label="Settings" onClick={() => navigate("/settings")}>
               <Settings className="h-4 w-4 text-muted-foreground" />
             </Button>
