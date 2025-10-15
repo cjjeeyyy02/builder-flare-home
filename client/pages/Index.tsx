@@ -2356,6 +2356,29 @@ export default function Index() {
                     ))}
                   </TableBody>
                 </Table>
+                <div className="flex items-center justify-end gap-2 border-t px-2 py-2 text-xs">
+                  <span className="text-muted-foreground">
+                    {lrStart + 1}-{lrEnd} of {lrTotal}
+                  </span>
+                  <Button
+                    variant="outline"
+                    className="h-7 w-7 rounded-md p-0"
+                    onClick={() => setLrPage((p) => Math.max(0, p - 1))}
+                    disabled={lrPage === 0}
+                    aria-label="Previous page"
+                  >
+                    <ChevronLeft className="h-4 w-4" />
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="h-7 w-7 rounded-md p-0"
+                    onClick={() => setLrPage((p) => Math.min(lrTotalPages - 1, p + 1))}
+                    disabled={lrPage >= lrTotalPages - 1}
+                    aria-label="Next page"
+                  >
+                    <ChevronRight className="h-4 w-4" />
+                  </Button>
+                </div>
               </div>
             </div>
           </TabsContent>
