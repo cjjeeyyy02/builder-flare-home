@@ -1793,11 +1793,11 @@ export default function Index() {
             </section>
 
             <Tabs value={subTab} onValueChange={setSubTab} className="w-full">
-              <TabsList className="mt-4 inline-flex items-center gap-1 rounded-full bg-muted p-1 shadow-sm font-poppins">
+              <TabsList className="mt-3 inline-flex items-center gap-0.5 rounded-full bg-muted p-0.5 shadow-sm font-poppins">
                 <TabsTrigger
                   value="logs"
                   className={cn(
-                    "rounded-full px-3 py-1.5 text-xs transition-colors",
+                    "rounded-full px-2 py-1 text-[11px] transition-colors",
                     "data-[state=active]:bg-white data-[state=active]:text-foreground data-[state=active]:font-semibold",
                     "data-[state=inactive]:bg-transparent data-[state=inactive]:text-muted-foreground",
                   )}
@@ -1807,7 +1807,7 @@ export default function Index() {
                 <TabsTrigger
                   value="timesheets"
                   className={cn(
-                    "rounded-full px-3 py-1.5 text-xs transition-colors",
+                    "rounded-full px-2 py-1 text-[11px] transition-colors",
                     "data-[state=active]:bg-white data-[state=active]:text-foreground data-[state=active]:font-semibold",
                     "data-[state=inactive]:bg-transparent data-[state=inactive]:text-muted-foreground",
                   )}
@@ -1817,7 +1817,7 @@ export default function Index() {
                 <TabsTrigger
                   value="shift"
                   className={cn(
-                    "rounded-full px-3 py-1.5 text-xs transition-colors",
+                    "rounded-full px-2 py-1 text-[11px] transition-colors",
                     "data-[state=active]:bg-white data-[state=active]:text-foreground data-[state=active]:font-semibold",
                     "data-[state=inactive]:bg-transparent data-[state=inactive]:text-muted-foreground",
                   )}
