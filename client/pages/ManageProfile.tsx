@@ -2324,6 +2324,33 @@ export default function ManageProfile() {
                     <Table className="text-[13px]">
                       <TableHeader>
                         <TableRow className="hover:bg-transparent">
+                          {payslipSelecting && (
+                            <TableHead className="py-2 w-8">
+                              {(() => {
+                                const ids = payslips.map((p) => p.date);
+                                const all = ids.length > 0 && ids.every((id) => selectedPayslipDates.has(id));
+                                const some = ids.some((id) => selectedPayslipDates.has(id));
+                                const checked: boolean | "indeterminate" = all ? true : some ? "indeterminate" : false;
+                                return (
+                                  <Checkbox
+                                    aria-label="Select all payslips"
+                                    checked={checked}
+                                    onCheckedChange={(v) => {
+                                      setSelectedPayslipDates((prev) => {
+                                        const next = new Set(prev);
+                                        if (v === true) {
+                                          ids.forEach((id) => next.add(id));
+                                        } else {
+                                          ids.forEach((id) => next.delete(id));
+                                        }
+                                        return next;
+                                      });
+                                    }}
+                                  />
+                                );
+                              })()}
+                            </TableHead>
+                          )}
                           <TableHead className="py-2 font-bold uppercase">Payroll Date</TableHead>
                           <TableHead className="py-2 font-bold uppercase">Gross Pay</TableHead>
                           <TableHead className="py-2 font-bold uppercase">Deductions</TableHead>
