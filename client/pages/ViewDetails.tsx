@@ -90,12 +90,11 @@ export default function ViewDetails() {
 
             {/* Right: Case Info + Progress */}
             <div className="w-full md:w-[260px]">
-              <div className="flex items-center justify-between">
-                <span className="rounded-full bg-[#E0F2FE] px-3 py-1 text-sm font-medium text-[#1D4ED8]">In Progress</span>
-                <span className="text-sm font-medium text-[#111827]">65%</span>
+              <div className="flex justify-end">
+                <span className="rounded-[20px] bg-[#E0F2FE] px-3 py-1 text-sm font-medium text-[#1D4ED8]">In Progress</span>
               </div>
-              <div className="mt-2 h-2 w-full rounded-full bg-[#E5E7EB]">
-                <div className="h-2 w-[65%] rounded-full bg-[#3B82F6]" />
+              <div className="mt-2 h-2 w-[120px] rounded-[10px] bg-[#E5E7EB]">
+                <div className="h-2 w-[65%] rounded-[10px] bg-[#3B82F6]" />
               </div>
 
               <div className="mt-4">
