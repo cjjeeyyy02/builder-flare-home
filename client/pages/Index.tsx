@@ -1744,11 +1744,11 @@ export default function Index() {
 
         <Tabs value={tab} onValueChange={setTab} className="w-full">
 
-          <TabsList className="mx-auto mt-1 flex w-fit items-center gap-1 rounded-full bg-muted p-1 shadow-sm font-poppins">
+          <TabsList className="mt-1 inline-flex items-center gap-1 rounded-full bg-muted p-1 shadow-sm font-poppins">
             <TabsTrigger
               value="attendance"
               className={cn(
-                "rounded-full px-5 py-2 text-sm transition-colors",
+                "rounded-full px-3 py-1.5 text-xs transition-colors",
                 "data-[state=active]:bg-white data-[state=active]:text-foreground data-[state=active]:font-semibold",
                 "data-[state=inactive]:bg-transparent data-[state=inactive]:text-muted-foreground",
               )}
@@ -1758,7 +1758,7 @@ export default function Index() {
             <TabsTrigger
               value="leave"
               className={cn(
-                "rounded-full px-5 py-2 text-sm transition-colors",
+                "rounded-full px-3 py-1.5 text-xs transition-colors",
                 "data-[state=active]:bg-white data-[state=active]:text-foreground data-[state=active]:font-semibold",
                 "data-[state=inactive]:bg-transparent data-[state=inactive]:text-muted-foreground",
               )}
