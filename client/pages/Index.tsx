@@ -2294,30 +2294,69 @@ export default function Index() {
                     </div>
                   </div>
 
-                  <div className="overflow-hidden rounded-lg border border-[#E5E7EB]">
-                    <Table className="text-sm">
-                      <TableHeader>
-                        <TableRow>
-                          <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">Employee ID</TableHead>
-                          <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">Employee Name</TableHead>
-                          <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">Scheduled</TableHead>
-                          <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">Worked</TableHead>
-                          <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">{tsDayHeader}</TableHead>
-                        </TableRow>
-                      </TableHeader>
-                      <TableBody>
-                        {TS_ROWS.map((r) => (
-                          <TableRow key={r.empId} className="hover:bg-[#F9FAFB]">
-                            <TableCell className="px-3 py-2 text-[#111827]">{r.empId}</TableCell>
-                            <TableCell className="px-3 py-2 text-[#111827]">{r.name}</TableCell>
-                            <TableCell className="px-3 py-2 text-[#111827]">{r.scheduled}</TableCell>
-                            <TableCell className="px-3 py-2 text-[#111827]">{r.worked}</TableCell>
-                            <TableCell className="px-3 py-2 text-[#111827]">{r.day}</TableCell>
+                  {tsRange === "weekly" ? (
+                    <div className="overflow-hidden rounded-lg border border-[#E5E7EB]">
+                      <Table className="text-sm">
+                        <TableHeader>
+                          <TableRow>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">Employee ID</TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">Employee Name</TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">Mon 10/13</TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">Tue 10/14</TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">Wed 10/15</TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">Thu 10/16</TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">Fri 10/17</TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">Sat 10/18</TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">Sun 10/19</TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">Scheduled</TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">Worked</TableHead>
                           </TableRow>
-                        ))}
-                      </TableBody>
-                    </Table>
-                  </div>
+                        </TableHeader>
+                        <TableBody>
+                          {WEEKLY_DATA.map((r) => (
+                            <TableRow key={r.empId} className="hover:bg-[#F9FAFB]">
+                              <TableCell className="px-3 py-2 text-[#111827]">{r.empId}</TableCell>
+                              <TableCell className="px-3 py-2 text-[#111827]">{r.name}</TableCell>
+                              <TableCell className="px-3 py-2 text-[#111827]">{r.mon}</TableCell>
+                              <TableCell className="px-3 py-2 text-[#111827]">{r.tue}</TableCell>
+                              <TableCell className="px-3 py-2 text-[#111827]">{r.wed}</TableCell>
+                              <TableCell className="px-3 py-2 text-[#111827]">{r.thu}</TableCell>
+                              <TableCell className="px-3 py-2 text-[#111827]">{r.fri}</TableCell>
+                              <TableCell className="px-3 py-2 text-[#111827]">{r.sat}</TableCell>
+                              <TableCell className="px-3 py-2 text-[#111827]">{r.sun}</TableCell>
+                              <TableCell className="px-3 py-2 text-[#111827]">{r.scheduled}</TableCell>
+                              <TableCell className="px-3 py-2 text-[#111827]">{r.worked}</TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                    </div>
+                  ) : (
+                    <div className="overflow-hidden rounded-lg border border-[#E5E7EB]">
+                      <Table className="text-sm">
+                        <TableHeader>
+                          <TableRow>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">Employee ID</TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">Employee Name</TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">Scheduled</TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">Worked</TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">{tsDayHeader}</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          {TS_ROWS.map((r) => (
+                            <TableRow key={r.empId} className="hover:bg-[#F9FAFB]">
+                              <TableCell className="px-3 py-2 text-[#111827]">{r.empId}</TableCell>
+                              <TableCell className="px-3 py-2 text-[#111827]">{r.name}</TableCell>
+                              <TableCell className="px-3 py-2 text-[#111827]">{r.scheduled}</TableCell>
+                              <TableCell className="px-3 py-2 text-[#111827]">{r.worked}</TableCell>
+                              <TableCell className="px-3 py-2 text-[#111827]">{r.day}</TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                    </div>
+                  )}
                 </div>
                 <div className="hidden rounded-2xl border bg-card p-4 shadow-sm mt-4">
             <section className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
