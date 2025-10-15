@@ -2051,10 +2051,10 @@ export default function Index() {
                           Department
                         </TableHead>
                         <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
-                          In
+                          Punch In
                         </TableHead>
                         <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
-                          Out
+                          Punch Out
                         </TableHead>
                         <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
                           Status
