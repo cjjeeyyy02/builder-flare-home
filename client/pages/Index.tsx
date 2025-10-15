@@ -2058,7 +2058,7 @@ export default function Index() {
                           Employee ID
                         </TableHead>
                         <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
-                          Name
+                          Employee Name
                         </TableHead>
                         <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
                           Position
