@@ -1949,12 +1949,7 @@ export default function ManageProfile() {
                     <TableBody>
                       {skillsList.map((s) => (
                         <TableRow key={s.name} className="hover:bg-transparent">
-                          <TableCell className="py-2">
-                            <span className="inline-flex items-center gap-1">
-                              <Check className="h-4 w-4 text-muted-foreground" />{" "}
-                              {s.name}
-                            </span>
-                          </TableCell>
+                          <TableCell className="py-2">{s.name}</TableCell>
                           <TableCell className="py-2 text-center">
                             {s.years}
                           </TableCell>
