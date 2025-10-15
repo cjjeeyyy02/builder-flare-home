@@ -70,7 +70,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useNavigate } from "react-router-dom";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -2387,35 +2386,5 @@ function MetricCard({
 }
 
 function RowActions({ employee }: { employee: Employee }) {
-  const [open, setOpen] = useState(false);
-  const navigate = useNavigate();
-  return (
-    <div className="relative inline-block text-left">
-      <Button
-        variant="ghost"
-        className="h-7 w-7 rounded-md p-0"
-        onClick={() => setOpen((v) => !v)}
-        aria-haspopup="menu"
-        aria-expanded={open}
-      >
-        <EllipsisVertical className="h-4 w-4" />
-      </Button>
-      {open && (
-        <div
-          className="absolute right-0 z-20 mt-2 w-44 origin-top-right overflow-hidden rounded-md border bg-popover p-1 text-sm shadow-md"
-          role="menu"
-        >
-          <button
-            className="flex w-full items-center gap-2 rounded-sm px-2 py-1.5 text-left hover:bg-accent"
-            onClick={() => {
-              setOpen(false);
-              navigate(`/view-profile/${employee.id}`);
-            }}
-          >
-            <User className="h-4 w-4" /> View Profile
-          </button>
-        </div>
-      )}
-    </div>
-  );
+  return <span className="text-muted-foreground">—</span>;
 }
