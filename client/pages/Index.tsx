@@ -1736,57 +1736,8 @@ export default function Index() {
           </p>
         </header>
 
-        <Tabs value={tab} onValueChange={setTab} className="w-full">
-          {/* Mobile dropdown */}
-          <div className="sm:hidden">
-            <Select value={tab} onValueChange={setTab}>
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Select section" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="records">Start Offboarding</SelectItem>
-                <SelectItem value="org">View Tasks</SelectItem>
-                <SelectItem value="docs">Exit Interviews</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-          {/* Desktop single-row tabs */}
-          <TabsList className="hidden sm:block w-full">
-            <div className="flex flex-nowrap items-center gap-2">
-              <TabsTrigger
-                value="records"
-                className={cn(
-                  "flex-1 rounded-[12px] px-4 py-2 text-sm transition-colors",
-                  "data-[state=active]:bg-[#3B82F6] data-[state=active]:text-white data-[state=active]:font-bold",
-                  "data-[state=inactive]:bg-transparent data-[state=inactive]:text-black data-[state=inactive]:font-medium data-[state=inactive]:hover:bg-[#E0F2FE]",
-                )}
-              >
-                Start Offboarding
-              </TabsTrigger>
-              <TabsTrigger
-                value="org"
-                className={cn(
-                  "flex-1 rounded-[12px] px-4 py-2 text-sm transition-colors",
-                  "data-[state=active]:bg-[#3B82F6] data-[state=active]:text-white data-[state=active]:font-bold",
-                  "data-[state=inactive]:bg-transparent data-[state=inactive]:text-black data-[state=inactive]:font-medium data-[state=inactive]:hover:bg-[#E0F2FE]",
-                )}
-              >
-                View Tasks
-              </TabsTrigger>
-              <TabsTrigger
-                value="docs"
-                className={cn(
-                  "flex-1 rounded-[12px] px-4 py-2 text-sm transition-colors",
-                  "data-[state=active]:bg-[#3B82F6] data-[state=active]:text-white data-[state=active]:font-bold",
-                  "data-[state=inactive]:bg-transparent data-[state=inactive]:text-black data-[state=inactive]:font-medium data-[state=inactive]:hover:bg-[#E0F2FE]",
-                )}
-              >
-                Exit Interviews
-              </TabsTrigger>
-            </div>
-          </TabsList>
 
-          <TabsContent value="records" className="mt-5">
+          <div className="mt-5">
             <section className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
               <MetricCard
                 label="Active Offboarding"
@@ -2281,11 +2232,8 @@ export default function Index() {
                 ))}
               </section>
             )}
-          </TabsContent>
+          </div>
 
-          <TabsContent value="org" className="mt-6">
-          </TabsContent>
-          <TabsContent value="docs" className="mt-6">
             {false && (
             <div className="rounded-2xl border bg-card p-4 shadow-sm">
               <div className="mb-3 flex items-center justify-between gap-3">
@@ -2625,8 +2573,6 @@ export default function Index() {
               </div>
             </div>
             )}
-          </TabsContent>
-        </Tabs>
 
         {/* Floating AI Assistant */}
         <button
