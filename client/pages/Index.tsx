@@ -34,7 +34,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
 import {
   Tooltip,
   TooltipTrigger,
@@ -2129,7 +2128,7 @@ export default function Index() {
               </section>
             ) : (
               <section className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                {filtered.map((e) => (
+                {pageItems.map((e) => (
                   <div
                     key={e.id}
                     className="bg-white rounded-[12px] py-4 px-5"
@@ -2146,9 +2145,6 @@ export default function Index() {
                             <div className="text-[16px] font-bold text-[#1A1A1A]">
                               {e.firstName} {e.lastName}
                             </div>
-                            <span className="rounded-[8px] bg-[#F0F4FF] px-2 py-[2px] text-[#3B5BDB] text-[12px] font-medium">
-                              {e.status}
-                            </span>
                           </div>
                           <div className="text-[11px] text-muted-foreground">
                             ID: {e.id}
@@ -2160,9 +2156,9 @@ export default function Index() {
                     <div className="mt-3 grid grid-cols-2 gap-2 text-sm">
                       <div>
                         <div className="text-[11px] text-muted-foreground">
-                          Position
+                          Date
                         </div>
-                        <div className="truncate text-foreground">{e.role}</div>
+                        <div className="text-foreground">{todayStr}</div>
                       </div>
                       <div>
                         <div className="text-[11px] text-muted-foreground">
@@ -2174,42 +2170,21 @@ export default function Index() {
                       </div>
                       <div>
                         <div className="text-[11px] text-muted-foreground">
-                          Joined Date
+                          In
                         </div>
-                        <div className="text-foreground">{e.joiningDate}</div>
+                        <div className="text-foreground">{getInOutTimes(e).in}</div>
+                      </div>
+                      <div>
+                        <div className="text-[11px] text-muted-foreground">
+                          Out
+                        </div>
+                        <div className="text-foreground">{getInOutTimes(e).out}</div>
                       </div>
                       <div className="col-span-2">
-                        {(() => {
-                          const skills = getSkills(e);
-                          if (!skills.length)
-                            return (
-                              <span className="text-xs text-muted-foreground">
-                                Skills: —
-                              </span>
-                            );
-                          const shown = skills.slice(0, 3);
-                          return (
-                            <div className="flex flex-wrap items-center gap-1 text-[11px]">
-                              <span className="text-muted-foreground">
-                                Skills:
-                              </span>
-                              {shown.map((s) => (
-                                <Badge
-                                  key={s}
-                                  variant="secondary"
-                                  className="px-1.5 py-0 text-[10px]"
-                                >
-                                  {s}
-                                </Badge>
-                              ))}
-                              {skills.length > 3 && (
-                                <span className="text-muted-foreground">
-                                  +{skills.length - 3} more
-                                </span>
-                              )}
-                            </div>
-                          );
-                        })()}
+                        <div className="text-[11px] text-muted-foreground">
+                          Status
+                        </div>
+                        <div className="text-foreground">{getAttendanceStatus(e)}</div>
                       </div>
                     </div>
                   </div>
