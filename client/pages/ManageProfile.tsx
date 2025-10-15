@@ -2301,7 +2301,25 @@ export default function ManageProfile() {
                   </div>
                 </div>
                 <div className="mt-6">
-                  <h3 className="text-base font-bold">Payslips</h3>
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-base font-bold">Payslips</h3>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      className="h-7 rounded-md px-2 text-xs gap-1"
+                      onClick={() => {
+                        if (!payslipSelecting) {
+                          setPayslipSelecting(true);
+                        } else {
+                          exportPayslipsCSV();
+                          setPayslipSelecting(false);
+                          setSelectedPayslipDates(new Set());
+                        }
+                      }}
+                    >
+                      <Download className="h-4 w-4" /> Download
+                    </Button>
+                  </div>
                   <div className="mt-3">
                     <Table className="text-[13px]">
                       <TableHeader>
