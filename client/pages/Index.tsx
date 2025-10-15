@@ -1067,6 +1067,38 @@ export default function Index() {
     { empId: "E-1003", name: "Jordan Lee", scheduled: "8h", worked: "8.92h", day: "Remote • 09:05–18:00" },
     { empId: "E-1004", name: "Priya Patel", scheduled: "8h", worked: "0.00h", day: "On Leave" },
   ];
+  type ShiftSlot = { name: string; time: string };
+  type ShiftDay = { day: string; slots: ShiftSlot[] };
+  const SHIFT_DAYS: ShiftDay[] = [
+    { day: "Mon", slots: [
+      { name: "Alex", time: "9–18" },
+      { name: "Maria", time: "10–19" },
+      { name: "Jordan", time: "9–18" },
+    ]},
+    { day: "Tue", slots: [
+      { name: "Alex", time: "9–18" },
+      { name: "Priya", time: "9–18" },
+      { name: "Jordan", time: "9–18" },
+    ]},
+    { day: "Wed", slots: [
+      { name: "Maria", time: "10–19" },
+      { name: "Priya", time: "9–18" },
+      { name: "Jordan", time: "9–18" },
+      { name: "Maria", time: "10–19" },
+    ]},
+    { day: "Thu", slots: [
+      { name: "Alex", time: "9–18" },
+      { name: "Maria", time: "10–19" },
+      { name: "Jordan", time: "9–18" },
+    ]},
+    { day: "Fri", slots: [
+      { name: "Alex", time: "9–18" },
+      { name: "Maria", time: "10–19" },
+      { name: "Priya", time: "9–18" },
+    ]},
+  ];
+  const [shiftFrom, setShiftFrom] = useState<string>(new Date().toISOString().slice(0, 10));
+  const [shiftTo, setShiftTo] = useState<string>(new Date().toISOString().slice(0, 10));
   const navigate = useNavigate();
 
   // Role-based permissions (admin | hr | employee)
@@ -2689,88 +2721,73 @@ export default function Index() {
                 </div>
               </TabsContent>
               <TabsContent value="shift">
-                <div className="rounded-2xl border bg-card p-4 shadow-sm mt-4">
-                  <div className="overflow-hidden rounded-lg border">
-                    <Table className="text-xs leading-tight">
-                      <TableHeader>
-                        <TableRow className="hover:bg-transparent">
-                          <TableHead className="px-3 py-2 text-xs font-semibold uppercase leading-tight">Employee ID</TableHead>
-                          <TableHead className="px-3 py-2 text-xs font-semibold uppercase leading-tight">Employee Name</TableHead>
-                          <TableHead className="px-3 py-2 text-xs font-semibold uppercase leading-tight">Dept</TableHead>
-                          <TableHead className="px-3 py-2 text-xs font-semibold uppercase leading-tight">Shift</TableHead>
-                          <TableHead className="px-3 py-2 text-center text-xs font-semibold uppercase leading-tight">Action</TableHead>
-                        </TableRow>
-                      </TableHeader>
-                      <TableBody>
-                        {shiftRows.map((r, i) => (
-                          <TableRow key={i} className="hover:bg-transparent">
-                            <TableCell className="px-2 py-1 text-xs leading-tight">{r.empId}</TableCell>
-                            <TableCell className="px-3 py-2 text-xs leading-tight">{r.employee}</TableCell>
-                            <TableCell className="px-3 py-2 text-xs leading-tight">{r.dept}</TableCell>
-                            <TableCell className="px-3 py-2 text-xs leading-tight">{r.shift}</TableCell>
-                            <TableCell className="px-3 py-2 text-center text-xs leading-tight">
-                              <DropdownMenu>
-                                <DropdownMenuTrigger asChild>
-                                  <Button
-                                    type="button"
-                                    variant="ghost"
-                                    className="h-7 w-7 p-0"
-                                    aria-label={`Edit shift for ${r.employee}`}
-                                  >
-                                    <EllipsisVertical className="h-4 w-4" />
-                                  </Button>
-                                </DropdownMenuTrigger>
-                                <DropdownMenuContent align="end" className="w-40">
-                                  <DropdownMenuItem onClick={() => { setShiftEditIndex(i); setShiftEditValue(r.shift); }}>
-                                    Edit Shift
-                                  </DropdownMenuItem>
-                                </DropdownMenuContent>
-                              </DropdownMenu>
-                            </TableCell>
-                          </TableRow>
-                        ))}
-                      </TableBody>
-                    </Table>
+                <div className="flex flex-col gap-4 rounded-[8px] bg-white p-6 shadow-[0_1px_3px_rgba(0,0,0,0.08)] font-poppins">
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setSubTab("logs")}
+                      className={cn(
+                        "rounded-full px-5 py-2 text-sm font-medium transition",
+                        subTab === "logs" ? "bg-[#F3F4F6] text-[#111827]" : "text-[#9CA3AF]",
+                      )}
+                    >
+                      Logs
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setSubTab("timesheets")}
+                      className={cn(
+                        "rounded-full px-5 py-2 text-sm font-medium transition",
+                        subTab === "timesheets" ? "bg-[#F3F4F6] text-[#111827]" : "text-[#9CA3AF]",
+                      )}
+                    >
+                      Timesheets
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setSubTab("shift")}
+                      className={cn(
+                        "rounded-full px-5 py-2 text-sm font-medium transition",
+                        subTab === "shift" ? "bg-[#F3F4F6] text-[#111827]" : "text-[#9CA3AF]",
+                      )}
+                    >
+                      Shifts
+                    </button>
                   </div>
-                  <Dialog open={shiftEditIndex !== null} onOpenChange={(o) => { if (!o) setShiftEditIndex(null); }}>
-                    <DialogContent className="sm:max-w-md">
-                      <DialogHeader>
-                        <DialogTitle className="text-base font-semibold">Edit Shift</DialogTitle>
-                      </DialogHeader>
-                      <div className="space-y-2">
-                        <div className="text-xs text-muted-foreground">Select shift</div>
-                        <div className="flex items-center gap-2">
-                          {(["Day","Night","Early"] as const).map((opt) => (
-                            <Button
-                              key={opt}
-                              type="button"
-                              variant={shiftEditValue === opt ? "default" : "outline"}
-                              className="h-8 rounded-md px-3 text-xs"
-                              onClick={() => setShiftEditValue(opt)}
-                            >
-                              {opt}
-                            </Button>
+
+                  <div className="flex items-center justify-end gap-2">
+                    <span className="text-sm text-[#6B7280]">Date</span>
+                    <Input
+                      type="date"
+                      value={shiftFrom}
+                      onChange={(e) => setShiftFrom(e.target.value)}
+                      className="h-9 w-[120px] rounded-[6px] border border-[#D1D5DB] px-[10px] text-[14px] text-[#111827]"
+                    />
+                    <Input
+                      type="date"
+                      value={shiftTo}
+                      onChange={(e) => setShiftTo(e.target.value)}
+                      className="h-9 w-[120px] rounded-[6px] border border-[#D1D5DB] px-[10px] text-[14px] text-[#111827]"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 items-start">
+                    {SHIFT_DAYS.map((d) => (
+                      <div key={d.day} className="flex flex-col gap-2 rounded-[8px] border border-[#E5E7EB] bg-white p-4 shadow-[0_1px_2px_rgba(0,0,0,0.05)]">
+                        <div className="flex items-center justify-between text-[14px] font-semibold text-[#111827]">
+                          <span>{d.day}</span>
+                          <span className="text-[12px] font-normal text-[#6B7280]">{d.slots.length} slots</span>
+                        </div>
+                        <div className="space-y-1.5">
+                          {d.slots.map((s, i) => (
+                            <div key={i} className="rounded-[6px] border border-[#E5E7EB] bg-[#F9FAFB] px-[10px] py-[6px] text-[13px] text-[#111827]">
+                              {s.name} - {s.time}
+                            </div>
                           ))}
                         </div>
                       </div>
-                      <DialogFooter>
-                        <Button variant="outline" onClick={() => setShiftEditIndex(null)}>Cancel</Button>
-                        <Button
-                          className="h-9 rounded-md bg-[#2563EB] px-4 text-sm font-medium text-white hover:bg-[#1D4ED8]"
-                          onClick={() => {
-                            if (shiftEditIndex !== null) {
-                              setShiftRows((prev) =>
-                                prev.map((x, idx) => (idx === shiftEditIndex ? { ...x, shift: shiftEditValue } : x)),
-                              );
-                            }
-                            setShiftEditIndex(null);
-                          }}
-                        >
-                          Save
-                        </Button>
-                      </DialogFooter>
-                    </DialogContent>
-                  </Dialog>
+                    ))}
+                  </div>
                 </div>
               </TabsContent>
             </Tabs>
