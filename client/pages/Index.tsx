@@ -2336,6 +2336,35 @@ export default function Index() {
                         </TableBody>
                       </Table>
                     </div>
+                  ) : tsRange === "monthly" ? (
+                    <div className="overflow-hidden rounded-lg border border-[#E5E7EB]">
+                      <Table className="text-sm">
+                        <TableHeader>
+                          <TableRow>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">Employee ID</TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">Employee Name</TableHead>
+                            {Array.from({ length: 31 }).map((_, i) => (
+                              <TableHead key={`day-${i + 1}`} className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">{i + 1}</TableHead>
+                            ))}
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-red-600">Hours Worked</TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-red-600">Scheduled</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          {MONTHLY_DATA.map((r) => (
+                            <TableRow key={r.empId} className="hover:bg-[#F9FAFB]">
+                              <TableCell className="px-3 py-2 text-[#111827]">{r.empId}</TableCell>
+                              <TableCell className="px-3 py-2 text-[#111827]">{r.name}</TableCell>
+                              {r.days.map((day, idx) => (
+                                <TableCell key={`${r.empId}-day-${idx}`} className="px-3 py-2 text-[#111827]">{day}</TableCell>
+                              ))}
+                              <TableCell className="px-3 py-2 text-red-600 font-semibold">{r.hoursWorked}</TableCell>
+                              <TableCell className="px-3 py-2 text-red-600 font-semibold">{r.scheduled}</TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                    </div>
                   ) : (
                     <div className="overflow-hidden rounded-lg border border-[#E5E7EB]">
                       <Table className="text-sm">
