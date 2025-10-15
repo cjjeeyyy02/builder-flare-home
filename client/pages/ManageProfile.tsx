@@ -41,6 +41,7 @@ import {
   EllipsisVertical,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import {
   DropdownMenu,
