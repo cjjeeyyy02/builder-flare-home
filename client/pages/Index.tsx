@@ -2729,99 +2729,42 @@ export default function Index() {
           </TabsContent>
 
           <TabsContent value="leave" className="mt-6">
-            <div className="rounded-2xl border bg-card p-4 shadow-sm">
+            <div className="rounded-2xl border bg-card p-4 shadow-sm font-poppins">
               <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-                <Input
-                  value={lrSearch}
-                  onChange={(e) => setLrSearch(e.target.value)}
-                  placeholder="Search by name or type"
-                  className="h-8 w-64 text-xs"
-                />
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1">
+                  <button
+                    type="button"
+                    onClick={() => setLeaveView("requests")}
+                    className={cn(
+                      "rounded-full px-5 py-2 text-sm font-medium transition",
+                      leaveView === "requests" ? "bg-[#F3F4F6] text-[#111827]" : "text-[#9CA3AF]",
+                    )}
+                  >
+                    Requests
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setLeaveView("balances")}
+                    className={cn(
+                      "rounded-full px-5 py-2 text-sm font-medium transition",
+                      leaveView === "balances" ? "bg-[#F3F4F6] text-[#111827]" : "text-[#9CA3AF]",
+                    )}
+                  >
+                    Balances
+                  </button>
+                </div>
+                <div className="flex items-center gap-3">
                   <Button
                     type="button"
-                    className="h-8 rounded-md px-3 text-xs font-medium bg-[#2563EB] text-white hover:bg-[#1D4ED8]"
+                    className="h-9 rounded-md px-3 text-sm font-medium bg-[#2563EB] text-white hover:bg-[#1D4ED8]"
                     onClick={() => setLrCreateOpen(true)}
                   >
-                    Apply for Leave
+                    Create Leave Request
                   </Button>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    className="h-8 rounded-md px-3 text-xs"
-                    onClick={exportLeavesCSV}
-                  >
-                    <Download className="mr-1.5 h-4 w-4" /> Export
-                  </Button>
+                  <button type="button" className="text-sm text-[#2563EB] underline" onClick={exportLeavesCSV}>
+                    Export
+                  </button>
                 </div>
-
-                <Dialog open={lrCreateOpen} onOpenChange={setLrCreateOpen}>
-                  <DialogContent className="sm:max-w-md">
-                    <DialogHeader>
-                      <DialogTitle className="text-base font-semibold">Apply for Leave</DialogTitle>
-                    </DialogHeader>
-                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                      <div className="space-y-1">
-                        <Label htmlFor="lr-empid">Employee ID</Label>
-                        <Input id="lr-empid" value={lrEmpId} onChange={(e) => setLrEmpId(e.target.value)} />
-                      </div>
-                      <div className="space-y-1">
-                        <Label htmlFor="lr-employee">Employee Name</Label>
-                        <Input id="lr-employee" value={lrEmployee} onChange={(e) => setLrEmployee(e.target.value)} />
-                      </div>
-                      <div className="space-y-1">
-                        <Label>Type</Label>
-                        <Select value={lrType} onValueChange={setLrType}>
-                          <SelectTrigger className="h-9 w-full text-sm">
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="Annual Leave">Annual Leave</SelectItem>
-                            <SelectItem value="Sick Leave">Sick Leave</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      <div className="space-y-1">
-                        <Label htmlFor="lr-from">From</Label>
-                        <Input id="lr-from" type="date" value={lrFrom} onChange={(e) => setLrFrom(e.target.value)} />
-                      </div>
-                      <div className="space-y-1">
-                        <Label htmlFor="lr-to">To</Label>
-                        <Input id="lr-to" type="date" value={lrTo} onChange={(e) => setLrTo(e.target.value)} />
-                      </div>
-                      <div className="space-y-1 sm:col-span-2">
-                        <Label>Status</Label>
-                        <Select value={lrStatus} onValueChange={(v) => setLrStatus(v as any)}>
-                          <SelectTrigger className="h-9 w-full text-sm">
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="Pending">Pending</SelectItem>
-                            <SelectItem value="Approved">Approved</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    </div>
-                    <DialogFooter>
-                      <Button variant="outline" onClick={() => setLrCreateOpen(false)}>Cancel</Button>
-                      <Button
-                        className="h-9 rounded-md bg-[#2563EB] px-4 text-sm font-medium text-white hover:bg-[#1D4ED8]"
-                        onClick={() => {
-                          const from = new Date(lrFrom);
-                          const to = new Date(lrTo);
-                          const days = Math.max(1, Math.round((to.getTime() - from.getTime()) / (1000 * 60 * 60 * 24)) + 1);
-                          setLeaves((prev) => [
-                            ...prev,
-                            { empId: lrEmpId, employee: lrEmployee || "Sample Employee", type: lrType, from: lrFrom, to: lrTo, days, status: lrStatus },
-                          ]);
-                          setLrCreateOpen(false);
-                        }}
-                      >
-                        Save
-                      </Button>
-                    </DialogFooter>
-                  </DialogContent>
-                </Dialog>
               </div>
 
               <div className="overflow-hidden rounded-lg border">
