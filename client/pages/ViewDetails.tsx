@@ -61,7 +61,7 @@ export default function ViewDetails() {
             </div>
 
             {/* Middle: Exit Details + Employment Info */}
-            <div className="flex-1 grid grid-cols-1 gap-10 md:grid-cols-2">
+            <div className="flex-1 grid grid-cols-1 gap-8 md:grid-cols-2">
               <div>
                 <div className="mb-2 text-[16px] font-semibold text-[#111827]">Exit Details</div>
                 <div className="space-y-[6px] text-[13px]">
