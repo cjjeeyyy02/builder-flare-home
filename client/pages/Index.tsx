@@ -1043,6 +1043,7 @@ export default function Index() {
   const [status, setStatus] = useState<string>("all");
   const [view, setView] = useState<"table" | "card">("table");
   const [tab, setTab] = useState<string>("attendance");
+  const [dateFilter, setDateFilter] = useState<string>(new Date().toISOString().slice(0, 10));
   const [subTab, setSubTab] = useState<"logs" | "timesheets" | "shift">("logs");
   const navigate = useNavigate();
 
@@ -1997,6 +1998,15 @@ export default function Index() {
                       </DialogFooter>
                     </DialogContent>
                   </Dialog>
+                  <div className="flex items-center gap-2">
+                    <CalendarDays className="h-4 w-4 text-muted-foreground" />
+                    <Input
+                      type="date"
+                      value={dateFilter}
+                      onChange={(e) => setDateFilter(e.target.value)}
+                      className="h-8 w-[140px] text-xs"
+                    />
+                  </div>
                   <Button
                     type="button"
                     variant="outline"
@@ -2365,6 +2375,15 @@ export default function Index() {
                       </DialogFooter>
                     </DialogContent>
                   </Dialog>
+                  <div className="flex items-center gap-2">
+                    <CalendarDays className="h-4 w-4 text-muted-foreground" />
+                    <Input
+                      type="date"
+                      value={dateFilter}
+                      onChange={(e) => setDateFilter(e.target.value)}
+                      className="h-8 w-[140px] text-xs"
+                    />
+                  </div>
                   <Button
                     type="button"
                     variant="outline"
