@@ -31,7 +31,6 @@ export default function ViewDetails() {
       <div className="flex items-start justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold">Offboarding Details</h1>
-          <p className="text-sm text-muted-foreground">Case #1 • Created 2023-12-15</p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
           <Button variant="outline" onClick={() => navigate(-1)}>Back</Button>
