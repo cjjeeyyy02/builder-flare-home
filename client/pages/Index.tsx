@@ -2386,42 +2386,19 @@ function MetricCard({
 }
 
 function RowActions({ employee }: { employee: Employee }) {
-  const [detailsOpen, setDetailsOpen] = useState(false);
+  const navigate = useNavigate();
   return (
-    <>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="h-7 w-7 rounded-md p-0">
-            <EllipsisVertical className="h-4 w-4" />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-44">
-          <DropdownMenuItem onClick={() => setDetailsOpen(true)}>
-            <Eye className="mr-2 h-4 w-4" /> View Details
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-
-      <Dialog open={detailsOpen} onOpenChange={setDetailsOpen}>
-        <DialogContent className="sm:max-w-lg">
-          <DialogHeader>
-            <DialogTitle>Employee Details</DialogTitle>
-          </DialogHeader>
-          <div className="space-y-2 text-sm">
-            <div className="flex items-center justify-between"><span className="text-muted-foreground">Employee ID</span><span className="font-medium">{employee.id}</span></div>
-            <div className="flex items-center justify-between"><span className="text-muted-foreground">Employee Name</span><span className="font-medium">{employee.firstName} {employee.lastName}</span></div>
-            <div className="flex items-center justify-between"><span className="text-muted-foreground">Position</span><span className="font-medium">{employee.role}</span></div>
-            <div className="flex items-center justify-between"><span className="text-muted-foreground">Department</span><span className="font-medium">{employee.department}</span></div>
-            <div className="flex items-center justify-between"><span className="text-muted-foreground">Departure Type</span><span className="font-medium">{employee.departureType ?? "—"}</span></div>
-            <div className="flex items-center justify-between"><span className="text-muted-foreground">Date</span><span className="font-medium">{employee.departureDate ?? "—"}</span></div>
-          </div>
-          <DialogFooter>
-            <DialogClose asChild>
-              <Button type="button" variant="outline">Close</Button>
-            </DialogClose>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-    </>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" className="h-7 w-7 rounded-md p-0">
+          <EllipsisVertical className="h-4 w-4" />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="w-44">
+        <DropdownMenuItem onClick={() => navigate(`/view-details/${employee.id}`)}>
+          <Eye className="mr-2 h-4 w-4" /> View Details
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }
