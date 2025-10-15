@@ -61,6 +61,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { LogOut, Clock, CheckCircle, AlertTriangle } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import {
   DropdownMenu,
