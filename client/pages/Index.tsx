@@ -2259,39 +2259,6 @@ export default function Index() {
               </TabsContent>
               <TabsContent value="timesheets">
                 <div className="flex flex-col gap-4 rounded-[8px] bg-white p-6 shadow-[0_1px_3px_rgba(0,0,0,0.08)] font-poppins">
-                  <div className="flex items-center gap-2">
-                    <button
-                      type="button"
-                      onClick={() => setSubTab("logs")}
-                      className={cn(
-                        "rounded-full px-5 py-2 text-sm font-medium transition",
-                        subTab === "logs" ? "bg-[#F3F4F6] text-[#111827]" : "text-[#9CA3AF]",
-                      )}
-                    >
-                      Logs
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setSubTab("timesheets")}
-                      className={cn(
-                        "rounded-full px-5 py-2 text-sm font-medium transition",
-                        subTab === "timesheets" ? "bg-[#F3F4F6] text-[#111827]" : "text-[#9CA3AF]",
-                      )}
-                    >
-                      Timesheets
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setSubTab("shift")}
-                      className={cn(
-                        "rounded-full px-5 py-2 text-sm font-medium transition",
-                        subTab === "shift" ? "bg-[#F3F4F6] text-[#111827]" : "text-[#9CA3AF]",
-                      )}
-                    >
-                      Shifts
-                    </button>
-                  </div>
-
                   <div className="flex items-center justify-between">
                     <Input
                       placeholder="Search by name"
