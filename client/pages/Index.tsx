@@ -1744,29 +1744,27 @@ export default function Index() {
 
         <Tabs value={tab} onValueChange={setTab} className="w-full">
 
-          <TabsList className="w-full">
-            <div className="flex flex-nowrap items-center gap-2">
-              <TabsTrigger
-                value="attendance"
-                className={cn(
-                  "flex-1 rounded-[12px] px-4 py-2 text-sm transition-colors",
-                  "data-[state=active]:bg-[#3B82F6] data-[state=active]:text-white data-[state=active]:font-bold",
-                  "data-[state=inactive]:bg-transparent data-[state=inactive]:text-black data-[state=inactive]:font-medium data-[state=inactive]:hover:bg-[#E0F2FE]",
-                )}
-              >
-                Attendance
-              </TabsTrigger>
-              <TabsTrigger
-                value="leave"
-                className={cn(
-                  "flex-1 rounded-[12px] px-4 py-2 text-sm transition-colors",
-                  "data-[state=active]:bg-[#3B82F6] data-[state=active]:text-white data-[state=active]:font-bold",
-                  "data-[state=inactive]:bg-transparent data-[state=inactive]:text-black data-[state=inactive]:font-medium data-[state=inactive]:hover:bg-[#E0F2FE]",
-                )}
-              >
-                Leave
-              </TabsTrigger>
-            </div>
+          <TabsList className="mx-auto mt-1 flex w-fit items-center gap-1 rounded-full bg-muted p-1 shadow-sm font-poppins">
+            <TabsTrigger
+              value="attendance"
+              className={cn(
+                "rounded-full px-5 py-2 text-sm transition-colors",
+                "data-[state=active]:bg-white data-[state=active]:text-foreground data-[state=active]:font-semibold",
+                "data-[state=inactive]:bg-transparent data-[state=inactive]:text-muted-foreground",
+              )}
+            >
+              Attendance
+            </TabsTrigger>
+            <TabsTrigger
+              value="leave"
+              className={cn(
+                "rounded-full px-5 py-2 text-sm transition-colors",
+                "data-[state=active]:bg-white data-[state=active]:text-foreground data-[state=active]:font-semibold",
+                "data-[state=inactive]:bg-transparent data-[state=inactive]:text-muted-foreground",
+              )}
+            >
+              Leave
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="attendance" className="mt-5">
