@@ -1651,7 +1651,7 @@ export default function Index() {
     {
       id: "d2",
       title: "Data Privacy Policy",
-      employeeName: "—",
+      employeeName: "���",
       department: "Legal",
       type: "PDF",
       category: "policies",
@@ -2276,7 +2276,7 @@ export default function Index() {
                             className={cn(
                               "rounded-full px-4 py-1.5 text-[13px] transition",
                               tsRange === k
-                                ? "bg-[#E9D5FF] text-[#6D28D9]"
+                                ? "bg-[#2563EB] text-white"
                                 : "text-[#9CA3AF]",
                             )}
                           >
