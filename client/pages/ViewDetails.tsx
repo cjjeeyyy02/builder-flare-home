@@ -46,17 +46,17 @@ export default function ViewDetails() {
               <div className="flex items-center gap-3">
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#F3F4F6] text-[#111827] font-semibold">SJ</div>
                 <div>
-                  <div className="text-[16px] font-bold text-[#111827]">Sarah Johnson</div>
-                  <div className="text-sm text-[#6B7280]">Senior Developer</div>
+                  <div className="text-[18px] font-semibold text-[#111827]">Sarah Johnson</div>
+                  <div className="text-[14px] text-[#6B7280]">Senior Developer</div>
                 </div>
               </div>
-              <div className="mt-4 space-y-1 text-sm">
+              <div className="mt-4 space-y-[6px] text-[13px]">
                 <div className="text-[#6B7280]">Employee ID</div>
-                <div className="text-[#111827] font-medium">{id ?? "EMP001"}</div>
+                <div className="text-[#111827] font-semibold">{id ?? "EMP001"}</div>
                 <div className="text-[#6B7280]">Email</div>
-                <div className="text-[#111827] font-medium">sarah.johnson@ai2aim.com</div>
+                <div className="text-[#111827] font-semibold">sarah.johnson@ai2aim.com</div>
                 <div className="text-[#6B7280]">Location</div>
-                <div className="text-[#111827] font-medium">New York, NY</div>
+                <div className="text-[#111827] font-semibold">New York, NY</div>
               </div>
             </div>
 
