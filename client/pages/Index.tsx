@@ -1121,6 +1121,13 @@ export default function Index() {
       }),
     [leaves, lrSearch],
   );
+  const [lrPage, setLrPage] = useState(0);
+  const lrPageSize = 5;
+  const lrTotal = filteredLeaves.length;
+  const lrTotalPages = Math.max(1, Math.ceil(lrTotal / lrPageSize));
+  const lrStart = Math.min(lrPage * lrPageSize, lrTotal);
+  const lrEnd = Math.min(lrStart + lrPageSize, lrTotal);
+  const lrItems = filteredLeaves.slice(lrStart, lrEnd);
 
   type ShiftRow = { empId: string; employee: string; dept: string; shift: "Day" | "Night" | "Early" };
   const [shiftRows, setShiftRows] = useState<ShiftRow[]>([
