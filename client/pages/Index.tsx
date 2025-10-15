@@ -2258,7 +2258,7 @@ export default function Index() {
                 </div>
               </TabsContent>
               <TabsContent value="timesheets">
-                <div className="flex flex-col gap-4 rounded-[8px] bg-white p-6 shadow-[0_1px_3px_rgba(0,0,0,0.08)] font-poppins">
+                <div className="rounded-2xl border bg-card p-4 shadow-sm mt-4 font-poppins flex flex-col gap-3">
                   <div className="flex items-center justify-between">
                     <Input
                       placeholder="Search by name"
