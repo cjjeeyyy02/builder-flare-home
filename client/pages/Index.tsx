@@ -1143,6 +1143,8 @@ export default function Index() {
     { empId: "EMP301", employee: "John Patel", dept: "Sales", shift: "Early" },
     { empId: "EMP203", employee: "Sara Khan", dept: "Support", shift: "Night" },
   ]);
+  const [shiftEditIndex, setShiftEditIndex] = useState<number | null>(null);
+  const [shiftEditValue, setShiftEditValue] = useState<"Day" | "Night" | "Early">("Day");
 
   type BalanceRow = { employee: string; type: string; balance: number };
   const [balances, setBalances] = useState<BalanceRow[]>([
@@ -2420,20 +2422,68 @@ export default function Index() {
                         <TableCell className="px-3 py-2 text-xs leading-tight">{r.dept}</TableCell>
                         <TableCell className="px-3 py-2 text-xs leading-tight">{r.shift}</TableCell>
                         <TableCell className="px-3 py-2 text-center text-xs leading-tight">
-                          <Button
-                            type="button"
-                            variant="ghost"
-                            className="h-7 w-7 p-0"
-                            aria-label={`Edit shift for ${r.employee}`}
-                          >
-                            <EllipsisVertical className="h-4 w-4" />
-                          </Button>
+                          <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                              <Button
+                                type="button"
+                                variant="ghost"
+                                className="h-7 w-7 p-0"
+                                aria-label={`Edit shift for ${r.employee}`}
+                              >
+                                <EllipsisVertical className="h-4 w-4" />
+                              </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end" className="w-40">
+                              <DropdownMenuItem onClick={() => { setShiftEditIndex(i); setShiftEditValue(r.shift); }}>
+                                Edit Shift
+                              </DropdownMenuItem>
+                            </DropdownMenuContent>
+                          </DropdownMenu>
                         </TableCell>
                       </TableRow>
                     ))}
                   </TableBody>
                 </Table>
               </div>
+                <Dialog open={shiftEditIndex !== null} onOpenChange={(o) => { if (!o) setShiftEditIndex(null); }}>
+                  <DialogContent className="sm:max-w-md">
+                    <DialogHeader>
+                      <DialogTitle className="text-base font-semibold">Edit Shift</DialogTitle>
+                    </DialogHeader>
+                    <div className="space-y-2">
+                      <div className="text-xs text-muted-foreground">Select shift</div>
+                      <div className="flex items-center gap-2">
+                        {(["Day","Night","Early"] as const).map((opt) => (
+                          <Button
+                            key={opt}
+                            type="button"
+                            variant={shiftEditValue === opt ? "default" : "outline"}
+                            className="h-8 rounded-md px-3 text-xs"
+                            onClick={() => setShiftEditValue(opt)}
+                          >
+                            {opt}
+                          </Button>
+                        ))}
+                      </div>
+                    </div>
+                    <DialogFooter>
+                      <Button variant="outline" onClick={() => setShiftEditIndex(null)}>Cancel</Button>
+                      <Button
+                        className="h-9 rounded-md bg-[#2563EB] px-4 text-sm font-medium text-white hover:bg-[#1D4ED8]"
+                        onClick={() => {
+                          if (shiftEditIndex !== null) {
+                            setShiftRows((prev) =>
+                              prev.map((x, idx) => (idx === shiftEditIndex ? { ...x, shift: shiftEditValue } : x)),
+                            );
+                          }
+                          setShiftEditIndex(null);
+                        }}
+                      >
+                        Save
+                      </Button>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
             </div>
           </TabsContent>
           <TabsContent value="balance" className="mt-6">
