@@ -36,12 +36,6 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
-  Tooltip,
-  TooltipTrigger,
-  TooltipContent,
-  TooltipProvider,
-} from "@/components/ui/tooltip";
-import {
   CalendarDays,
   EllipsisVertical,
   LayoutGrid,
@@ -1824,47 +1818,10 @@ export default function Index() {
                             {e.department}
                           </TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">
-                            {(() => {
-                              const skills = getSkills(e);
-                              if (!skills.length)
-                                return (
-                                  <span className="text-muted-foreground">
-                                    ��
-                                  </span>
-                                );
-                              const shown = skills.slice(0, 2);
-                              const display = `${shown.join(", ")}${skills.length > 2 ? ", ..." : ""}`;
-                              const full = `${skills.join(", ")}`;
-                              const years = getYearsExperience(e);
-                              return (
-                                <TooltipProvider>
-                                  <Tooltip>
-                                    <TooltipTrigger asChild>
-                                      <span className="cursor-help">
-                                        {display}
-                                      </span>
-                                    </TooltipTrigger>
-                                    <TooltipContent>
-                                      <div className="max-w-xs text-xs">
-                                        <div className="font-semibold">
-                                          Skills
-                                        </div>
-                                        <div className="text-foreground/80">
-                                          {full}
-                                        </div>
-                                        <div className="mt-1 text-foreground/80">
-                                          Experience: {years}{" "}
-                                          {years === 1 ? "year" : "years"}
-                                        </div>
-                                      </div>
-                                    </TooltipContent>
-                                  </Tooltip>
-                                </TooltipProvider>
-                              );
-                            })()}
+                            <span className="text-muted-foreground">—</span>
                           </TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">
-                            {e.joiningDate}
+                            <span className="text-muted-foreground">—</span>
                           </TableCell>
                           <TableCell className="px-2 py-1 text-center text-xs leading-tight">
                             <RowActions employee={e} />
