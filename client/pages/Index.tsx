@@ -1044,7 +1044,7 @@ export default function Index() {
   const [view, setView] = useState<"table" | "card">("table");
   const [tab, setTab] = useState<string>("attendance");
   const [dateFilter, setDateFilter] = useState<string>(new Date().toISOString().slice(0, 10));
-  const [subTab, setSubTab] = useState<"logs" | "timesheets" | "shift">("logs");
+  const [subTab, setSubTab] = useState<"logs" | "timesheets" | "shift">("timesheets");
   const navigate = useNavigate();
 
   // Role-based permissions (admin | hr | employee)
