@@ -40,7 +40,7 @@ export default function ViewDetails() {
 
       <div className="mt-6">
         <Card className="bg-white rounded-[12px] p-6 border" style={{ borderColor: "#E5E7EB", boxShadow: "0px 2px 6px rgba(0,0,0,0.05)", fontFamily: 'Poppins, sans-serif' }}>
-          <div className="flex flex-col gap-10 md:flex-row">
+          <div className="flex flex-col md:flex-row items-start justify-between gap-8 leading-relaxed">
             {/* Left: Employee Profile */}
             <div className="min-w-[240px]">
               <div className="flex items-center gap-3">
