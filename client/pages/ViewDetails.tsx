@@ -66,24 +66,24 @@ export default function ViewDetails() {
                 <div className="mb-2 text-[16px] font-semibold text-[#111827]">Exit Details</div>
                 <div className="space-y-[6px] text-[13px]">
                   <div className="text-[#6B7280]">Type</div>
-                  <div className="text-[#111827] font-medium">Resignation</div>
+                  <div className="text-[#111827] font-semibold">Resignation</div>
                   <div className="text-[#6B7280]">Last Working Day</div>
-                  <div className="text-[#111827] font-medium">2024-01-15</div>
+                  <div className="text-[#111827] font-semibold">2024-01-15</div>
                   <div className="text-[#6B7280]">Notice Given</div>
-                  <div className="text-[#111827] font-medium">2-weeks</div>
+                  <div className="text-[#111827] font-semibold">2-weeks</div>
                   <div className="pt-2 text-[#6B7280]">Reason for Departure</div>
-                  <div className="text-[#111827] font-medium">Career advancement opportunity</div>
+                  <div className="text-[#111827] font-semibold">Career advancement opportunity</div>
                 </div>
               </div>
               <div>
                 <div className="mb-2 text-[16px] font-semibold text-[#111827]">Employment Info</div>
                 <div className="space-y-[6px] text-[13px]">
                   <div className="text-[#6B7280]">Department</div>
-                  <div className="text-[#111827] font-medium">Engineering</div>
+                  <div className="text-[#111827] font-semibold">Engineering</div>
                   <div className="text-[#6B7280]">Manager</div>
-                  <div className="text-[#111827] font-medium">John Smith</div>
+                  <div className="text-[#111827] font-semibold">John Smith</div>
                   <div className="text-[#6B7280]">Start Date</div>
-                  <div className="text-[#111827] font-medium">2022-03-15</div>
+                  <div className="text-[#111827] font-semibold">2022-03-15</div>
                 </div>
               </div>
             </div>
@@ -102,11 +102,11 @@ export default function ViewDetails() {
                 <div className="mb-2 text-[16px] font-semibold text-[#111827]">Case Info</div>
                 <div className="space-y-[6px] text-[13px]">
                   <div className="text-[#6B7280]">Assigned To</div>
-                  <div className="text-[#111827] font-medium">HR Team</div>
+                  <div className="text-[#111827] font-semibold">HR Team</div>
                   <div className="text-[#6B7280]">Rehire Eligible</div>
-                  <div className="text-[#111827] font-medium">Yes</div>
+                  <div className="text-[#111827] font-semibold">Yes</div>
                   <div className="text-[#6B7280]">Urgent</div>
-                  <div className="text-[#111827] font-medium">No</div>
+                  <div className="text-[#111827] font-semibold">No</div>
                 </div>
               </div>
             </div>
