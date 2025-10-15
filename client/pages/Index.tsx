@@ -2918,7 +2918,7 @@ export default function Index() {
                 </Dialog>
             </div>
           </TabsContent>
-          <TabsContent value="leave" className="mt-6">
+          <TabsContent value="leave-legacy" className="mt-6">
             <div className="rounded-2xl border bg-card p-4 shadow-sm">
               <div className="overflow-hidden rounded-lg border">
                 <Table className="text-xs leading-tight">
