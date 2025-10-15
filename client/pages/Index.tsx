@@ -66,6 +66,7 @@ import {
   X,
   Clock,
   Settings,
+  Download,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
@@ -1121,6 +1122,13 @@ export default function Index() {
       }),
     [leaves, lrSearch],
   );
+
+  function exportLeavesCSV() {
+    const headers = ["Employee ID", "Employee Name", "Leave Type", "Period From", "Period To", "Days", "Status"];
+    const rows = filteredLeaves.map((l) => [l.empId, l.employee, l.type, l.from, l.to, String(l.days), l.status]);
+    const csv = [headers.join(","), ...rows.map((r) => r.map((x) => `"${String(x).replace(/"/g, '""')}"`).join(","))].join("\n");
+    download("leave-requests.csv", csv, "text/csv;charset=utf-8;");
+  }
   const [lrPage, setLrPage] = useState(0);
   const lrPageSize = 5;
   const lrTotal = filteredLeaves.length;
@@ -2218,18 +2226,28 @@ export default function Index() {
                   placeholder="Search by name or type"
                   className="h-8 w-64 text-xs"
                 />
-                <Button
-                  type="button"
-                  className="h-8 rounded-md px-3 text-xs font-medium bg-[#6C4CF5] text-white hover:bg-[#5a3fe0]"
-                  onClick={() => setLrCreateOpen(true)}
-                >
-                  Create Sample Leave
-                </Button>
+                <div className="flex items-center gap-2">
+                  <Button
+                    type="button"
+                    className="h-8 rounded-md px-3 text-xs font-medium bg-[#2563EB] text-white hover:bg-[#1D4ED8]"
+                    onClick={() => setLrCreateOpen(true)}
+                  >
+                    Apply for Leave
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    className="h-8 rounded-md px-3 text-xs"
+                    onClick={exportLeavesCSV}
+                  >
+                    <Download className="mr-1.5 h-4 w-4" /> Export
+                  </Button>
+                </div>
 
                 <Dialog open={lrCreateOpen} onOpenChange={setLrCreateOpen}>
                   <DialogContent className="sm:max-w-md">
                     <DialogHeader>
-                      <DialogTitle className="text-base font-semibold">Create Sample Leave</DialogTitle>
+                      <DialogTitle className="text-base font-semibold">Apply for Leave</DialogTitle>
                     </DialogHeader>
                     <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                       <div className="space-y-1">
@@ -2276,7 +2294,7 @@ export default function Index() {
                     <DialogFooter>
                       <Button variant="outline" onClick={() => setLrCreateOpen(false)}>Cancel</Button>
                       <Button
-                        className="h-9 rounded-md bg-[#6C4CF5] px-4 text-sm font-medium text-white hover:bg-[#5a3fe0]"
+                        className="h-9 rounded-md bg-[#2563EB] px-4 text-sm font-medium text-white hover:bg-[#1D4ED8]"
                         onClick={() => {
                           const from = new Date(lrFrom);
                           const to = new Date(lrTo);
