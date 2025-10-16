@@ -1603,7 +1603,7 @@ export default function Index() {
       const top = scored.slice(0, 3);
       const topLines = top.map(
         (x, i) =>
-          `${i + 1}. ${x.e.firstName} ${x.e.lastName} – ${x.e.role}, ${x.e.department} • ${getYearsExperience(x.e)} yrs • Matches: ${x.matches.join(", ")}`,
+          `${i + 1}. ${x.e.firstName} ${x.e.lastName} ��� ${x.e.role}, ${x.e.department} • ${getYearsExperience(x.e)} yrs • Matches: ${x.matches.join(", ")}`,
       );
       const allLines = scored.map(
         (x) =>
@@ -2390,7 +2390,7 @@ export default function Index() {
                           </TableRow>
                         </TableHeader>
                         <TableBody>
-                          {WEEKLY_DATA.map((r) => (
+                          {WEEKLY_DATA.slice(weeklyPage * itemsPerPage, (weeklyPage + 1) * itemsPerPage).map((r) => (
                             <TableRow key={r.empId} className="hover:bg-[#F9FAFB]">
                               <TableCell className="px-3 py-2 text-[#111827]">{r.empId.replace('E-', '')}</TableCell>
                               <TableCell className="px-3 py-2 text-[#111827]">{r.name}</TableCell>
