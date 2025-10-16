@@ -1209,6 +1209,7 @@ export default function Index() {
     status: "Pending" | "Approved";
   };
   const [lrSearch, setLrSearch] = useState("");
+  const [lrTypeFilter, setLrTypeFilter] = useState("");
   const [leaves, setLeaves] = useState<LeaveReq[]>([
     { empId: "EMP201", employee: "Neha Gupta", type: "Annual Leave", from: "2025-10-16", to: "2025-10-17", days: 2, status: "Pending" },
     { empId: "EMP202", employee: "Aarav Sharma", type: "Annual Leave", from: "2025-10-15", to: "2025-10-17", days: 3, status: "Pending" },
