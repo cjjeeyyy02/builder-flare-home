@@ -2385,13 +2385,13 @@ export default function Index() {
                       <Table className="text-sm">
                         <TableHeader>
                           <TableRow>
-                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">Employee ID</TableHead>
-                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">Employee Name</TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">EMPLOYEE ID</TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">EMPLOYEE NAME</TableHead>
                             {Array.from({ length: 31 }).map((_, i) => (
                               <TableHead key={`day-${i + 1}`} className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">{i + 1}</TableHead>
                             ))}
-                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-red-600">Hours Worked</TableHead>
-                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-red-600">Scheduled</TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-red-600">HOURS WORKED</TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-red-600">SCHEDULED</TableHead>
                           </TableRow>
                         </TableHeader>
                         <TableBody>
