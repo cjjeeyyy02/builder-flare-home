@@ -2414,11 +2414,11 @@ export default function Index() {
                       <Table className="text-sm">
                         <TableHeader>
                           <TableRow>
-                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">Employee ID</TableHead>
-                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">Employee Name</TableHead>
-                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">Scheduled</TableHead>
-                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">Worked</TableHead>
-                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">{tsDayHeader}</TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">EMPLOYEE ID</TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">EMPLOYEE NAME</TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">SCHEDULED</TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">WORKED</TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">{tsDayHeader.toUpperCase()}</TableHead>
                           </TableRow>
                         </TableHeader>
                         <TableBody>
