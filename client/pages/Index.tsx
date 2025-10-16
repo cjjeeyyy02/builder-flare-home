@@ -2987,22 +2987,24 @@ export default function Index() {
                       <div className="flex items-center gap-2">
                         <Button
                           variant="outline"
-                          className="h-8 px-2 text-xs"
+                          className="h-8 w-8 p-0"
                           onClick={() => setLrPage(Math.max(0, lrPage - 1))}
                           disabled={lrPage === 0}
+                          title="Previous page"
                         >
-                          Previous
+                          <ChevronLeft className="h-4 w-4" />
                         </Button>
                         <span className="text-xs text-[#6B7280]">
                           Page {lrPage + 1} of {lrTotalPages}
                         </span>
                         <Button
                           variant="outline"
-                          className="h-8 px-2 text-xs"
+                          className="h-8 w-8 p-0"
                           onClick={() => setLrPage(Math.min(lrTotalPages - 1, lrPage + 1))}
                           disabled={lrPage >= lrTotalPages - 1}
+                          title="Next page"
                         >
-                          Next
+                          <ChevronRight className="h-4 w-4" />
                         </Button>
                       </div>
                     </div>
