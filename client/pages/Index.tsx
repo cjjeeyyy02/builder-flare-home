@@ -3014,11 +3014,11 @@ export default function Index() {
               ) : (
                 <div className="rounded-lg border">
                   <div className="flex items-center bg-[#F9FAFB] border-b border-[#E5E7EB]">
-                    <div className="px-3 py-3 text-sm font-semibold text-[#4B5563] flex-1">EMPLOYEE ID</div>
-                    <div className="px-3 py-3 text-sm font-semibold text-[#4B5563] flex-1">EMPLOYEE NAME</div>
-                    <div className="px-3 py-3 text-sm font-semibold text-[#4B5563] flex-1">DEPARTMENT</div>
-                    <div className="px-3 py-3 text-sm font-semibold text-[#4B5563] flex-1">POSITION</div>
-                    <div className="px-3 py-3 text-sm font-semibold text-[#4B5563] text-center w-16">ACTION</div>
+                    <div className="px-4 py-3 text-xs font-semibold text-[#4B5563] w-24 text-left">EMPLOYEE ID</div>
+                    <div className="px-4 py-3 text-xs font-semibold text-[#4B5563] flex-1 text-left">EMPLOYEE NAME</div>
+                    <div className="px-4 py-3 text-xs font-semibold text-[#4B5563] w-32 text-left">DEPARTMENT</div>
+                    <div className="px-4 py-3 text-xs font-semibold text-[#4B5563] flex-1 text-left">POSITION</div>
+                    <div className="px-4 py-3 text-xs font-semibold text-[#4B5563] w-16 text-center">ACTION</div>
                   </div>
                   {EMPLOYEE_LEAVE_BALANCES.map((emp) => (
                     <div key={emp.empId}>
