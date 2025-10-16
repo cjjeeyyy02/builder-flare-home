@@ -2426,7 +2426,7 @@ export default function Index() {
                             <TableRow key={r.empId} className="hover:bg-[#F9FAFB]">
                               <TableCell className="px-3 py-2 text-[#111827]">{r.empId}</TableCell>
                               <TableCell className="px-3 py-2 text-[#111827]">{r.name}</TableCell>
-                              <TableCell className="px-3 py-2 text-[#111827] text-center">{r.scheduled}</TableCell>
+                              <TableCell className="px-3 py-2 text-[#111827] flex items-center justify-center">{r.scheduled}</TableCell>
                               <TableCell className="px-3 py-2 text-[#111827]">{r.worked}</TableCell>
                               <TableCell className="px-3 py-2 text-[#111827]">{r.day}</TableCell>
                             </TableRow>
