@@ -1070,6 +1070,23 @@ export default function Index() {
     const yyyy = d.getFullYear();
     return `${months[d.getMonth()]} ${yyyy}`;
   }, []);
+  const weeklyDisplay = useMemo(() => {
+    const d = new Date();
+    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const currentDay = d.getDay();
+    const diff = d.getDate() - currentDay;
+    const weekStart = new Date(d.setDate(diff));
+    const weekEnd = new Date(weekStart);
+    weekEnd.setDate(weekStart.getDate() + 6);
+
+    const startMonth = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][weekStart.getMonth()];
+    const endMonth = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][weekEnd.getMonth()];
+    const startDay = weekStart.getDate();
+    const endDay = weekEnd.getDate();
+    const year = weekEnd.getFullYear();
+
+    return startMonth === endMonth ? `${startMonth} ${startDay} - ${endDay}, ${year}` : `${startMonth} ${startDay} - ${endMonth} ${endDay}, ${year}`;
+  }, []);
   const tsDayHeader = useMemo(() => {
     const d = new Date();
     const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
