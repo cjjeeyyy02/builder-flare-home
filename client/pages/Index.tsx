@@ -2919,30 +2919,33 @@ export default function Index() {
                           <TableCell className="px-3 py-2">{req.to}</TableCell>
                           <TableCell className="px-3 py-2">{req.status}</TableCell>
                           <TableCell className="px-3 py-2">
-                            <div className="flex items-center gap-2">
-                              <Button
-                                variant="outline"
-                                className="h-8 px-3 text-xs"
-                                onClick={() => {
-                                  const updated = leaves.map(r => r.empId === req.empId ? {...r, status: "Approved"} : r);
-                                  setLeaves(updated);
-                                  toast({ title: "Leave Request Approved", description: `${req.employee}'s leave request has been approved.` });
-                                }}
-                              >
-                                Approve
-                              </Button>
-                              <Button
-                                variant="outline"
-                                className="h-8 px-3 text-xs"
-                                onClick={() => {
-                                  const updated = leaves.map(r => r.empId === req.empId ? {...r, status: "Rejected"} : r);
-                                  setLeaves(updated);
-                                  toast({ title: "Leave Request Rejected", description: `${req.employee}'s leave request has been rejected.` });
-                                }}
-                              >
-                                Reject
-                              </Button>
-                            </div>
+                            <DropdownMenu>
+                              <DropdownMenuTrigger asChild>
+                                <Button variant="ghost" className="h-8 w-8 p-0">
+                                  <MoreVertical className="h-4 w-4" />
+                                </Button>
+                              </DropdownMenuTrigger>
+                              <DropdownMenuContent align="end">
+                                <DropdownMenuItem
+                                  onClick={() => {
+                                    const updated = leaves.map(r => r.empId === req.empId ? {...r, status: "Approved"} : r);
+                                    setLeaves(updated);
+                                    toast({ title: "Leave Request Approved", description: `${req.employee}'s leave request has been approved.` });
+                                  }}
+                                >
+                                  Approve
+                                </DropdownMenuItem>
+                                <DropdownMenuItem
+                                  onClick={() => {
+                                    const updated = leaves.map(r => r.empId === req.empId ? {...r, status: "Rejected"} : r);
+                                    setLeaves(updated);
+                                    toast({ title: "Leave Request Rejected", description: `${req.employee}'s leave request has been rejected.` });
+                                  }}
+                                >
+                                  Reject
+                                </DropdownMenuItem>
+                              </DropdownMenuContent>
+                            </DropdownMenu>
                           </TableCell>
                         </TableRow>
                       ))}
