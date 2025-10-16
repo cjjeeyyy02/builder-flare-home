@@ -2444,7 +2444,7 @@ export default function Index() {
                           </TableRow>
                         </TableHeader>
                         <TableBody>
-                          {MONTHLY_DATA.map((r) => (
+                          {MONTHLY_DATA.slice(monthlyPage * itemsPerPage, (monthlyPage + 1) * itemsPerPage).map((r) => (
                             <TableRow key={r.empId} className="hover:bg-[#F9FAFB]">
                               <TableCell className="px-3 py-2 text-[#111827]">{r.empId}</TableCell>
                               <TableCell className="px-3 py-2 text-[#111827]">{r.name}</TableCell>
