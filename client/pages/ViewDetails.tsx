@@ -2,7 +2,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/local/tab
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useParams, useNavigate } from "react-router-dom";
-import { Mail, MapPin, Clipboard } from "lucide-react";
+import { Mail, MapPin, Clipboard, Plus, Pencil, CheckCircle, Calendar } from "lucide-react";
 
 export default function ViewDetails() {
   const { id } = useParams();
