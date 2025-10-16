@@ -2910,7 +2910,7 @@ export default function Index() {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {leaveRequests.map((req) => (
+                      {lrItems.map((req) => (
                         <TableRow key={req.empId} className="hover:bg-[#F9FAFB]">
                           <TableCell className="px-3 py-2">{req.empId}</TableCell>
                           <TableCell className="px-3 py-2">{req.employee}</TableCell>
@@ -2924,8 +2924,8 @@ export default function Index() {
                                 variant="outline"
                                 className="h-8 px-3 text-xs"
                                 onClick={() => {
-                                  const updated = leaveRequests.map(r => r.empId === req.empId ? {...r, status: "Approved"} : r);
-                                  setLeaveRequests(updated);
+                                  const updated = leaves.map(r => r.empId === req.empId ? {...r, status: "Approved"} : r);
+                                  setLeaves(updated);
                                   toast({ title: "Leave Request Approved", description: `${req.employee}'s leave request has been approved.` });
                                 }}
                               >
@@ -2935,8 +2935,8 @@ export default function Index() {
                                 variant="outline"
                                 className="h-8 px-3 text-xs"
                                 onClick={() => {
-                                  const updated = leaveRequests.map(r => r.empId === req.empId ? {...r, status: "Rejected"} : r);
-                                  setLeaveRequests(updated);
+                                  const updated = leaves.map(r => r.empId === req.empId ? {...r, status: "Rejected"} : r);
+                                  setLeaves(updated);
                                   toast({ title: "Leave Request Rejected", description: `${req.employee}'s leave request has been rejected.` });
                                 }}
                               >
