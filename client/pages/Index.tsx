@@ -1603,7 +1603,7 @@ export default function Index() {
       const top = scored.slice(0, 3);
       const topLines = top.map(
         (x, i) =>
-          `${i + 1}. ${x.e.firstName} ${x.e.lastName} ��� ${x.e.role}, ${x.e.department} • ${getYearsExperience(x.e)} yrs • Matches: ${x.matches.join(", ")}`,
+          `${i + 1}. ${x.e.firstName} ${x.e.lastName} – ${x.e.role}, ${x.e.department} • ${getYearsExperience(x.e)} yrs • Matches: ${x.matches.join(", ")}`,
       );
       const allLines = scored.map(
         (x) =>
@@ -2457,6 +2457,27 @@ export default function Index() {
                           ))}
                         </TableBody>
                       </Table>
+                      <div className="flex items-center justify-end gap-2 border-t px-3 py-2 text-xs">
+                        <div className="flex items-center gap-2">
+                          <Button
+                            variant="outline"
+                            className="h-7 w-7 rounded-md p-0"
+                            onClick={() => setMonthlyPage(Math.max(0, monthlyPage - 1))}
+                            disabled={monthlyPage === 0}
+                          >
+                            <ChevronLeft className="h-4 w-4" />
+                          </Button>
+                          <span className="text-[#6B7280] text-xs">{monthlyPage + 1}</span>
+                          <Button
+                            variant="outline"
+                            className="h-7 w-7 rounded-md p-0"
+                            onClick={() => setMonthlyPage(monthlyPage + 1)}
+                            disabled={(monthlyPage + 1) * itemsPerPage >= MONTHLY_DATA.length}
+                          >
+                            <ChevronRight className="h-4 w-4" />
+                          </Button>
+                        </div>
+                      </div>
                     </div>
                   ) : (
                     <div className="overflow-hidden rounded-lg border border-[#E5E7EB]">
