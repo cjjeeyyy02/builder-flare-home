@@ -85,11 +85,55 @@ export default function ViewDetails() {
 
   const [caseComments, setCaseComments] = useState(initialComments);
   const [newComment, setNewComment] = useState("");
-  const documents = [
-    { id: "d1", name: "Resignation Letter.pdf" },
-    { id: "d2", name: "Handover Checklist.docx" },
-    { id: "d3", name: "Final Pay Summary.pdf" },
-  ];
+
+  const [documents, setDocuments] = useState([
+    {
+      id: "d1",
+      name: "Resignation Letter.pdf",
+      type: "PDF",
+      status: "Final",
+      size: "0 KB",
+      date: "2023-12-15",
+      uploader: "Sarah Johnson",
+      category: "General Documents",
+      note: "Document uploaded for Sarah Johnson",
+    },
+    {
+      id: "d2",
+      name: "HR Termination Checklist.pdf",
+      type: "PDF",
+      status: "Final",
+      size: "0 KB",
+      date: "2023-12-16",
+      uploader: "Jane Smith",
+      category: "General Documents",
+      note: "Document uploaded for Sarah Johnson",
+    },
+    {
+      id: "d3",
+      name: "Asset Inventory.xlsx",
+      type: "XLSX",
+      status: "Final",
+      size: "0 KB",
+      date: "2023-12-18",
+      uploader: "Mike Chen",
+      category: "General Documents",
+      note: "Document uploaded for Sarah Johnson",
+    },
+  ]);
+
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filterCategory, setFilterCategory] = useState("All Categories");
+  const [showExportModal, setShowExportModal] = useState(false);
+  const [selectedForExport, setSelectedForExport] = useState<string[]>([]);
+  const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
+  const [viewDocument, setViewDocument] = useState<string | null>(null);
+
+  const filteredDocuments = documents.filter((doc) => {
+    const matchesSearch = doc.name.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesFilter = filterCategory === "All Categories" || doc.category === filterCategory;
+    return matchesSearch && matchesFilter;
+  });
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-6">
