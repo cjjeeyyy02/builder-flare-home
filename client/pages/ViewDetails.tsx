@@ -15,6 +15,53 @@ export default function ViewDetails() {
     { id: "t4", title: "Finalize payroll adjustments" },
     { id: "t5", title: "Conduct exit interview" },
   ];
+
+  const offboardingTasks = [
+    {
+      id: "ot1",
+      title: "HR Documentation Update",
+      department: "HR",
+      priority: "High",
+      description: "Complete all necessary HR paperwork and documentation",
+      assignedTo: "Jane Smith",
+      dueDate: "2024-01-05",
+      completedDate: "2024-01-04",
+      status: "Completed",
+    },
+    {
+      id: "ot2",
+      title: "IT Asset Collection",
+      department: "IT",
+      priority: "High",
+      description: "Collect all company IT equipment and devices",
+      assignedTo: "Mike Chen",
+      dueDate: "2024-01-10",
+      completedDate: null,
+      status: "In Progress",
+    },
+    {
+      id: "ot3",
+      title: "Exit Interview Scheduling",
+      department: "HR",
+      priority: "Medium",
+      description: "Schedule and conduct exit interview with employee",
+      assignedTo: "Lisa Davis",
+      dueDate: "2024-01-12",
+      completedDate: null,
+      status: "Pending",
+    },
+    {
+      id: "ot4",
+      title: "Access Revocation",
+      department: "Security",
+      priority: "High",
+      description: "Revoke all system and physical access permissions",
+      assignedTo: "Security Team",
+      dueDate: "2024-01-15",
+      completedDate: null,
+      status: "Pending",
+    },
+  ];
   const comments = [
     { id: "c1", author: "John Smith", text: "Prepared exit checklist." },
     { id: "c2", author: "HR Team", text: "Exit interview scheduled for 2024-01-12." },
