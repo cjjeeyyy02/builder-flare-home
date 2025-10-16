@@ -2373,7 +2373,7 @@ export default function Index() {
                               <TableCell className="px-3 py-2 text-[#111827]">{r.fri}</TableCell>
                               <TableCell className="px-3 py-2 text-[#111827]">{r.sat}</TableCell>
                               <TableCell className="px-3 py-2 text-[#111827]">{r.sun}</TableCell>
-                              <TableCell className="px-3 py-2 text-[#111827] text-center">{r.scheduled}</TableCell>
+                              <TableCell className="px-3 py-2 text-[#111827] flex items-center justify-center">{r.scheduled}</TableCell>
                               <TableCell className="px-3 py-2 text-[#111827]">{r.worked}</TableCell>
                             </TableRow>
                           ))}
