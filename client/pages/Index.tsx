@@ -3020,7 +3020,7 @@ export default function Index() {
                         className="w-full px-4 py-3 flex items-center justify-between hover:bg-[#F9FAFB] transition"
                       >
                         <span className="text-sm font-medium text-[#111827]">{emp.name}</span>
-                        <span className="text-sm text-[#2563EB]">Click to view leave types {expandedEmployee === emp.empId ? "▲" : "▼"}</span>
+                        <span className="text-lg text-[#6B7280]">{expandedEmployee === emp.empId ? "▲" : "▼"}</span>
                       </button>
                       {expandedEmployee === emp.empId && (
                         <div className="bg-[#F9FAFB] px-4 py-3 border-t">
