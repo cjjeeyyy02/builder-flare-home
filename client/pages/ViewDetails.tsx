@@ -224,7 +224,7 @@ export default function ViewDetails() {
           <div className="flex items-center justify-between border-b">
             <TabsList className="flex gap-0">
               <TabsTrigger value="tasks" className="px-4 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-blue-600 hover:text-foreground transition-colors">Tasks ({tasks.length})</TabsTrigger>
-              <TabsTrigger value="comments" className="px-4 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-blue-600 hover:text-foreground transition-colors">Comments ({comments.length})</TabsTrigger>
+              <TabsTrigger value="comments" className="px-4 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-blue-600 hover:text-foreground transition-colors">Comments ({caseComments.length})</TabsTrigger>
               <TabsTrigger value="documents" className="px-4 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-blue-600 hover:text-foreground transition-colors">Documents ({documents.length})</TabsTrigger>
               <TabsTrigger value="timeline" className="px-4 py-2 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-blue-600 hover:text-foreground transition-colors">Timeline</TabsTrigger>
             </TabsList>
