@@ -2118,13 +2118,6 @@ export default function Index() {
                       className="h-8 w-[140px] text-xs"
                     />
                   </div>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    className="h-8 rounded-md px-3 text-xs bg-white text-[#374151] border border-[#d1d5db] hover:bg-gray-50"
-                  >
-                    <Download className="mr-1.5 h-4 w-4" /> Export
-                  </Button>
                 </div>
                 <Button
                   variant="outline"
@@ -2149,6 +2142,13 @@ export default function Index() {
                   onClick={() => setView("card")}
                 >
                   <LayoutGrid className="h-4 w-4" />
+                </Button>
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="h-8 rounded-md px-3 text-xs bg-white text-[#374151] border border-[#d1d5db] hover:bg-gray-50"
+                >
+                  <Download className="mr-1.5 h-4 w-4" /> Export
                 </Button>
               </div>
             </section>
