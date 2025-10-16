@@ -1788,7 +1788,7 @@ export default function Index() {
                   </div>
 
                   <div className="flex gap-2">
-                    <Button className="bg-violet-600 hover:bg-violet-700 text-white flex items-center gap-2">
+                    <Button className="bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-2">
                       <Plus className="h-4 w-4 text-blue-400" />
                       Start Offboarding
                     </Button>
@@ -2269,7 +2269,7 @@ export default function Index() {
                           {d.uploadDate}
                         </TableCell>
                         <TableCell className="px-2 py-1 text-xs leading-tight">
-                          {d.expirationDate ?? "��"}
+                          {d.expirationDate ?? "—"}
                         </TableCell>
                         <TableCell className="px-2 py-1 text-xs leading-tight">
                           {d.uploadedBy}
