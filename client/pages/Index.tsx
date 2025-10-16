@@ -1226,13 +1226,11 @@ export default function Index() {
     () =>
       leaves.filter((l) => {
         const q = lrSearch.trim().toLowerCase();
-        if (!q) return true;
-        return (
-          l.employee.toLowerCase().includes(q) ||
-          l.type.toLowerCase().includes(q)
-        );
+        const matchSearch = !q || l.employee.toLowerCase().includes(q) || l.empId.toLowerCase().includes(q) || l.type.toLowerCase().includes(q);
+        const matchType = !lrTypeFilter || l.type === lrTypeFilter;
+        return matchSearch && matchType;
       }),
-    [leaves, lrSearch],
+    [leaves, lrSearch, lrTypeFilter],
   );
 
   function exportLeavesCSV() {
