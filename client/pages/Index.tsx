@@ -1227,7 +1227,7 @@ export default function Index() {
       leaves.filter((l) => {
         const q = lrSearch.trim().toLowerCase();
         const matchSearch = !q || l.employee.toLowerCase().includes(q) || l.empId.toLowerCase().includes(q) || l.type.toLowerCase().includes(q);
-        const matchType = !lrTypeFilter || l.type === lrTypeFilter;
+        const matchType = !lrTypeFilter || lrTypeFilter === 'all' || l.type === lrTypeFilter;
         return matchSearch && matchType;
       }),
     [leaves, lrSearch, lrTypeFilter],
