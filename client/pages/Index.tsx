@@ -3025,17 +3025,17 @@ export default function Index() {
                       <button
                         type="button"
                         onClick={() => setExpandedEmployee(expandedEmployee === emp.empId ? null : emp.empId)}
-                        className="w-full py-3 flex items-center gap-4 hover:bg-[#F9FAFB] transition"
+                        className="w-full py-3 flex items-center gap-2 hover:bg-[#F9FAFB] transition px-4"
                       >
-                        <div className="flex-1 text-sm text-[#111827] pl-4 text-left">{emp.empId}</div>
-                        <div className="flex-1 text-sm font-medium text-[#111827] pl-4 text-left">{emp.name}</div>
-                        <div className="flex-1 text-sm text-[#111827] pl-4 text-left">{emp.department}</div>
-                        <div className="flex-1 text-sm text-[#111827] pl-4 text-left">{emp.position}</div>
-                        <div className="w-10 flex items-center justify-center">
+                        <div className="w-24 text-sm text-[#111827] text-left truncate">{emp.empId}</div>
+                        <div className="flex-1 text-sm font-medium text-[#111827] text-left truncate">{emp.name}</div>
+                        <div className="w-32 text-sm text-[#111827] text-left truncate">{emp.department}</div>
+                        <div className="w-40 text-sm text-[#111827] text-left truncate">{emp.position}</div>
+                        <div className="w-12 flex items-center justify-center">
                           {expandedEmployee === emp.empId ? (
-                            <ChevronLeft className="h-5 w-5 text-[#111827] rotate-90" />
+                            <ChevronLeft className="h-5 w-5 text-[#111827] rotate-90 flex-shrink-0" />
                           ) : (
-                            <ChevronDown className="h-5 w-5 text-[#111827]" />
+                            <ChevronDown className="h-5 w-5 text-[#111827] flex-shrink-0" />
                           )}
                         </div>
                       </button>
