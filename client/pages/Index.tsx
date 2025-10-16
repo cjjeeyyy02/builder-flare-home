@@ -1154,13 +1154,13 @@ export default function Index() {
       { leaveType: "Personal Leave", leaveTaken: 2, leaveBalance: 4 },
     ]},
   ];
-  type ShiftSlot = { name: string; time: string };
+  type ShiftSlot = { name: string; time: string; id: string };
   type ShiftDay = { day: string; slots: ShiftSlot[] };
   const SHIFT_DAYS: ShiftDay[] = [
     { day: "Mon", slots: [
       { name: "Alex", time: "9–18" },
       { name: "Maria", time: "10–19" },
-      { name: "Jordan", time: "9��18" },
+      { name: "Jordan", time: "9–18" },
     ]},
     { day: "Tue", slots: [
       { name: "Alex", time: "9–18" },
