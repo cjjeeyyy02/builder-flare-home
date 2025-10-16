@@ -1581,7 +1581,7 @@ export default function Index() {
       );
       const allLines = scored.map(
         (x) =>
-          `• ${x.e.firstName} ${x.e.lastName} – ${x.e.role}, ${x.e.department} • ${getYearsExperience(x.e)} yrs • Matches: ${x.matches.join(", ")}`,
+          `�� ${x.e.firstName} ${x.e.lastName} – ${x.e.role}, ${x.e.department} • ${getYearsExperience(x.e)} yrs • Matches: ${x.matches.join(", ")}`,
       );
       return `Top candidates:\n${topLines.join("\n")}\n\nAll matches:\n${allLines.join("\n")}`;
     }
@@ -2435,7 +2435,20 @@ export default function Index() {
                       </Table>
                       <div className="flex items-center justify-end gap-2 border-t px-3 py-2 text-xs">
                         <div className="flex items-center gap-2">
-                          <MoreVertical className="h-4 w-4 text-muted-foreground" />
+                          <Button
+                            variant="outline"
+                            className="h-7 w-7 rounded-md p-0"
+                            disabled
+                          >
+                            <ChevronLeft className="h-4 w-4" />
+                          </Button>
+                          <Button
+                            variant="outline"
+                            className="h-7 w-7 rounded-md p-0"
+                            disabled
+                          >
+                            <ChevronRight className="h-4 w-4" />
+                          </Button>
                         </div>
                       </div>
                     </div>
