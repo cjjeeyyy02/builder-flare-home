@@ -1758,7 +1758,41 @@ export default function Index() {
 
 
             {view === "table" ? (
-              <section className="mt-4">
+              <section className="mt-6">
+                <div className="mb-4">
+                  <h2 className="text-lg font-bold">Recent Offboardings</h2>
+                  <p className="text-sm text-muted-foreground">Track ongoing and recent employee departures.</p>
+                </div>
+
+                <div className="mb-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                  <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-2">
+                    <input
+                      type="text"
+                      placeholder="Search Employee ID, Name"
+                      className="rounded border border-input bg-background px-3 py-2 text-sm"
+                    />
+                    <select className="rounded border border-input bg-background px-3 py-2 text-sm">
+                      <option value="">Department filter</option>
+                      <option value="engineering">Engineering</option>
+                      <option value="product">Product</option>
+                      <option value="design">Design</option>
+                      <option value="analytics">Analytics</option>
+                      <option value="hr">Human Resources</option>
+                    </select>
+                    <select className="rounded border border-input bg-background px-3 py-2 text-sm">
+                      <option value="">Offboarding Stage filter</option>
+                      <option value="planned">Planned</option>
+                      <option value="in-progress">In Progress</option>
+                      <option value="completed">Completed</option>
+                    </select>
+                  </div>
+
+                  <div className="flex gap-2">
+                    <Button className="bg-violet-600 hover:bg-violet-700 text-white">Start Offboarding</Button>
+                    <Button variant="outline">Export</Button>
+                  </div>
+                </div>
+
                 <div className="overflow-hidden rounded-lg border">
                   <Table className="text-xs leading-tight">
                     <TableHeader>
