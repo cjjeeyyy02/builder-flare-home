@@ -115,14 +115,7 @@ export default function ViewDetails() {
 
             {/* Case Info Card */}
             <div className="border border-[#E5E7EB] rounded-lg p-4 bg-white">
-              <div className="flex items-center justify-between mb-3">
-                <div className="text-[16px] font-semibold text-[#111827]">Case Info</div>
-                <span className="rounded-[20px] bg-[#E0F2FE] px-3 py-1 text-xs font-medium text-[#1D4ED8]">In Progress</span>
-              </div>
-
-              <div className="mb-3 h-2 w-full rounded-[10px] bg-[#E5E7EB]">
-                <div className="h-2 w-[50%] rounded-[10px] bg-[#3B82F6]" />
-              </div>
+              <div className="text-[16px] font-semibold text-[#111827] mb-3">Case Info</div>
 
               <div className="space-y-2 text-[13px]">
                 <div>
