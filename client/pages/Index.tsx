@@ -1160,7 +1160,7 @@ export default function Index() {
     { day: "Mon", slots: [
       { name: "Alex", time: "9–18" },
       { name: "Maria", time: "10–19" },
-      { name: "Jordan", time: "9–18" },
+      { name: "Jordan", time: "9��18" },
     ]},
     { day: "Tue", slots: [
       { name: "Alex", time: "9–18" },
@@ -1188,6 +1188,8 @@ export default function Index() {
   const [shiftTo, setShiftTo] = useState<string>(new Date().toISOString().slice(0, 10));
   const [openFromPicker, setOpenFromPicker] = useState(false);
   const [openToPicker, setOpenToPicker] = useState(false);
+  const [draggedItem, setDraggedItem] = useState<{ from: string; itemId: string } | null>(null);
+  const [shiftDays, setShiftDays] = useState<ShiftDay[]>(SHIFT_DAYS);
   const [openCreateLeave, setOpenCreateLeave] = useState(false);
   const [formData, setFormData] = useState({ empName: "", leaveType: "", periodFrom: "", periodTo: "" });
   // Use `leaves` state for leave requests list (defined below as LeaveReq[]). Remove duplicate leaveRequests state.
