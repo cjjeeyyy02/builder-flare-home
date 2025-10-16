@@ -1179,9 +1179,9 @@ export default function Index() {
       { name: "Jordan", time: "9�����18" },
     ]},
     { day: "Fri", slots: [
-      { name: "Alex", time: "9–18" },
-      { name: "Maria", time: "10–19" },
-      { name: "Priya", time: "9–18" },
+      { name: "Alex", time: "9–18", id: "fri-1" },
+      { name: "Maria", time: "10–19", id: "fri-2" },
+      { name: "Priya", time: "9–18", id: "fri-3" },
     ]},
   ];
   const [shiftFrom, setShiftFrom] = useState<string>(new Date().toISOString().slice(0, 10));
