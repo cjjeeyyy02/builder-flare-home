@@ -2914,48 +2914,42 @@ export default function Index() {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      <TableRow className="hover:bg-[#F9FAFB]">
-                        <TableCell className="px-3 py-2">2301</TableCell>
-                        <TableCell className="px-3 py-2">Alex Chen</TableCell>
-                        <TableCell className="px-3 py-2">Annual</TableCell>
-                        <TableCell className="px-3 py-2">2025-10-15</TableCell>
-                        <TableCell className="px-3 py-2">2025-10-15</TableCell>
-                        <TableCell className="px-3 py-2">Pending</TableCell>
-                        <TableCell className="px-3 py-2">
-                          <div className="flex items-center gap-2">
-                            <Button variant="outline" className="h-8 px-3 text-xs">Approve</Button>
-                            <Button variant="outline" className="h-8 px-3 text-xs">Reject</Button>
-                          </div>
-                        </TableCell>
-                      </TableRow>
-                      <TableRow className="hover:bg-[#F9FAFB]">
-                        <TableCell className="px-3 py-2">2302</TableCell>
-                        <TableCell className="px-3 py-2">Maria Gomez</TableCell>
-                        <TableCell className="px-3 py-2">Sick</TableCell>
-                        <TableCell className="px-3 py-2">2025-10-15</TableCell>
-                        <TableCell className="px-3 py-2">2025-10-15</TableCell>
-                        <TableCell className="px-3 py-2">Approved</TableCell>
-                        <TableCell className="px-3 py-2">
-                          <div className="flex items-center gap-2">
-                            <Button variant="outline" className="h-8 px-3 text-xs">Approve</Button>
-                            <Button variant="outline" className="h-8 px-3 text-xs">Reject</Button>
-                          </div>
-                        </TableCell>
-                      </TableRow>
-                      <TableRow className="hover:bg-[#F9FAFB]">
-                        <TableCell className="px-3 py-2">2303</TableCell>
-                        <TableCell className="px-3 py-2">Jordan Lee</TableCell>
-                        <TableCell className="px-3 py-2">WFH</TableCell>
-                        <TableCell className="px-3 py-2">2025-10-15</TableCell>
-                        <TableCell className="px-3 py-2">2025-10-15</TableCell>
-                        <TableCell className="px-3 py-2">Rejected</TableCell>
-                        <TableCell className="px-3 py-2">
-                          <div className="flex items-center gap-2">
-                            <Button variant="outline" className="h-8 px-3 text-xs">Approve</Button>
-                            <Button variant="outline" className="h-8 px-3 text-xs">Reject</Button>
-                          </div>
-                        </TableCell>
-                      </TableRow>
+                      {leaveReqs.map((req) => (
+                        <TableRow key={req.empId} className="hover:bg-[#F9FAFB]">
+                          <TableCell className="px-3 py-2">{req.empId}</TableCell>
+                          <TableCell className="px-3 py-2">{req.employee}</TableCell>
+                          <TableCell className="px-3 py-2">{req.type}</TableCell>
+                          <TableCell className="px-3 py-2">{req.from}</TableCell>
+                          <TableCell className="px-3 py-2">{req.to}</TableCell>
+                          <TableCell className="px-3 py-2">{req.status}</TableCell>
+                          <TableCell className="px-3 py-2">
+                            <div className="flex items-center gap-2">
+                              <Button
+                                variant="outline"
+                                className="h-8 px-3 text-xs"
+                                onClick={() => {
+                                  const updated = leaveReqs.map(r => r.empId === req.empId ? {...r, status: "Approved"} : r);
+                                  setLeaveReqs(updated);
+                                  toast({ title: "Leave Request Approved", description: `${req.employee}'s leave request has been approved.` });
+                                }}
+                              >
+                                Approve
+                              </Button>
+                              <Button
+                                variant="outline"
+                                className="h-8 px-3 text-xs"
+                                onClick={() => {
+                                  const updated = leaveReqs.map(r => r.empId === req.empId ? {...r, status: "Rejected"} : r);
+                                  setLeaveReqs(updated);
+                                  toast({ title: "Leave Request Rejected", description: `${req.employee}'s leave request has been rejected.` });
+                                }}
+                              >
+                                Reject
+                              </Button>
+                            </div>
+                          </TableCell>
+                        </TableRow>
+                      ))}
                     </TableBody>
                   </Table>
                   <div className="px-3 py-2 text-xs text-muted-foreground">&lt;Pagination here&gt;</div>
