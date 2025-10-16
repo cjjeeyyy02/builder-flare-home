@@ -2364,7 +2364,7 @@ export default function Index() {
                         <TableBody>
                           {WEEKLY_DATA.map((r) => (
                             <TableRow key={r.empId} className="hover:bg-[#F9FAFB]">
-                              <TableCell className="px-3 py-2 text-[#111827]">{r.empId}</TableCell>
+                              <TableCell className="px-3 py-2 text-[#111827]">{r.empId.replace('E-', '')}</TableCell>
                               <TableCell className="px-3 py-2 text-[#111827]">{r.name}</TableCell>
                               <TableCell className="px-3 py-2 text-[#111827]">{r.mon}</TableCell>
                               <TableCell className="px-3 py-2 text-[#111827]">{r.tue}</TableCell>
