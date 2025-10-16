@@ -3013,6 +3013,12 @@ export default function Index() {
                 </div>
               ) : (
                 <div className="rounded-lg border">
+                  <div className="px-4 py-3 flex items-center gap-4 bg-[#F9FAFB] border-b border-[#E5E7EB]">
+                    <div className="flex-1 text-xs font-semibold text-[#4B5563]">EMPLOYEE ID</div>
+                    <div className="flex-1 text-xs font-semibold text-[#4B5563]">EMPLOYEE NAME</div>
+                    <div className="flex-1 text-xs font-semibold text-[#4B5563]">DEPARTMENT</div>
+                    <div className="flex-1 text-xs font-semibold text-[#4B5563]">POSITION</div>
+                  </div>
                   {EMPLOYEE_LEAVE_BALANCES.map((emp) => (
                     <div key={emp.empId}>
                       <button
