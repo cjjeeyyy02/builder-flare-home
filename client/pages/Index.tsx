@@ -1804,17 +1804,17 @@ export default function Index() {
           Employee Name
         </TableHead>
                         <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
-                          Position
-                        </TableHead>
-                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
                           Department
                         </TableHead>
                         <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
-          Departure Type
-        </TableHead>
-                                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
-          Date
-        </TableHead>
+                          Position
+                        </TableHead>
+                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
+                          Stage
+                        </TableHead>
+                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
+                          Progress
+                        </TableHead>
                         <TableHead className="px-2 py-1 text-center text-xs font-semibold uppercase leading-tight">
                           Action
                         </TableHead>
@@ -1841,10 +1841,10 @@ export default function Index() {
                             </div>
                           </TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">
-                            {e.role}
+                            {e.department}
                           </TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">
-                            {e.department}
+                            {e.role}
                           </TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">
                             {e.departureType ? (
@@ -1854,11 +1854,9 @@ export default function Index() {
                             )}
                           </TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">
-                            {e.departureDate ? (
-                              e.departureDate
-                            ) : (
-                              <span className="text-muted-foreground">—</span>
-                            )}
+                            <div className="w-16 rounded bg-gray-200">
+                              <div className="h-2 w-[65%] rounded bg-blue-600" />
+                            </div>
                           </TableCell>
                           <TableCell className="px-2 py-1 text-center text-xs leading-tight">
                             <RowActions employee={e} />
