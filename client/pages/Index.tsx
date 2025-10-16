@@ -2981,6 +2981,9 @@ export default function Index() {
                     </TableBody>
                     </Table>
                     <div className="flex items-center justify-between px-3 py-3 border-t border-[#E5E7EB]">
+                      <div className="text-xs text-[#6B7280]">
+                        {lrStart + 1}–{lrEnd} of {lrTotal} results
+                      </div>
                       <div className="flex items-center gap-2">
                         <Button
                           variant="outline"
@@ -3001,9 +3004,6 @@ export default function Index() {
                         >
                           Next
                         </Button>
-                      </div>
-                      <div className="text-xs text-[#6B7280]">
-                        {lrStart + 1}–{lrEnd} of {lrTotal} results
                       </div>
                     </div>
                   </div>
