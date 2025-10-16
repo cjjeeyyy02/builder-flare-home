@@ -2999,6 +2999,102 @@ export default function Index() {
                   ))}
                 </div>
               )}
+
+              <Dialog open={lrCreateOpen} onOpenChange={setLrCreateOpen}>
+                <DialogContent className="rounded-2xl p-6 shadow-xl max-w-md">
+                  <DialogHeader>
+                    <DialogTitle>Create Leave Request</DialogTitle>
+                  </DialogHeader>
+                  <div className="grid gap-4 text-sm">
+                    <div className="grid gap-1.5">
+                      <Label className="text-xs font-semibold">Employee Name</Label>
+                      <Select value={lrEmployee} onValueChange={setLrEmployee}>
+                        <SelectTrigger className="h-9">
+                          <SelectValue placeholder="Select employee" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {EMPLOYEES.map((emp) => (
+                            <SelectItem key={emp.id} value={emp.firstName + " " + emp.lastName}>
+                              {emp.firstName} {emp.lastName}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className="grid gap-1.5">
+                      <Label className="text-xs font-semibold">Leave Type</Label>
+                      <Select value={lrType} onValueChange={setLrType}>
+                        <SelectTrigger className="h-9">
+                          <SelectValue placeholder="Select leave type" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Annual Leave">Annual Leave</SelectItem>
+                          <SelectItem value="Sick Leave">Sick Leave</SelectItem>
+                          <SelectItem value="Personal Leave">Personal Leave</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="grid gap-1.5">
+                        <Label className="text-xs font-semibold">Period From</Label>
+                        <Input
+                          type="date"
+                          value={lrFrom}
+                          onChange={(e) => setLrFrom(e.target.value)}
+                          className="h-9 text-xs"
+                        />
+                      </div>
+                      <div className="grid gap-1.5">
+                        <Label className="text-xs font-semibold">Period To</Label>
+                        <Input
+                          type="date"
+                          value={lrTo}
+                          onChange={(e) => setLrTo(e.target.value)}
+                          className="h-9 text-xs"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <DialogFooter>
+                    <DialogClose asChild>
+                      <Button
+                        variant="outline"
+                        className="rounded-md border px-4"
+                      >
+                        Cancel
+                      </Button>
+                    </DialogClose>
+                    <Button
+                      className="rounded-md bg-[#2563eb] px-4 text-white hover:bg-[#1d4ed8]"
+                      onClick={() => {
+                        if (lrEmployee && lrType && lrFrom && lrTo) {
+                          const newRequest = {
+                            empId: `LR${Math.floor(Math.random() * 10000)}`,
+                            employee: lrEmployee,
+                            type: lrType,
+                            from: lrFrom,
+                            to: lrTo,
+                            days: Math.ceil((new Date(lrTo).getTime() - new Date(lrFrom).getTime()) / (1000 * 60 * 60 * 24)) + 1,
+                            status: "Pending",
+                          };
+                          setLeaveReqs([...leaveReqs, newRequest]);
+                          setLrCreateOpen(false);
+                          setLrEmployee("");
+                          setLrType("Annual Leave");
+                          setLrFrom(new Date().toISOString().slice(0, 10));
+                          setLrTo(new Date().toISOString().slice(0, 10));
+                          toast({
+                            title: "Leave Request Created",
+                            description: `Leave request submitted for ${lrEmployee} from ${lrFrom} to ${lrTo}.`,
+                          });
+                        }
+                      }}
+                    >
+                      Submit
+                    </Button>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
             </div>
           </TabsContent>
           <TabsContent value="__disabled__" className="mt-6">
