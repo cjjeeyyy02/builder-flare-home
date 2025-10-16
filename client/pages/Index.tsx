@@ -1192,6 +1192,34 @@ export default function Index() {
   const [shiftDays, setShiftDays] = useState<ShiftDay[]>(SHIFT_DAYS);
   const [openCreateLeave, setOpenCreateLeave] = useState(false);
   const [formData, setFormData] = useState({ empName: "", leaveType: "", periodFrom: "", periodTo: "" });
+
+  const handleDragStart = (day: string, itemId: string) => {
+    setDraggedItem({ from: day, itemId });
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+  };
+
+  const handleDrop = (toDay: string) => {
+    if (!draggedItem) return;
+    if (draggedItem.from === toDay) {
+      setDraggedItem(null);
+      return;
+    }
+
+    const updatedDays = shiftDays.map((day) => ({
+      ...day,
+      slots: day.day === draggedItem.from
+        ? day.slots.filter((s) => s.id !== draggedItem.itemId)
+        : day.day === toDay
+        ? [...day.slots, ...shiftDays.find((d) => d.day === draggedItem.from)?.slots.filter((s) => s.id === draggedItem.itemId) || []]
+        : day.slots,
+    }));
+
+    setShiftDays(updatedDays);
+    setDraggedItem(null);
+  };
   // Use `leaves` state for leave requests list (defined below as LeaveReq[]). Remove duplicate leaveRequests state.
   const navigate = useNavigate();
 
