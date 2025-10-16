@@ -69,17 +69,19 @@ export default function ViewDetails() {
             </div>
 
             {/* Stage and Progress */}
-            <div className="flex flex-col gap-2">
-              <div className="flex items-center justify-between">
+            <div className="flex flex-col gap-3 pt-2">
+              <div>
                 <div className="text-[13px] font-medium text-[#6B7280]">Stage</div>
                 <div className="text-[13px] font-semibold text-[#111827]">Exit Interview</div>
               </div>
-              <div className="flex items-center justify-between">
-                <div className="text-[13px] font-medium text-[#6B7280]">Progress</div>
-                <div className="text-[13px] font-semibold text-[#111827]">65%</div>
-              </div>
-              <div className="h-2 w-full rounded-[10px] bg-[#E5E7EB]">
-                <div className="h-2 w-[65%] rounded-[10px] bg-[#3B82F6]" />
+              <div>
+                <div className="flex items-center justify-between mb-1">
+                  <div className="text-[13px] font-medium text-[#6B7280]">Progress</div>
+                  <div className="text-[13px] font-semibold text-[#111827]">65%</div>
+                </div>
+                <div className="h-2 w-full rounded-[10px] bg-[#E5E7EB]">
+                  <div className="h-2 w-[65%] rounded-[10px] bg-[#3B82F6]" />
+                </div>
               </div>
             </div>
           </div>
