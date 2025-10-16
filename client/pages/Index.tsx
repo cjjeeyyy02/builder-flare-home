@@ -60,7 +60,7 @@ import {
   X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { LogOut, Clock, CheckCircle, AlertTriangle } from "lucide-react";
+import { LogOut, Clock, CheckCircle, AlertTriangle, Plus, Download } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import {
@@ -1788,8 +1788,14 @@ export default function Index() {
                   </div>
 
                   <div className="flex gap-2">
-                    <Button className="bg-violet-600 hover:bg-violet-700 text-white">Start Offboarding</Button>
-                    <Button variant="outline">Export</Button>
+                    <Button className="bg-violet-600 hover:bg-violet-700 text-white flex items-center gap-2">
+                      <Plus className="h-4 w-4 text-blue-400" />
+                      Start Offboarding
+                    </Button>
+                    <Button variant="outline" className="flex items-center gap-2">
+                      <Download className="h-4 w-4" />
+                      Export
+                    </Button>
                   </div>
                 </div>
 
