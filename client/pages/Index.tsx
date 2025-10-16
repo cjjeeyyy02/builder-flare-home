@@ -1158,9 +1158,9 @@ export default function Index() {
   type ShiftDay = { day: string; slots: ShiftSlot[] };
   const SHIFT_DAYS: ShiftDay[] = [
     { day: "Mon", slots: [
-      { name: "Alex", time: "9–18" },
-      { name: "Maria", time: "10–19" },
-      { name: "Jordan", time: "9–18" },
+      { name: "Alex", time: "9–18", id: "mon-1" },
+      { name: "Maria", time: "10–19", id: "mon-2" },
+      { name: "Jordan", time: "9–18", id: "mon-3" },
     ]},
     { day: "Tue", slots: [
       { name: "Alex", time: "9–18" },
