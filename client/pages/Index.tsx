@@ -3014,11 +3014,11 @@ export default function Index() {
               ) : (
                 <div className="rounded-lg border">
                   <div className="flex items-center bg-[#F9FAFB] border-b border-[#E5E7EB]">
-                    <div className="px-4 py-3 text-xs font-semibold text-[#4B5563] w-24 text-left">EMPLOYEE ID</div>
-                    <div className="px-4 py-3 text-xs font-semibold text-[#4B5563] flex-1 text-left">EMPLOYEE NAME</div>
-                    <div className="px-4 py-3 text-xs font-semibold text-[#4B5563] w-32 text-left">DEPARTMENT</div>
+                    <div className="px-4 py-3 text-xs font-semibold text-[#4B5563] w-28 text-left">EMPLOYEE ID</div>
+                    <div className="px-4 py-3 text-xs font-semibold text-[#4B5563] w-40 text-left">EMPLOYEE NAME</div>
+                    <div className="px-4 py-3 text-xs font-semibold text-[#4B5563] w-40 text-left">DEPARTMENT</div>
                     <div className="px-4 py-3 text-xs font-semibold text-[#4B5563] flex-1 text-left">POSITION</div>
-                    <div className="px-4 py-3 text-xs font-semibold text-[#4B5563] w-16 text-center">ACTION</div>
+                    <div className="px-4 py-3 text-xs font-semibold text-[#4B5563] w-20 text-center">ACTION</div>
                   </div>
                   {EMPLOYEE_LEAVE_BALANCES.map((emp) => (
                     <div key={emp.empId}>
@@ -3027,11 +3027,11 @@ export default function Index() {
                         onClick={() => setExpandedEmployee(expandedEmployee === emp.empId ? null : emp.empId)}
                         className="w-full flex items-center hover:bg-white transition border-b border-[#E5E7EB]"
                       >
-                        <div className="px-4 py-3 text-sm text-[#111827] w-24 text-left">{emp.empId}</div>
-                        <div className="px-4 py-3 text-sm font-medium text-[#111827] flex-1 text-left">{emp.name}</div>
-                        <div className="px-4 py-3 text-sm text-[#111827] w-32 text-left">{emp.department}</div>
+                        <div className="px-4 py-3 text-sm text-[#111827] w-28 text-left">{emp.empId}</div>
+                        <div className="px-4 py-3 text-sm font-medium text-[#111827] w-40 text-left">{emp.name}</div>
+                        <div className="px-4 py-3 text-sm text-[#111827] w-40 text-left">{emp.department}</div>
                         <div className="px-4 py-3 text-sm text-[#111827] flex-1 text-left truncate">{emp.position}</div>
-                        <div className="px-4 py-3 flex items-center justify-center w-16">
+                        <div className="px-4 py-3 flex items-center justify-center w-20">
                           {expandedEmployee === emp.empId ? (
                             <ChevronLeft className="h-5 w-5 text-[#111827] rotate-90 flex-shrink-0" />
                           ) : (
