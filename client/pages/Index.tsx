@@ -1081,43 +1081,43 @@ export default function Index() {
     { empId: "E-1001", name: "Alex Chen", days: [0, 0, 0, "H", "H", 0, 0, 0, 0, "9.0/8h", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "H", "H", 0, 0, 0, 0, 0, 0, 0, 0, 0], hoursWorked: "152", scheduled: "160" },
     { empId: "E-1002", name: "Maria Gomez", days: [0, 0, 0, 0, 0, 0, 0, 0, 0, "L", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "H", "H", 0, 0, 0, 0, 0, 0, 0, 0, 0], hoursWorked: "0", scheduled: "160" },
   ];
-  type LeaveBalance = { leaveType: string; balance: number; used: number };
+  type LeaveBalance = { leaveType: string; leaveTaken: number; leaveBalance: number };
   type EmployeeLeaveBalance = { empId: string; name: string; balances: LeaveBalance[] };
   const EMPLOYEE_LEAVE_BALANCES: EmployeeLeaveBalance[] = [
     { empId: "EMP001", name: "Sarah Mitchell", balances: [
-      { leaveType: "Annual Leave", balance: 15, used: 5 },
-      { leaveType: "Sick Leave", balance: 10, used: 2 },
-      { leaveType: "Personal Leave", balance: 3, used: 1 },
+      { leaveType: "Annual Leave", leaveTaken: 7, leaveBalance: 13 },
+      { leaveType: "Sick Leave", leaveTaken: 3, leaveBalance: 7 },
+      { leaveType: "Personal Leave", leaveTaken: 2, leaveBalance: 4 },
     ]},
     { empId: "EMP002", name: "Daniel Nguyen", balances: [
-      { leaveType: "Annual Leave", balance: 18, used: 3 },
-      { leaveType: "Sick Leave", balance: 10, used: 0 },
-      { leaveType: "Personal Leave", balance: 3, used: 0 },
+      { leaveType: "Annual Leave", leaveTaken: 7, leaveBalance: 13 },
+      { leaveType: "Sick Leave", leaveTaken: 3, leaveBalance: 7 },
+      { leaveType: "Personal Leave", leaveTaken: 2, leaveBalance: 4 },
     ]},
     { empId: "EMP003", name: "Priya Kumar", balances: [
-      { leaveType: "Annual Leave", balance: 12, used: 8 },
-      { leaveType: "Sick Leave", balance: 10, used: 3 },
-      { leaveType: "Personal Leave", balance: 3, used: 2 },
+      { leaveType: "Annual Leave", leaveTaken: 7, leaveBalance: 13 },
+      { leaveType: "Sick Leave", leaveTaken: 3, leaveBalance: 7 },
+      { leaveType: "Personal Leave", leaveTaken: 2, leaveBalance: 4 },
     ]},
     { empId: "EMP004", name: "Marcus Lee", balances: [
-      { leaveType: "Annual Leave", balance: 20, used: 10 },
-      { leaveType: "Sick Leave", balance: 10, used: 1 },
-      { leaveType: "Personal Leave", balance: 3, used: 0 },
+      { leaveType: "Annual Leave", leaveTaken: 7, leaveBalance: 13 },
+      { leaveType: "Sick Leave", leaveTaken: 3, leaveBalance: 7 },
+      { leaveType: "Personal Leave", leaveTaken: 2, leaveBalance: 4 },
     ]},
     { empId: "EMP005", name: "Elena Garcia", balances: [
-      { leaveType: "Annual Leave", balance: 15, used: 6 },
-      { leaveType: "Sick Leave", balance: 10, used: 4 },
-      { leaveType: "Personal Leave", balance: 3, used: 1 },
+      { leaveType: "Annual Leave", leaveTaken: 7, leaveBalance: 13 },
+      { leaveType: "Sick Leave", leaveTaken: 3, leaveBalance: 7 },
+      { leaveType: "Personal Leave", leaveTaken: 2, leaveBalance: 4 },
     ]},
     { empId: "EMP006", name: "Omar Hassan", balances: [
-      { leaveType: "Annual Leave", balance: 16, used: 2 },
-      { leaveType: "Sick Leave", balance: 10, used: 0 },
-      { leaveType: "Personal Leave", balance: 3, used: 0 },
+      { leaveType: "Annual Leave", leaveTaken: 7, leaveBalance: 13 },
+      { leaveType: "Sick Leave", leaveTaken: 3, leaveBalance: 7 },
+      { leaveType: "Personal Leave", leaveTaken: 2, leaveBalance: 4 },
     ]},
     { empId: "EMP007", name: "Julia Rossi", balances: [
-      { leaveType: "Annual Leave", balance: 14, used: 1 },
-      { leaveType: "Sick Leave", balance: 10, used: 1 },
-      { leaveType: "Personal Leave", balance: 3, used: 0 },
+      { leaveType: "Annual Leave", leaveTaken: 7, leaveBalance: 13 },
+      { leaveType: "Sick Leave", leaveTaken: 3, leaveBalance: 7 },
+      { leaveType: "Personal Leave", leaveTaken: 2, leaveBalance: 4 },
     ]},
   ];
   type ShiftSlot = { name: string; time: string };
