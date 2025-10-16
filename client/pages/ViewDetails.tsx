@@ -429,14 +429,232 @@ export default function ViewDetails() {
           </TabsContent>
 
           <TabsContent value="documents" className="mt-4">
-            <Card className="p-4">
-              <ul className="space-y-2 text-sm">
-                {documents.map((d) => (
-                  <li key={d.id}>{d.name}</li>
-                ))}
-              </ul>
-            </Card>
+            <div>
+              {/* Header Section */}
+              <div className="mb-6">
+                <h3 className="text-lg font-bold text-[#111827]">Document Management</h3>
+                <p className="text-sm text-[#6B7280]">Manage documents related to offboarding case #1.</p>
+              </div>
+
+              {/* Search, Filter, and Action Buttons */}
+              <div className="flex gap-3 items-center mb-6">
+                <div className="flex-1 relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-[#9CA3AF]" />
+                  <input
+                    type="text"
+                    placeholder="Search documents..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full rounded border border-[#E5E7EB] bg-white pl-10 pr-3 py-2 text-sm placeholder-[#9CA3AF] focus:outline-none focus:border-blue-400"
+                  />
+                </div>
+
+                <select
+                  value={filterCategory}
+                  onChange={(e) => setFilterCategory(e.target.value)}
+                  className="rounded border border-[#E5E7EB] bg-white px-3 py-2 text-sm text-[#111827]"
+                >
+                  <option value="All Categories">All Categories</option>
+                  <option value="General Documents">General Documents</option>
+                </select>
+
+                <Button
+                  className="bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-2"
+                >
+                  <Plus className="h-4 w-4" />
+                  Upload Document
+                </Button>
+
+                <Button
+                  variant="outline"
+                  className="flex items-center gap-2"
+                  onClick={() => setShowExportModal(true)}
+                >
+                  <Download className="h-4 w-4" />
+                  Export
+                </Button>
+              </div>
+
+              {/* Document List - Scrollable Container */}
+              <div className="border border-[#E5E7EB] rounded-lg overflow-y-auto" style={{ maxHeight: "500px" }}>
+                <div className="space-y-4 p-4">
+                  {filteredDocuments.length > 0 ? (
+                    filteredDocuments.map((doc) => {
+                      const isSelected = selectedForExport.includes(doc.id);
+                      const typeColor = doc.type === "PDF" ? "#EF4444" : "#22C55E";
+                      const getIcon = () => doc.type === "PDF" ? <FileText className="h-5 w-5" /> : <File className="h-5 w-5" />;
+
+                      return (
+                        <div
+                          key={doc.id}
+                          className="bg-white border border-[#E5E7EB] rounded-lg p-4 hover:shadow-sm transition-shadow"
+                        >
+                          <div className="flex items-start gap-4">
+                            {/* Icon */}
+                            <div
+                              className="flex h-10 w-10 items-center justify-center rounded flex-shrink-0"
+                              style={{ backgroundColor: `${typeColor}20`, color: typeColor }}
+                            >
+                              {getIcon()}
+                            </div>
+
+                            {/* Content */}
+                            <div className="flex-1">
+                              <div className="flex items-center gap-2 mb-2">
+                                <span className="font-bold text-[#111827]">{doc.name}</span>
+                                <span className="text-xs font-medium bg-[#F3F4F6] text-[#6B7280] px-2 py-1 rounded-full">
+                                  {doc.type}
+                                </span>
+                                <span className="text-xs font-medium bg-green-100 text-green-700 px-2 py-1 rounded-full">
+                                  {doc.status}
+                                </span>
+                              </div>
+
+                              <div className="text-sm text-[#6B7280] mb-1">
+                                <span>{doc.size}</span>
+                                <span className="mx-2">•</span>
+                                <span>{doc.date}</span>
+                                <span className="mx-2">•</span>
+                                <span>{doc.uploader}</span>
+                              </div>
+
+                              <div className="text-xs text-[#9CA3AF] mb-2">{doc.category}</div>
+                              <div className="text-xs text-[#9CA3AF]">{doc.note}</div>
+                            </div>
+
+                            {/* Actions */}
+                            <div className="flex items-center gap-2 flex-shrink-0">
+                              <Button
+                                variant="ghost"
+                                className="h-8 w-8 p-0 hover:bg-gray-100"
+                                onClick={() => setViewDocument(doc.id)}
+                              >
+                                <Eye className="h-4 w-4 text-[#6B7280]" />
+                              </Button>
+                              <Button
+                                variant="ghost"
+                                className="h-8 w-8 p-0 hover:bg-gray-100"
+                                onClick={() => setDeleteConfirm(doc.id)}
+                              >
+                                <Trash2 className="h-4 w-4 text-[#6B7280]" />
+                              </Button>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })
+                  ) : (
+                    <div className="text-center py-8 text-[#9CA3AF]">No documents found.</div>
+                  )}
+                </div>
+              </div>
+            </div>
           </TabsContent>
+
+          {/* Export Modal */}
+          {showExportModal && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+              <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+                <h3 className="text-lg font-bold text-[#111827] mb-4">Export Documents</h3>
+                <p className="text-sm text-[#6B7280] mb-4">Select documents to download/export:</p>
+
+                <div className="space-y-3 mb-6 max-h-64 overflow-y-auto">
+                  {documents.map((doc) => (
+                    <div key={doc.id} className="flex items-center">
+                      <input
+                        type="checkbox"
+                        id={`export-${doc.id}`}
+                        checked={selectedForExport.includes(doc.id)}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setSelectedForExport([...selectedForExport, doc.id]);
+                          } else {
+                            setSelectedForExport(selectedForExport.filter((id) => id !== doc.id));
+                          }
+                        }}
+                        className="h-4 w-4 rounded border-[#E5E7EB] text-blue-600 cursor-pointer"
+                      />
+                      <label htmlFor={`export-${doc.id}`} className="ml-3 text-sm text-[#111827] cursor-pointer">
+                        {doc.name}
+                      </label>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex gap-3 justify-end">
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      setShowExportModal(false);
+                      setSelectedForExport([]);
+                    }}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    className="bg-blue-600 hover:bg-blue-700 text-white"
+                    onClick={() => {
+                      setShowExportModal(false);
+                      setSelectedForExport([]);
+                    }}
+                  >
+                    Export {selectedForExport.length > 0 ? `(${selectedForExport.length})` : ""}
+                  </Button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* View Document Modal */}
+          {viewDocument && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+              <div className="bg-white rounded-lg p-6 max-w-2xl w-full mx-4 max-h-96 overflow-y-auto">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-lg font-bold text-[#111827]">
+                    {documents.find((d) => d.id === viewDocument)?.name}
+                  </h3>
+                  <Button
+                    variant="ghost"
+                    className="h-6 w-6 p-0"
+                    onClick={() => setViewDocument(null)}
+                  >
+                    ✕
+                  </Button>
+                </div>
+                <div className="text-center py-12 bg-[#F9FAFB] rounded-lg text-[#9CA3AF]">
+                  Document preview would be displayed here
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Delete Confirmation Modal */}
+          {deleteConfirm && (
+            <AlertDialog open={true} onOpenChange={() => setDeleteConfirm(null)}>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Delete Document</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    Are you sure you want to delete "{documents.find((d) => d.id === deleteConfirm)?.name}"? This action cannot be undone.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <div className="flex gap-3 justify-end">
+                  <AlertDialogCancel onClick={() => setDeleteConfirm(null)}>
+                    Cancel
+                  </AlertDialogCancel>
+                  <AlertDialogAction
+                    className="bg-red-600 hover:bg-red-700 text-white"
+                    onClick={() => {
+                      setDocuments(documents.filter((d) => d.id !== deleteConfirm));
+                      setDeleteConfirm(null);
+                    }}
+                  >
+                    Delete
+                  </AlertDialogAction>
+                </div>
+              </AlertDialogContent>
+            </AlertDialog>
+          )}
 
           <TabsContent value="timeline" className="mt-4">
             <Card className="p-4 text-sm text-muted-foreground">No timeline events yet.</Card>
