@@ -2930,12 +2930,12 @@ export default function Index() {
                     <TableHeader>
                       <TableRow>
                         <TableHead className="px-3 py-3 text-sm font-semibold text-[#4B5563]">ID</TableHead>
-                        <TableHead className="px-3 py-3 text-sm font-semibold text-[#4B5563]">Employee Name</TableHead>
-                        <TableHead className="px-3 py-3 text-sm font-semibold text-[#4B5563]">Leave Type</TableHead>
-                        <TableHead className="px-3 py-3 text-sm font-semibold text-[#4B5563]">Period From</TableHead>
-                        <TableHead className="px-3 py-3 text-sm font-semibold text-[#4B5563]">Period To</TableHead>
-                        <TableHead className="px-3 py-3 text-sm font-semibold text-[#4B5563]">Status</TableHead>
-                        <TableHead className="px-3 py-3 text-sm font-semibold text-[#4B5563]">Action</TableHead>
+                        <TableHead className="px-3 py-3 text-sm font-semibold text-[#4B5563]">EMPLOYEE NAME</TableHead>
+                        <TableHead className="px-3 py-3 text-sm font-semibold text-[#4B5563]">LEAVE TYPE</TableHead>
+                        <TableHead className="px-3 py-3 text-sm font-semibold text-[#4B5563]">PERIOD FROM</TableHead>
+                        <TableHead className="px-3 py-3 text-sm font-semibold text-[#4B5563]">PERIOD TO</TableHead>
+                        <TableHead className="px-3 py-3 text-sm font-semibold text-[#4B5563]">STATUS</TableHead>
+                        <TableHead className="px-3 py-3 text-sm font-semibold text-[#4B5563]">ACTION</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
