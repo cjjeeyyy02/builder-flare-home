@@ -2328,7 +2328,9 @@ export default function Index() {
                       className="h-10 w-[280px] rounded-[6px] border border-[#D1D5DB] px-3 text-[14px] font-normal text-[#111827] placeholder:text-[#9CA3AF]"
                     />
                     <div className="flex items-center gap-3">
-                      <span className="text-sm text-[#6B7280]">Today • {todaySlash}</span>
+                      <span className="text-sm text-[#6B7280]">
+                        {tsRange === "monthly" ? monthlyDisplay : `Today • ${todaySlash}`}
+                      </span>
                       <div className="flex items-center gap-1">
                         {(["daily", "weekly", "monthly"] as const).map((k) => (
                           <button
