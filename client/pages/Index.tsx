@@ -1084,9 +1084,9 @@ export default function Index() {
     { empId: "E-1002", name: "Maria Gomez", days: [0, 0, 0, 0, 0, 0, 0, 0, 0, "L", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "H", "H", 0, 0, 0, 0, 0, 0, 0, 0, 0], hoursWorked: "0", scheduled: "160" },
   ];
   type LeaveBalance = { leaveType: string; leaveTaken: number; leaveBalance: number };
-  type EmployeeLeaveBalance = { empId: string; name: string; balances: LeaveBalance[] };
+  type EmployeeLeaveBalance = { empId: string; name: string; department: string; position: string; balances: LeaveBalance[] };
   const EMPLOYEE_LEAVE_BALANCES: EmployeeLeaveBalance[] = [
-    { empId: "EMP001", name: "Sarah Mitchell", balances: [
+    { empId: "EMP001", name: "Sarah Mitchell", department: "Engineering", position: "Senior Software Engineer", balances: [
       { leaveType: "Annual Leave", leaveTaken: 7, leaveBalance: 13 },
       { leaveType: "Sick Leave", leaveTaken: 3, leaveBalance: 7 },
       { leaveType: "Personal Leave", leaveTaken: 2, leaveBalance: 4 },
