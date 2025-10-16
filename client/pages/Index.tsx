@@ -1548,7 +1548,7 @@ export default function Index() {
       (e) => e.department.toLowerCase() === d.toLowerCase(),
     );
     if (!list.length) return `No employees found in ${d}.`;
-    return `${d} (${list.length}):\n${list.map((e) => `• ${e.firstName} ${e.lastName} – ${e.role} (${e.status})`).join("\n")}`;
+    return `${d} (${list.length}):\n${list.map((e) => `• ${e.firstName} ${e.lastName} �� ${e.role} (${e.status})`).join("\n")}`;
   }
 
   function getAssistantReply(q: string): string {
@@ -2403,7 +2403,7 @@ export default function Index() {
                                 <TableCell key={`${r.empId}-day-${idx}`} className="px-3 py-2 text-[#111827]">{day}</TableCell>
                               ))}
                               <TableCell className="px-3 py-2 text-red-600 font-semibold">{r.hoursWorked}</TableCell>
-                              <TableCell className="px-3 py-2 text-red-600 font-semibold text-center">{r.scheduled}</TableCell>
+                              <TableCell className="px-3 py-2 text-red-600 font-semibold flex items-center justify-center">{r.scheduled}</TableCell>
                             </TableRow>
                           ))}
                         </TableBody>
