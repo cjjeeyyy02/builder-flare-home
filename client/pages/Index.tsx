@@ -2897,8 +2897,21 @@ export default function Index() {
               </div>
 
               {leaveView === "requests" ? (
-                <div className="overflow-hidden rounded-lg border">
-                  <Table className="text-sm">
+                <div>
+                  <div className="mb-4">
+                    <Input
+                      type="text"
+                      placeholder="Search Employee name, ID..."
+                      value={lrSearch}
+                      onChange={(e) => {
+                        setLrSearch(e.target.value);
+                        setLrPage(0);
+                      }}
+                      className="h-9 rounded-md border border-[#E5E7EB] px-3 text-sm"
+                    />
+                  </div>
+                  <div className="overflow-hidden rounded-lg border">
+                    <Table className="text-sm">
                     <TableHeader>
                       <TableRow>
                         <TableHead className="px-3 py-3 text-sm font-semibold text-[#4B5563]">ID</TableHead>
@@ -2951,8 +2964,9 @@ export default function Index() {
                         </TableRow>
                       ))}
                     </TableBody>
-                  </Table>
-                  <div className="px-3 py-2 text-xs text-muted-foreground">&lt;Pagination here&gt;</div>
+                    </Table>
+                    <div className="px-3 py-2 text-xs text-muted-foreground">&lt;Pagination here&gt;</div>
+                  </div>
                 </div>
               ) : (
                 <div className="rounded-lg border">
