@@ -1174,8 +1174,8 @@ export default function Index() {
       { name: "Maria", time: "10–19", id: "wed-4" },
     ]},
     { day: "Thu", slots: [
-      { name: "Alex", time: "9–18" },
-      { name: "Maria", time: "10–19" },
+      { name: "Alex", time: "9–18", id: "thu-1" },
+      { name: "Maria", time: "10–19", id: "thu-2" },
       { name: "Jordan", time: "9�����18" },
     ]},
     { day: "Fri", slots: [
