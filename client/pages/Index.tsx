@@ -2883,10 +2883,11 @@ export default function Index() {
                   </Button>
                   <Button
                     type="button"
-                    className="h-9 rounded-md px-3 text-sm font-medium bg-[#2563EB] text-white hover:bg-[#1D4ED8]"
+                    variant="outline"
+                    className="h-8 rounded-md px-3 text-xs bg-white text-[#374151] border border-[#d1d5db] hover:bg-gray-50"
                     onClick={exportLeavesCSV}
                   >
-                    Export
+                    <Download className="mr-1.5 h-4 w-4" /> Export
                   </Button>
                 </div>
               </div>
