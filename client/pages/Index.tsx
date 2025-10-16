@@ -2995,15 +2995,25 @@ export default function Index() {
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 items-start">
-                    {SHIFT_DAYS.map((d) => (
-                      <div key={d.day} className="flex flex-col gap-2 rounded-[8px] border border-[#E5E7EB] bg-white p-4 shadow-[0_1px_2px_rgba(0,0,0,0.05)]">
+                    {shiftDays.map((d) => (
+                      <div
+                        key={d.day}
+                        className="flex flex-col gap-2 rounded-[8px] border border-[#E5E7EB] bg-white p-4 shadow-[0_1px_2px_rgba(0,0,0,0.05)] min-h-[200px]"
+                        onDragOver={handleDragOver}
+                        onDrop={() => handleDrop(d.day)}
+                      >
                         <div className="flex items-center justify-between text-[14px] font-semibold text-[#111827]">
                           <span>{d.day}</span>
                           <span className="text-[12px] font-normal text-[#6B7280]">{d.slots.length} slots</span>
                         </div>
                         <div className="space-y-1.5">
-                          {d.slots.map((s, i) => (
-                            <div key={i} className="rounded-[6px] border border-[#E5E7EB] bg-[#F9FAFB] px-[10px] py-[6px] text-[13px] text-[#111827]">
+                          {d.slots.map((s) => (
+                            <div
+                              key={s.id}
+                              draggable
+                              onDragStart={() => handleDragStart(d.day, s.id)}
+                              className="rounded-[6px] border border-[#E5E7EB] bg-[#F9FAFB] px-[10px] py-[6px] text-[13px] text-[#111827] cursor-move hover:bg-[#E5E7EB] transition-colors"
+                            >
                               {s.name} - {s.time}
                             </div>
                           ))}
