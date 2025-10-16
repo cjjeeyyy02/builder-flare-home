@@ -129,6 +129,41 @@ export default function ViewDetails() {
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
   const [viewDocument, setViewDocument] = useState<string | null>(null);
 
+  const [timelineFilter, setTimelineFilter] = useState("All Events");
+
+  const timelineEvents = [
+    {
+      id: "te1",
+      title: "Case Created",
+      timestamp: "December 15, 2023 at 9:30 AM",
+      description: "Offboarding case initiated for Sarah Johnson",
+      status: "completed",
+      dotColor: "#22C55E",
+    },
+    {
+      id: "te2",
+      title: "HR Documentation Completed",
+      timestamp: "January 4, 2024 at 2:15 PM",
+      description: "Employee records updated and termination letter generated",
+      status: "completed",
+      dotColor: "#3B82F6",
+    },
+    {
+      id: "te3",
+      title: "IT Asset Collection In Progress",
+      timestamp: "January 8, 2024 at 10:00 AM",
+      description: "Asset collection meeting scheduled with IT team",
+      status: "in-progress",
+      dotColor: "#F59E0B",
+    },
+  ];
+
+  const filteredTimeline = timelineEvents.filter((event) => {
+    if (timelineFilter === "Completed Only") return event.status === "completed";
+    if (timelineFilter === "In Progress Only") return event.status === "in-progress";
+    return true;
+  });
+
   const filteredDocuments = documents.filter((doc) => {
     const matchesSearch = doc.name.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesFilter = filterCategory === "All Categories" || doc.category === filterCategory;
