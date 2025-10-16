@@ -63,10 +63,27 @@ export default function ViewDetails() {
       status: "Pending",
     },
   ];
-  const comments = [
-    { id: "c1", author: "John Smith", text: "Prepared exit checklist." },
-    { id: "c2", author: "HR Team", text: "Exit interview scheduled for 2024-01-12." },
+  const initialComments = [
+    {
+      id: "c1",
+      author: "Jane Smith",
+      role: "HR Manager",
+      timestamp: "2023-12-15 09:30 AM",
+      text: "Employee submitted resignation letter. Two weeks notice provided as per policy.",
+      initials: "JS",
+    },
+    {
+      id: "c2",
+      author: "Mike Chen",
+      role: "IT Administrator",
+      timestamp: "2023-12-18 02:15 PM",
+      text: "Asset collection reminder sent to employee. Meeting scheduled for next Tuesday.",
+      initials: "MC",
+    },
   ];
+
+  const [caseComments, setCaseComments] = useState(initialComments);
+  const [newComment, setNewComment] = useState("");
   const documents = [
     { id: "d1", name: "Resignation Letter.pdf" },
     { id: "d2", name: "Handover Checklist.docx" },
