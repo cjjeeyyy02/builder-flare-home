@@ -2407,6 +2407,27 @@ export default function Index() {
                           ))}
                         </TableBody>
                       </Table>
+                      <div className="flex items-center justify-end gap-2 border-t px-3 py-2 text-xs">
+                        <div className="flex items-center gap-2">
+                          <Button
+                            variant="outline"
+                            className="h-7 w-7 rounded-md p-0"
+                            onClick={() => setWeeklyPage(Math.max(0, weeklyPage - 1))}
+                            disabled={weeklyPage === 0}
+                          >
+                            <ChevronLeft className="h-4 w-4" />
+                          </Button>
+                          <span className="text-[#6B7280] text-xs">{weeklyPage + 1}</span>
+                          <Button
+                            variant="outline"
+                            className="h-7 w-7 rounded-md p-0"
+                            onClick={() => setWeeklyPage(weeklyPage + 1)}
+                            disabled={(weeklyPage + 1) * itemsPerPage >= WEEKLY_DATA.length}
+                          >
+                            <ChevronRight className="h-4 w-4" />
+                          </Button>
+                        </div>
+                      </div>
                     </div>
                   ) : tsRange === "monthly" ? (
                     <div className="overflow-hidden rounded-lg border border-[#E5E7EB]">
