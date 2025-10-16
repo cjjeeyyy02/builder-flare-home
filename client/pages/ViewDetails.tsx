@@ -692,7 +692,56 @@ export default function ViewDetails() {
           )}
 
           <TabsContent value="timeline" className="mt-4">
-            <Card className="p-4 text-sm text-muted-foreground">No timeline events yet.</Card>
+            <div>
+              {/* Header Section */}
+              <div className="mb-6">
+                <h3 className="text-lg font-bold text-[#111827]">Case Timeline</h3>
+                <p className="text-sm text-[#6B7280]">Chronological history of this offboarding case.</p>
+              </div>
+
+              {/* Filter Dropdown */}
+              <div className="mb-6">
+                <select
+                  value={timelineFilter}
+                  onChange={(e) => setTimelineFilter(e.target.value)}
+                  className="rounded border border-[#E5E7EB] bg-white px-3 py-2 text-sm text-[#111827]"
+                >
+                  <option value="All Events">All Events</option>
+                  <option value="Completed Only">Completed Only</option>
+                  <option value="In Progress Only">In Progress Only</option>
+                </select>
+              </div>
+
+              {/* Timeline Container */}
+              <div className="relative pl-6">
+                {/* Vertical Line */}
+                <div className="absolute left-2 top-0 bottom-0 w-0.5 bg-[#E5E7EB]" />
+
+                {/* Timeline Events */}
+                <div className="space-y-5">
+                  {filteredTimeline.length > 0 ? (
+                    filteredTimeline.map((event, index) => (
+                      <div key={event.id} className="relative">
+                        {/* Status Dot */}
+                        <div
+                          className="absolute -left-4 top-1 w-3 h-3 rounded-full border-2 border-white"
+                          style={{ backgroundColor: event.dotColor }}
+                        />
+
+                        {/* Content */}
+                        <div className="pl-6">
+                          <h4 className="font-bold text-[16px] text-[#111827]">{event.title}</h4>
+                          <p className="text-[13px] text-[#6B7280] mt-1">{event.timestamp}</p>
+                          <p className="text-[14px] text-[#4B5563] mt-2">{event.description}</p>
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <div className="text-center py-8 text-[#9CA3AF]">No timeline events found.</div>
+                  )}
+                </div>
+              </div>
+            </div>
           </TabsContent>
         </Tabs>
       </div>
