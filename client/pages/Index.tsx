@@ -60,7 +60,7 @@ import {
   X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { LogOut, Clock, CheckCircle, AlertTriangle, Plus, Download } from "lucide-react";
+import { LogOut, Clock, CheckCircle, AlertTriangle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import {
@@ -2269,7 +2269,7 @@ export default function Index() {
                           {d.uploadDate}
                         </TableCell>
                         <TableCell className="px-2 py-1 text-xs leading-tight">
-                          {d.expirationDate ?? "—"}
+                          {d.expirationDate ?? "��"}
                         </TableCell>
                         <TableCell className="px-2 py-1 text-xs leading-tight">
                           {d.uploadedBy}
