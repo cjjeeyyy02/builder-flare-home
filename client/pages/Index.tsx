@@ -1194,7 +1194,7 @@ export default function Index() {
 
   function getInOutTimes(e: Employee): { in: string; out: string } {
     const s = getAttendanceStatus(e);
-    if (s === "Absent") return { in: "—", out: "—" };
+    if (s === "Absent") return { in: "��", out: "—" };
     if (s === "Late") return { in: "09:15 am", out: "05:30 pm" };
     return { in: "09:00 am", out: "05:30 pm" };
   }
@@ -3031,11 +3031,13 @@ export default function Index() {
                         <div className="flex-1 text-sm font-medium text-[#111827] pl-4 text-left">{emp.name}</div>
                         <div className="flex-1 text-sm text-[#111827] pl-4 text-left">{emp.department}</div>
                         <div className="flex-1 text-sm text-[#111827] pl-4 text-left">{emp.position}</div>
-                        {expandedEmployee === emp.empId ? (
-                          <ChevronLeft className="h-5 w-5 text-[#111827] rotate-90 flex-shrink-0 pr-4" />
-                        ) : (
-                          <ChevronDown className="h-5 w-5 text-[#111827] flex-shrink-0 pr-4" />
-                        )}
+                        <div className="w-10 flex items-center justify-center">
+                          {expandedEmployee === emp.empId ? (
+                            <ChevronLeft className="h-5 w-5 text-[#111827] rotate-90" />
+                          ) : (
+                            <ChevronDown className="h-5 w-5 text-[#111827]" />
+                          )}
+                        </div>
                       </button>
                       {expandedEmployee === emp.empId && (
                         <div className="bg-[#F9FAFB] px-4 py-3 border-t">
