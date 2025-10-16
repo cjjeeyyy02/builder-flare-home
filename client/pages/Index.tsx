@@ -2897,17 +2897,33 @@ export default function Index() {
 
               {leaveView === "requests" ? (
                 <div>
-                  <div className="mb-4">
-                    <Input
-                      type="text"
-                      placeholder="Search Employee name, ID..."
-                      value={lrSearch}
-                      onChange={(e) => {
-                        setLrSearch(e.target.value);
-                        setLrPage(0);
-                      }}
-                      className="h-9 rounded-md border border-[#E5E7EB] px-3 text-sm"
-                    />
+                  <div className="mb-4 flex items-center gap-3">
+                    <div className="flex-shrink-0 w-64">
+                      <Input
+                        type="text"
+                        placeholder="Search Employee name, ID..."
+                        value={lrSearch}
+                        onChange={(e) => {
+                          setLrSearch(e.target.value);
+                          setLrPage(0);
+                        }}
+                        className="h-9 rounded-md border border-[#E5E7EB] px-3 text-sm"
+                      />
+                    </div>
+                    <Select value={lrTypeFilter} onValueChange={(value) => {
+                      setLrTypeFilter(value);
+                      setLrPage(0);
+                    }}>
+                      <SelectTrigger className="w-40 h-9 rounded-md border border-[#E5E7EB]">
+                        <SelectValue placeholder="All Leave Types" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="">All Leave Types</SelectItem>
+                        <SelectItem value="Annual Leave">Annual Leave</SelectItem>
+                        <SelectItem value="Sick Leave">Sick Leave</SelectItem>
+                        <SelectItem value="Personal Leave">Personal Leave</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
                   <div className="overflow-hidden rounded-lg border">
                     <Table className="text-sm">
