@@ -3067,7 +3067,7 @@ export default function Index() {
                             days: Math.ceil((new Date(lrTo).getTime() - new Date(lrFrom).getTime()) / (1000 * 60 * 60 * 24)) + 1,
                             status: "Pending",
                           };
-                          setLeaveRequests([...leaveRequests, newRequest]);
+                          setLeaves((prev) => [...prev, newRequest]);
                           setLrCreateOpen(false);
                           setLrEmployee("");
                           setLrType("Annual Leave");
