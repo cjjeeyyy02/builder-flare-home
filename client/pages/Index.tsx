@@ -2918,7 +2918,7 @@ export default function Index() {
                         <SelectValue placeholder="All Leave Types" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="">All Leave Types</SelectItem>
+                        <SelectItem value="all">All Leave Types</SelectItem>
                         <SelectItem value="Annual Leave">Annual Leave</SelectItem>
                         <SelectItem value="Sick Leave">Sick Leave</SelectItem>
                         <SelectItem value="Personal Leave">Personal Leave</SelectItem>
