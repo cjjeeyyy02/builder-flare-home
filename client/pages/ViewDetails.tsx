@@ -51,20 +51,6 @@ export default function ViewDetails() {
                 </div>
               </div>
 
-              <div className="mt-4 space-y-3 text-[13px]">
-                <div>
-                  <div className="font-medium text-[#6B7280]">Employee ID</div>
-                  <div className="text-[#111827] font-semibold">{id ?? "EMP001"}</div>
-                </div>
-                <div>
-                  <div className="font-medium text-[#6B7280]">Email</div>
-                  <div className="text-[#111827] font-semibold break-all">sarah.johnson@ai2aim.com</div>
-                </div>
-                <div>
-                  <div className="font-medium text-[#6B7280]">Location</div>
-                  <div className="text-[#111827] font-semibold">New York, NY</div>
-                </div>
-              </div>
             </div>
 
             {/* Right: Three Mini-Cards Container */}
