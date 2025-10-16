@@ -213,13 +213,72 @@ export default function ViewDetails() {
           </div>
 
           <TabsContent value="tasks" className="mt-4">
-            <Card className="p-4">
-              <ul className="list-disc pl-5 text-sm">
-                {tasks.map((t) => (
-                  <li key={t.id}>{t.title}</li>
-                ))}
-              </ul>
-            </Card>
+            <div>
+              {/* Header */}
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <h3 className="text-lg font-bold text-[#111827]">Offboarding Tasks</h3>
+                  <p className="text-sm text-[#6B7280]">Track completion of required offboarding activities.</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <select className="rounded border border-[#E5E7EB] bg-white px-3 py-2 text-sm text-[#111827]">
+                    <option value="all">All Tasks</option>
+                    <option value="completed">Completed</option>
+                    <option value="pending">Pending</option>
+                    <option value="in-progress">In Progress</option>
+                  </select>
+                  <Button className="bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-2">
+                    <Plus className="h-4 w-4" />
+                    Add Task
+                  </Button>
+                </div>
+              </div>
+
+              {/* Task Cards */}
+              <div className="space-y-3">
+                {offboardingTasks.map((task) => {
+                  const statusColors = {
+                    "Completed": "bg-green-100 text-green-700",
+                    "In Progress": "bg-blue-100 text-blue-700",
+                    "Pending": "bg-yellow-100 text-yellow-700",
+                  };
+
+                  const priorityColors = {
+                    "High": "bg-red-100 text-red-700",
+                    "Medium": "bg-yellow-100 text-yellow-700",
+                    "Low": "bg-green-100 text-green-700",
+                  };
+
+                  return (
+                    <div key={task.id} className="bg-white border border-[#E5E7EB] rounded-lg p-4">
+                      <div className="flex items-start justify-between">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 mb-2">
+                            <h4 className="font-bold text-[#111827]">{task.title}</h4>
+                            <span className="rounded-full bg-[#F3F4F6] px-2 py-1 text-[11px] font-medium text-[#6B7280]">{task.department}</span>
+                            <span className={`rounded-full px-2 py-1 text-[11px] font-medium ${priorityColors[task.priority]}`}>{task.priority}</span>
+                          </div>
+                          <p className="text-sm text-[#6B7280] mb-3">{task.description}</p>
+                          <div className="flex flex-wrap gap-3 text-xs">
+                            <div><span className="text-[#6B7280]">Assigned To:</span> <span className="font-medium text-[#111827]">{task.assignedTo}</span></div>
+                            <div className="flex items-center gap-1"><Calendar className="h-3 w-3 text-[#6B7280]" /> <span className="text-[#6B7280]">Due:</span> <span className="font-medium text-[#111827]">{task.dueDate}</span></div>
+                            {task.completedDate && (
+                              <div className="flex items-center gap-1"><CheckCircle className="h-3 w-3 text-green-600" /> <span className="text-[#6B7280]">Completed:</span> <span className="font-medium text-[#111827]">{task.completedDate}</span></div>
+                            )}
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2 ml-4">
+                          <span className={`rounded-full px-3 py-1 text-xs font-medium ${statusColors[task.status]}`}>{task.status}</span>
+                          <Button variant="ghost" className="h-8 w-8 p-0 hover:bg-gray-100">
+                            <Pencil className="h-4 w-4 text-[#6B7280]" />
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </TabsContent>
 
           <TabsContent value="comments" className="mt-4">
