@@ -1103,7 +1103,7 @@ export default function Index() {
   ];
   type MonthlyRow = { empId: string; name: string; days: (string | number)[]; hoursWorked: string; scheduled: string };
   const MONTHLY_DATA: MonthlyRow[] = [
-    { empId: "1001", name: "Alex Chen", days: [0, 0, 0, "H", "H", 0, 0, 0, 0, "9.0/8h", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "H", "H", 0, 0, 0, 0, 0, 0, 0, 0, 0], hoursWorked: "152", scheduled: "160" },
+    { empId: "1001", name: "Alex Chen", days: [0, 0, 0, "H", "H", 0, 0, 0, 0, "8h", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "H", "H", 0, 0, 0, 0, 0, 0, 0, 0, 0], hoursWorked: "152", scheduled: "160" },
     { empId: "1002", name: "Maria Gomez", days: [0, 0, 0, 0, 0, 0, 0, 0, 0, "L", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "H", "H", 0, 0, 0, 0, 0, 0, 0, 0, 0], hoursWorked: "0", scheduled: "160" },
   ];
   type LeaveBalance = { leaveType: string; leaveTaken: number; leaveBalance: number };
