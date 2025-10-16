@@ -3018,6 +3018,7 @@ export default function Index() {
                     <div className="flex-1 text-xs font-semibold text-[#4B5563] pl-4 text-left">EMPLOYEE NAME</div>
                     <div className="flex-1 text-xs font-semibold text-[#4B5563] pl-4 text-left">DEPARTMENT</div>
                     <div className="flex-1 text-xs font-semibold text-[#4B5563] pl-4 text-left">POSITION</div>
+                    <div className="w-10 text-xs font-semibold text-[#4B5563] text-center">ACTION</div>
                   </div>
                   {EMPLOYEE_LEAVE_BALANCES.map((emp) => (
                     <div key={emp.empId}>
