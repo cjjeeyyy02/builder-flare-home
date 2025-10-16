@@ -2373,7 +2373,7 @@ export default function Index() {
                               <TableCell className="px-3 py-2 text-[#111827]">{r.fri}</TableCell>
                               <TableCell className="px-3 py-2 text-[#111827]">{r.sat}</TableCell>
                               <TableCell className="px-3 py-2 text-[#111827]">{r.sun}</TableCell>
-                              <TableCell className="px-3 py-2 text-[#111827]">{r.scheduled}</TableCell>
+                              <TableCell className="px-3 py-2 text-[#111827] text-center">{r.scheduled}</TableCell>
                               <TableCell className="px-3 py-2 text-[#111827]">{r.worked}</TableCell>
                             </TableRow>
                           ))}
@@ -2403,7 +2403,7 @@ export default function Index() {
                                 <TableCell key={`${r.empId}-day-${idx}`} className="px-3 py-2 text-[#111827]">{day}</TableCell>
                               ))}
                               <TableCell className="px-3 py-2 text-red-600 font-semibold">{r.hoursWorked}</TableCell>
-                              <TableCell className="px-3 py-2 text-red-600 font-semibold">{r.scheduled}</TableCell>
+                              <TableCell className="px-3 py-2 text-red-600 font-semibold text-center">{r.scheduled}</TableCell>
                             </TableRow>
                           ))}
                         </TableBody>
@@ -2426,7 +2426,7 @@ export default function Index() {
                             <TableRow key={r.empId} className="hover:bg-[#F9FAFB]">
                               <TableCell className="px-3 py-2 text-[#111827]">{r.empId}</TableCell>
                               <TableCell className="px-3 py-2 text-[#111827]">{r.name}</TableCell>
-                              <TableCell className="px-3 py-2 text-[#111827]">{r.scheduled}</TableCell>
+                              <TableCell className="px-3 py-2 text-[#111827] text-center">{r.scheduled}</TableCell>
                               <TableCell className="px-3 py-2 text-[#111827]">{r.worked}</TableCell>
                               <TableCell className="px-3 py-2 text-[#111827]">{r.day}</TableCell>
                             </TableRow>
