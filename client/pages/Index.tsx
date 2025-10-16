@@ -2929,7 +2929,7 @@ export default function Index() {
                                 className="h-8 px-3 text-xs"
                                 onClick={() => {
                                   const updated = leaveRequests.map(r => r.empId === req.empId ? {...r, status: "Approved"} : r);
-                                  setLeaveReqs(updated);
+                                  setLeaveRequests(updated);
                                   toast({ title: "Leave Request Approved", description: `${req.employee}'s leave request has been approved.` });
                                 }}
                               >
@@ -2940,7 +2940,7 @@ export default function Index() {
                                 className="h-8 px-3 text-xs"
                                 onClick={() => {
                                   const updated = leaveRequests.map(r => r.empId === req.empId ? {...r, status: "Rejected"} : r);
-                                  setLeaveReqs(updated);
+                                  setLeaveRequests(updated);
                                   toast({ title: "Leave Request Rejected", description: `${req.employee}'s leave request has been rejected.` });
                                 }}
                               >
@@ -3071,7 +3071,7 @@ export default function Index() {
                             days: Math.ceil((new Date(lrTo).getTime() - new Date(lrFrom).getTime()) / (1000 * 60 * 60 * 24)) + 1,
                             status: "Pending",
                           };
-                          setLeaveReqs([...leaveRequests, newRequest]);
+                          setLeaveRequests([...leaveRequests, newRequest]);
                           setLrCreateOpen(false);
                           setLrEmployee("");
                           setLrType("Annual Leave");
