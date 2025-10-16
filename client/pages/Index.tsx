@@ -2912,18 +2912,54 @@ export default function Index() {
                 <div className="rounded-2xl border bg-card p-4 shadow-sm mt-4 font-poppins flex flex-col gap-3">
                   <div className="flex items-center justify-end gap-2">
                     <span className="text-sm text-[#6B7280]">Date</span>
-                    <Input
-                      type="date"
-                      value={shiftFrom}
-                      onChange={(e) => setShiftFrom(e.target.value)}
-                      className="h-9 w-[120px] rounded-[6px] border border-[#D1D5DB] px-[10px] text-[14px] text-[#111827]"
-                    />
-                    <Input
-                      type="date"
-                      value={shiftTo}
-                      onChange={(e) => setShiftTo(e.target.value)}
-                      className="h-9 w-[120px] rounded-[6px] border border-[#D1D5DB] px-[10px] text-[14px] text-[#111827]"
-                    />
+                    <Popover open={openFromPicker} onOpenChange={setOpenFromPicker}>
+                      <PopoverTrigger asChild>
+                        <Button
+                          variant="outline"
+                          className="h-9 w-[120px] rounded-[6px] border border-[#D1D5DB] px-[10px] text-[14px] text-[#111827] justify-start text-left font-normal"
+                        >
+                          {new Date(shiftFrom).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                        </Button>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-auto p-0" align="end">
+                        <Calendar
+                          mode="single"
+                          selected={new Date(shiftFrom)}
+                          onSelect={(date) => {
+                            if (date) {
+                              setShiftFrom(date.toISOString().slice(0, 10));
+                              setOpenFromPicker(false);
+                            }
+                          }}
+                          disabled={(date) => date > new Date()}
+                          initialFocus
+                        />
+                      </PopoverContent>
+                    </Popover>
+                    <Popover open={openToPicker} onOpenChange={setOpenToPicker}>
+                      <PopoverTrigger asChild>
+                        <Button
+                          variant="outline"
+                          className="h-9 w-[120px] rounded-[6px] border border-[#D1D5DB] px-[10px] text-[14px] text-[#111827] justify-start text-left font-normal"
+                        >
+                          {new Date(shiftTo).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                        </Button>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-auto p-0" align="end">
+                        <Calendar
+                          mode="single"
+                          selected={new Date(shiftTo)}
+                          onSelect={(date) => {
+                            if (date) {
+                              setShiftTo(date.toISOString().slice(0, 10));
+                              setOpenToPicker(false);
+                            }
+                          }}
+                          disabled={(date) => date > new Date()}
+                          initialFocus
+                        />
+                      </PopoverContent>
+                    </Popover>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 items-start">
