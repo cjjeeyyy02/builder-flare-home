@@ -39,6 +39,7 @@ export default function ViewDetails() {
         </div>
       </div>
 
+      {/* Personal Info Section */}
       <div className="mt-6">
         <Card className="bg-white rounded-lg p-6 border flex items-center gap-4" style={{ borderColor: "#E5E7EB", boxShadow: "0px 2px 6px rgba(0,0,0,0.05)", fontFamily: 'Poppins, sans-serif' }}>
           <div className="flex h-20 w-20 items-center justify-center rounded-full bg-[#F3F6F9] text-[#111827] font-bold text-xl flex-shrink-0">SJ</div>
@@ -67,89 +68,75 @@ export default function ViewDetails() {
         </Card>
       </div>
 
+      {/* Offboarding Summary Section */}
       <div className="mt-6">
         <Card className="bg-white rounded-lg p-6 border" style={{ borderColor: "#E5E7EB", boxShadow: "0px 2px 6px rgba(0,0,0,0.05)", fontFamily: 'Poppins, sans-serif' }}>
-          <div className="flex flex-col lg:flex-row gap-6">
-            {/* Left: Profile Badge Row */}
-            <div className="w-full lg:w-[220px] flex-shrink-0">
-              <div className="flex items-start gap-3">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#F3F4F6] text-[#111827] font-bold text-lg">SJ</div>
-                <div className="flex-1">
-                  <div className="text-[18px] font-semibold text-[#111827]">Sarah Johnson</div>
-                  <div className="text-[14px] text-[#6B7280]">Senior Developer</div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
+            {/* Exit Details Card */}
+            <div className="border border-[#E5E7EB] rounded-lg p-4 bg-white">
+              <div className="text-[16px] font-semibold text-[#111827] mb-3">Exit Details</div>
+              <div className="space-y-2 text-[13px]">
+                <div>
+                  <div className="text-[#6B7280] font-medium">Type</div>
+                  <div className="text-[#111827] font-semibold">Resignation</div>
+                </div>
+                <div>
+                  <div className="text-[#6B7280] font-medium">Last Working Day</div>
+                  <div className="text-[#111827] font-semibold">2024-01-15</div>
+                </div>
+                <div>
+                  <div className="text-[#6B7280] font-medium">Notice Given</div>
+                  <div className="text-[#111827] font-semibold">2-weeks</div>
+                </div>
+                <div>
+                  <div className="text-[#6B7280] font-medium">Reason</div>
+                  <div className="text-[#111827] font-semibold">Career advancement</div>
                 </div>
               </div>
-
             </div>
 
-            {/* Right: Three Mini-Cards Container */}
-            <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-4">
-              {/* Exit Details Card */}
-              <div className="border border-[#E5E7EB] rounded-lg p-4 bg-white">
-                <div className="text-[16px] font-semibold text-[#111827] mb-3">Exit Details</div>
-                <div className="space-y-2 text-[13px]">
-                  <div>
-                    <div className="text-[#6B7280] font-medium">Type</div>
-                    <div className="text-[#111827] font-semibold">Resignation</div>
-                  </div>
-                  <div>
-                    <div className="text-[#6B7280] font-medium">Last Working Day</div>
-                    <div className="text-[#111827] font-semibold">2024-01-15</div>
-                  </div>
-                  <div>
-                    <div className="text-[#6B7280] font-medium">Notice Given</div>
-                    <div className="text-[#111827] font-semibold">2-weeks</div>
-                  </div>
-                  <div>
-                    <div className="text-[#6B7280] font-medium">Reason</div>
-                    <div className="text-[#111827] font-semibold">Career advancement</div>
-                  </div>
+            {/* Employment Info Card */}
+            <div className="border border-[#E5E7EB] rounded-lg p-4 bg-white">
+              <div className="text-[16px] font-semibold text-[#111827] mb-3">Employment Info</div>
+              <div className="space-y-2 text-[13px]">
+                <div>
+                  <div className="text-[#6B7280] font-medium">Department</div>
+                  <div className="text-[#111827] font-semibold">Engineering</div>
+                </div>
+                <div>
+                  <div className="text-[#6B7280] font-medium">Manager</div>
+                  <div className="text-[#111827] font-semibold">John Smith</div>
+                </div>
+                <div>
+                  <div className="text-[#6B7280] font-medium">Start Date</div>
+                  <div className="text-[#111827] font-semibold">2022-03-15</div>
                 </div>
               </div>
+            </div>
 
-              {/* Employment Info Card */}
-              <div className="border border-[#E5E7EB] rounded-lg p-4 bg-white">
-                <div className="text-[16px] font-semibold text-[#111827] mb-3">Employment Info</div>
-                <div className="space-y-2 text-[13px]">
-                  <div>
-                    <div className="text-[#6B7280] font-medium">Department</div>
-                    <div className="text-[#111827] font-semibold">Engineering</div>
-                  </div>
-                  <div>
-                    <div className="text-[#6B7280] font-medium">Manager</div>
-                    <div className="text-[#111827] font-semibold">John Smith</div>
-                  </div>
-                  <div>
-                    <div className="text-[#6B7280] font-medium">Start Date</div>
-                    <div className="text-[#111827] font-semibold">2022-03-15</div>
-                  </div>
-                </div>
+            {/* Case Info Card */}
+            <div className="border border-[#E5E7EB] rounded-lg p-4 bg-white">
+              <div className="flex items-center justify-between mb-3">
+                <div className="text-[16px] font-semibold text-[#111827]">Case Info</div>
+                <span className="rounded-[20px] bg-[#E0F2FE] px-3 py-1 text-xs font-medium text-[#1D4ED8]">In Progress</span>
               </div>
 
-              {/* Case Info Card */}
-              <div className="border border-[#E5E7EB] rounded-lg p-4 bg-white">
-                <div className="flex items-center justify-between mb-3">
-                  <div className="text-[16px] font-semibold text-[#111827]">Case Info</div>
-                  <span className="rounded-[20px] bg-[#E0F2FE] px-3 py-1 text-xs font-medium text-[#1D4ED8]">In Progress</span>
-                </div>
+              <div className="mb-3 h-2 w-full rounded-[10px] bg-[#E5E7EB]">
+                <div className="h-2 w-[50%] rounded-[10px] bg-[#3B82F6]" />
+              </div>
 
-                <div className="mb-3 h-2 w-full rounded-[10px] bg-[#E5E7EB]">
-                  <div className="h-2 w-[50%] rounded-[10px] bg-[#3B82F6]" />
+              <div className="space-y-2 text-[13px]">
+                <div>
+                  <div className="text-[#6B7280] font-medium">Assigned To</div>
+                  <div className="text-[#111827] font-semibold">HR Team</div>
                 </div>
-
-                <div className="space-y-2 text-[13px]">
-                  <div>
-                    <div className="text-[#6B7280] font-medium">Assigned To</div>
-                    <div className="text-[#111827] font-semibold">HR Team</div>
-                  </div>
-                  <div>
-                    <div className="text-[#6B7280] font-medium">Rehire Eligible</div>
-                    <div className="text-[#111827] font-semibold">Yes</div>
-                  </div>
-                  <div>
-                    <div className="text-[#6B7280] font-medium">Urgent</div>
-                    <div className="text-[#111827] font-semibold">No</div>
-                  </div>
+                <div>
+                  <div className="text-[#6B7280] font-medium">Rehire Eligible</div>
+                  <div className="text-[#111827] font-semibold">Yes</div>
+                </div>
+                <div>
+                  <div className="text-[#6B7280] font-medium">Urgent</div>
+                  <div className="text-[#111827] font-semibold">No</div>
                 </div>
               </div>
             </div>
@@ -157,6 +144,7 @@ export default function ViewDetails() {
         </Card>
       </div>
 
+      {/* Tabs Section */}
       <div className="mt-6">
         <Tabs defaultValue="tasks">
           <div className="flex items-center justify-between border-b">
