@@ -2980,7 +2980,32 @@ export default function Index() {
                       ))}
                     </TableBody>
                     </Table>
-                    <div className="px-3 py-2 text-xs text-muted-foreground">&lt;Pagination here&gt;</div>
+                    <div className="flex items-center justify-between px-3 py-3 border-t border-[#E5E7EB]">
+                      <div className="flex items-center gap-2">
+                        <Button
+                          variant="outline"
+                          className="h-8 px-2 text-xs"
+                          onClick={() => setLrPage(Math.max(0, lrPage - 1))}
+                          disabled={lrPage === 0}
+                        >
+                          Previous
+                        </Button>
+                        <span className="text-xs text-[#6B7280]">
+                          Page {lrPage + 1} of {lrTotalPages}
+                        </span>
+                        <Button
+                          variant="outline"
+                          className="h-8 px-2 text-xs"
+                          onClick={() => setLrPage(Math.min(lrTotalPages - 1, lrPage + 1))}
+                          disabled={lrPage >= lrTotalPages - 1}
+                        >
+                          Next
+                        </Button>
+                      </div>
+                      <div className="text-xs text-[#6B7280]">
+                        {lrStart + 1}–{lrEnd} of {lrTotal} results
+                      </div>
+                    </div>
                   </div>
                 </div>
               ) : (
