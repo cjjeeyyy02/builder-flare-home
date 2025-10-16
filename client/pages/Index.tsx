@@ -1152,6 +1152,13 @@ export default function Index() {
   ];
   const [shiftFrom, setShiftFrom] = useState<string>(new Date().toISOString().slice(0, 10));
   const [shiftTo, setShiftTo] = useState<string>(new Date().toISOString().slice(0, 10));
+  const [openCreateLeave, setOpenCreateLeave] = useState(false);
+  const [leaveRequests, setLeaveRequests] = useState([
+    { id: "LR001", empName: "Sarah Mitchell", leaveType: "Annual Leave", periodFrom: "2025-10-20", periodTo: "2025-10-24", days: 5, status: "Approved" },
+    { id: "LR002", empName: "Daniel Nguyen", leaveType: "Sick Leave", periodFrom: "2025-10-16", periodTo: "2025-10-16", days: 1, status: "Pending" },
+    { id: "LR003", empName: "Priya Kumar", leaveType: "Personal Leave", periodFrom: "2025-10-18", periodTo: "2025-10-19", days: 2, status: "Rejected" },
+  ]);
+  const [formData, setFormData] = useState({ empName: "", leaveType: "", periodFrom: "", periodTo: "" });
   const navigate = useNavigate();
 
   // Role-based permissions (admin | hr | employee)
