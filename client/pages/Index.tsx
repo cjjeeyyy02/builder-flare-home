@@ -1144,7 +1144,7 @@ export default function Index() {
     { day: "Thu", slots: [
       { name: "Alex", time: "9–18" },
       { name: "Maria", time: "10–19" },
-      { name: "Jordan", time: "9–18" },
+      { name: "Jordan", time: "9���18" },
     ]},
     { day: "Fri", slots: [
       { name: "Alex", time: "9–18" },
@@ -2433,6 +2433,11 @@ export default function Index() {
                           ))}
                         </TableBody>
                       </Table>
+                      <div className="flex items-center justify-end gap-2 border-t px-3 py-2 text-xs">
+                        <div className="flex items-center gap-2">
+                          <MoreVertical className="h-4 w-4 text-muted-foreground" />
+                        </div>
+                      </div>
                     </div>
                   )}
                 </div>
