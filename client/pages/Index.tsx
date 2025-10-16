@@ -1755,11 +1755,6 @@ export default function Index() {
               />
             </section>
 
-            <div className="mt-4 flex flex-wrap items-center gap-2">
-              <Button variant="outline" className="h-9" disabled>Start Offboarding</Button>
-              <Button variant="outline" className="h-9" disabled>View Task</Button>
-              <Button variant="outline" className="h-9" disabled>Exit Interviews</Button>
-            </div>
 
 
             {view === "table" ? (
