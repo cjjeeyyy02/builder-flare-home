@@ -1186,6 +1186,8 @@ export default function Index() {
   ];
   const [shiftFrom, setShiftFrom] = useState<string>(new Date().toISOString().slice(0, 10));
   const [shiftTo, setShiftTo] = useState<string>(new Date().toISOString().slice(0, 10));
+  const [openFromPicker, setOpenFromPicker] = useState(false);
+  const [openToPicker, setOpenToPicker] = useState(false);
   const [openCreateLeave, setOpenCreateLeave] = useState(false);
   const [formData, setFormData] = useState({ empName: "", leaveType: "", periodFrom: "", periodTo: "" });
   // Use `leaves` state for leave requests list (defined below as LeaveReq[]). Remove duplicate leaveRequests state.
