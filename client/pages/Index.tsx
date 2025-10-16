@@ -3024,13 +3024,16 @@ export default function Index() {
                       <button
                         type="button"
                         onClick={() => setExpandedEmployee(expandedEmployee === emp.empId ? null : emp.empId)}
-                        className="w-full px-4 py-3 flex items-center justify-between hover:bg-[#F9FAFB] transition"
+                        className="w-full px-4 py-3 flex items-center gap-4 hover:bg-[#F9FAFB] transition"
                       >
-                        <span className="text-sm font-medium text-[#111827]">{emp.name}</span>
+                        <div className="flex-1 text-sm text-[#111827]">{emp.empId}</div>
+                        <div className="flex-1 text-sm font-medium text-[#111827]">{emp.name}</div>
+                        <div className="flex-1 text-sm text-[#111827]">{emp.department}</div>
+                        <div className="flex-1 text-sm text-[#111827]">{emp.position}</div>
                         {expandedEmployee === emp.empId ? (
-                          <ChevronLeft className="h-5 w-5 text-[#111827] rotate-90" />
+                          <ChevronLeft className="h-5 w-5 text-[#111827] rotate-90 flex-shrink-0" />
                         ) : (
-                          <ChevronDown className="h-5 w-5 text-[#111827]" />
+                          <ChevronDown className="h-5 w-5 text-[#111827] flex-shrink-0" />
                         )}
                       </button>
                       {expandedEmployee === emp.empId && (
