@@ -300,15 +300,87 @@ export default function ViewDetails() {
           </TabsContent>
 
           <TabsContent value="comments" className="mt-4">
-            <Card className="p-4">
-              <ul className="space-y-2 text-sm">
-                {comments.map((c) => (
-                  <li key={c.id}>
-                    <span className="font-medium">{c.author}:</span> {c.text}
-                  </li>
+            <div>
+              {/* Header */}
+              <div className="mb-6">
+                <h3 className="text-lg font-bold text-[#111827]">Case Comments</h3>
+                <p className="text-sm text-[#6B7280]">Communication and updates related to this offboarding case.</p>
+              </div>
+
+              {/* Comments List */}
+              <div className="space-y-4 mb-6">
+                {caseComments.map((comment) => (
+                  <div key={comment.id} className="bg-white border border-[#E5E7EB] rounded-lg p-4 hover:shadow-sm transition-shadow group">
+                    <div className="flex gap-3">
+                      {/* Avatar */}
+                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#F3F4F6] text-[#111827] font-bold text-sm flex-shrink-0">
+                        {comment.initials}
+                      </div>
+
+                      {/* Comment Content */}
+                      <div className="flex-1">
+                        <div className="flex items-start justify-between">
+                          <div className="flex items-center gap-2">
+                            <span className="font-bold text-[#111827]">{comment.author}</span>
+                            <span className="text-xs text-[#6B7280]">{comment.role}</span>
+                            <span className="text-xs text-[#9CA3AF]">{comment.timestamp}</span>
+                          </div>
+                          <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <Button variant="ghost" className="h-6 w-6 p-0 hover:bg-gray-100">
+                              <Pencil className="h-3.5 w-3.5 text-[#6B7280]" />
+                            </Button>
+                            <Button variant="ghost" className="h-6 w-6 p-0 hover:bg-gray-100" onClick={() => setCaseComments(caseComments.filter(c => c.id !== comment.id))}>
+                              <Trash2 className="h-3.5 w-3.5 text-[#6B7280]" />
+                            </Button>
+                          </div>
+                        </div>
+                        <p className="mt-2 text-sm text-[#111827]">{comment.text}</p>
+                      </div>
+                    </div>
+                  </div>
                 ))}
-              </ul>
-            </Card>
+              </div>
+
+              {/* Add Comment Section */}
+              <div className="bg-white border border-[#E5E7EB] rounded-lg p-4">
+                <div className="flex gap-3 items-end">
+                  {/* Avatar */}
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#F3F4F6] text-[#111827] font-bold text-sm flex-shrink-0">
+                    AD
+                  </div>
+
+                  {/* Input */}
+                  <input
+                    type="text"
+                    placeholder="Add a comment…"
+                    value={newComment}
+                    onChange={(e) => setNewComment(e.target.value)}
+                    className="flex-1 rounded border border-[#E5E7EB] bg-white px-3 py-2 text-sm placeholder-[#9CA3AF] focus:outline-none focus:border-blue-400"
+                  />
+
+                  {/* Add Button */}
+                  <Button
+                    className="bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-2"
+                    onClick={() => {
+                      if (newComment.trim()) {
+                        const newCommentObj = {
+                          id: `c${caseComments.length + 1}`,
+                          author: "You",
+                          role: "Admin",
+                          timestamp: new Date().toLocaleString(),
+                          text: newComment,
+                          initials: "AD",
+                        };
+                        setCaseComments([...caseComments, newCommentObj]);
+                        setNewComment("");
+                      }
+                    }}
+                  >
+                    <Send className="h-4 w-4" />
+                  </Button>
+                </div>
+              </div>
+            </div>
           </TabsContent>
 
           <TabsContent value="documents" className="mt-4">
