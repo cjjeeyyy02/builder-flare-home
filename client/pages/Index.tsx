@@ -3025,13 +3025,13 @@ export default function Index() {
                       <button
                         type="button"
                         onClick={() => setExpandedEmployee(expandedEmployee === emp.empId ? null : emp.empId)}
-                        className="w-full py-3 flex items-center gap-0 hover:bg-[#F9FAFB] transition"
+                        className="w-full flex items-center hover:bg-[#F9FAFB] transition border-b border-[#E5E7EB]"
                       >
-                        <div className="w-24 text-sm text-[#111827] text-left truncate px-4">{emp.empId}</div>
-                        <div className="flex-1 text-sm font-medium text-[#111827] text-left truncate px-3">{emp.name}</div>
-                        <div className="w-32 text-sm text-[#111827] text-left truncate px-3">{emp.department}</div>
-                        <div className="w-40 text-sm text-[#111827] text-left truncate px-3">{emp.position}</div>
-                        <div className="w-12 flex items-center justify-center">
+                        <div className="px-3 py-2 text-sm text-[#111827] flex-1">{emp.empId}</div>
+                        <div className="px-3 py-2 text-sm font-medium text-[#111827] flex-1">{emp.name}</div>
+                        <div className="px-3 py-2 text-sm text-[#111827] flex-1">{emp.department}</div>
+                        <div className="px-3 py-2 text-sm text-[#111827] flex-1">{emp.position}</div>
+                        <div className="px-3 py-2 flex items-center justify-center w-16">
                           {expandedEmployee === emp.empId ? (
                             <ChevronLeft className="h-5 w-5 text-[#111827] rotate-90 flex-shrink-0" />
                           ) : (
