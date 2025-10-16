@@ -1091,32 +1091,32 @@ export default function Index() {
       { leaveType: "Sick Leave", leaveTaken: 3, leaveBalance: 7 },
       { leaveType: "Personal Leave", leaveTaken: 2, leaveBalance: 4 },
     ]},
-    { empId: "EMP002", name: "Daniel Nguyen", balances: [
+    { empId: "EMP002", name: "Daniel Nguyen", department: "Product", position: "Product Manager", balances: [
       { leaveType: "Annual Leave", leaveTaken: 7, leaveBalance: 13 },
       { leaveType: "Sick Leave", leaveTaken: 3, leaveBalance: 7 },
       { leaveType: "Personal Leave", leaveTaken: 2, leaveBalance: 4 },
     ]},
-    { empId: "EMP003", name: "Priya Kumar", balances: [
+    { empId: "EMP003", name: "Priya Kumar", department: "Design", position: "UX Designer", balances: [
       { leaveType: "Annual Leave", leaveTaken: 7, leaveBalance: 13 },
       { leaveType: "Sick Leave", leaveTaken: 3, leaveBalance: 7 },
       { leaveType: "Personal Leave", leaveTaken: 2, leaveBalance: 4 },
     ]},
-    { empId: "EMP004", name: "Marcus Lee", balances: [
+    { empId: "EMP004", name: "Marcus Lee", department: "Analytics", position: "Data Analyst", balances: [
       { leaveType: "Annual Leave", leaveTaken: 7, leaveBalance: 13 },
       { leaveType: "Sick Leave", leaveTaken: 3, leaveBalance: 7 },
       { leaveType: "Personal Leave", leaveTaken: 2, leaveBalance: 4 },
     ]},
-    { empId: "EMP005", name: "Elena Garcia", balances: [
+    { empId: "EMP005", name: "Elena Garcia", department: "Human Resources", position: "HR Coordinator", balances: [
       { leaveType: "Annual Leave", leaveTaken: 7, leaveBalance: 13 },
       { leaveType: "Sick Leave", leaveTaken: 3, leaveBalance: 7 },
       { leaveType: "Personal Leave", leaveTaken: 2, leaveBalance: 4 },
     ]},
-    { empId: "EMP006", name: "Omar Hassan", balances: [
+    { empId: "EMP006", name: "Omar Hassan", department: "Engineering", position: "DevOps Engineer", balances: [
       { leaveType: "Annual Leave", leaveTaken: 7, leaveBalance: 13 },
       { leaveType: "Sick Leave", leaveTaken: 3, leaveBalance: 7 },
       { leaveType: "Personal Leave", leaveTaken: 2, leaveBalance: 4 },
     ]},
-    { empId: "EMP007", name: "Julia Rossi", balances: [
+    { empId: "EMP007", name: "Julia Rossi", department: "Engineering", position: "QA Engineer", balances: [
       { leaveType: "Annual Leave", leaveTaken: 7, leaveBalance: 13 },
       { leaveType: "Sick Leave", leaveTaken: 3, leaveBalance: 7 },
       { leaveType: "Personal Leave", leaveTaken: 2, leaveBalance: 4 },
