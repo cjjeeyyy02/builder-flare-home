@@ -2966,20 +2966,24 @@ export default function Index() {
                       </button>
                       {expandedEmployee === emp.empId && (
                         <div className="bg-[#F9FAFB] px-4 py-3 border-t">
-                          {emp.balances.map((balance, idx) => (
-                            <div key={idx} className="py-2 text-sm">
-                              <div className="flex justify-between items-center">
-                                <span className="text-[#4B5563]">{balance.leaveType}</span>
-                                <span className="text-[#111827] font-medium">{balance.balance - balance.used} / {balance.balance} days</span>
-                              </div>
-                              <div className="mt-1 bg-[#E5E7EB] rounded-full h-1.5 w-full">
-                                <div
-                                  className="bg-[#2563EB] h-1.5 rounded-full"
-                                  style={{ width: `${((balance.balance - balance.used) / balance.balance) * 100}%` }}
-                                ></div>
-                              </div>
-                            </div>
-                          ))}
+                          <table className="w-full text-sm">
+                            <thead>
+                              <tr>
+                                <th className="text-left py-2 px-2 text-[#4B5563] font-semibold border-b border-[#E5E7EB]">Leave Type</th>
+                                <th className="text-left py-2 px-2 text-[#4B5563] font-semibold border-b border-[#E5E7EB]">Leave Taken</th>
+                                <th className="text-left py-2 px-2 text-[#4B5563] font-semibold border-b border-[#E5E7EB]">Leave Balance</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {emp.balances.map((balance, idx) => (
+                                <tr key={idx} className="hover:bg-white transition">
+                                  <td className="py-2 px-2 text-[#111827]">{balance.leaveType}</td>
+                                  <td className="py-2 px-2 text-[#111827]">{balance.leaveTaken}</td>
+                                  <td className="py-2 px-2 text-[#111827]">{balance.leaveBalance}</td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
                         </div>
                       )}
                       <div className="border-b border-[#E5E7EB]"></div>
