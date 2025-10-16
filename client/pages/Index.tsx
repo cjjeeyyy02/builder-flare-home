@@ -1064,6 +1064,12 @@ export default function Index() {
     const yyyy = d.getFullYear();
     return `${mm}/${dd}/${yyyy}`;
   }, []);
+  const monthlyDisplay = useMemo(() => {
+    const d = new Date();
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const yyyy = d.getFullYear();
+    return `${months[d.getMonth()]} ${yyyy}`;
+  }, []);
   const tsDayHeader = useMemo(() => {
     const d = new Date();
     const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
