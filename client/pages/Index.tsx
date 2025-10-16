@@ -1194,7 +1194,7 @@ export default function Index() {
 
   function getInOutTimes(e: Employee): { in: string; out: string } {
     const s = getAttendanceStatus(e);
-    if (s === "Absent") return { in: "��", out: "—" };
+    if (s === "Absent") return { in: "—", out: "—" };
     if (s === "Late") return { in: "09:15 am", out: "05:30 pm" };
     return { in: "09:00 am", out: "05:30 pm" };
   }
@@ -3013,12 +3013,12 @@ export default function Index() {
                 </div>
               ) : (
                 <div className="rounded-lg border">
-                  <div className="py-3 flex items-center gap-4 bg-[#F9FAFB] border-b border-[#E5E7EB]">
-                    <div className="flex-1 text-xs font-semibold text-[#4B5563] pl-4 text-left">EMPLOYEE ID</div>
-                    <div className="flex-1 text-xs font-semibold text-[#4B5563] pl-4 text-left">EMPLOYEE NAME</div>
-                    <div className="flex-1 text-xs font-semibold text-[#4B5563] pl-4 text-left">DEPARTMENT</div>
-                    <div className="flex-1 text-xs font-semibold text-[#4B5563] pl-4 text-left">POSITION</div>
-                    <div className="w-10 text-xs font-semibold text-[#4B5563] text-center">ACTION</div>
+                  <div className="py-3 flex items-center gap-2 bg-[#F9FAFB] border-b border-[#E5E7EB] px-4">
+                    <div className="w-24 text-xs font-semibold text-[#4B5563] text-left">EMPLOYEE ID</div>
+                    <div className="flex-1 text-xs font-semibold text-[#4B5563] text-left">EMPLOYEE NAME</div>
+                    <div className="w-32 text-xs font-semibold text-[#4B5563] text-left">DEPARTMENT</div>
+                    <div className="w-40 text-xs font-semibold text-[#4B5563] text-left">POSITION</div>
+                    <div className="w-12 text-xs font-semibold text-[#4B5563] text-center">ACTION</div>
                   </div>
                   {EMPLOYEE_LEAVE_BALANCES.map((emp) => (
                     <div key={emp.empId}>
