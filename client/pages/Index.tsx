@@ -1163,9 +1163,9 @@ export default function Index() {
       { name: "Jordan", time: "9–18", id: "mon-3" },
     ]},
     { day: "Tue", slots: [
-      { name: "Alex", time: "9–18" },
-      { name: "Priya", time: "9–18" },
-      { name: "Jordan", time: "9–18" },
+      { name: "Alex", time: "9–18", id: "tue-1" },
+      { name: "Priya", time: "9–18", id: "tue-2" },
+      { name: "Jordan", time: "9–18", id: "tue-3" },
     ]},
     { day: "Wed", slots: [
       { name: "Maria", time: "10–19" },
@@ -1230,7 +1230,7 @@ export default function Index() {
 
   function getInOutTimes(e: Employee): { in: string; out: string } {
     const s = getAttendanceStatus(e);
-    if (s === "Absent") return { in: "—", out: "—" };
+    if (s === "Absent") return { in: "���", out: "—" };
     if (s === "Late") return { in: "09:15 am", out: "05:30 pm" };
     return { in: "09:00 am", out: "05:30 pm" };
   }
