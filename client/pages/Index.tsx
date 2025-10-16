@@ -2914,7 +2914,7 @@ export default function Index() {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {leaveReqs.map((req) => (
+                      {leaveRequests.map((req) => (
                         <TableRow key={req.empId} className="hover:bg-[#F9FAFB]">
                           <TableCell className="px-3 py-2">{req.empId}</TableCell>
                           <TableCell className="px-3 py-2">{req.employee}</TableCell>
@@ -2928,7 +2928,7 @@ export default function Index() {
                                 variant="outline"
                                 className="h-8 px-3 text-xs"
                                 onClick={() => {
-                                  const updated = leaveReqs.map(r => r.empId === req.empId ? {...r, status: "Approved"} : r);
+                                  const updated = leaveRequests.map(r => r.empId === req.empId ? {...r, status: "Approved"} : r);
                                   setLeaveReqs(updated);
                                   toast({ title: "Leave Request Approved", description: `${req.employee}'s leave request has been approved.` });
                                 }}
@@ -2939,7 +2939,7 @@ export default function Index() {
                                 variant="outline"
                                 className="h-8 px-3 text-xs"
                                 onClick={() => {
-                                  const updated = leaveReqs.map(r => r.empId === req.empId ? {...r, status: "Rejected"} : r);
+                                  const updated = leaveRequests.map(r => r.empId === req.empId ? {...r, status: "Rejected"} : r);
                                   setLeaveReqs(updated);
                                   toast({ title: "Leave Request Rejected", description: `${req.employee}'s leave request has been rejected.` });
                                 }}
@@ -3071,7 +3071,7 @@ export default function Index() {
                             days: Math.ceil((new Date(lrTo).getTime() - new Date(lrFrom).getTime()) / (1000 * 60 * 60 * 24)) + 1,
                             status: "Pending",
                           };
-                          setLeaveReqs([...leaveReqs, newRequest]);
+                          setLeaveReqs([...leaveRequests, newRequest]);
                           setLrCreateOpen(false);
                           setLrEmployee("");
                           setLrType("Annual Leave");
