@@ -480,9 +480,9 @@ export default function ViewDetails() {
                 <p className="text-sm text-[#6B7280]">Manage documents related to offboarding case #1.</p>
               </div>
 
-              {/* Search, Filter, and Action Buttons */}
+              {/* Search and Action Buttons */}
               <div className="flex gap-3 items-center mb-6">
-                <div className="flex-1 relative">
+                <div className="w-48 relative">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-[#9CA3AF]" />
                   <input
                     type="text"
@@ -492,15 +492,6 @@ export default function ViewDetails() {
                     className="w-full rounded border border-[#E5E7EB] bg-white pl-10 pr-3 py-2 text-sm placeholder-[#9CA3AF] focus:outline-none focus:border-blue-400"
                   />
                 </div>
-
-                <select
-                  value={filterCategory}
-                  onChange={(e) => setFilterCategory(e.target.value)}
-                  className="rounded border border-[#E5E7EB] bg-white px-3 py-2 text-sm text-[#111827]"
-                >
-                  <option value="All Categories">All Categories</option>
-                  <option value="General Documents">General Documents</option>
-                </select>
 
                 <Button
                   className="bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-2"
