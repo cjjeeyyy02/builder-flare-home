@@ -34,7 +34,7 @@ export default function ExitInterview() {
           <div className="flex items-start gap-6">
             {/* Avatar */}
             <div className="flex-shrink-0">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-400 to-purple-600 text-white flex items-center justify-center text-[24px] font-bold shadow-sm">
+              <div className="w-16 h-16 rounded-full bg-blue-600 text-white flex items-center justify-center text-[24px] font-bold shadow-sm">
                 SJ
               </div>
             </div>

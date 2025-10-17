@@ -116,7 +116,7 @@ export default function NewOffboarding() {
                 >
                   {/* Avatar */}
                   <div className="flex-shrink-0">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 text-white flex items-center justify-center font-semibold text-xs">
+                    <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold text-xs">
                       {getInitials(employee.firstName, employee.lastName)}
                     </div>
                   </div>
