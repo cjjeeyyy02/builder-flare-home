@@ -3002,9 +3002,9 @@ export default function Index() {
                         onDragOver={handleDragOver}
                         onDrop={() => handleDrop(d.day)}
                       >
-                        <div className="flex items-center justify-between text-[14px] font-semibold text-[#111827]">
+                        <div className="flex items-center justify-between text-[12px] font-semibold text-[#111827]">
                           <span>{d.day}</span>
-                          <span className="text-[12px] font-normal text-[#6B7280]">{d.slots.length} slots</span>
+                          <span className="text-[10px] font-normal text-[#6B7280]">{d.slots.length} slots</span>
                         </div>
                         <div className="space-y-1.5">
                           {d.slots.map((s) => (
