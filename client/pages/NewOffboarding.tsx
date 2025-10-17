@@ -23,6 +23,12 @@ export default function NewOffboarding() {
     return `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase();
   };
 
+  const handleContinue = () => {
+    if (selectedEmployee) {
+      navigate("/new-offboarding-exit-details", { state: { employee: selectedEmployee } });
+    }
+  };
+
   return (
     <section className="min-h-screen bg-[#F9FAFB]">
       <div className="max-w-6xl mx-auto px-6 py-8">
