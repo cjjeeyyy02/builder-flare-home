@@ -1773,7 +1773,7 @@ export default function Index() {
                       className="rounded border border-input bg-background px-3 py-2 text-sm"
                     />
                     <select className="rounded border border-input bg-background px-3 py-2 text-sm">
-                      <option value="">Department filter</option>
+                      <option value="">Department</option>
                       <option value="engineering">Engineering</option>
                       <option value="product">Product</option>
                       <option value="design">Design</option>
@@ -1781,7 +1781,7 @@ export default function Index() {
                       <option value="hr">Human Resources</option>
                     </select>
                     <select className="rounded border border-input bg-background px-3 py-2 text-sm">
-                      <option value="">Offboarding Stage filter</option>
+                      <option value="">Offboarding Stage</option>
                       <option value="planned">Planned</option>
                       <option value="in-progress">In Progress</option>
                       <option value="completed">Completed</option>
