@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
 
 export default function ExitInterview() {
   const navigate = useNavigate();
@@ -10,11 +11,20 @@ export default function ExitInterview() {
 
   return (
     <section className="min-h-screen bg-[#F9FAFB] px-6 py-8">
-      <div className="max-w-4xl mx-auto">
-        {/* Header Section */}
-        <div className="mb-8">
-          <h1 className="text-[28px] font-semibold text-[#111827] mb-2">Exit Interview</h1>
-          <p className="text-[14px] text-[#6B7280]">Collect feedback and insights from departing employees</p>
+      <div className="w-full">
+        {/* Header Section with Back Button */}
+        <div className="mb-8 flex items-center gap-4">
+          <Button
+            variant="ghost"
+            className="h-10 w-10 p-0 hover:bg-[#E5E7EB]"
+            onClick={() => navigate(-1)}
+          >
+            <ArrowLeft className="h-5 w-5 text-[#6B7280]" />
+          </Button>
+          <div>
+            <h1 className="text-[28px] font-semibold text-[#111827] mb-2">Exit Interview</h1>
+            <p className="text-[14px] text-[#6B7280]">Collect feedback and insights from departing employees</p>
+          </div>
         </div>
 
         {/* Employee Information Card */}
