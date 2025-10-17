@@ -711,21 +711,21 @@ export default function ViewDetails() {
               <div className="relative pl-4">
 
                 {/* Timeline Events */}
-                <div className="space-y-3">
+                <div className="space-y-2">
                   {filteredTimeline.length > 0 ? (
                     filteredTimeline.map((event, index) => (
                       <div key={event.id} className="relative">
                         {/* Status Dot */}
                         <div
-                          className="absolute -left-4 top-1 w-3 h-3 rounded-full border-2 border-white"
+                          className="absolute -left-4 top-1 w-2.5 h-2.5 rounded-full border-2 border-white"
                           style={{ backgroundColor: event.dotColor }}
                         />
 
                         {/* Content */}
-                        <div className="pl-6">
-                          <h4 className="font-bold text-[16px] text-[#111827]">{event.title}</h4>
-                          <p className="text-[13px] text-[#6B7280] mt-1">{event.timestamp}</p>
-                          <p className="text-[14px] text-[#4B5563] mt-2">{event.description}</p>
+                        <div className="pl-4">
+                          <h4 className="font-bold text-[13px] text-[#111827]">{event.title}</h4>
+                          <p className="text-[11px] text-[#6B7280] mt-0.5">{event.timestamp}</p>
+                          <p className="text-[12px] text-[#4B5563] mt-1">{event.description}</p>
                         </div>
                       </div>
                     ))
