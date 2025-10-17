@@ -529,7 +529,7 @@ export default function ViewDetails() {
                           <div className="flex items-start gap-2">
                             {/* Icon */}
                             <div
-                              className="flex h-10 w-10 items-center justify-center rounded flex-shrink-0"
+                              className="flex h-8 w-8 items-center justify-center rounded flex-shrink-0"
                               style={{ backgroundColor: `${typeColor}20`, color: typeColor }}
                             >
                               {getIcon()}
