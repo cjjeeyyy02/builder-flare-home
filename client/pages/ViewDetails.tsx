@@ -768,36 +768,50 @@ export default function ViewDetails() {
                   { name: "Source Control (GitHub)", key: "github" },
                   { name: "HRIS (BambooHR)", key: "bamboo" },
                   { name: "Finance (NetSuite)", key: "netsuite" },
-                ].map((system) => (
-                  <div
-                    key={system.key}
-                    className="flex items-center justify-between bg-white border border-[#E5E7EB] rounded-[10px] px-5 py-4 hover:bg-[#F9FAFB] transition-colors"
-                    style={{
-                      boxShadow: "0 1px 2px rgba(0, 0, 0, 0.05)",
-                    }}
-                  >
-                    {/* Left Side */}
-                    <div>
-                      <p className="font-bold text-[16px] text-[#111827]">{system.name}</p>
-                      <p className="text-[13px] text-[#6B7280]">Access active</p>
-                    </div>
+                ].map((system) => {
+                  const isRevoked = systemAccess[system.key as keyof typeof systemAccess];
+                  return (
+                    <div
+                      key={system.key}
+                      className="flex items-center justify-between bg-white border border-[#E5E7EB] rounded-[10px] px-5 py-4 hover:bg-[#F9FAFB] transition-colors"
+                      style={{
+                        boxShadow: "0 1px 2px rgba(0, 0, 0, 0.05)",
+                      }}
+                    >
+                      {/* Left Side */}
+                      <div>
+                        <p className="font-bold text-[16px] text-[#111827]">{system.name}</p>
+                        <p className="text-[13px] text-[#6B7280]">
+                          {isRevoked ? "Access revoked" : "Access active"}
+                        </p>
+                      </div>
 
-                    {/* Right Side */}
-                    <div className="flex items-center gap-2">
-                      <span className="text-[14px] text-[#6B7280]">Revoke</span>
-                      <Toggle
-                        pressed={systemAccess[system.key as keyof typeof systemAccess]}
-                        onPressedChange={(pressed) =>
-                          setSystemAccess({
-                            ...systemAccess,
-                            [system.key]: pressed,
-                          })
-                        }
-                        className="bg-[#E5E7EB] data-[state=on]:bg-red-500"
-                      />
+                      {/* Right Side */}
+                      <div className="flex items-center gap-3">
+                        <span className={`text-[14px] ${isRevoked ? "text-red-600 font-medium" : "text-[#6B7280]"}`}>
+                          {isRevoked ? "Revoked" : "Revoke"}
+                        </span>
+                        <button
+                          onClick={() =>
+                            setSystemAccess({
+                              ...systemAccess,
+                              [system.key]: !isRevoked,
+                            })
+                          }
+                          className={`relative w-11 h-6 rounded-full transition-all ${
+                            isRevoked ? "bg-red-500" : "bg-green-500"
+                          }`}
+                        >
+                          <div
+                            className={`absolute top-0.5 w-5 h-5 bg-white rounded-full transition-transform ${
+                              isRevoked ? "translate-x-5" : "translate-x-0.5"
+                            }`}
+                          />
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </TabsContent>
