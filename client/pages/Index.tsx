@@ -2469,28 +2469,28 @@ export default function Index() {
                     </div>
                   ) : tsRange === "monthly" ? (
                     <div className="overflow-hidden rounded-lg border border-[#E5E7EB]">
-                      <Table className="text-sm">
+                      <Table className="text-xs">
                         <TableHeader>
                           <TableRow>
-                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">EMPLOYEE ID</TableHead>
-                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">EMPLOYEE NAME</TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-2 py-2 text-[10px] font-semibold text-[#4B5563]">EMPLOYEE ID</TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-2 py-2 text-[10px] font-semibold text-[#4B5563]">EMPLOYEE NAME</TableHead>
                             {Array.from({ length: 31 }).map((_, i) => (
-                              <TableHead key={`day-${i + 1}`} className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">{i + 1}</TableHead>
+                              <TableHead key={`day-${i + 1}`} className="border-b border-[#E5E7EB] px-1 py-2 text-[9px] font-semibold text-[#4B5563] text-center">{i + 1}</TableHead>
                             ))}
-                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-red-600">HOURS WORKED</TableHead>
-                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-red-600">SCHEDULED</TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-2 py-2 text-[10px] font-semibold text-red-600">HOURS WORKED</TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-2 py-2 text-[10px] font-semibold text-red-600">SCHEDULED</TableHead>
                           </TableRow>
                         </TableHeader>
                         <TableBody>
                           {MONTHLY_DATA.slice(monthlyPage * itemsPerPage, (monthlyPage + 1) * itemsPerPage).map((r) => (
                             <TableRow key={r.empId} className="hover:bg-[#F9FAFB]">
-                              <TableCell className="px-3 py-2 text-[#111827]">{r.empId}</TableCell>
-                              <TableCell className="px-3 py-2 text-[#111827]">{r.name}</TableCell>
+                              <TableCell className="px-2 py-1 text-[11px] text-[#111827]">{r.empId}</TableCell>
+                              <TableCell className="px-2 py-1 text-[11px] text-[#111827]">{r.name}</TableCell>
                               {r.days.map((day, idx) => (
-                                <TableCell key={`${r.empId}-day-${idx}`} className="px-3 py-2 text-[#111827]">{day}</TableCell>
+                                <TableCell key={`${r.empId}-day-${idx}`} className="px-1 py-1 text-[10px] text-[#111827] text-center">{day}</TableCell>
                               ))}
-                              <TableCell className="px-3 py-2 text-red-600 font-semibold">{r.hoursWorked}</TableCell>
-                              <TableCell className="px-3 py-2 text-red-600 font-semibold flex items-center justify-center">{r.scheduled}</TableCell>
+                              <TableCell className="px-2 py-1 text-[11px] text-red-600 font-semibold">{r.hoursWorked}</TableCell>
+                              <TableCell className="px-2 py-1 text-[11px] text-red-600 font-semibold flex items-center justify-center">{r.scheduled}</TableCell>
                             </TableRow>
                           ))}
                         </TableBody>
