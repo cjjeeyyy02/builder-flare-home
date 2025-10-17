@@ -546,7 +546,6 @@ export default function ViewDetails() {
                                 <span className="mx-2">•</span>
                                 <span>{doc.date}</span>
                                 <span className="mx-2">��</span>
-                                <span>{doc.uploader}</span>
                               </div>
 
                             </div>
