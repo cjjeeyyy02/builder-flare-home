@@ -1051,20 +1051,88 @@ export default function Index() {
   const [status, setStatus] = useState<string>("all");
   const [view, setView] = useState<"table" | "card">("table");
   const [tab, setTab] = useState<string>("attendance");
-  const [dateFilter, setDateFilter] = useState<string>(new Date().toISOString().slice(0, 10));
-  const [subTab, setSubTab] = useState<"logs" | "timesheets" | "shift">("timesheets");
-  const [tsRange, setTsRange] = useState<"daily" | "weekly" | "monthly">("monthly");
-  const [leaveView, setLeaveView] = useState<"requests" | "balances">("requests");
+  const [dateFilter, setDateFilter] = useState<string>(
+    new Date().toISOString().slice(0, 10),
+  );
+  const [subTab, setSubTab] = useState<"logs" | "timesheets" | "shift">(
+    "timesheets",
+  );
+  const [tsRange, setTsRange] = useState<"daily" | "weekly" | "monthly">(
+    "monthly",
+  );
+  const [leaveView, setLeaveView] = useState<"requests" | "balances">(
+    "requests",
+  );
   const [weeklyPage, setWeeklyPage] = useState(0);
   const [monthlyPage, setMonthlyPage] = useState(0);
   const itemsPerPage = 10;
   const [expandedEmployee, setExpandedEmployee] = useState<string | null>(null);
-  type WeeklyRow = { empId: string; name: string; mon: string; tue: string; wed: string; thu: string; fri: string; sat: string; sun: string; scheduled: string; worked: string };
+  type WeeklyRow = {
+    empId: string;
+    name: string;
+    mon: string;
+    tue: string;
+    wed: string;
+    thu: string;
+    fri: string;
+    sat: string;
+    sun: string;
+    scheduled: string;
+    worked: string;
+  };
   const WEEKLY_DATA: WeeklyRow[] = [
-    { empId: "E-1001", name: "Alex Chen", mon: "0.0h", tue: "0.0h", wed: "9.0h", thu: "0.0h", fri: "0.0h", sat: "0.0h", sun: "0.0h", scheduled: "40h", worked: "9.0h" },
-    { empId: "E-1002", name: "Maria Gomez", mon: "0.0h", tue: "0.0h", wed: "8.6h", thu: "0.0h", fri: "0.0h", sat: "0.0h", sun: "0.0h", scheduled: "40h", worked: "8.6h" },
-    { empId: "E-1003", name: "Jordan Lee", mon: "0.0h", tue: "0.0h", wed: "8.9h", thu: "0.0h", fri: "0.0h", sat: "0.0h", sun: "0.0h", scheduled: "40h", worked: "8.9h" },
-    { empId: "E-1004", name: "Priya Patel", mon: "0.0h", tue: "0.0h", wed: "0.0h", thu: "0.0h", fri: "0.0h", sat: "0.0h", sun: "0.0h", scheduled: "40h", worked: "0.0h" },
+    {
+      empId: "E-1001",
+      name: "Alex Chen",
+      mon: "0.0h",
+      tue: "0.0h",
+      wed: "9.0h",
+      thu: "0.0h",
+      fri: "0.0h",
+      sat: "0.0h",
+      sun: "0.0h",
+      scheduled: "40h",
+      worked: "9.0h",
+    },
+    {
+      empId: "E-1002",
+      name: "Maria Gomez",
+      mon: "0.0h",
+      tue: "0.0h",
+      wed: "8.6h",
+      thu: "0.0h",
+      fri: "0.0h",
+      sat: "0.0h",
+      sun: "0.0h",
+      scheduled: "40h",
+      worked: "8.6h",
+    },
+    {
+      empId: "E-1003",
+      name: "Jordan Lee",
+      mon: "0.0h",
+      tue: "0.0h",
+      wed: "8.9h",
+      thu: "0.0h",
+      fri: "0.0h",
+      sat: "0.0h",
+      sun: "0.0h",
+      scheduled: "40h",
+      worked: "8.9h",
+    },
+    {
+      empId: "E-1004",
+      name: "Priya Patel",
+      mon: "0.0h",
+      tue: "0.0h",
+      wed: "0.0h",
+      thu: "0.0h",
+      fri: "0.0h",
+      sat: "0.0h",
+      sun: "0.0h",
+      scheduled: "40h",
+      worked: "0.0h",
+    },
   ];
   const todaySlash = useMemo(() => {
     const d = new Date();
@@ -1075,7 +1143,20 @@ export default function Index() {
   }, []);
   const monthlyDisplay = useMemo(() => {
     const d = new Date();
-    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
     const yyyy = d.getFullYear();
     return `${months[d.getMonth()]} ${yyyy}`;
   }, []);
@@ -1088,13 +1169,41 @@ export default function Index() {
     const weekEnd = new Date(weekStart);
     weekEnd.setDate(weekStart.getDate() + 6);
 
-    const startMonth = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][weekStart.getMonth()];
-    const endMonth = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][weekEnd.getMonth()];
+    const startMonth = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ][weekStart.getMonth()];
+    const endMonth = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ][weekEnd.getMonth()];
     const startDay = weekStart.getDate();
     const endDay = weekEnd.getDate();
     const year = weekEnd.getFullYear();
 
-    return startMonth === endMonth ? `${startMonth} ${startDay} - ${endDay}, ${year}` : `${startMonth} ${startDay} - ${endMonth} ${endDay}, ${year}`;
+    return startMonth === endMonth
+      ? `${startMonth} ${startDay} - ${endDay}, ${year}`
+      : `${startMonth} ${startDay} - ${endMonth} ${endDay}, ${year}`;
   }, []);
   const tsDayHeader = useMemo(() => {
     const d = new Date();
@@ -1103,95 +1212,286 @@ export default function Index() {
     const dd = String(d.getDate()).padStart(2, "0");
     return `${mm}/${dd} (${days[d.getDay()]})`;
   }, []);
-  type TimesheetRow = { empId: string; name: string; scheduled: string; worked: string; day: string };
+  type TimesheetRow = {
+    empId: string;
+    name: string;
+    scheduled: string;
+    worked: string;
+    day: string;
+  };
   const TS_ROWS: TimesheetRow[] = [
-    { empId: "E-1001", name: "Alex Chen", scheduled: "8h", worked: "9.02h", day: "Present • 09:02–18:03" },
-    { empId: "E-1002", name: "Maria Gomez", scheduled: "8h", worked: "8.57h", day: "On Leave" },
-    { empId: "E-1003", name: "Jordan Lee", scheduled: "8h", worked: "8.92h", day: "Remote • 09:05–18:00" },
-    { empId: "E-1004", name: "Priya Patel", scheduled: "8h", worked: "0.00h", day: "On Leave" },
+    {
+      empId: "E-1001",
+      name: "Alex Chen",
+      scheduled: "8h",
+      worked: "9.02h",
+      day: "Present • 09:02–18:03",
+    },
+    {
+      empId: "E-1002",
+      name: "Maria Gomez",
+      scheduled: "8h",
+      worked: "8.57h",
+      day: "On Leave",
+    },
+    {
+      empId: "E-1003",
+      name: "Jordan Lee",
+      scheduled: "8h",
+      worked: "8.92h",
+      day: "Remote • 09:05–18:00",
+    },
+    {
+      empId: "E-1004",
+      name: "Priya Patel",
+      scheduled: "8h",
+      worked: "0.00h",
+      day: "On Leave",
+    },
   ];
-  type MonthlyRow = { empId: string; name: string; days: (string | number)[]; hoursWorked: string; scheduled: string };
+  type MonthlyRow = {
+    empId: string;
+    name: string;
+    days: (string | number)[];
+    hoursWorked: string;
+    scheduled: string;
+  };
   const MONTHLY_DATA: MonthlyRow[] = [
-    { empId: "1001", name: "Alex Chen", days: [0, 0, 0, "H", "H", 0, 0, 0, 0, "8h", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "H", "H", 0, 0, 0, 0, 0, 0, 0, 0, 0], hoursWorked: "152", scheduled: "160" },
-    { empId: "1002", name: "Maria Gomez", days: [0, 0, 0, 0, 0, 0, 0, 0, 0, "L", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "H", "H", 0, 0, 0, 0, 0, 0, 0, 0, 0], hoursWorked: "0", scheduled: "160" },
+    {
+      empId: "1001",
+      name: "Alex Chen",
+      days: [
+        0,
+        0,
+        0,
+        "H",
+        "H",
+        0,
+        0,
+        0,
+        0,
+        "8h",
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        "H",
+        "H",
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+      ],
+      hoursWorked: "152",
+      scheduled: "160",
+    },
+    {
+      empId: "1002",
+      name: "Maria Gomez",
+      days: [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        "L",
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        "H",
+        "H",
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+      ],
+      hoursWorked: "0",
+      scheduled: "160",
+    },
   ];
-  type LeaveBalance = { leaveType: string; leaveTaken: number; leaveBalance: number };
-  type EmployeeLeaveBalance = { empId: string; name: string; department: string; position: string; balances: LeaveBalance[] };
+  type LeaveBalance = {
+    leaveType: string;
+    leaveTaken: number;
+    leaveBalance: number;
+  };
+  type EmployeeLeaveBalance = {
+    empId: string;
+    name: string;
+    department: string;
+    position: string;
+    balances: LeaveBalance[];
+  };
   const EMPLOYEE_LEAVE_BALANCES: EmployeeLeaveBalance[] = [
-    { empId: "EMP001", name: "Sarah Mitchell", department: "Engineering", position: "Senior Software Engineer", balances: [
-      { leaveType: "Annual Leave", leaveTaken: 7, leaveBalance: 13 },
-      { leaveType: "Sick Leave", leaveTaken: 3, leaveBalance: 7 },
-      { leaveType: "Personal Leave", leaveTaken: 2, leaveBalance: 4 },
-    ]},
-    { empId: "EMP002", name: "Daniel Nguyen", department: "Product", position: "Product Manager", balances: [
-      { leaveType: "Annual Leave", leaveTaken: 7, leaveBalance: 13 },
-      { leaveType: "Sick Leave", leaveTaken: 3, leaveBalance: 7 },
-      { leaveType: "Personal Leave", leaveTaken: 2, leaveBalance: 4 },
-    ]},
-    { empId: "EMP003", name: "Priya Kumar", department: "Design", position: "UX Designer", balances: [
-      { leaveType: "Annual Leave", leaveTaken: 7, leaveBalance: 13 },
-      { leaveType: "Sick Leave", leaveTaken: 3, leaveBalance: 7 },
-      { leaveType: "Personal Leave", leaveTaken: 2, leaveBalance: 4 },
-    ]},
-    { empId: "EMP004", name: "Marcus Lee", department: "Analytics", position: "Data Analyst", balances: [
-      { leaveType: "Annual Leave", leaveTaken: 7, leaveBalance: 13 },
-      { leaveType: "Sick Leave", leaveTaken: 3, leaveBalance: 7 },
-      { leaveType: "Personal Leave", leaveTaken: 2, leaveBalance: 4 },
-    ]},
-    { empId: "EMP005", name: "Elena Garcia", department: "Human Resources", position: "HR Coordinator", balances: [
-      { leaveType: "Annual Leave", leaveTaken: 7, leaveBalance: 13 },
-      { leaveType: "Sick Leave", leaveTaken: 3, leaveBalance: 7 },
-      { leaveType: "Personal Leave", leaveTaken: 2, leaveBalance: 4 },
-    ]},
-    { empId: "EMP006", name: "Omar Hassan", department: "Engineering", position: "DevOps Engineer", balances: [
-      { leaveType: "Annual Leave", leaveTaken: 7, leaveBalance: 13 },
-      { leaveType: "Sick Leave", leaveTaken: 3, leaveBalance: 7 },
-      { leaveType: "Personal Leave", leaveTaken: 2, leaveBalance: 4 },
-    ]},
-    { empId: "EMP007", name: "Julia Rossi", department: "Engineering", position: "QA Engineer", balances: [
-      { leaveType: "Annual Leave", leaveTaken: 7, leaveBalance: 13 },
-      { leaveType: "Sick Leave", leaveTaken: 3, leaveBalance: 7 },
-      { leaveType: "Personal Leave", leaveTaken: 2, leaveBalance: 4 },
-    ]},
+    {
+      empId: "EMP001",
+      name: "Sarah Mitchell",
+      department: "Engineering",
+      position: "Senior Software Engineer",
+      balances: [
+        { leaveType: "Annual Leave", leaveTaken: 7, leaveBalance: 13 },
+        { leaveType: "Sick Leave", leaveTaken: 3, leaveBalance: 7 },
+        { leaveType: "Personal Leave", leaveTaken: 2, leaveBalance: 4 },
+      ],
+    },
+    {
+      empId: "EMP002",
+      name: "Daniel Nguyen",
+      department: "Product",
+      position: "Product Manager",
+      balances: [
+        { leaveType: "Annual Leave", leaveTaken: 7, leaveBalance: 13 },
+        { leaveType: "Sick Leave", leaveTaken: 3, leaveBalance: 7 },
+        { leaveType: "Personal Leave", leaveTaken: 2, leaveBalance: 4 },
+      ],
+    },
+    {
+      empId: "EMP003",
+      name: "Priya Kumar",
+      department: "Design",
+      position: "UX Designer",
+      balances: [
+        { leaveType: "Annual Leave", leaveTaken: 7, leaveBalance: 13 },
+        { leaveType: "Sick Leave", leaveTaken: 3, leaveBalance: 7 },
+        { leaveType: "Personal Leave", leaveTaken: 2, leaveBalance: 4 },
+      ],
+    },
+    {
+      empId: "EMP004",
+      name: "Marcus Lee",
+      department: "Analytics",
+      position: "Data Analyst",
+      balances: [
+        { leaveType: "Annual Leave", leaveTaken: 7, leaveBalance: 13 },
+        { leaveType: "Sick Leave", leaveTaken: 3, leaveBalance: 7 },
+        { leaveType: "Personal Leave", leaveTaken: 2, leaveBalance: 4 },
+      ],
+    },
+    {
+      empId: "EMP005",
+      name: "Elena Garcia",
+      department: "Human Resources",
+      position: "HR Coordinator",
+      balances: [
+        { leaveType: "Annual Leave", leaveTaken: 7, leaveBalance: 13 },
+        { leaveType: "Sick Leave", leaveTaken: 3, leaveBalance: 7 },
+        { leaveType: "Personal Leave", leaveTaken: 2, leaveBalance: 4 },
+      ],
+    },
+    {
+      empId: "EMP006",
+      name: "Omar Hassan",
+      department: "Engineering",
+      position: "DevOps Engineer",
+      balances: [
+        { leaveType: "Annual Leave", leaveTaken: 7, leaveBalance: 13 },
+        { leaveType: "Sick Leave", leaveTaken: 3, leaveBalance: 7 },
+        { leaveType: "Personal Leave", leaveTaken: 2, leaveBalance: 4 },
+      ],
+    },
+    {
+      empId: "EMP007",
+      name: "Julia Rossi",
+      department: "Engineering",
+      position: "QA Engineer",
+      balances: [
+        { leaveType: "Annual Leave", leaveTaken: 7, leaveBalance: 13 },
+        { leaveType: "Sick Leave", leaveTaken: 3, leaveBalance: 7 },
+        { leaveType: "Personal Leave", leaveTaken: 2, leaveBalance: 4 },
+      ],
+    },
   ];
   type ShiftSlot = { name: string; time: string; id: string };
   type ShiftDay = { day: string; slots: ShiftSlot[] };
   const SHIFT_DAYS: ShiftDay[] = [
-    { day: "Mon", slots: [
-      { name: "Alex", time: "9–18", id: "mon-1" },
-      { name: "Maria", time: "10–19", id: "mon-2" },
-      { name: "Jordan", time: "9–18", id: "mon-3" },
-    ]},
-    { day: "Tue", slots: [
-      { name: "Alex", time: "9–18", id: "tue-1" },
-      { name: "Priya", time: "9–18", id: "tue-2" },
-      { name: "Jordan", time: "9–18", id: "tue-3" },
-    ]},
-    { day: "Wed", slots: [
-      { name: "Maria", time: "10–19", id: "wed-1" },
-      { name: "Priya", time: "9–18", id: "wed-2" },
-      { name: "Jordan", time: "9–18", id: "wed-3" },
-      { name: "Maria", time: "10–19", id: "wed-4" },
-    ]},
-    { day: "Thu", slots: [
-      { name: "Alex", time: "9–18", id: "thu-1" },
-      { name: "Maria", time: "10–19", id: "thu-2" },
-      { name: "Jordan", time: "9�����18" },
-    ]},
-    { day: "Fri", slots: [
-      { name: "Alex", time: "9–18", id: "fri-1" },
-      { name: "Maria", time: "10–19", id: "fri-2" },
-      { name: "Priya", time: "9–18", id: "fri-3" },
-    ]},
+    {
+      day: "Mon",
+      slots: [
+        { name: "Alex", time: "9–18", id: "mon-1" },
+        { name: "Maria", time: "10–19", id: "mon-2" },
+        { name: "Jordan", time: "9–18", id: "mon-3" },
+      ],
+    },
+    {
+      day: "Tue",
+      slots: [
+        { name: "Alex", time: "9–18", id: "tue-1" },
+        { name: "Priya", time: "9–18", id: "tue-2" },
+        { name: "Jordan", time: "9–18", id: "tue-3" },
+      ],
+    },
+    {
+      day: "Wed",
+      slots: [
+        { name: "Maria", time: "10–19", id: "wed-1" },
+        { name: "Priya", time: "9–18", id: "wed-2" },
+        { name: "Jordan", time: "9–18", id: "wed-3" },
+        { name: "Maria", time: "10–19", id: "wed-4" },
+      ],
+    },
+    {
+      day: "Thu",
+      slots: [
+        { name: "Alex", time: "9–18", id: "thu-1" },
+        { name: "Maria", time: "10–19", id: "thu-2" },
+        { name: "Jordan", time: "9�����18" },
+      ],
+    },
+    {
+      day: "Fri",
+      slots: [
+        { name: "Alex", time: "9–18", id: "fri-1" },
+        { name: "Maria", time: "10–19", id: "fri-2" },
+        { name: "Priya", time: "9–18", id: "fri-3" },
+      ],
+    },
   ];
-  const [shiftFrom, setShiftFrom] = useState<string>(new Date().toISOString().slice(0, 10));
-  const [shiftTo, setShiftTo] = useState<string>(new Date().toISOString().slice(0, 10));
+  const [shiftFrom, setShiftFrom] = useState<string>(
+    new Date().toISOString().slice(0, 10),
+  );
+  const [shiftTo, setShiftTo] = useState<string>(
+    new Date().toISOString().slice(0, 10),
+  );
   const [openFromPicker, setOpenFromPicker] = useState(false);
   const [openToPicker, setOpenToPicker] = useState(false);
-  const [draggedItem, setDraggedItem] = useState<{ from: string; itemId: string } | null>(null);
+  const [draggedItem, setDraggedItem] = useState<{
+    from: string;
+    itemId: string;
+  } | null>(null);
   const [shiftDays, setShiftDays] = useState<ShiftDay[]>(SHIFT_DAYS);
   const [openCreateLeave, setOpenCreateLeave] = useState(false);
-  const [formData, setFormData] = useState({ empName: "", leaveType: "", periodFrom: "", periodTo: "" });
+  const [formData, setFormData] = useState({
+    empName: "",
+    leaveType: "",
+    periodFrom: "",
+    periodTo: "",
+  });
 
   const handleDragStart = (day: string, itemId: string) => {
     setDraggedItem({ from: day, itemId });
@@ -1210,11 +1510,17 @@ export default function Index() {
 
     const updatedDays = shiftDays.map((day) => ({
       ...day,
-      slots: day.day === draggedItem.from
-        ? day.slots.filter((s) => s.id !== draggedItem.itemId)
-        : day.day === toDay
-        ? [...day.slots, ...shiftDays.find((d) => d.day === draggedItem.from)?.slots.filter((s) => s.id === draggedItem.itemId) || []]
-        : day.slots,
+      slots:
+        day.day === draggedItem.from
+          ? day.slots.filter((s) => s.id !== draggedItem.itemId)
+          : day.day === toDay
+            ? [
+                ...day.slots,
+                ...(shiftDays
+                  .find((d) => d.day === draggedItem.from)
+                  ?.slots.filter((s) => s.id === draggedItem.itemId) || []),
+              ]
+            : day.slots,
     }));
 
     setShiftDays(updatedDays);
@@ -1276,32 +1582,86 @@ export default function Index() {
   const [lrSearch, setLrSearch] = useState("");
   const [lrTypeFilter, setLrTypeFilter] = useState("");
   const [leaves, setLeaves] = useState<LeaveReq[]>([
-    { empId: "EMP201", employee: "Neha Gupta", type: "Annual Leave", from: "2025-10-16", to: "2025-10-17", days: 2, status: "Pending" },
-    { empId: "EMP202", employee: "Aarav Sharma", type: "Annual Leave", from: "2025-10-15", to: "2025-10-17", days: 3, status: "Pending" },
-    { empId: "EMP203", employee: "Sara Khan", type: "Sick Leave", from: "2025-10-12", to: "2025-10-13", days: 2, status: "Approved" },
+    {
+      empId: "EMP201",
+      employee: "Neha Gupta",
+      type: "Annual Leave",
+      from: "2025-10-16",
+      to: "2025-10-17",
+      days: 2,
+      status: "Pending",
+    },
+    {
+      empId: "EMP202",
+      employee: "Aarav Sharma",
+      type: "Annual Leave",
+      from: "2025-10-15",
+      to: "2025-10-17",
+      days: 3,
+      status: "Pending",
+    },
+    {
+      empId: "EMP203",
+      employee: "Sara Khan",
+      type: "Sick Leave",
+      from: "2025-10-12",
+      to: "2025-10-13",
+      days: 2,
+      status: "Approved",
+    },
   ]);
   const [lrCreateOpen, setLrCreateOpen] = useState(false);
   const [lrEmpId, setLrEmpId] = useState("EMP999");
   const [lrEmployee, setLrEmployee] = useState("");
   const [lrType, setLrType] = useState("Annual Leave");
-  const [lrFrom, setLrFrom] = useState<string>(new Date().toISOString().slice(0, 10));
-  const [lrTo, setLrTo] = useState<string>(new Date().toISOString().slice(0, 10));
+  const [lrFrom, setLrFrom] = useState<string>(
+    new Date().toISOString().slice(0, 10),
+  );
+  const [lrTo, setLrTo] = useState<string>(
+    new Date().toISOString().slice(0, 10),
+  );
   const [lrStatus, setLrStatus] = useState<"Pending" | "Approved">("Pending");
   const filteredLeaves = useMemo(
     () =>
       leaves.filter((l) => {
         const q = lrSearch.trim().toLowerCase();
-        const matchSearch = !q || l.employee.toLowerCase().includes(q) || l.empId.toLowerCase().includes(q) || l.type.toLowerCase().includes(q);
-        const matchType = !lrTypeFilter || lrTypeFilter === 'all' || l.type === lrTypeFilter;
+        const matchSearch =
+          !q ||
+          l.employee.toLowerCase().includes(q) ||
+          l.empId.toLowerCase().includes(q) ||
+          l.type.toLowerCase().includes(q);
+        const matchType =
+          !lrTypeFilter || lrTypeFilter === "all" || l.type === lrTypeFilter;
         return matchSearch && matchType;
       }),
     [leaves, lrSearch, lrTypeFilter],
   );
 
   function exportLeavesCSV() {
-    const headers = ["Employee ID", "Employee Name", "Leave Type", "Period From", "Period To", "Days", "Status"];
-    const rows = filteredLeaves.map((l) => [l.empId, l.employee, l.type, l.from, l.to, String(l.days), l.status]);
-    const csv = [headers.join(","), ...rows.map((r) => r.map((x) => `"${String(x).replace(/"/g, '""')}"`).join(","))].join("\n");
+    const headers = [
+      "Employee ID",
+      "Employee Name",
+      "Leave Type",
+      "Period From",
+      "Period To",
+      "Days",
+      "Status",
+    ];
+    const rows = filteredLeaves.map((l) => [
+      l.empId,
+      l.employee,
+      l.type,
+      l.from,
+      l.to,
+      String(l.days),
+      l.status,
+    ]);
+    const csv = [
+      headers.join(","),
+      ...rows.map((r) =>
+        r.map((x) => `"${String(x).replace(/"/g, '""')}"`).join(","),
+      ),
+    ].join("\n");
     download("leave-requests.csv", csv, "text/csv;charset=utf-8;");
   }
   const [lrPage, setLrPage] = useState(0);
@@ -1312,15 +1672,27 @@ export default function Index() {
   const lrEnd = Math.min(lrStart + lrPageSize, lrTotal);
   const lrItems = filteredLeaves.slice(lrStart, lrEnd);
 
-  type ShiftRow = { empId: string; employee: string; dept: string; shift: "Day" | "Night" | "Early" };
+  type ShiftRow = {
+    empId: string;
+    employee: string;
+    dept: string;
+    shift: "Day" | "Night" | "Early";
+  };
   const [shiftRows, setShiftRows] = useState<ShiftRow[]>([
-    { empId: "EMP202", employee: "Aarav Sharma", dept: "Engineering", shift: "Day" },
+    {
+      empId: "EMP202",
+      employee: "Aarav Sharma",
+      dept: "Engineering",
+      shift: "Day",
+    },
     { empId: "EMP201", employee: "Neha Gupta", dept: "Finance", shift: "Day" },
     { empId: "EMP301", employee: "John Patel", dept: "Sales", shift: "Early" },
     { empId: "EMP203", employee: "Sara Khan", dept: "Support", shift: "Night" },
   ]);
   const [shiftEditIndex, setShiftEditIndex] = useState<number | null>(null);
-  const [shiftEditValue, setShiftEditValue] = useState<"Day" | "Night" | "Early">("Day");
+  const [shiftEditValue, setShiftEditValue] = useState<
+    "Day" | "Night" | "Early"
+  >("Day");
 
   type BalanceRow = { employee: string; type: string; balance: number };
   const [balances, setBalances] = useState<BalanceRow[]>([
@@ -1908,8 +2280,16 @@ export default function Index() {
       <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
         <header className="mb-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-bold text-foreground">Leave and Attendance Management</h2>
-            <Button type="button" variant="ghost" className="h-8 w-8 p-0" aria-label="Settings" onClick={() => navigate("/settings")}>
+            <h2 className="text-2xl font-bold text-foreground">
+              Leave and Attendance Management
+            </h2>
+            <Button
+              type="button"
+              variant="ghost"
+              className="h-8 w-8 p-0"
+              aria-label="Settings"
+              onClick={() => navigate("/settings")}
+            >
               <Settings className="h-4 w-4 text-muted-foreground" />
             </Button>
           </div>
@@ -1918,9 +2298,7 @@ export default function Index() {
           </p>
         </header>
 
-
         <Tabs value={tab} onValueChange={setTab} className="w-full">
-
           <TabsList className="mt-1 inline-flex items-center gap-1 rounded-full bg-muted p-1 shadow-sm font-poppins">
             <TabsTrigger
               value="attendance"
@@ -2003,379 +2381,403 @@ export default function Index() {
               </TabsList>
               <TabsContent value="logs">
                 <div className="rounded-2xl border bg-card p-4 shadow-sm mt-4">
-            <section className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <div className="flex w-full flex-1 items-center gap-2">
-                <Input
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  placeholder="Search by name, dept, or date"
-                  className="h-8 text-xs max-w-md"
-                />
-                <Select value={position} onValueChange={setPosition}>
-                  <SelectTrigger className="h-8 w-32 text-xs">
-                    <SelectValue placeholder="Department Filter" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">Department Filter</SelectItem>
-                    <SelectItem value="engineer">Engineer</SelectItem>
-                    <SelectItem value="designer">Designer</SelectItem>
-                    <SelectItem value="manager">Manager</SelectItem>
-                    <SelectItem value="hr">HR</SelectItem>
-                  </SelectContent>
-                </Select>
-                <Select value={status} onValueChange={setStatus}>
-                  <SelectTrigger className="h-8 w-28 text-xs">
-                    <SelectValue placeholder="Status Filter" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">Status Filter</SelectItem>
-                    <SelectItem value="active">Active</SelectItem>
-                    <SelectItem value="on leave">On Leave</SelectItem>
-                    <SelectItem value="inactive">Inactive</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
+                  <section className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <div className="flex w-full flex-1 items-center gap-2">
+                      <Input
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                        placeholder="Search by name, dept, or date"
+                        className="h-8 text-xs max-w-md"
+                      />
+                      <Select value={position} onValueChange={setPosition}>
+                        <SelectTrigger className="h-8 w-32 text-xs">
+                          <SelectValue placeholder="Department Filter" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="all">Department Filter</SelectItem>
+                          <SelectItem value="engineer">Engineer</SelectItem>
+                          <SelectItem value="designer">Designer</SelectItem>
+                          <SelectItem value="manager">Manager</SelectItem>
+                          <SelectItem value="hr">HR</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <Select value={status} onValueChange={setStatus}>
+                        <SelectTrigger className="h-8 w-28 text-xs">
+                          <SelectValue placeholder="Status Filter" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="all">Status Filter</SelectItem>
+                          <SelectItem value="active">Active</SelectItem>
+                          <SelectItem value="on leave">On Leave</SelectItem>
+                          <SelectItem value="inactive">Inactive</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
 
-              <div className="flex items-center gap-3 self-end">
-                <div className="flex items-center gap-3">
-                  <Dialog open={openAddSingle} onOpenChange={setOpenAddSingle}>
-                    <DialogContent className="rounded-2xl p-6 shadow-xl">
-                      <DialogHeader>
-                        <DialogTitle>Add Employee</DialogTitle>
-                      </DialogHeader>
-                      <div className="grid gap-3 text-sm">
-                        <div className="grid gap-1.5 sm:grid-cols-2 sm:gap-3">
-                          <div className="grid gap-1.5">
-                            <Label
-                              className="text-xs font-semibold"
-                              htmlFor="emp-first"
-                            >
-                              First Name
-                            </Label>
-                            <Input
-                              id="emp-first"
-                              placeholder="First name"
-                              required
-                            />
-                          </div>
-                          <div className="grid gap-1.5">
-                            <Label
-                              className="text-xs font-semibold"
-                              htmlFor="emp-last"
-                            >
-                              Last Name
-                            </Label>
-                            <Input
-                              id="emp-last"
-                              placeholder="Last name"
-                              required
-                            />
-                          </div>
-                        </div>
-                        <div className="grid gap-1.5">
-                          <Label
-                            className="text-xs font-semibold"
-                            htmlFor="emp-email"
-                          >
-                            Email
-                          </Label>
+                    <div className="flex items-center gap-3 self-end">
+                      <div className="flex items-center gap-3">
+                        <Dialog
+                          open={openAddSingle}
+                          onOpenChange={setOpenAddSingle}
+                        >
+                          <DialogContent className="rounded-2xl p-6 shadow-xl">
+                            <DialogHeader>
+                              <DialogTitle>Add Employee</DialogTitle>
+                            </DialogHeader>
+                            <div className="grid gap-3 text-sm">
+                              <div className="grid gap-1.5 sm:grid-cols-2 sm:gap-3">
+                                <div className="grid gap-1.5">
+                                  <Label
+                                    className="text-xs font-semibold"
+                                    htmlFor="emp-first"
+                                  >
+                                    First Name
+                                  </Label>
+                                  <Input
+                                    id="emp-first"
+                                    placeholder="First name"
+                                    required
+                                  />
+                                </div>
+                                <div className="grid gap-1.5">
+                                  <Label
+                                    className="text-xs font-semibold"
+                                    htmlFor="emp-last"
+                                  >
+                                    Last Name
+                                  </Label>
+                                  <Input
+                                    id="emp-last"
+                                    placeholder="Last name"
+                                    required
+                                  />
+                                </div>
+                              </div>
+                              <div className="grid gap-1.5">
+                                <Label
+                                  className="text-xs font-semibold"
+                                  htmlFor="emp-email"
+                                >
+                                  Email
+                                </Label>
+                                <Input
+                                  id="emp-email"
+                                  type="email"
+                                  placeholder="email@company.com"
+                                  required
+                                />
+                              </div>
+                              <div className="grid gap-1.5 sm:grid-cols-2 sm:gap-3">
+                                <div className="grid gap-1.5">
+                                  <Label
+                                    className="text-xs font-semibold"
+                                    htmlFor="emp-role"
+                                  >
+                                    Role / Position
+                                  </Label>
+                                  <Input
+                                    id="emp-role"
+                                    placeholder="e.g., Software Engineer"
+                                  />
+                                </div>
+                                <div className="grid gap-1.5">
+                                  <Label className="text-xs font-semibold">
+                                    Department
+                                  </Label>
+                                  <Select>
+                                    <SelectTrigger className="h-9">
+                                      <SelectValue placeholder="Select department" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                      {departments.map((d) => (
+                                        <SelectItem
+                                          key={d}
+                                          value={d.toLowerCase()}
+                                        >
+                                          {d}
+                                        </SelectItem>
+                                      ))}
+                                    </SelectContent>
+                                  </Select>
+                                </div>
+                              </div>
+                              <div className="grid gap-1.5 sm:grid-cols-2 sm:gap-3">
+                                <div className="grid gap-1.5">
+                                  <Label className="text-xs font-semibold">
+                                    Status
+                                  </Label>
+                                  <Select>
+                                    <SelectTrigger className="h-9">
+                                      <SelectValue placeholder="Select status" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                      <SelectItem value="active">
+                                        Active
+                                      </SelectItem>
+                                      <SelectItem value="on leave">
+                                        On Leave
+                                      </SelectItem>
+                                      <SelectItem value="inactive">
+                                        Inactive
+                                      </SelectItem>
+                                    </SelectContent>
+                                  </Select>
+                                </div>
+                                <div className="grid gap-1.5">
+                                  <Label
+                                    className="text-xs font-semibold"
+                                    htmlFor="emp-join"
+                                  >
+                                    Joined Date
+                                  </Label>
+                                  <Input id="emp-join" type="date" />
+                                </div>
+                              </div>
+                            </div>
+                            <DialogFooter>
+                              <DialogClose asChild>
+                                <Button
+                                  variant="outline"
+                                  className="rounded-md border px-4"
+                                >
+                                  Cancel
+                                </Button>
+                              </DialogClose>
+                              <DialogClose asChild>
+                                <Button
+                                  className="rounded-md bg-[#2563eb] px-4 text-white hover:bg-[#1d4ed8]"
+                                  onClick={() =>
+                                    toast({
+                                      title: "Employee added",
+                                      description:
+                                        "New employee has been added.",
+                                    })
+                                  }
+                                >
+                                  Save
+                                </Button>
+                              </DialogClose>
+                            </DialogFooter>
+                          </DialogContent>
+                        </Dialog>
+                        <div className="flex items-center gap-2">
+                          <CalendarDays className="h-4 w-4 text-muted-foreground" />
                           <Input
-                            id="emp-email"
-                            type="email"
-                            placeholder="email@company.com"
-                            required
+                            type="date"
+                            value={dateFilter}
+                            onChange={(e) => setDateFilter(e.target.value)}
+                            className="h-8 w-[140px] text-xs"
                           />
                         </div>
-                        <div className="grid gap-1.5 sm:grid-cols-2 sm:gap-3">
-                          <div className="grid gap-1.5">
-                            <Label
-                              className="text-xs font-semibold"
-                              htmlFor="emp-role"
+                      </div>
+                      <Button
+                        variant="outline"
+                        className={cn(
+                          "h-8 w-8 rounded-md p-0",
+                          view === "table"
+                            ? "bg-brand text-brand-foreground border-transparent"
+                            : "",
+                        )}
+                        onClick={() => setView("table")}
+                      >
+                        <TableIcon className="h-4 w-4" />
+                      </Button>
+                      <Button
+                        variant="outline"
+                        className={cn(
+                          "h-8 w-8 rounded-md p-0",
+                          view === "card"
+                            ? "bg-brand text-brand-foreground border-transparent"
+                            : "",
+                        )}
+                        onClick={() => setView("card")}
+                      >
+                        <LayoutGrid className="h-4 w-4" />
+                      </Button>
+                      <Button
+                        type="button"
+                        variant="outline"
+                        className="h-8 rounded-md px-3 text-xs bg-white text-[#374151] border border-[#d1d5db] hover:bg-gray-50"
+                      >
+                        <Download className="mr-1.5 h-4 w-4" /> Export
+                      </Button>
+                    </div>
+                  </section>
+
+                  {view === "table" ? (
+                    <section className="mt-4">
+                      <div className="overflow-hidden rounded-lg border">
+                        <Table className="text-xs leading-tight">
+                          <TableHeader>
+                            <TableRow className="hover:bg-transparent">
+                              <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
+                                Employee ID
+                              </TableHead>
+                              <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
+                                Employee Name
+                              </TableHead>
+                              <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
+                                System Date
+                              </TableHead>
+                              <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
+                                Department
+                              </TableHead>
+                              <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
+                                Punch In
+                              </TableHead>
+                              <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
+                                Punch Out
+                              </TableHead>
+                              <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
+                                Status
+                              </TableHead>
+                              <TableHead className="px-2 py-1 text-center text-xs font-semibold uppercase leading-tight">
+                                Action
+                              </TableHead>
+                            </TableRow>
+                          </TableHeader>
+                          <TableBody>
+                            {pageItems.map((e) => (
+                              <TableRow
+                                key={e.id}
+                                className={cn("hover:bg-transparent")}
+                              >
+                                <TableCell className="px-2 py-1 text-xs leading-tight font-medium text-foreground/90">
+                                  {e.id}
+                                </TableCell>
+                                <TableCell className="px-2 py-1 text-xs leading-tight">
+                                  <div className="flex items-center gap-2">
+                                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#1E4DD8] text-white font-semibold text-[10px]">
+                                      {(e.firstName?.[0] || "").toUpperCase()}
+                                      {(e.lastName?.[0] || "").toUpperCase()}
+                                    </div>
+                                    <span className="text-xs font-semibold text-foreground">
+                                      {e.firstName} {e.lastName}
+                                    </span>
+                                  </div>
+                                </TableCell>
+                                <TableCell className="px-2 py-1 text-xs leading-tight">
+                                  {todayStr}
+                                </TableCell>
+                                <TableCell className="px-2 py-1 text-xs leading-tight">
+                                  {e.department}
+                                </TableCell>
+                                <TableCell className="px-2 py-1 text-xs leading-tight">
+                                  {getInOutTimes(e).in}
+                                </TableCell>
+                                <TableCell className="px-2 py-1 text-xs leading-tight">
+                                  {getInOutTimes(e).out}
+                                </TableCell>
+                                <TableCell className="px-2 py-1 text-xs leading-tight">
+                                  {getAttendanceStatus(e)}
+                                </TableCell>
+                                <TableCell className="px-2 py-1 text-center text-xs leading-tight">
+                                  <RowActions employee={e} />
+                                </TableCell>
+                              </TableRow>
+                            ))}
+                          </TableBody>
+                        </Table>
+                        <div className="flex items-center justify-end gap-2 border-t px-2 py-2 text-xs">
+                          <div className="flex items-center gap-2">
+                            <span className="text-muted-foreground">
+                              {start + 1}-{end} of {filtered.length}
+                            </span>
+                            <Button
+                              variant="outline"
+                              className="h-7 w-7 rounded-md p-0"
+                              onClick={() => setPage((p) => Math.max(0, p - 1))}
+                              disabled={page === 0}
+                              aria-label="Previous page"
                             >
-                              Role / Position
-                            </Label>
-                            <Input
-                              id="emp-role"
-                              placeholder="e.g., Software Engineer"
-                            />
-                          </div>
-                          <div className="grid gap-1.5">
-                            <Label className="text-xs font-semibold">
-                              Department
-                            </Label>
-                            <Select>
-                              <SelectTrigger className="h-9">
-                                <SelectValue placeholder="Select department" />
-                              </SelectTrigger>
-                              <SelectContent>
-                                {departments.map((d) => (
-                                  <SelectItem key={d} value={d.toLowerCase()}>
-                                    {d}
-                                  </SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
-                          </div>
-                        </div>
-                        <div className="grid gap-1.5 sm:grid-cols-2 sm:gap-3">
-                          <div className="grid gap-1.5">
-                            <Label className="text-xs font-semibold">
-                              Status
-                            </Label>
-                            <Select>
-                              <SelectTrigger className="h-9">
-                                <SelectValue placeholder="Select status" />
-                              </SelectTrigger>
-                              <SelectContent>
-                                <SelectItem value="active">Active</SelectItem>
-                                <SelectItem value="on leave">
-                                  On Leave
-                                </SelectItem>
-                                <SelectItem value="inactive">
-                                  Inactive
-                                </SelectItem>
-                              </SelectContent>
-                            </Select>
-                          </div>
-                          <div className="grid gap-1.5">
-                            <Label
-                              className="text-xs font-semibold"
-                              htmlFor="emp-join"
+                              <ChevronLeft className="h-4 w-4" />
+                            </Button>
+                            <Button
+                              variant="outline"
+                              className="h-7 w-7 rounded-md p-0"
+                              onClick={() =>
+                                setPage((p) => Math.min(totalPages - 1, p + 1))
+                              }
+                              disabled={page >= totalPages - 1}
+                              aria-label="Next page"
                             >
-                              Joined Date
-                            </Label>
-                            <Input id="emp-join" type="date" />
+                              <ChevronRight className="h-4 w-4" />
+                            </Button>
                           </div>
                         </div>
                       </div>
-                      <DialogFooter>
-                        <DialogClose asChild>
-                          <Button
-                            variant="outline"
-                            className="rounded-md border px-4"
-                          >
-                            Cancel
-                          </Button>
-                        </DialogClose>
-                        <DialogClose asChild>
-                          <Button
-                            className="rounded-md bg-[#2563eb] px-4 text-white hover:bg-[#1d4ed8]"
-                            onClick={() =>
-                              toast({
-                                title: "Employee added",
-                                description: "New employee has been added.",
-                              })
-                            }
-                          >
-                            Save
-                          </Button>
-                        </DialogClose>
-                      </DialogFooter>
-                    </DialogContent>
-                  </Dialog>
-                  <div className="flex items-center gap-2">
-                    <CalendarDays className="h-4 w-4 text-muted-foreground" />
-                    <Input
-                      type="date"
-                      value={dateFilter}
-                      onChange={(e) => setDateFilter(e.target.value)}
-                      className="h-8 w-[140px] text-xs"
-                    />
-                  </div>
-                </div>
-                <Button
-                  variant="outline"
-                  className={cn(
-                    "h-8 w-8 rounded-md p-0",
-                    view === "table"
-                      ? "bg-brand text-brand-foreground border-transparent"
-                      : "",
-                  )}
-                  onClick={() => setView("table")}
-                >
-                  <TableIcon className="h-4 w-4" />
-                </Button>
-                <Button
-                  variant="outline"
-                  className={cn(
-                    "h-8 w-8 rounded-md p-0",
-                    view === "card"
-                      ? "bg-brand text-brand-foreground border-transparent"
-                      : "",
-                  )}
-                  onClick={() => setView("card")}
-                >
-                  <LayoutGrid className="h-4 w-4" />
-                </Button>
-                <Button
-                  type="button"
-                  variant="outline"
-                  className="h-8 rounded-md px-3 text-xs bg-white text-[#374151] border border-[#d1d5db] hover:bg-gray-50"
-                >
-                  <Download className="mr-1.5 h-4 w-4" /> Export
-                </Button>
-              </div>
-            </section>
-
-            {view === "table" ? (
-              <section className="mt-4">
-                <div className="overflow-hidden rounded-lg border">
-                  <Table className="text-xs leading-tight">
-                    <TableHeader>
-                      <TableRow className="hover:bg-transparent">
-                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
-                          Employee ID
-                        </TableHead>
-                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
-                          Employee Name
-                        </TableHead>
-                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
-                          System Date
-                        </TableHead>
-                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
-                          Department
-                        </TableHead>
-                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
-                          Punch In
-                        </TableHead>
-                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
-                          Punch Out
-                        </TableHead>
-                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
-                          Status
-                        </TableHead>
-                        <TableHead className="px-2 py-1 text-center text-xs font-semibold uppercase leading-tight">
-                          Action
-                        </TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
+                    </section>
+                  ) : (
+                    <section className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
                       {pageItems.map((e) => (
-                        <TableRow key={e.id} className={cn("hover:bg-transparent")}>
-                          <TableCell className="px-2 py-1 text-xs leading-tight font-medium text-foreground/90">
-                            {e.id}
-                          </TableCell>
-                          <TableCell className="px-2 py-1 text-xs leading-tight">
-                            <div className="flex items-center gap-2">
-                              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#1E4DD8] text-white font-semibold text-[10px]">
+                        <div
+                          key={e.id}
+                          className="bg-white rounded-[12px] py-4 px-5"
+                          style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.1)" }}
+                        >
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1E4DD8] text-white font-semibold text-[14px]">
                                 {(e.firstName?.[0] || "").toUpperCase()}
                                 {(e.lastName?.[0] || "").toUpperCase()}
                               </div>
-                              <span className="text-xs font-semibold text-foreground">
-                                {e.firstName} {e.lastName}
-                              </span>
+                              <div>
+                                <div className="flex items-center gap-2">
+                                  <div className="text-[16px] font-bold text-[#1A1A1A]">
+                                    {e.firstName} {e.lastName}
+                                  </div>
+                                </div>
+                                <div className="text-[11px] text-muted-foreground">
+                                  ID: {e.id}
+                                </div>
+                              </div>
                             </div>
-                          </TableCell>
-                          <TableCell className="px-2 py-1 text-xs leading-tight">
-                            {todayStr}
-                          </TableCell>
-                          <TableCell className="px-2 py-1 text-xs leading-tight">
-                            {e.department}
-                          </TableCell>
-                          <TableCell className="px-2 py-1 text-xs leading-tight">{getInOutTimes(e).in}</TableCell>
-                          <TableCell className="px-2 py-1 text-xs leading-tight">{getInOutTimes(e).out}</TableCell>
-                          <TableCell className="px-2 py-1 text-xs leading-tight">{getAttendanceStatus(e)}</TableCell>
-                          <TableCell className="px-2 py-1 text-center text-xs leading-tight">
                             <RowActions employee={e} />
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                  <div className="flex items-center justify-end gap-2 border-t px-2 py-2 text-xs">
-                    <div className="flex items-center gap-2">
-                      <span className="text-muted-foreground">
-                        {start + 1}-{end} of {filtered.length}
-                      </span>
-                      <Button
-                        variant="outline"
-                        className="h-7 w-7 rounded-md p-0"
-                        onClick={() => setPage((p) => Math.max(0, p - 1))}
-                        disabled={page === 0}
-                        aria-label="Previous page"
-                      >
-                        <ChevronLeft className="h-4 w-4" />
-                      </Button>
-                      <Button
-                        variant="outline"
-                        className="h-7 w-7 rounded-md p-0"
-                        onClick={() =>
-                          setPage((p) => Math.min(totalPages - 1, p + 1))
-                        }
-                        disabled={page >= totalPages - 1}
-                        aria-label="Next page"
-                      >
-                        <ChevronRight className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              </section>
-            ) : (
-              <section className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                {pageItems.map((e) => (
-                  <div
-                    key={e.id}
-                    className="bg-white rounded-[12px] py-4 px-5"
-                    style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.1)" }}
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1E4DD8] text-white font-semibold text-[14px]">
-                          {(e.firstName?.[0] || "").toUpperCase()}
-                          {(e.lastName?.[0] || "").toUpperCase()}
-                        </div>
-                        <div>
-                          <div className="flex items-center gap-2">
-                            <div className="text-[16px] font-bold text-[#1A1A1A]">
-                              {e.firstName} {e.lastName}
+                          </div>
+                          <div className="mt-3 grid grid-cols-2 gap-2 text-sm">
+                            <div>
+                              <div className="text-[11px] text-muted-foreground">
+                                Date
+                              </div>
+                              <div className="text-foreground">{todayStr}</div>
+                            </div>
+                            <div>
+                              <div className="text-[11px] text-muted-foreground">
+                                Department
+                              </div>
+                              <div className="truncate text-foreground">
+                                {e.department}
+                              </div>
+                            </div>
+                            <div>
+                              <div className="text-[11px] text-muted-foreground">
+                                In
+                              </div>
+                              <div className="text-foreground">
+                                {getInOutTimes(e).in}
+                              </div>
+                            </div>
+                            <div>
+                              <div className="text-[11px] text-muted-foreground">
+                                Out
+                              </div>
+                              <div className="text-foreground">
+                                {getInOutTimes(e).out}
+                              </div>
+                            </div>
+                            <div className="col-span-2">
+                              <div className="text-[11px] text-muted-foreground">
+                                Status
+                              </div>
+                              <div className="text-foreground">
+                                {getAttendanceStatus(e)}
+                              </div>
                             </div>
                           </div>
-                          <div className="text-[11px] text-muted-foreground">
-                            ID: {e.id}
-                          </div>
                         </div>
-                      </div>
-                      <RowActions employee={e} />
-                    </div>
-                    <div className="mt-3 grid grid-cols-2 gap-2 text-sm">
-                      <div>
-                        <div className="text-[11px] text-muted-foreground">
-                          Date
-                        </div>
-                        <div className="text-foreground">{todayStr}</div>
-                      </div>
-                      <div>
-                        <div className="text-[11px] text-muted-foreground">
-                          Department
-                        </div>
-                        <div className="truncate text-foreground">
-                          {e.department}
-                        </div>
-                      </div>
-                      <div>
-                        <div className="text-[11px] text-muted-foreground">
-                          In
-                        </div>
-                        <div className="text-foreground">{getInOutTimes(e).in}</div>
-                      </div>
-                      <div>
-                        <div className="text-[11px] text-muted-foreground">
-                          Out
-                        </div>
-                        <div className="text-foreground">{getInOutTimes(e).out}</div>
-                      </div>
-                      <div className="col-span-2">
-                        <div className="text-[11px] text-muted-foreground">
-                          Status
-                        </div>
-                        <div className="text-foreground">{getAttendanceStatus(e)}</div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </section>
-            )}
+                      ))}
+                    </section>
+                  )}
                 </div>
               </TabsContent>
               <TabsContent value="timesheets">
@@ -2387,7 +2789,11 @@ export default function Index() {
                     />
                     <div className="flex items-center gap-3">
                       <span className="text-sm text-[#6B7280]">
-                        {tsRange === "monthly" ? monthlyDisplay : tsRange === "weekly" ? weeklyDisplay : `Today • ${todaySlash}`}
+                        {tsRange === "monthly"
+                          ? monthlyDisplay
+                          : tsRange === "weekly"
+                            ? weeklyDisplay
+                            : `Today • ${todaySlash}`}
                       </span>
                       <div className="flex items-center gap-1">
                         {(["daily", "weekly", "monthly"] as const).map((k) => (
@@ -2414,33 +2820,83 @@ export default function Index() {
                       <Table className="text-sm">
                         <TableHeader>
                           <TableRow>
-                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">EMPLOYEE ID</TableHead>
-                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">EMPLOYEE NAME</TableHead>
-                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">MON 10/13</TableHead>
-                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">TUE 10/14</TableHead>
-                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">WED 10/15</TableHead>
-                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">THU 10/16</TableHead>
-                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">FRI 10/17</TableHead>
-                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">SAT 10/18</TableHead>
-                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">SUN 10/19</TableHead>
-                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">SCHEDULED</TableHead>
-                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">WORKED</TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">
+                              EMPLOYEE ID
+                            </TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">
+                              EMPLOYEE NAME
+                            </TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">
+                              MON 10/13
+                            </TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">
+                              TUE 10/14
+                            </TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">
+                              WED 10/15
+                            </TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">
+                              THU 10/16
+                            </TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">
+                              FRI 10/17
+                            </TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">
+                              SAT 10/18
+                            </TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">
+                              SUN 10/19
+                            </TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">
+                              SCHEDULED
+                            </TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">
+                              WORKED
+                            </TableHead>
                           </TableRow>
                         </TableHeader>
                         <TableBody>
-                          {WEEKLY_DATA.slice(weeklyPage * itemsPerPage, (weeklyPage + 1) * itemsPerPage).map((r) => (
-                            <TableRow key={r.empId} className="hover:bg-[#F9FAFB]">
-                              <TableCell className="px-3 py-2 text-[#111827]">{r.empId.replace('E-', '')}</TableCell>
-                              <TableCell className="px-3 py-2 text-[#111827]">{r.name}</TableCell>
-                              <TableCell className="px-3 py-2 text-[#111827]">{r.mon}</TableCell>
-                              <TableCell className="px-3 py-2 text-[#111827]">{r.tue}</TableCell>
-                              <TableCell className="px-3 py-2 text-[#111827]">{r.wed}</TableCell>
-                              <TableCell className="px-3 py-2 text-[#111827]">{r.thu}</TableCell>
-                              <TableCell className="px-3 py-2 text-[#111827]">{r.fri}</TableCell>
-                              <TableCell className="px-3 py-2 text-[#111827]">{r.sat}</TableCell>
-                              <TableCell className="px-3 py-2 text-[#111827]">{r.sun}</TableCell>
-                              <TableCell className="px-3 py-2 text-[#111827] flex items-center justify-center">{r.scheduled}</TableCell>
-                              <TableCell className="px-3 py-2 text-[#111827]">{r.worked}</TableCell>
+                          {WEEKLY_DATA.slice(
+                            weeklyPage * itemsPerPage,
+                            (weeklyPage + 1) * itemsPerPage,
+                          ).map((r) => (
+                            <TableRow
+                              key={r.empId}
+                              className="hover:bg-[#F9FAFB]"
+                            >
+                              <TableCell className="px-3 py-2 text-[#111827]">
+                                {r.empId.replace("E-", "")}
+                              </TableCell>
+                              <TableCell className="px-3 py-2 text-[#111827]">
+                                {r.name}
+                              </TableCell>
+                              <TableCell className="px-3 py-2 text-[#111827]">
+                                {r.mon}
+                              </TableCell>
+                              <TableCell className="px-3 py-2 text-[#111827]">
+                                {r.tue}
+                              </TableCell>
+                              <TableCell className="px-3 py-2 text-[#111827]">
+                                {r.wed}
+                              </TableCell>
+                              <TableCell className="px-3 py-2 text-[#111827]">
+                                {r.thu}
+                              </TableCell>
+                              <TableCell className="px-3 py-2 text-[#111827]">
+                                {r.fri}
+                              </TableCell>
+                              <TableCell className="px-3 py-2 text-[#111827]">
+                                {r.sat}
+                              </TableCell>
+                              <TableCell className="px-3 py-2 text-[#111827]">
+                                {r.sun}
+                              </TableCell>
+                              <TableCell className="px-3 py-2 text-[#111827] flex items-center justify-center">
+                                {r.scheduled}
+                              </TableCell>
+                              <TableCell className="px-3 py-2 text-[#111827]">
+                                {r.worked}
+                              </TableCell>
                             </TableRow>
                           ))}
                         </TableBody>
@@ -2450,17 +2906,24 @@ export default function Index() {
                           <Button
                             variant="outline"
                             className="h-7 w-7 rounded-md p-0"
-                            onClick={() => setWeeklyPage(Math.max(0, weeklyPage - 1))}
+                            onClick={() =>
+                              setWeeklyPage(Math.max(0, weeklyPage - 1))
+                            }
                             disabled={weeklyPage === 0}
                           >
                             <ChevronLeft className="h-4 w-4" />
                           </Button>
-                          <span className="text-[#6B7280] text-xs">{weeklyPage + 1}</span>
+                          <span className="text-[#6B7280] text-xs">
+                            {weeklyPage + 1}
+                          </span>
                           <Button
                             variant="outline"
                             className="h-7 w-7 rounded-md p-0"
                             onClick={() => setWeeklyPage(weeklyPage + 1)}
-                            disabled={(weeklyPage + 1) * itemsPerPage >= WEEKLY_DATA.length}
+                            disabled={
+                              (weeklyPage + 1) * itemsPerPage >=
+                              WEEKLY_DATA.length
+                            }
                           >
                             <ChevronRight className="h-4 w-4" />
                           </Button>
@@ -2472,25 +2935,57 @@ export default function Index() {
                       <Table className="text-xs">
                         <TableHeader>
                           <TableRow>
-                            <TableHead className="border-b border-[#E5E7EB] px-2 py-2 text-[10px] font-semibold text-[#4B5563]">EMPLOYEE ID</TableHead>
-                            <TableHead className="border-b border-[#E5E7EB] px-2 py-2 text-[10px] font-semibold text-[#4B5563]">EMPLOYEE NAME</TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-2 py-2 text-[10px] font-semibold text-[#4B5563]">
+                              EMPLOYEE ID
+                            </TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-2 py-2 text-[10px] font-semibold text-[#4B5563]">
+                              EMPLOYEE NAME
+                            </TableHead>
                             {Array.from({ length: 31 }).map((_, i) => (
-                              <TableHead key={`day-${i + 1}`} className="border-b border-[#E5E7EB] px-1 py-2 text-[9px] font-semibold text-[#4B5563] text-center">{i + 1}</TableHead>
+                              <TableHead
+                                key={`day-${i + 1}`}
+                                className="border-b border-[#E5E7EB] px-1 py-2 text-[9px] font-semibold text-[#4B5563] text-center"
+                              >
+                                {i + 1}
+                              </TableHead>
                             ))}
-                            <TableHead className="border-b border-[#E5E7EB] px-2 py-2 text-[10px] font-semibold text-red-600">HOURS WORKED</TableHead>
-                            <TableHead className="border-b border-[#E5E7EB] px-2 py-2 text-[10px] font-semibold text-red-600">SCHEDULED</TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-2 py-2 text-[10px] font-semibold text-red-600">
+                              HOURS WORKED
+                            </TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-2 py-2 text-[10px] font-semibold text-red-600">
+                              SCHEDULED
+                            </TableHead>
                           </TableRow>
                         </TableHeader>
                         <TableBody>
-                          {MONTHLY_DATA.slice(monthlyPage * itemsPerPage, (monthlyPage + 1) * itemsPerPage).map((r) => (
-                            <TableRow key={r.empId} className="hover:bg-[#F9FAFB]">
-                              <TableCell className="px-2 py-1 text-[11px] text-[#111827]">{r.empId}</TableCell>
-                              <TableCell className="px-2 py-1 text-[11px] text-[#111827]">{r.name}</TableCell>
+                          {MONTHLY_DATA.slice(
+                            monthlyPage * itemsPerPage,
+                            (monthlyPage + 1) * itemsPerPage,
+                          ).map((r) => (
+                            <TableRow
+                              key={r.empId}
+                              className="hover:bg-[#F9FAFB]"
+                            >
+                              <TableCell className="px-2 py-1 text-[11px] text-[#111827]">
+                                {r.empId}
+                              </TableCell>
+                              <TableCell className="px-2 py-1 text-[11px] text-[#111827]">
+                                {r.name}
+                              </TableCell>
                               {r.days.map((day, idx) => (
-                                <TableCell key={`${r.empId}-day-${idx}`} className="px-1 py-1 text-[10px] text-[#111827] text-center">{day}</TableCell>
+                                <TableCell
+                                  key={`${r.empId}-day-${idx}`}
+                                  className="px-1 py-1 text-[10px] text-[#111827] text-center"
+                                >
+                                  {day}
+                                </TableCell>
                               ))}
-                              <TableCell className="px-2 py-1 text-[11px] text-red-600 font-semibold">{r.hoursWorked}</TableCell>
-                              <TableCell className="px-2 py-1 text-[11px] text-red-600 font-semibold flex items-center justify-center">{r.scheduled}</TableCell>
+                              <TableCell className="px-2 py-1 text-[11px] text-red-600 font-semibold">
+                                {r.hoursWorked}
+                              </TableCell>
+                              <TableCell className="px-2 py-1 text-[11px] text-red-600 font-semibold flex items-center justify-center">
+                                {r.scheduled}
+                              </TableCell>
                             </TableRow>
                           ))}
                         </TableBody>
@@ -2500,17 +2995,24 @@ export default function Index() {
                           <Button
                             variant="outline"
                             className="h-7 w-7 rounded-md p-0"
-                            onClick={() => setMonthlyPage(Math.max(0, monthlyPage - 1))}
+                            onClick={() =>
+                              setMonthlyPage(Math.max(0, monthlyPage - 1))
+                            }
                             disabled={monthlyPage === 0}
                           >
                             <ChevronLeft className="h-4 w-4" />
                           </Button>
-                          <span className="text-[#6B7280] text-xs">{monthlyPage + 1}</span>
+                          <span className="text-[#6B7280] text-xs">
+                            {monthlyPage + 1}
+                          </span>
                           <Button
                             variant="outline"
                             className="h-7 w-7 rounded-md p-0"
                             onClick={() => setMonthlyPage(monthlyPage + 1)}
-                            disabled={(monthlyPage + 1) * itemsPerPage >= MONTHLY_DATA.length}
+                            disabled={
+                              (monthlyPage + 1) * itemsPerPage >=
+                              MONTHLY_DATA.length
+                            }
                           >
                             <ChevronRight className="h-4 w-4" />
                           </Button>
@@ -2522,21 +3024,44 @@ export default function Index() {
                       <Table className="text-sm">
                         <TableHeader>
                           <TableRow>
-                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">EMPLOYEE ID</TableHead>
-                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">EMPLOYEE NAME</TableHead>
-                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563] text-center">SCHEDULED</TableHead>
-                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">WORKED</TableHead>
-                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">{tsDayHeader.toUpperCase()}</TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">
+                              EMPLOYEE ID
+                            </TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">
+                              EMPLOYEE NAME
+                            </TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563] text-center">
+                              SCHEDULED
+                            </TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">
+                              WORKED
+                            </TableHead>
+                            <TableHead className="border-b border-[#E5E7EB] px-3 py-3 text-sm font-semibold text-[#4B5563]">
+                              {tsDayHeader.toUpperCase()}
+                            </TableHead>
                           </TableRow>
                         </TableHeader>
                         <TableBody>
                           {TS_ROWS.map((r) => (
-                            <TableRow key={r.empId} className="hover:bg-[#F9FAFB]">
-                              <TableCell className="px-3 py-2 text-[#111827]">{r.empId}</TableCell>
-                              <TableCell className="px-3 py-2 text-[#111827]">{r.name}</TableCell>
-                              <TableCell className="px-3 py-2 text-[#111827] flex items-center justify-center">{r.scheduled}</TableCell>
-                              <TableCell className="px-3 py-2 text-[#111827]">{r.worked}</TableCell>
-                              <TableCell className="px-3 py-2 text-[#111827]">{r.day}</TableCell>
+                            <TableRow
+                              key={r.empId}
+                              className="hover:bg-[#F9FAFB]"
+                            >
+                              <TableCell className="px-3 py-2 text-[#111827]">
+                                {r.empId}
+                              </TableCell>
+                              <TableCell className="px-3 py-2 text-[#111827]">
+                                {r.name}
+                              </TableCell>
+                              <TableCell className="px-3 py-2 text-[#111827] flex items-center justify-center">
+                                {r.scheduled}
+                              </TableCell>
+                              <TableCell className="px-3 py-2 text-[#111827]">
+                                {r.worked}
+                              </TableCell>
+                              <TableCell className="px-3 py-2 text-[#111827]">
+                                {r.day}
+                              </TableCell>
                             </TableRow>
                           ))}
                         </TableBody>
@@ -2563,392 +3088,425 @@ export default function Index() {
                   )}
                 </div>
                 <div className="hidden rounded-2xl border bg-card p-4 shadow-sm mt-4">
-            <section className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <div className="flex w-full flex-1 items-center gap-2">
-                <Input
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  placeholder="Search by name, dept, or date"
-                  className="h-8 text-xs max-w-md"
-                />
-                <Select value={position} onValueChange={setPosition}>
-                  <SelectTrigger className="h-8 w-32 text-xs">
-                    <SelectValue placeholder="Department Filter" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">Department Filter</SelectItem>
-                    <SelectItem value="engineer">Engineer</SelectItem>
-                    <SelectItem value="designer">Designer</SelectItem>
-                    <SelectItem value="manager">Manager</SelectItem>
-                    <SelectItem value="hr">HR</SelectItem>
-                  </SelectContent>
-                </Select>
-                <Select value={status} onValueChange={setStatus}>
-                  <SelectTrigger className="h-8 w-28 text-xs">
-                    <SelectValue placeholder="Status Filter" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">Status Filter</SelectItem>
-                    <SelectItem value="active">Active</SelectItem>
-                    <SelectItem value="on leave">On Leave</SelectItem>
-                    <SelectItem value="inactive">Inactive</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
+                  <section className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <div className="flex w-full flex-1 items-center gap-2">
+                      <Input
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                        placeholder="Search by name, dept, or date"
+                        className="h-8 text-xs max-w-md"
+                      />
+                      <Select value={position} onValueChange={setPosition}>
+                        <SelectTrigger className="h-8 w-32 text-xs">
+                          <SelectValue placeholder="Department Filter" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="all">Department Filter</SelectItem>
+                          <SelectItem value="engineer">Engineer</SelectItem>
+                          <SelectItem value="designer">Designer</SelectItem>
+                          <SelectItem value="manager">Manager</SelectItem>
+                          <SelectItem value="hr">HR</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <Select value={status} onValueChange={setStatus}>
+                        <SelectTrigger className="h-8 w-28 text-xs">
+                          <SelectValue placeholder="Status Filter" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="all">Status Filter</SelectItem>
+                          <SelectItem value="active">Active</SelectItem>
+                          <SelectItem value="on leave">On Leave</SelectItem>
+                          <SelectItem value="inactive">Inactive</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
 
-              <div className="flex items-center gap-3 self-end">
-                <div className="flex items-center gap-3">
-                  <Dialog open={openAddSingle} onOpenChange={setOpenAddSingle}>
-                    <DialogContent className="rounded-2xl p-6 shadow-xl">
-                      <DialogHeader>
-                        <DialogTitle>Add Employee</DialogTitle>
-                      </DialogHeader>
-                      <div className="grid gap-3 text-sm">
-                        <div className="grid gap-1.5 sm:grid-cols-2 sm:gap-3">
-                          <div className="grid gap-1.5">
-                            <Label
-                              className="text-xs font-semibold"
-                              htmlFor="emp-first"
-                            >
-                              First Name
-                            </Label>
-                            <Input
-                              id="emp-first"
-                              placeholder="First name"
-                              required
-                            />
-                          </div>
-                          <div className="grid gap-1.5">
-                            <Label
-                              className="text-xs font-semibold"
-                              htmlFor="emp-last"
-                            >
-                              Last Name
-                            </Label>
-                            <Input
-                              id="emp-last"
-                              placeholder="Last name"
-                              required
-                            />
-                          </div>
-                        </div>
-                        <div className="grid gap-1.5">
-                          <Label
-                            className="text-xs font-semibold"
-                            htmlFor="emp-email"
-                          >
-                            Email
-                          </Label>
+                    <div className="flex items-center gap-3 self-end">
+                      <div className="flex items-center gap-3">
+                        <Dialog
+                          open={openAddSingle}
+                          onOpenChange={setOpenAddSingle}
+                        >
+                          <DialogContent className="rounded-2xl p-6 shadow-xl">
+                            <DialogHeader>
+                              <DialogTitle>Add Employee</DialogTitle>
+                            </DialogHeader>
+                            <div className="grid gap-3 text-sm">
+                              <div className="grid gap-1.5 sm:grid-cols-2 sm:gap-3">
+                                <div className="grid gap-1.5">
+                                  <Label
+                                    className="text-xs font-semibold"
+                                    htmlFor="emp-first"
+                                  >
+                                    First Name
+                                  </Label>
+                                  <Input
+                                    id="emp-first"
+                                    placeholder="First name"
+                                    required
+                                  />
+                                </div>
+                                <div className="grid gap-1.5">
+                                  <Label
+                                    className="text-xs font-semibold"
+                                    htmlFor="emp-last"
+                                  >
+                                    Last Name
+                                  </Label>
+                                  <Input
+                                    id="emp-last"
+                                    placeholder="Last name"
+                                    required
+                                  />
+                                </div>
+                              </div>
+                              <div className="grid gap-1.5">
+                                <Label
+                                  className="text-xs font-semibold"
+                                  htmlFor="emp-email"
+                                >
+                                  Email
+                                </Label>
+                                <Input
+                                  id="emp-email"
+                                  type="email"
+                                  placeholder="email@company.com"
+                                  required
+                                />
+                              </div>
+                              <div className="grid gap-1.5 sm:grid-cols-2 sm:gap-3">
+                                <div className="grid gap-1.5">
+                                  <Label
+                                    className="text-xs font-semibold"
+                                    htmlFor="emp-role"
+                                  >
+                                    Role / Position
+                                  </Label>
+                                  <Input
+                                    id="emp-role"
+                                    placeholder="e.g., Software Engineer"
+                                  />
+                                </div>
+                                <div className="grid gap-1.5">
+                                  <Label className="text-xs font-semibold">
+                                    Department
+                                  </Label>
+                                  <Select>
+                                    <SelectTrigger className="h-9">
+                                      <SelectValue placeholder="Select department" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                      {departments.map((d) => (
+                                        <SelectItem
+                                          key={d}
+                                          value={d.toLowerCase()}
+                                        >
+                                          {d}
+                                        </SelectItem>
+                                      ))}
+                                    </SelectContent>
+                                  </Select>
+                                </div>
+                              </div>
+                              <div className="grid gap-1.5 sm:grid-cols-2 sm:gap-3">
+                                <div className="grid gap-1.5">
+                                  <Label className="text-xs font-semibold">
+                                    Status
+                                  </Label>
+                                  <Select>
+                                    <SelectTrigger className="h-9">
+                                      <SelectValue placeholder="Select status" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                      <SelectItem value="active">
+                                        Active
+                                      </SelectItem>
+                                      <SelectItem value="on leave">
+                                        On Leave
+                                      </SelectItem>
+                                      <SelectItem value="inactive">
+                                        Inactive
+                                      </SelectItem>
+                                    </SelectContent>
+                                  </Select>
+                                </div>
+                                <div className="grid gap-1.5">
+                                  <Label
+                                    className="text-xs font-semibold"
+                                    htmlFor="emp-join"
+                                  >
+                                    Joined Date
+                                  </Label>
+                                  <Input id="emp-join" type="date" />
+                                </div>
+                              </div>
+                            </div>
+                            <DialogFooter>
+                              <DialogClose asChild>
+                                <Button
+                                  variant="outline"
+                                  className="rounded-md border px-4"
+                                >
+                                  Cancel
+                                </Button>
+                              </DialogClose>
+                              <DialogClose asChild>
+                                <Button
+                                  className="rounded-md bg-[#2563eb] px-4 text-white hover:bg-[#1d4ed8]"
+                                  onClick={() =>
+                                    toast({
+                                      title: "Employee added",
+                                      description:
+                                        "New employee has been added.",
+                                    })
+                                  }
+                                >
+                                  Save
+                                </Button>
+                              </DialogClose>
+                            </DialogFooter>
+                          </DialogContent>
+                        </Dialog>
+                        <div className="flex items-center gap-2">
+                          <CalendarDays className="h-4 w-4 text-muted-foreground" />
                           <Input
-                            id="emp-email"
-                            type="email"
-                            placeholder="email@company.com"
-                            required
+                            type="date"
+                            value={dateFilter}
+                            onChange={(e) => setDateFilter(e.target.value)}
+                            className="h-8 w-[140px] text-xs"
                           />
                         </div>
-                        <div className="grid gap-1.5 sm:grid-cols-2 sm:gap-3">
-                          <div className="grid gap-1.5">
-                            <Label
-                              className="text-xs font-semibold"
-                              htmlFor="emp-role"
+                        <Button
+                          type="button"
+                          variant="outline"
+                          className="h-8 rounded-md px-3 text-xs bg-white text-[#374151] border border-[#d1d5db] hover:bg-gray-50"
+                        >
+                          <Download className="mr-1.5 h-4 w-4" /> Export
+                        </Button>
+                      </div>
+                      <Button
+                        variant="outline"
+                        className={cn(
+                          "h-8 w-8 rounded-md p-0",
+                          view === "table"
+                            ? "bg-brand text-brand-foreground border-transparent"
+                            : "",
+                        )}
+                        onClick={() => setView("table")}
+                      >
+                        <TableIcon className="h-4 w-4" />
+                      </Button>
+                      <Button
+                        variant="outline"
+                        className={cn(
+                          "h-8 w-8 rounded-md p-0",
+                          view === "card"
+                            ? "bg-brand text-brand-foreground border-transparent"
+                            : "",
+                        )}
+                        onClick={() => setView("card")}
+                      >
+                        <LayoutGrid className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  </section>
+
+                  {view === "table" ? (
+                    <section className="mt-4">
+                      <div className="overflow-hidden rounded-lg border">
+                        <Table className="text-xs leading-tight">
+                          <TableHeader>
+                            <TableRow className="hover:bg-transparent">
+                              <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
+                                Employee ID
+                              </TableHead>
+                              <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
+                                Employee Name
+                              </TableHead>
+                              <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
+                                System Date
+                              </TableHead>
+                              <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
+                                Department
+                              </TableHead>
+                              <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
+                                Punch In
+                              </TableHead>
+                              <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
+                                Punch Out
+                              </TableHead>
+                              <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
+                                Status
+                              </TableHead>
+                              <TableHead className="px-2 py-1 text-center text-xs font-semibold uppercase leading-tight">
+                                Action
+                              </TableHead>
+                            </TableRow>
+                          </TableHeader>
+                          <TableBody>
+                            {pageItems.map((e) => (
+                              <TableRow
+                                key={e.id}
+                                className={cn("hover:bg-transparent")}
+                              >
+                                <TableCell className="px-2 py-1 text-xs leading-tight font-medium text-foreground/90">
+                                  {e.id}
+                                </TableCell>
+                                <TableCell className="px-2 py-1 text-xs leading-tight">
+                                  <div className="flex items-center gap-2">
+                                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#1E4DD8] text-white font-semibold text-[10px]">
+                                      {(e.firstName?.[0] || "").toUpperCase()}
+                                      {(e.lastName?.[0] || "").toUpperCase()}
+                                    </div>
+                                    <span className="text-xs font-semibold text-foreground">
+                                      {e.firstName} {e.lastName}
+                                    </span>
+                                  </div>
+                                </TableCell>
+                                <TableCell className="px-2 py-1 text-xs leading-tight">
+                                  {todayStr}
+                                </TableCell>
+                                <TableCell className="px-2 py-1 text-xs leading-tight">
+                                  {e.department}
+                                </TableCell>
+                                <TableCell className="px-2 py-1 text-xs leading-tight">
+                                  {getInOutTimes(e).in}
+                                </TableCell>
+                                <TableCell className="px-2 py-1 text-xs leading-tight">
+                                  {getInOutTimes(e).out}
+                                </TableCell>
+                                <TableCell className="px-2 py-1 text-xs leading-tight">
+                                  {getAttendanceStatus(e)}
+                                </TableCell>
+                                <TableCell className="px-2 py-1 text-center text-xs leading-tight">
+                                  <RowActions employee={e} />
+                                </TableCell>
+                              </TableRow>
+                            ))}
+                          </TableBody>
+                        </Table>
+                        <div className="flex items-center justify-end gap-2 border-t px-2 py-2 text-xs">
+                          <div className="flex items-center gap-2">
+                            <span className="text-muted-foreground">
+                              {start + 1}-{end} of {filtered.length}
+                            </span>
+                            <Button
+                              variant="outline"
+                              className="h-7 w-7 rounded-md p-0"
+                              onClick={() => setPage((p) => Math.max(0, p - 1))}
+                              disabled={page === 0}
+                              aria-label="Previous page"
                             >
-                              Role / Position
-                            </Label>
-                            <Input
-                              id="emp-role"
-                              placeholder="e.g., Software Engineer"
-                            />
-                          </div>
-                          <div className="grid gap-1.5">
-                            <Label className="text-xs font-semibold">
-                              Department
-                            </Label>
-                            <Select>
-                              <SelectTrigger className="h-9">
-                                <SelectValue placeholder="Select department" />
-                              </SelectTrigger>
-                              <SelectContent>
-                                {departments.map((d) => (
-                                  <SelectItem key={d} value={d.toLowerCase()}>
-                                    {d}
-                                  </SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
-                          </div>
-                        </div>
-                        <div className="grid gap-1.5 sm:grid-cols-2 sm:gap-3">
-                          <div className="grid gap-1.5">
-                            <Label className="text-xs font-semibold">
-                              Status
-                            </Label>
-                            <Select>
-                              <SelectTrigger className="h-9">
-                                <SelectValue placeholder="Select status" />
-                              </SelectTrigger>
-                              <SelectContent>
-                                <SelectItem value="active">Active</SelectItem>
-                                <SelectItem value="on leave">
-                                  On Leave
-                                </SelectItem>
-                                <SelectItem value="inactive">
-                                  Inactive
-                                </SelectItem>
-                              </SelectContent>
-                            </Select>
-                          </div>
-                          <div className="grid gap-1.5">
-                            <Label
-                              className="text-xs font-semibold"
-                              htmlFor="emp-join"
+                              <ChevronLeft className="h-4 w-4" />
+                            </Button>
+                            <Button
+                              variant="outline"
+                              className="h-7 w-7 rounded-md p-0"
+                              onClick={() =>
+                                setPage((p) => Math.min(totalPages - 1, p + 1))
+                              }
+                              disabled={page >= totalPages - 1}
+                              aria-label="Next page"
                             >
-                              Joined Date
-                            </Label>
-                            <Input id="emp-join" type="date" />
+                              <ChevronRight className="h-4 w-4" />
+                            </Button>
                           </div>
                         </div>
                       </div>
-                      <DialogFooter>
-                        <DialogClose asChild>
-                          <Button
-                            variant="outline"
-                            className="rounded-md border px-4"
-                          >
-                            Cancel
-                          </Button>
-                        </DialogClose>
-                        <DialogClose asChild>
-                          <Button
-                            className="rounded-md bg-[#2563eb] px-4 text-white hover:bg-[#1d4ed8]"
-                            onClick={() =>
-                              toast({
-                                title: "Employee added",
-                                description: "New employee has been added.",
-                              })
-                            }
-                          >
-                            Save
-                          </Button>
-                        </DialogClose>
-                      </DialogFooter>
-                    </DialogContent>
-                  </Dialog>
-                  <div className="flex items-center gap-2">
-                    <CalendarDays className="h-4 w-4 text-muted-foreground" />
-                    <Input
-                      type="date"
-                      value={dateFilter}
-                      onChange={(e) => setDateFilter(e.target.value)}
-                      className="h-8 w-[140px] text-xs"
-                    />
-                  </div>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    className="h-8 rounded-md px-3 text-xs bg-white text-[#374151] border border-[#d1d5db] hover:bg-gray-50"
-                  >
-                    <Download className="mr-1.5 h-4 w-4" /> Export
-                  </Button>
-                </div>
-                <Button
-                  variant="outline"
-                  className={cn(
-                    "h-8 w-8 rounded-md p-0",
-                    view === "table"
-                      ? "bg-brand text-brand-foreground border-transparent"
-                      : "",
-                  )}
-                  onClick={() => setView("table")}
-                >
-                  <TableIcon className="h-4 w-4" />
-                </Button>
-                <Button
-                  variant="outline"
-                  className={cn(
-                    "h-8 w-8 rounded-md p-0",
-                    view === "card"
-                      ? "bg-brand text-brand-foreground border-transparent"
-                      : "",
-                  )}
-                  onClick={() => setView("card")}
-                >
-                  <LayoutGrid className="h-4 w-4" />
-                </Button>
-              </div>
-            </section>
-
-            {view === "table" ? (
-              <section className="mt-4">
-                <div className="overflow-hidden rounded-lg border">
-                  <Table className="text-xs leading-tight">
-                    <TableHeader>
-                      <TableRow className="hover:bg-transparent">
-                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
-                          Employee ID
-                        </TableHead>
-                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
-                          Employee Name
-                        </TableHead>
-                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
-                          System Date
-                        </TableHead>
-                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
-                          Department
-                        </TableHead>
-                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
-                          Punch In
-                        </TableHead>
-                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
-                          Punch Out
-                        </TableHead>
-                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
-                          Status
-                        </TableHead>
-                        <TableHead className="px-2 py-1 text-center text-xs font-semibold uppercase leading-tight">
-                          Action
-                        </TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
+                    </section>
+                  ) : (
+                    <section className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
                       {pageItems.map((e) => (
-                        <TableRow key={e.id} className={cn("hover:bg-transparent")}>
-                          <TableCell className="px-2 py-1 text-xs leading-tight font-medium text-foreground/90">
-                            {e.id}
-                          </TableCell>
-                          <TableCell className="px-2 py-1 text-xs leading-tight">
-                            <div className="flex items-center gap-2">
-                              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#1E4DD8] text-white font-semibold text-[10px]">
+                        <div
+                          key={e.id}
+                          className="bg-white rounded-[12px] py-4 px-5"
+                          style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.1)" }}
+                        >
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1E4DD8] text-white font-semibold text-[14px]">
                                 {(e.firstName?.[0] || "").toUpperCase()}
                                 {(e.lastName?.[0] || "").toUpperCase()}
                               </div>
-                              <span className="text-xs font-semibold text-foreground">
-                                {e.firstName} {e.lastName}
-                              </span>
+                              <div>
+                                <div className="flex items-center gap-2">
+                                  <div className="text-[16px] font-bold text-[#1A1A1A]">
+                                    {e.firstName} {e.lastName}
+                                  </div>
+                                </div>
+                                <div className="text-[11px] text-muted-foreground">
+                                  ID: {e.id}
+                                </div>
+                              </div>
                             </div>
-                          </TableCell>
-                          <TableCell className="px-2 py-1 text-xs leading-tight">
-                            {todayStr}
-                          </TableCell>
-                          <TableCell className="px-2 py-1 text-xs leading-tight">
-                            {e.department}
-                          </TableCell>
-                          <TableCell className="px-2 py-1 text-xs leading-tight">{getInOutTimes(e).in}</TableCell>
-                          <TableCell className="px-2 py-1 text-xs leading-tight">{getInOutTimes(e).out}</TableCell>
-                          <TableCell className="px-2 py-1 text-xs leading-tight">{getAttendanceStatus(e)}</TableCell>
-                          <TableCell className="px-2 py-1 text-center text-xs leading-tight">
                             <RowActions employee={e} />
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                  <div className="flex items-center justify-end gap-2 border-t px-2 py-2 text-xs">
-                    <div className="flex items-center gap-2">
-                      <span className="text-muted-foreground">
-                        {start + 1}-{end} of {filtered.length}
-                      </span>
-                      <Button
-                        variant="outline"
-                        className="h-7 w-7 rounded-md p-0"
-                        onClick={() => setPage((p) => Math.max(0, p - 1))}
-                        disabled={page === 0}
-                        aria-label="Previous page"
-                      >
-                        <ChevronLeft className="h-4 w-4" />
-                      </Button>
-                      <Button
-                        variant="outline"
-                        className="h-7 w-7 rounded-md p-0"
-                        onClick={() =>
-                          setPage((p) => Math.min(totalPages - 1, p + 1))
-                        }
-                        disabled={page >= totalPages - 1}
-                        aria-label="Next page"
-                      >
-                        <ChevronRight className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              </section>
-            ) : (
-              <section className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                {pageItems.map((e) => (
-                  <div
-                    key={e.id}
-                    className="bg-white rounded-[12px] py-4 px-5"
-                    style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.1)" }}
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1E4DD8] text-white font-semibold text-[14px]">
-                          {(e.firstName?.[0] || "").toUpperCase()}
-                          {(e.lastName?.[0] || "").toUpperCase()}
-                        </div>
-                        <div>
-                          <div className="flex items-center gap-2">
-                            <div className="text-[16px] font-bold text-[#1A1A1A]">
-                              {e.firstName} {e.lastName}
+                          </div>
+                          <div className="mt-3 grid grid-cols-2 gap-2 text-sm">
+                            <div>
+                              <div className="text-[11px] text-muted-foreground">
+                                Date
+                              </div>
+                              <div className="text-foreground">{todayStr}</div>
+                            </div>
+                            <div>
+                              <div className="text-[11px] text-muted-foreground">
+                                Department
+                              </div>
+                              <div className="truncate text-foreground">
+                                {e.department}
+                              </div>
+                            </div>
+                            <div>
+                              <div className="text-[11px] text-muted-foreground">
+                                In
+                              </div>
+                              <div className="text-foreground">
+                                {getInOutTimes(e).in}
+                              </div>
+                            </div>
+                            <div>
+                              <div className="text-[11px] text-muted-foreground">
+                                Out
+                              </div>
+                              <div className="text-foreground">
+                                {getInOutTimes(e).out}
+                              </div>
+                            </div>
+                            <div className="col-span-2">
+                              <div className="text-[11px] text-muted-foreground">
+                                Status
+                              </div>
+                              <div className="text-foreground">
+                                {getAttendanceStatus(e)}
+                              </div>
                             </div>
                           </div>
-                          <div className="text-[11px] text-muted-foreground">
-                            ID: {e.id}
-                          </div>
                         </div>
-                      </div>
-                      <RowActions employee={e} />
-                    </div>
-                    <div className="mt-3 grid grid-cols-2 gap-2 text-sm">
-                      <div>
-                        <div className="text-[11px] text-muted-foreground">
-                          Date
-                        </div>
-                        <div className="text-foreground">{todayStr}</div>
-                      </div>
-                      <div>
-                        <div className="text-[11px] text-muted-foreground">
-                          Department
-                        </div>
-                        <div className="truncate text-foreground">
-                          {e.department}
-                        </div>
-                      </div>
-                      <div>
-                        <div className="text-[11px] text-muted-foreground">
-                          In
-                        </div>
-                        <div className="text-foreground">{getInOutTimes(e).in}</div>
-                      </div>
-                      <div>
-                        <div className="text-[11px] text-muted-foreground">
-                          Out
-                        </div>
-                        <div className="text-foreground">{getInOutTimes(e).out}</div>
-                      </div>
-                      <div className="col-span-2">
-                        <div className="text-[11px] text-muted-foreground">
-                          Status
-                        </div>
-                        <div className="text-foreground">{getAttendanceStatus(e)}</div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </section>
-            )}
+                      ))}
+                    </section>
+                  )}
                 </div>
               </TabsContent>
               <TabsContent value="shift">
                 <div className="rounded-2xl border bg-card p-4 shadow-sm mt-4 font-poppins flex flex-col gap-3">
                   <div className="flex items-center justify-end gap-2">
                     <span className="text-sm text-[#6B7280]">Date</span>
-                    <Popover open={openFromPicker} onOpenChange={setOpenFromPicker}>
+                    <Popover
+                      open={openFromPicker}
+                      onOpenChange={setOpenFromPicker}
+                    >
                       <PopoverTrigger asChild>
                         <Button
                           variant="outline"
                           className="h-9 w-[120px] rounded-[6px] border border-[#D1D5DB] px-[10px] text-[14px] text-[#111827] justify-between text-left font-normal"
                         >
-                          <span>{new Date(shiftFrom).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                          <span>
+                            {new Date(shiftFrom).toLocaleDateString("en-US", {
+                              month: "short",
+                              day: "numeric",
+                              year: "numeric",
+                            })}
+                          </span>
                           <CalendarDays className="h-4 w-4" />
                         </Button>
                       </PopoverTrigger>
@@ -2973,7 +3531,13 @@ export default function Index() {
                           variant="outline"
                           className="h-9 w-[120px] rounded-[6px] border border-[#D1D5DB] px-[10px] text-[14px] text-[#111827] justify-between text-left font-normal"
                         >
-                          <span>{new Date(shiftTo).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                          <span>
+                            {new Date(shiftTo).toLocaleDateString("en-US", {
+                              month: "short",
+                              day: "numeric",
+                              year: "numeric",
+                            })}
+                          </span>
                           <CalendarDays className="h-4 w-4" />
                         </Button>
                       </PopoverTrigger>
@@ -3004,7 +3568,9 @@ export default function Index() {
                       >
                         <div className="flex items-center justify-between text-[12px] font-semibold text-[#111827]">
                           <span>{d.day}</span>
-                          <span className="text-[10px] font-normal text-[#6B7280]">{d.slots.length} slots</span>
+                          <span className="text-[10px] font-normal text-[#6B7280]">
+                            {d.slots.length} slots
+                          </span>
                         </div>
                         <div className="space-y-1">
                           {d.slots.map((s) => (
@@ -3035,7 +3601,9 @@ export default function Index() {
                     onClick={() => setLeaveView("requests")}
                     className={cn(
                       "rounded-full px-5 py-2 text-sm font-medium transition",
-                      leaveView === "requests" ? "bg-[#2563EB] text-white" : "text-[#9CA3AF]",
+                      leaveView === "requests"
+                        ? "bg-[#2563EB] text-white"
+                        : "text-[#9CA3AF]",
                     )}
                   >
                     Requests
@@ -3045,7 +3613,9 @@ export default function Index() {
                     onClick={() => setLeaveView("balances")}
                     className={cn(
                       "rounded-full px-5 py-2 text-sm font-medium transition",
-                      leaveView === "balances" ? "bg-[#2563EB] text-white" : "text-[#9CA3AF]",
+                      leaveView === "balances"
+                        ? "bg-[#2563EB] text-white"
+                        : "text-[#9CA3AF]",
                     )}
                   >
                     Balances
@@ -3085,75 +3655,128 @@ export default function Index() {
                         className="h-9 rounded-md border border-[#E5E7EB] px-3 text-sm"
                       />
                     </div>
-                    <Select value={lrTypeFilter} onValueChange={(value) => {
-                      setLrTypeFilter(value);
-                      setLrPage(0);
-                    }}>
+                    <Select
+                      value={lrTypeFilter}
+                      onValueChange={(value) => {
+                        setLrTypeFilter(value);
+                        setLrPage(0);
+                      }}
+                    >
                       <SelectTrigger className="w-40 h-9 rounded-md border border-[#E5E7EB]">
                         <SelectValue placeholder="All Leave Types" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="all">All Leave Types</SelectItem>
-                        <SelectItem value="Annual Leave">Annual Leave</SelectItem>
+                        <SelectItem value="Annual Leave">
+                          Annual Leave
+                        </SelectItem>
                         <SelectItem value="Sick Leave">Sick Leave</SelectItem>
-                        <SelectItem value="Personal Leave">Personal Leave</SelectItem>
+                        <SelectItem value="Personal Leave">
+                          Personal Leave
+                        </SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
                   <div className="overflow-hidden rounded-lg border">
                     <Table className="text-sm">
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead className="px-3 py-3 text-sm font-semibold text-[#4B5563]">EMPLOYEE ID</TableHead>
-                        <TableHead className="px-3 py-3 text-sm font-semibold text-[#4B5563]">EMPLOYEE NAME</TableHead>
-                        <TableHead className="px-3 py-3 text-sm font-semibold text-[#4B5563]">LEAVE TYPE</TableHead>
-                        <TableHead className="px-3 py-3 text-sm font-semibold text-[#4B5563]">PERIOD FROM</TableHead>
-                        <TableHead className="px-3 py-3 text-sm font-semibold text-[#4B5563]">PERIOD TO</TableHead>
-                        <TableHead className="px-3 py-3 text-sm font-semibold text-[#4B5563]">STATUS</TableHead>
-                        <TableHead className="px-3 py-3 text-sm font-semibold text-[#4B5563]">ACTION</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {lrItems.map((req) => (
-                        <TableRow key={req.empId} className="hover:bg-[#F9FAFB]">
-                          <TableCell className="px-3 py-2">{req.empId}</TableCell>
-                          <TableCell className="px-3 py-2">{req.employee}</TableCell>
-                          <TableCell className="px-3 py-2">{req.type}</TableCell>
-                          <TableCell className="px-3 py-2">{req.from}</TableCell>
-                          <TableCell className="px-3 py-2">{req.to}</TableCell>
-                          <TableCell className="px-3 py-2">{req.status}</TableCell>
-                          <TableCell className="px-3 py-2">
-                            <DropdownMenu>
-                              <DropdownMenuTrigger asChild>
-                                <Button variant="ghost" className="h-8 w-8 p-0">
-                                  <MoreVertical className="h-4 w-4" />
-                                </Button>
-                              </DropdownMenuTrigger>
-                              <DropdownMenuContent align="end">
-                                <DropdownMenuItem
-                                  onClick={() => {
-                                    const updated = leaves.map(r => r.empId === req.empId ? {...r, status: "Approved"} : r);
-                                    setLeaves(updated);
-                                    toast({ title: "Leave Request Approved", description: `${req.employee}'s leave request has been approved.` });
-                                  }}
-                                >
-                                  Approve
-                                </DropdownMenuItem>
-                                <DropdownMenuItem
-                                  onClick={() => {
-                                    const updated = leaves.map(r => r.empId === req.empId ? {...r, status: "Rejected"} : r);
-                                    setLeaves(updated);
-                                    toast({ title: "Leave Request Rejected", description: `${req.employee}'s leave request has been rejected.` });
-                                  }}
-                                >
-                                  Reject
-                                </DropdownMenuItem>
-                              </DropdownMenuContent>
-                            </DropdownMenu>
-                          </TableCell>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead className="px-3 py-3 text-sm font-semibold text-[#4B5563]">
+                            EMPLOYEE ID
+                          </TableHead>
+                          <TableHead className="px-3 py-3 text-sm font-semibold text-[#4B5563]">
+                            EMPLOYEE NAME
+                          </TableHead>
+                          <TableHead className="px-3 py-3 text-sm font-semibold text-[#4B5563]">
+                            LEAVE TYPE
+                          </TableHead>
+                          <TableHead className="px-3 py-3 text-sm font-semibold text-[#4B5563]">
+                            PERIOD FROM
+                          </TableHead>
+                          <TableHead className="px-3 py-3 text-sm font-semibold text-[#4B5563]">
+                            PERIOD TO
+                          </TableHead>
+                          <TableHead className="px-3 py-3 text-sm font-semibold text-[#4B5563]">
+                            STATUS
+                          </TableHead>
+                          <TableHead className="px-3 py-3 text-sm font-semibold text-[#4B5563]">
+                            ACTION
+                          </TableHead>
                         </TableRow>
-                      ))}
-                    </TableBody>
+                      </TableHeader>
+                      <TableBody>
+                        {lrItems.map((req) => (
+                          <TableRow
+                            key={req.empId}
+                            className="hover:bg-[#F9FAFB]"
+                          >
+                            <TableCell className="px-3 py-2">
+                              {req.empId}
+                            </TableCell>
+                            <TableCell className="px-3 py-2">
+                              {req.employee}
+                            </TableCell>
+                            <TableCell className="px-3 py-2">
+                              {req.type}
+                            </TableCell>
+                            <TableCell className="px-3 py-2">
+                              {req.from}
+                            </TableCell>
+                            <TableCell className="px-3 py-2">
+                              {req.to}
+                            </TableCell>
+                            <TableCell className="px-3 py-2">
+                              {req.status}
+                            </TableCell>
+                            <TableCell className="px-3 py-2">
+                              <DropdownMenu>
+                                <DropdownMenuTrigger asChild>
+                                  <Button
+                                    variant="ghost"
+                                    className="h-8 w-8 p-0"
+                                  >
+                                    <MoreVertical className="h-4 w-4" />
+                                  </Button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent align="end">
+                                  <DropdownMenuItem
+                                    onClick={() => {
+                                      const updated = leaves.map((r) =>
+                                        r.empId === req.empId
+                                          ? { ...r, status: "Approved" }
+                                          : r,
+                                      );
+                                      setLeaves(updated);
+                                      toast({
+                                        title: "Leave Request Approved",
+                                        description: `${req.employee}'s leave request has been approved.`,
+                                      });
+                                    }}
+                                  >
+                                    Approve
+                                  </DropdownMenuItem>
+                                  <DropdownMenuItem
+                                    onClick={() => {
+                                      const updated = leaves.map((r) =>
+                                        r.empId === req.empId
+                                          ? { ...r, status: "Rejected" }
+                                          : r,
+                                      );
+                                      setLeaves(updated);
+                                      toast({
+                                        title: "Leave Request Rejected",
+                                        description: `${req.employee}'s leave request has been rejected.`,
+                                      });
+                                    }}
+                                  >
+                                    Reject
+                                  </DropdownMenuItem>
+                                </DropdownMenuContent>
+                              </DropdownMenu>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
                     </Table>
                     <div className="flex items-center justify-between px-3 py-3 border-t border-[#E5E7EB]">
                       <div className="text-xs text-[#6B7280]">
@@ -3175,7 +3798,9 @@ export default function Index() {
                         <Button
                           variant="outline"
                           className="h-8 w-8 p-0"
-                          onClick={() => setLrPage(Math.min(lrTotalPages - 1, lrPage + 1))}
+                          onClick={() =>
+                            setLrPage(Math.min(lrTotalPages - 1, lrPage + 1))
+                          }
                           disabled={lrPage >= lrTotalPages - 1}
                           title="Next page"
                         >
@@ -3188,23 +3813,45 @@ export default function Index() {
               ) : (
                 <div className="rounded-lg border">
                   <div className="flex items-center bg-[#F9FAFB] border-b border-[#E5E7EB] px-6 py-4 gap-6">
-                    <div className="text-xs font-semibold text-[#4B5563] w-28 text-left">EMPLOYEE ID</div>
-                    <div className="text-xs font-semibold text-[#4B5563] w-40 text-left">EMPLOYEE NAME</div>
-                    <div className="text-xs font-semibold text-[#4B5563] w-40 text-left">DEPARTMENT</div>
-                    <div className="text-xs font-semibold text-[#4B5563] flex-1 text-left">POSITION</div>
-                    <div className="text-xs font-semibold text-[#4B5563] w-20 text-center">ACTION</div>
+                    <div className="text-xs font-semibold text-[#4B5563] w-28 text-left">
+                      EMPLOYEE ID
+                    </div>
+                    <div className="text-xs font-semibold text-[#4B5563] w-40 text-left">
+                      EMPLOYEE NAME
+                    </div>
+                    <div className="text-xs font-semibold text-[#4B5563] w-40 text-left">
+                      DEPARTMENT
+                    </div>
+                    <div className="text-xs font-semibold text-[#4B5563] flex-1 text-left">
+                      POSITION
+                    </div>
+                    <div className="text-xs font-semibold text-[#4B5563] w-20 text-center">
+                      ACTION
+                    </div>
                   </div>
                   {EMPLOYEE_LEAVE_BALANCES.map((emp) => (
                     <div key={emp.empId}>
                       <button
                         type="button"
-                        onClick={() => setExpandedEmployee(expandedEmployee === emp.empId ? null : emp.empId)}
+                        onClick={() =>
+                          setExpandedEmployee(
+                            expandedEmployee === emp.empId ? null : emp.empId,
+                          )
+                        }
                         className="w-full flex items-center hover:bg-white transition border-b border-[#E5E7EB] px-6 py-4 gap-6"
                       >
-                        <div className="text-sm text-[#111827] w-28 text-left">{emp.empId}</div>
-                        <div className="text-sm font-medium text-[#111827] w-40 text-left">{emp.name}</div>
-                        <div className="text-sm text-[#111827] w-40 text-left">{emp.department}</div>
-                        <div className="text-sm text-[#111827] flex-1 text-left truncate">{emp.position}</div>
+                        <div className="text-sm text-[#111827] w-28 text-left">
+                          {emp.empId}
+                        </div>
+                        <div className="text-sm font-medium text-[#111827] w-40 text-left">
+                          {emp.name}
+                        </div>
+                        <div className="text-sm text-[#111827] w-40 text-left">
+                          {emp.department}
+                        </div>
+                        <div className="text-sm text-[#111827] flex-1 text-left truncate">
+                          {emp.position}
+                        </div>
                         <div className="flex items-center justify-center w-20">
                           {expandedEmployee === emp.empId ? (
                             <ChevronLeft className="h-5 w-5 text-[#111827] rotate-90 flex-shrink-0" />
@@ -3218,17 +3865,32 @@ export default function Index() {
                           <table className="w-full text-sm">
                             <thead>
                               <tr>
-                                <th className="text-left py-2 px-2 text-[#4B5563] font-semibold border-b border-[#E5E7EB]">Leave Type</th>
-                                <th className="text-left py-2 px-2 text-[#4B5563] font-semibold border-b border-[#E5E7EB]">Leave Taken</th>
-                                <th className="text-left py-2 px-2 text-[#4B5563] font-semibold border-b border-[#E5E7EB]">Leave Balance</th>
+                                <th className="text-left py-2 px-2 text-[#4B5563] font-semibold border-b border-[#E5E7EB]">
+                                  Leave Type
+                                </th>
+                                <th className="text-left py-2 px-2 text-[#4B5563] font-semibold border-b border-[#E5E7EB]">
+                                  Leave Taken
+                                </th>
+                                <th className="text-left py-2 px-2 text-[#4B5563] font-semibold border-b border-[#E5E7EB]">
+                                  Leave Balance
+                                </th>
                               </tr>
                             </thead>
                             <tbody>
                               {emp.balances.map((balance, idx) => (
-                                <tr key={idx} className="hover:bg-white transition">
-                                  <td className="py-2 px-2 text-[#111827]">{balance.leaveType}</td>
-                                  <td className="py-2 px-2 text-[#111827]">{balance.leaveTaken}</td>
-                                  <td className="py-2 px-2 text-[#111827]">{balance.leaveBalance}</td>
+                                <tr
+                                  key={idx}
+                                  className="hover:bg-white transition"
+                                >
+                                  <td className="py-2 px-2 text-[#111827]">
+                                    {balance.leaveType}
+                                  </td>
+                                  <td className="py-2 px-2 text-[#111827]">
+                                    {balance.leaveTaken}
+                                  </td>
+                                  <td className="py-2 px-2 text-[#111827]">
+                                    {balance.leaveBalance}
+                                  </td>
                                 </tr>
                               ))}
                             </tbody>
@@ -3248,14 +3910,19 @@ export default function Index() {
                   </DialogHeader>
                   <div className="grid gap-4 text-sm">
                     <div className="grid gap-1.5">
-                      <Label className="text-xs font-semibold">Employee Name</Label>
+                      <Label className="text-xs font-semibold">
+                        Employee Name
+                      </Label>
                       <Select value={lrEmployee} onValueChange={setLrEmployee}>
                         <SelectTrigger className="h-9">
                           <SelectValue placeholder="Select employee" />
                         </SelectTrigger>
                         <SelectContent>
                           {EMPLOYEES.map((emp) => (
-                            <SelectItem key={emp.id} value={emp.firstName + " " + emp.lastName}>
+                            <SelectItem
+                              key={emp.id}
+                              value={emp.firstName + " " + emp.lastName}
+                            >
                               {emp.firstName} {emp.lastName}
                             </SelectItem>
                           ))}
@@ -3263,21 +3930,29 @@ export default function Index() {
                       </Select>
                     </div>
                     <div className="grid gap-1.5">
-                      <Label className="text-xs font-semibold">Leave Type</Label>
+                      <Label className="text-xs font-semibold">
+                        Leave Type
+                      </Label>
                       <Select value={lrType} onValueChange={setLrType}>
                         <SelectTrigger className="h-9">
                           <SelectValue placeholder="Select leave type" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="Annual Leave">Annual Leave</SelectItem>
+                          <SelectItem value="Annual Leave">
+                            Annual Leave
+                          </SelectItem>
                           <SelectItem value="Sick Leave">Sick Leave</SelectItem>
-                          <SelectItem value="Personal Leave">Personal Leave</SelectItem>
+                          <SelectItem value="Personal Leave">
+                            Personal Leave
+                          </SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
                     <div className="grid grid-cols-2 gap-3">
                       <div className="grid gap-1.5">
-                        <Label className="text-xs font-semibold">Period From</Label>
+                        <Label className="text-xs font-semibold">
+                          Period From
+                        </Label>
                         <Input
                           type="date"
                           value={lrFrom}
@@ -3286,7 +3961,9 @@ export default function Index() {
                         />
                       </div>
                       <div className="grid gap-1.5">
-                        <Label className="text-xs font-semibold">Period To</Label>
+                        <Label className="text-xs font-semibold">
+                          Period To
+                        </Label>
                         <Input
                           type="date"
                           value={lrTo}
@@ -3315,7 +3992,12 @@ export default function Index() {
                             type: lrType,
                             from: lrFrom,
                             to: lrTo,
-                            days: Math.ceil((new Date(lrTo).getTime() - new Date(lrFrom).getTime()) / (1000 * 60 * 60 * 24)) + 1,
+                            days:
+                              Math.ceil(
+                                (new Date(lrTo).getTime() -
+                                  new Date(lrFrom).getTime()) /
+                                  (1000 * 60 * 60 * 24),
+                              ) + 1,
                             status: "Pending",
                           };
                           setLeaves((prev) => [...prev, newRequest]);
@@ -3344,20 +4026,38 @@ export default function Index() {
                 <Table className="text-xs leading-tight">
                   <TableHeader>
                     <TableRow className="hover:bg-transparent">
-                      <TableHead className="px-3 py-2 text-xs font-semibold uppercase leading-tight">Employee ID</TableHead>
-                      <TableHead className="px-3 py-2 text-xs font-semibold uppercase leading-tight">Employee Name</TableHead>
-                      <TableHead className="px-3 py-2 text-xs font-semibold uppercase leading-tight">Dept</TableHead>
-                      <TableHead className="px-3 py-2 text-xs font-semibold uppercase leading-tight">Shift</TableHead>
-                      <TableHead className="px-3 py-2 text-center text-xs font-semibold uppercase leading-tight">Action</TableHead>
+                      <TableHead className="px-3 py-2 text-xs font-semibold uppercase leading-tight">
+                        Employee ID
+                      </TableHead>
+                      <TableHead className="px-3 py-2 text-xs font-semibold uppercase leading-tight">
+                        Employee Name
+                      </TableHead>
+                      <TableHead className="px-3 py-2 text-xs font-semibold uppercase leading-tight">
+                        Dept
+                      </TableHead>
+                      <TableHead className="px-3 py-2 text-xs font-semibold uppercase leading-tight">
+                        Shift
+                      </TableHead>
+                      <TableHead className="px-3 py-2 text-center text-xs font-semibold uppercase leading-tight">
+                        Action
+                      </TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
                     {shiftRows.map((r, i) => (
                       <TableRow key={i} className="hover:bg-transparent">
-                        <TableCell className="px-2 py-1 text-xs leading-tight">{r.empId}</TableCell>
-                        <TableCell className="px-3 py-2 text-xs leading-tight">{r.employee}</TableCell>
-                        <TableCell className="px-3 py-2 text-xs leading-tight">{r.dept}</TableCell>
-                        <TableCell className="px-3 py-2 text-xs leading-tight">{r.shift}</TableCell>
+                        <TableCell className="px-2 py-1 text-xs leading-tight">
+                          {r.empId}
+                        </TableCell>
+                        <TableCell className="px-3 py-2 text-xs leading-tight">
+                          {r.employee}
+                        </TableCell>
+                        <TableCell className="px-3 py-2 text-xs leading-tight">
+                          {r.dept}
+                        </TableCell>
+                        <TableCell className="px-3 py-2 text-xs leading-tight">
+                          {r.shift}
+                        </TableCell>
                         <TableCell className="px-3 py-2 text-center text-xs leading-tight">
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
@@ -3371,7 +4071,12 @@ export default function Index() {
                               </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end" className="w-40">
-                              <DropdownMenuItem onClick={() => { setShiftEditIndex(i); setShiftEditValue(r.shift); }}>
+                              <DropdownMenuItem
+                                onClick={() => {
+                                  setShiftEditIndex(i);
+                                  setShiftEditValue(r.shift);
+                                }}
+                              >
                                 Edit Shift
                               </DropdownMenuItem>
                             </DropdownMenuContent>
@@ -3382,45 +4087,65 @@ export default function Index() {
                   </TableBody>
                 </Table>
               </div>
-                <Dialog open={shiftEditIndex !== null} onOpenChange={(o) => { if (!o) setShiftEditIndex(null); }}>
-                  <DialogContent className="sm:max-w-md">
-                    <DialogHeader>
-                      <DialogTitle className="text-base font-semibold">Edit Shift</DialogTitle>
-                    </DialogHeader>
-                    <div className="space-y-2">
-                      <div className="text-xs text-muted-foreground">Select shift</div>
-                      <div className="flex items-center gap-2">
-                        {(["Day","Night","Early"] as const).map((opt) => (
-                          <Button
-                            key={opt}
-                            type="button"
-                            variant={shiftEditValue === opt ? "default" : "outline"}
-                            className="h-8 rounded-md px-3 text-xs"
-                            onClick={() => setShiftEditValue(opt)}
-                          >
-                            {opt}
-                          </Button>
-                        ))}
-                      </div>
+              <Dialog
+                open={shiftEditIndex !== null}
+                onOpenChange={(o) => {
+                  if (!o) setShiftEditIndex(null);
+                }}
+              >
+                <DialogContent className="sm:max-w-md">
+                  <DialogHeader>
+                    <DialogTitle className="text-base font-semibold">
+                      Edit Shift
+                    </DialogTitle>
+                  </DialogHeader>
+                  <div className="space-y-2">
+                    <div className="text-xs text-muted-foreground">
+                      Select shift
                     </div>
-                    <DialogFooter>
-                      <Button variant="outline" onClick={() => setShiftEditIndex(null)}>Cancel</Button>
-                      <Button
-                        className="h-9 rounded-md bg-[#2563EB] px-4 text-sm font-medium text-white hover:bg-[#1D4ED8]"
-                        onClick={() => {
-                          if (shiftEditIndex !== null) {
-                            setShiftRows((prev) =>
-                              prev.map((x, idx) => (idx === shiftEditIndex ? { ...x, shift: shiftEditValue } : x)),
-                            );
+                    <div className="flex items-center gap-2">
+                      {(["Day", "Night", "Early"] as const).map((opt) => (
+                        <Button
+                          key={opt}
+                          type="button"
+                          variant={
+                            shiftEditValue === opt ? "default" : "outline"
                           }
-                          setShiftEditIndex(null);
-                        }}
-                      >
-                        Save
-                      </Button>
-                    </DialogFooter>
-                  </DialogContent>
-                </Dialog>
+                          className="h-8 rounded-md px-3 text-xs"
+                          onClick={() => setShiftEditValue(opt)}
+                        >
+                          {opt}
+                        </Button>
+                      ))}
+                    </div>
+                  </div>
+                  <DialogFooter>
+                    <Button
+                      variant="outline"
+                      onClick={() => setShiftEditIndex(null)}
+                    >
+                      Cancel
+                    </Button>
+                    <Button
+                      className="h-9 rounded-md bg-[#2563EB] px-4 text-sm font-medium text-white hover:bg-[#1D4ED8]"
+                      onClick={() => {
+                        if (shiftEditIndex !== null) {
+                          setShiftRows((prev) =>
+                            prev.map((x, idx) =>
+                              idx === shiftEditIndex
+                                ? { ...x, shift: shiftEditValue }
+                                : x,
+                            ),
+                          );
+                        }
+                        setShiftEditIndex(null);
+                      }}
+                    >
+                      Save
+                    </Button>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
             </div>
           </TabsContent>
           <TabsContent value="leave-legacy" className="mt-6">
@@ -3429,18 +4154,32 @@ export default function Index() {
                 <Table className="text-xs leading-tight">
                   <TableHeader>
                     <TableRow className="hover:bg-transparent">
-                      <TableHead className="px-3 py-2 text-xs font-semibold uppercase leading-tight">Employee</TableHead>
-                      <TableHead className="px-3 py-2 text-xs font-semibold uppercase leading-tight">Type</TableHead>
-                      <TableHead className="px-3 py-2 text-xs font-semibold uppercase leading-tight">Balance</TableHead>
-                      <TableHead className="px-3 py-2 text-center text-xs font-semibold uppercase leading-tight">Adjust</TableHead>
+                      <TableHead className="px-3 py-2 text-xs font-semibold uppercase leading-tight">
+                        Employee
+                      </TableHead>
+                      <TableHead className="px-3 py-2 text-xs font-semibold uppercase leading-tight">
+                        Type
+                      </TableHead>
+                      <TableHead className="px-3 py-2 text-xs font-semibold uppercase leading-tight">
+                        Balance
+                      </TableHead>
+                      <TableHead className="px-3 py-2 text-center text-xs font-semibold uppercase leading-tight">
+                        Adjust
+                      </TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
                     {balances.map((r, i) => (
                       <TableRow key={i} className="hover:bg-transparent">
-                        <TableCell className="px-3 py-2 text-xs leading-tight">{r.employee}</TableCell>
-                        <TableCell className="px-3 py-2 text-xs leading-tight">{r.type}</TableCell>
-                        <TableCell className="px-3 py-2 text-xs leading-tight">{r.balance} days</TableCell>
+                        <TableCell className="px-3 py-2 text-xs leading-tight">
+                          {r.employee}
+                        </TableCell>
+                        <TableCell className="px-3 py-2 text-xs leading-tight">
+                          {r.type}
+                        </TableCell>
+                        <TableCell className="px-3 py-2 text-xs leading-tight">
+                          {r.balance} days
+                        </TableCell>
                         <TableCell className="px-3 py-2 text-center text-xs leading-tight">
                           <div className="inline-flex items-center gap-2">
                             <Button
@@ -3449,7 +4188,12 @@ export default function Index() {
                               onClick={() =>
                                 setBalances((prev) =>
                                   prev.map((x, idx) =>
-                                    idx === i ? { ...x, balance: Math.max(0, x.balance - 1) } : x,
+                                    idx === i
+                                      ? {
+                                          ...x,
+                                          balance: Math.max(0, x.balance - 1),
+                                        }
+                                      : x,
                                   ),
                                 )
                               }
@@ -3462,7 +4206,9 @@ export default function Index() {
                               onClick={() =>
                                 setBalances((prev) =>
                                   prev.map((x, idx) =>
-                                    idx === i ? { ...x, balance: x.balance + 1 } : x,
+                                    idx === i
+                                      ? { ...x, balance: x.balance + 1 }
+                                      : x,
                                   ),
                                 )
                               }
@@ -3617,7 +4363,9 @@ function RowActions({ employee }: { employee: Employee }) {
       <Dialog open={editOpen} onOpenChange={setEditOpen}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle className="text-base font-semibold">Edit Attendance</DialogTitle>
+            <DialogTitle className="text-base font-semibold">
+              Edit Attendance
+            </DialogTitle>
           </DialogHeader>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <div className="space-y-1">
@@ -3668,10 +4416,16 @@ function RowActions({ employee }: { employee: Employee }) {
       <Dialog open={deleteOpen} onOpenChange={setDeleteOpen}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle className="text-base font-semibold">Are you sure to delete?</DialogTitle>
+            <DialogTitle className="text-base font-semibold">
+              Are you sure to delete?
+            </DialogTitle>
           </DialogHeader>
           <DialogFooter>
-            <Button type="button" variant="outline" onClick={() => setDeleteOpen(false)}>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => setDeleteOpen(false)}
+            >
               Cancel
             </Button>
             <Button
