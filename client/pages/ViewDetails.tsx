@@ -342,8 +342,8 @@ export default function ViewDetails() {
               {/* Header */}
               <div className="flex items-center justify-between mb-6">
                 <div>
-                  <h3 className="text-lg font-bold text-[#111827]">Offboarding Tasks</h3>
-                  <p className="text-sm text-[#6B7280]">Track completion of required offboarding activities.</p>
+                  <h3 className="text-[14px] font-bold text-[#111827]">Offboarding Tasks</h3>
+                  <p className="text-xs text-[#6B7280]">Track completion of required offboarding activities.</p>
                 </div>
                 <div className="flex items-center gap-2">
                   <select className="rounded border border-[#E5E7EB] bg-white px-3 py-2 text-sm text-[#111827]">
@@ -410,8 +410,8 @@ export default function ViewDetails() {
             <div style={{ fontFamily: 'Poppins, sans-serif' }}>
               {/* Header */}
               <div className="mb-6">
-                <h3 className="text-lg font-bold text-[#111827]">Case Comments</h3>
-                <p className="text-sm text-[#6B7280]">Communication and updates related to this offboarding case.</p>
+                <h3 className="text-[14px] font-bold text-[#111827]">Case Comments</h3>
+                <p className="text-xs text-[#6B7280]">Communication and updates related to this offboarding case.</p>
               </div>
 
               {/* Comments List */}
