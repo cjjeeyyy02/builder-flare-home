@@ -539,12 +539,6 @@ export default function ViewDetails() {
                             <div className="flex-1">
                               <div className="flex items-center gap-2 mb-2">
                                 <span className="font-bold text-[#111827]">{doc.name}</span>
-                                <span className="text-xs font-medium bg-[#F3F4F6] text-[#6B7280] px-2 py-1 rounded-full">
-                                  {doc.type}
-                                </span>
-                                <span className="text-xs font-medium bg-green-100 text-green-700 px-2 py-1 rounded-full">
-                                  {doc.status}
-                                </span>
                               </div>
 
                               <div className="text-sm text-[#6B7280] mb-1">
