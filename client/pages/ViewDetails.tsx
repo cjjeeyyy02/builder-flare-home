@@ -537,13 +537,13 @@ export default function ViewDetails() {
 
                             {/* Content */}
                             <div className="flex-1">
-                              <div className="flex items-center gap-2 mb-2">
-                                <span className="font-bold text-[#111827]">{doc.name}</span>
+                              <div className="flex items-center gap-1.5 mb-1">
+                                <span className="font-bold text-[12px] text-[#111827]">{doc.name}</span>
                               </div>
 
-                              <div className="text-sm text-[#6B7280] mb-1">
+                              <div className="text-xs text-[#6B7280]">
                                 <span>{doc.size}</span>
-                                <span className="mx-2">•</span>
+                                <span className="mx-1">•</span>
                                 <span>{doc.date}</span>
                               </div>
 
