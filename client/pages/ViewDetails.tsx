@@ -799,7 +799,7 @@ export default function ViewDetails() {
                             })
                           }
                           className={`relative w-11 h-6 rounded-full transition-all ${
-                            isRevoked ? "bg-red-500" : "bg-green-500"
+                            isRevoked ? "bg-blue-500" : "bg-[#D1D5DB]"
                           }`}
                         >
                           <div
