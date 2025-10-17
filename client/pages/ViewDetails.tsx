@@ -550,20 +550,20 @@ export default function ViewDetails() {
                             </div>
 
                             {/* Actions */}
-                            <div className="flex items-center gap-2 flex-shrink-0">
+                            <div className="flex items-center gap-1 flex-shrink-0">
                               <Button
                                 variant="ghost"
-                                className="h-8 w-8 p-0 hover:bg-gray-100"
+                                className="h-6 w-6 p-0 hover:bg-gray-100"
                                 onClick={() => setViewDocument(doc.id)}
                               >
-                                <Eye className="h-4 w-4 text-[#6B7280]" />
+                                <Eye className="h-3.5 w-3.5 text-[#6B7280]" />
                               </Button>
                               <Button
                                 variant="ghost"
-                                className="h-8 w-8 p-0 hover:bg-gray-100"
+                                className="h-6 w-6 p-0 hover:bg-gray-100"
                                 onClick={() => setDeleteConfirm(doc.id)}
                               >
-                                <Trash2 className="h-4 w-4 text-[#6B7280]" />
+                                <Trash2 className="h-3.5 w-3.5 text-[#6B7280]" />
                               </Button>
                             </div>
                           </div>
