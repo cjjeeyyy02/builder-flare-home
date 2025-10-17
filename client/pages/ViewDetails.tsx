@@ -694,10 +694,10 @@ export default function ViewDetails() {
               {/* Filter Dropdown */}
 
               {/* Timeline Container */}
-              <div className="relative pl-6">
+              <div className="relative pl-4">
 
                 {/* Timeline Events */}
-                <div className="space-y-5">
+                <div className="space-y-3">
                   {filteredTimeline.length > 0 ? (
                     filteredTimeline.map((event, index) => (
                       <div key={event.id} className="relative">
