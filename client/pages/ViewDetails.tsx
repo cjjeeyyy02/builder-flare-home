@@ -240,11 +240,11 @@ export default function ViewDetails() {
           </div>
 
           {/* Offboarding Summary Grid */}
-          <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
+          <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3 w-full">
             {/* Exit Details Card */}
-            <div className="border border-[#E5E7EB] rounded-lg p-4 bg-white">
-              <div className="text-[16px] font-semibold text-[#111827] mb-3">Exit Details</div>
-              <div className="space-y-2 text-[13px]">
+            <div className="border border-[#E5E7EB] rounded-lg p-3 bg-white">
+              <div className="text-[13px] font-semibold text-[#111827] mb-2">Exit Details</div>
+              <div className="space-y-1.5 text-[11px]">
                 <div>
                   <div className="text-[#6B7280] font-medium">Type</div>
                   <div className="text-[#111827] font-semibold">Resignation</div>
@@ -265,9 +265,9 @@ export default function ViewDetails() {
             </div>
 
             {/* Employment Info Card */}
-            <div className="border border-[#E5E7EB] rounded-lg p-4 bg-white">
-              <div className="text-[16px] font-semibold text-[#111827] mb-3">Employment Info</div>
-              <div className="space-y-2 text-[13px]">
+            <div className="border border-[#E5E7EB] rounded-lg p-3 bg-white">
+              <div className="text-[13px] font-semibold text-[#111827] mb-2">Employment Info</div>
+              <div className="space-y-1.5 text-[11px]">
                 <div>
                   <div className="text-[#6B7280] font-medium">Department</div>
                   <div className="text-[#111827] font-semibold">Engineering</div>
@@ -284,10 +284,10 @@ export default function ViewDetails() {
             </div>
 
             {/* Case Info Card */}
-            <div className="border border-[#E5E7EB] rounded-lg p-4 bg-white">
-              <div className="text-[16px] font-semibold text-[#111827] mb-3">Case Info</div>
+            <div className="border border-[#E5E7EB] rounded-lg p-3 bg-white">
+              <div className="text-[13px] font-semibold text-[#111827] mb-2">Case Info</div>
 
-              <div className="space-y-2 text-[13px]">
+              <div className="space-y-1.5 text-[11px]">
                 <div>
                   <div className="text-[#6B7280] font-medium">Assigned To</div>
                   <div className="text-[#111827] font-semibold">HR Team</div>
