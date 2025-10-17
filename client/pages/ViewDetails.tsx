@@ -131,6 +131,14 @@ export default function ViewDetails() {
 
   const [timelineFilter, setTimelineFilter] = useState("All Events");
 
+  const [systemAccess, setSystemAccess] = useState({
+    email: false,
+    slack: false,
+    github: false,
+    jira: false,
+    confluence: false,
+  });
+
   const timelineEvents = [
     {
       id: "te1",
