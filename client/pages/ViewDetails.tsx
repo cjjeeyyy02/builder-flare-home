@@ -686,9 +686,9 @@ export default function ViewDetails() {
           <TabsContent value="timeline" className="mt-4">
             <div>
               {/* Header Section */}
-              <div className="mb-6">
-                <h3 className="text-lg font-bold text-[#111827]">Case Timeline</h3>
-                <p className="text-sm text-[#6B7280]">Chronological history of this offboarding case.</p>
+              <div className="mb-4">
+                <h3 className="text-[14px] font-bold text-[#111827]">Case Timeline</h3>
+                <p className="text-xs text-[#6B7280]">Chronological history of this offboarding case.</p>
               </div>
 
               {/* Filter Dropdown */}
