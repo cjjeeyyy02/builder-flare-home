@@ -2434,7 +2434,7 @@ function RowActions({ employee }: { employee: Employee }) {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-44">
         <DropdownMenuItem onClick={() => navigate(`/view-details/${employee.id}`)}>
-          <Eye className="mr-2 h-4 w-4" /> View Details
+          View Details
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
