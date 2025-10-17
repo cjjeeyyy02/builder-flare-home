@@ -2998,7 +2998,7 @@ export default function Index() {
                     {shiftDays.map((d) => (
                       <div
                         key={d.day}
-                        className="flex flex-col gap-2 rounded-[8px] border border-[#E5E7EB] bg-white p-4 shadow-[0_1px_2px_rgba(0,0,0,0.05)] min-h-[200px]"
+                        className="flex flex-col gap-2 rounded-[8px] border border-[#E5E7EB] bg-white p-3 shadow-[0_1px_2px_rgba(0,0,0,0.05)] min-h-[200px]"
                         onDragOver={handleDragOver}
                         onDrop={() => handleDrop(d.day)}
                       >
