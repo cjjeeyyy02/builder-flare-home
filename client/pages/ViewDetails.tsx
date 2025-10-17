@@ -481,7 +481,7 @@ export default function ViewDetails() {
               </div>
 
               {/* Search and Action Buttons */}
-              <div className="flex gap-3 items-center mb-6">
+              <div className="flex gap-3 items-center mb-6 justify-between">
                 <div className="w-48 relative">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-[#9CA3AF]" />
                   <input
@@ -493,21 +493,23 @@ export default function ViewDetails() {
                   />
                 </div>
 
-                <Button
-                  className="bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-2"
-                >
-                  <Plus className="h-4 w-4" />
-                  Upload Document
-                </Button>
+                <div className="flex gap-3 items-center">
+                  <Button
+                    className="bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-2"
+                  >
+                    <Plus className="h-4 w-4" />
+                    Upload Document
+                  </Button>
 
-                <Button
-                  variant="outline"
-                  className="flex items-center gap-2"
-                  onClick={() => setShowExportModal(true)}
-                >
-                  <Download className="h-4 w-4" />
-                  Export
-                </Button>
+                  <Button
+                    variant="outline"
+                    className="flex items-center gap-2"
+                    onClick={() => setShowExportModal(true)}
+                  >
+                    <Download className="h-4 w-4" />
+                    Export
+                  </Button>
+                </div>
               </div>
 
               {/* Document List - Scrollable Container */}
@@ -549,7 +551,7 @@ export default function ViewDetails() {
                                 <span>{doc.size}</span>
                                 <span className="mx-2">•</span>
                                 <span>{doc.date}</span>
-                                <span className="mx-2">•</span>
+                                <span className="mx-2">��</span>
                                 <span>{doc.uploader}</span>
                               </div>
 
