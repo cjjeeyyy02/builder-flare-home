@@ -199,22 +199,22 @@ export default function ViewDetails() {
           <div className="flex items-center gap-4 pb-6 border-b" style={{ borderColor: "#E5E7EB" }}>
             <div className="flex h-20 w-20 items-center justify-center rounded-full bg-[#F3F6F9] text-[#111827] font-bold text-xl flex-shrink-0">SJ</div>
             <div className="flex-1">
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-1">
                 <div>
-                  <div className="text-[18px] font-semibold text-[#111827]">Sarah Johnson</div>
-                  <div className="text-[14px] text-[#6B7280]">Senior Developer</div>
+                  <div className="text-[15px] font-semibold text-[#111827]">Sarah Johnson</div>
+                  <div className="text-[12px] text-[#6B7280]">Senior Developer</div>
                 </div>
-                <div className="flex flex-wrap gap-4 text-[13px]">
-                  <div className="flex items-center gap-2 text-[#6B7280]">
-                    <Clipboard className="h-4 w-4" />
+                <div className="flex flex-wrap gap-3 text-[11px]">
+                  <div className="flex items-center gap-1.5 text-[#6B7280]">
+                    <Clipboard className="h-3.5 w-3.5" />
                     <span>{id ?? "EMP001"}</span>
                   </div>
-                  <div className="flex items-center gap-2 text-[#6B7280]">
-                    <Mail className="h-4 w-4" />
+                  <div className="flex items-center gap-1.5 text-[#6B7280]">
+                    <Mail className="h-3.5 w-3.5" />
                     <span>sarah.johnson@ai2aim.com</span>
                   </div>
-                  <div className="flex items-center gap-2 text-[#6B7280]">
-                    <MapPin className="h-4 w-4" />
+                  <div className="flex items-center gap-1.5 text-[#6B7280]">
+                    <MapPin className="h-3.5 w-3.5" />
                     <span>New York, NY</span>
                   </div>
                 </div>
