@@ -3,7 +3,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/local/tab
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useParams, useNavigate } from "react-router-dom";
-import { Mail, MapPin, Clipboard, Plus, Pencil, CheckCircle, Calendar, Trash2, Send, Search, Download, Eye, FileText, File, Edit, FileDown, LogOut } from "lucide-react";
+import { Mail, MapPin, Clipboard, Plus, Pencil, CheckCircle, Calendar, Trash2, Send, Search, Download, Eye, FileText, File, Edit, FileDown, LogOut, ArrowLeft } from "lucide-react";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { Toggle } from "@/components/ui/toggle";
 
@@ -181,7 +181,14 @@ export default function ViewDetails() {
   return (
     <section className="mx-auto max-w-6xl px-4 py-6">
       <div className="flex items-start justify-between gap-4">
-        <div>
+        <div className="flex items-center gap-4">
+          <Button
+            variant="ghost"
+            className="h-10 w-10 p-0 hover:bg-[#E5E7EB]"
+            onClick={() => navigate(-1)}
+          >
+            <ArrowLeft className="h-5 w-5 text-[#6B7280]" />
+          </Button>
           <h1 className="text-2xl font-bold">Offboarding Details</h1>
         </div>
         <div className="flex flex-wrap items-center gap-2">
