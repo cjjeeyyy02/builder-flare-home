@@ -1790,7 +1790,7 @@ export default function Index() {
                   <div className="flex gap-2">
                     <Button className="bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-2">
                       <Plus className="h-4 w-4 text-blue-400" />
-                      Start Offboarding
+                      New Offboarding
                     </Button>
                     <Button variant="outline" className="flex items-center gap-2">
                       <Download className="h-4 w-4" />
