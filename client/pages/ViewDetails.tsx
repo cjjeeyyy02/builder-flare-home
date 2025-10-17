@@ -692,17 +692,6 @@ export default function ViewDetails() {
               </div>
 
               {/* Filter Dropdown */}
-              <div className="mb-6">
-                <select
-                  value={timelineFilter}
-                  onChange={(e) => setTimelineFilter(e.target.value)}
-                  className="rounded border border-[#E5E7EB] bg-white px-3 py-2 text-sm text-[#111827]"
-                >
-                  <option value="All Events">All Events</option>
-                  <option value="Completed Only">Completed Only</option>
-                  <option value="In Progress Only">In Progress Only</option>
-                </select>
-              </div>
 
               {/* Timeline Container */}
               <div className="relative pl-6">
