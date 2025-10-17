@@ -1008,6 +1008,7 @@ function OrgListView() {
 }
 
 export default function Index() {
+  const navigate = useNavigate();
   const { toast } = useToast();
   const [search, setSearch] = useState("");
   const [position, setPosition] = useState<string>("all");
