@@ -196,8 +196,8 @@ export default function ViewDetails() {
       <div className="mt-6">
         <Card className="bg-white rounded-lg p-6 border" style={{ borderColor: "#E5E7EB", boxShadow: "0px 2px 6px rgba(0,0,0,0.05)", fontFamily: 'Poppins, sans-serif' }}>
           {/* Personal Info Row */}
-          <div className="flex items-center gap-4 pb-6 border-b" style={{ borderColor: "#E5E7EB" }}>
-            <div className="flex h-20 w-20 items-center justify-center rounded-full bg-[#F3F6F9] text-[#111827] font-bold text-xl flex-shrink-0">SJ</div>
+          <div className="flex items-center gap-3 pb-4 border-b" style={{ borderColor: "#E5E7EB" }}>
+            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#F3F6F9] text-[#111827] font-bold text-sm flex-shrink-0">SJ</div>
             <div className="flex-1">
               <div className="flex flex-col gap-1">
                 <div>
