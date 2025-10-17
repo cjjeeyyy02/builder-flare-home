@@ -338,7 +338,7 @@ export default function ViewDetails() {
           </div>
 
           <TabsContent value="tasks" className="mt-4">
-            <div>
+            <div style={{ fontFamily: 'Poppins, sans-serif' }}>
               {/* Header */}
               <div className="flex items-center justify-between mb-6">
                 <div>
@@ -407,7 +407,7 @@ export default function ViewDetails() {
           </TabsContent>
 
           <TabsContent value="comments" className="mt-4">
-            <div>
+            <div style={{ fontFamily: 'Poppins, sans-serif' }}>
               {/* Header */}
               <div className="mb-6">
                 <h3 className="text-lg font-bold text-[#111827]">Case Comments</h3>
@@ -491,7 +491,7 @@ export default function ViewDetails() {
           </TabsContent>
 
           <TabsContent value="documents" className="mt-4">
-            <div>
+            <div style={{ fontFamily: 'Poppins, sans-serif' }}>
               {/* Header Section */}
               <div className="mb-4">
                 <h3 className="text-[14px] font-bold text-[#111827]">Document Management</h3>
@@ -702,7 +702,7 @@ export default function ViewDetails() {
           )}
 
           <TabsContent value="timeline" className="mt-4">
-            <div>
+            <div style={{ fontFamily: 'Poppins, sans-serif' }}>
               {/* Header Section */}
               <div className="mb-4">
                 <h3 className="text-[14px] font-bold text-[#111827]">Case Timeline</h3>
@@ -742,7 +742,7 @@ export default function ViewDetails() {
           </TabsContent>
 
           <TabsContent value="access-security" className="mt-4">
-            <div className="py-4 px-6 bg-white w-full" style={{ gap: "16px" }}>
+            <div className="py-4 px-6 bg-white w-full" style={{ fontFamily: 'Poppins, sans-serif', gap: "16px" }}>
               {/* Header Section */}
               <div className="mb-4">
                 <h3 className="font-semibold text-[14px] text-[#111827] mb-1">System Access Overview</h3>
