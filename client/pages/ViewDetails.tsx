@@ -724,11 +724,11 @@ export default function ViewDetails() {
           </TabsContent>
 
           <TabsContent value="access-security" className="mt-4">
-            <div className="py-6 px-8 bg-white w-full" style={{ gap: "16px" }}>
+            <div className="py-4 px-6 bg-white w-full" style={{ gap: "16px" }}>
               {/* Header Section */}
-              <div className="mb-5">
-                <h3 className="font-semibold text-[20px] text-[#111827] mb-2">System Access Overview</h3>
-                <p className="text-[14px] text-[#6B7280]">Monitor and manage access across all systems.</p>
+              <div className="mb-4">
+                <h3 className="font-semibold text-[14px] text-[#111827] mb-1">System Access Overview</h3>
+                <p className="text-xs text-[#6B7280]">Monitor and manage access across all systems.</p>
               </div>
 
               {/* Access Cards */}
