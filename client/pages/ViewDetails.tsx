@@ -750,15 +750,15 @@ export default function ViewDetails() {
                     >
                       {/* Left Side */}
                       <div>
-                        <p className="font-bold text-[16px] text-[#111827]">{system.name}</p>
-                        <p className="text-[13px] text-[#6B7280]">
+                        <p className="font-bold text-[13px] text-[#111827]">{system.name}</p>
+                        <p className="text-[11px] text-[#6B7280]">
                           {isRevoked ? "Access revoked" : "Access active"}
                         </p>
                       </div>
 
                       {/* Right Side */}
-                      <div className="flex items-center gap-3">
-                        <span className={`text-[14px] ${isRevoked ? "text-red-600 font-medium" : "text-[#6B7280]"}`}>
+                      <div className="flex items-center gap-2">
+                        <span className={`text-[12px] ${isRevoked ? "text-red-600 font-medium" : "text-[#6B7280]"}`}>
                           {isRevoked ? "Revoked" : "Revoke"}
                         </span>
                         <button
