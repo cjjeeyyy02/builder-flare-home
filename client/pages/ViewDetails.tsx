@@ -706,8 +706,6 @@ export default function ViewDetails() {
 
               {/* Timeline Container */}
               <div className="relative pl-6">
-                {/* Vertical Line */}
-                <div className="absolute left-2 top-0 bottom-0 w-0.5 bg-[#E5E7EB]" />
 
                 {/* Timeline Events */}
                 <div className="space-y-5">
