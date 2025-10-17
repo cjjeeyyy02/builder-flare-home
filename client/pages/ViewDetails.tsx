@@ -185,7 +185,6 @@ export default function ViewDetails() {
           <h1 className="text-2xl font-bold">Offboarding Details</h1>
         </div>
         <div className="flex flex-wrap items-center gap-2">
-          <Button variant="outline" onClick={() => navigate(-1)}>Back</Button>
           <Button variant="outline">Edit Case</Button>
           <Button variant="outline">Export Report</Button>
           <Button variant="outline">Exit Interview</Button>
