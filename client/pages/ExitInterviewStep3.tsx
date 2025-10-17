@@ -73,7 +73,7 @@ export default function ExitInterviewStep3() {
             <ArrowLeft className="h-5 w-5 text-[#6B7280]" />
           </Button>
           <div>
-            <h1 className="text-[28px] font-semibold text-[#111827] mb-2">Exit Interview – Step 3</h1>
+            <h1 className="text-[28px] font-semibold text-[#111827] mb-2">Exit Interview</h1>
             <p className="text-[14px] text-[#6B7280]">Feedback</p>
           </div>
         </div>
@@ -224,20 +224,22 @@ export default function ExitInterviewStep3() {
             Back to Ratings
           </Button>
 
-          <Button
-            variant="outline"
-            onClick={handleSaveDraft}
-            className="px-4 py-2.5 text-sm border-[#D1D5DB]"
-          >
-            Save Draft
-          </Button>
+          <div className="flex items-center gap-4">
+            <Button
+              variant="outline"
+              onClick={handleSaveDraft}
+              className="px-4 py-2.5 text-sm border-[#D1D5DB]"
+            >
+              Save Draft
+            </Button>
 
-          <Button
-            className="bg-green-600 hover:bg-green-700 text-white px-6 py-2.5 text-sm font-medium"
-            onClick={handleSubmit}
-          >
-            Submit Interview
-          </Button>
+            <Button
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 text-sm font-medium"
+              onClick={handleSubmit}
+            >
+              Submit Interview
+            </Button>
+          </div>
         </div>
       </div>
     </section>
