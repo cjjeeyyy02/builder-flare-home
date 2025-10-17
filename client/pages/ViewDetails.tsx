@@ -524,9 +524,9 @@ export default function ViewDetails() {
                       return (
                         <div
                           key={doc.id}
-                          className="bg-white border border-[#E5E7EB] rounded-lg p-4 hover:shadow-sm transition-shadow"
+                          className="bg-white border border-[#E5E7EB] rounded-lg p-2.5 hover:shadow-sm transition-shadow"
                         >
-                          <div className="flex items-start gap-4">
+                          <div className="flex items-start gap-2">
                             {/* Icon */}
                             <div
                               className="flex h-10 w-10 items-center justify-center rounded flex-shrink-0"
