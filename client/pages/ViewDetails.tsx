@@ -545,7 +545,6 @@ export default function ViewDetails() {
                                 <span>{doc.size}</span>
                                 <span className="mx-2">•</span>
                                 <span>{doc.date}</span>
-                                <span className="mx-2">��</span>
                               </div>
 
                             </div>
