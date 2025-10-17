@@ -1789,7 +1789,10 @@ export default function Index() {
                   </div>
 
                   <div className="flex gap-2">
-                    <Button className="bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-2">
+                    <Button
+                      className="bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-2"
+                      onClick={() => navigate("/new-offboarding")}
+                    >
                       <Plus className="h-4 w-4 text-blue-400" />
                       New Offboarding
                     </Button>
