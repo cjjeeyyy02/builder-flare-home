@@ -1,0 +1,182 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { ArrowLeft, Search } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { EMPLOYEES, Employee } from "@/lib/data/employees";
+
+export default function NewOffboarding() {
+  const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedEmployee, setSelectedEmployee] = useState<Employee | null>(null);
+
+  const filteredEmployees = EMPLOYEES.filter((emp) => {
+    const fullName = `${emp.firstName} ${emp.lastName}`.toLowerCase();
+    const query = searchQuery.toLowerCase();
+    return (
+      fullName.includes(query) ||
+      emp.id.toLowerCase().includes(query) ||
+      emp.email.toLowerCase().includes(query)
+    );
+  });
+
+  const getInitials = (firstName: string, lastName: string) => {
+    return `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase();
+  };
+
+  return (
+    <section className="min-h-screen bg-[#F9FAFB]">
+      <div className="max-w-6xl mx-auto px-6 py-8">
+        {/* Header Section */}
+        <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center gap-4">
+            <Button
+              variant="ghost"
+              className="h-10 w-10 p-0 hover:bg-[#E5E7EB]"
+              onClick={() => navigate("/")}
+            >
+              <ArrowLeft className="h-5 w-5 text-[#6B7280]" />
+            </Button>
+            <div>
+              <h1 className="text-[24px] font-semibold text-[#111827]">Initiate Offboarding</h1>
+              <p className="text-[16px] font-medium text-[#6B7280]">Select Employee</p>
+            </div>
+          </div>
+
+          {/* Progress Indicator */}
+          <div className="flex items-center gap-6">
+            <div className="flex items-center gap-4">
+              {/* Step 1 */}
+              <div className="flex flex-col items-center">
+                <div className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold text-sm">
+                  1
+                </div>
+                <p className="text-xs text-[#6B7280] mt-1">Select</p>
+              </div>
+
+              {/* Connector */}
+              <div className="w-8 h-0.5 bg-[#D1D5DB]" />
+
+              {/* Step 2 */}
+              <div className="flex flex-col items-center">
+                <div className="w-8 h-8 rounded-full bg-[#D1D5DB] text-[#9CA3AF] flex items-center justify-center font-semibold text-sm">
+                  2
+                </div>
+                <p className="text-xs text-[#9CA3AF] mt-1">Details</p>
+              </div>
+
+              {/* Connector */}
+              <div className="w-8 h-0.5 bg-[#D1D5DB]" />
+
+              {/* Step 3 */}
+              <div className="flex flex-col items-center">
+                <div className="w-8 h-8 rounded-full bg-[#D1D5DB] text-[#9CA3AF] flex items-center justify-center font-semibold text-sm">
+                  3
+                </div>
+                <p className="text-xs text-[#9CA3AF] mt-1 whitespace-nowrap">Review</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Content Section */}
+        <div className="bg-white rounded-lg p-8 mb-6 shadow-sm border border-[#E5E7EB]">
+          <h2 className="text-[20px] font-semibold text-[#111827] mb-2">Select Employee to Offboard</h2>
+          <p className="text-[14px] text-[#6B7280] mb-6">
+            Search and select the employee who will be leaving the organization
+          </p>
+
+          {/* Search Bar */}
+          <div className="relative mb-6">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-[#9CA3AF]" />
+            <input
+              type="text"
+              placeholder="Search by name, employee ID, or email..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full rounded-lg border border-[#E5E7EB] bg-white pl-10 pr-4 py-3 text-sm placeholder-[#9CA3AF] focus:outline-none focus:border-blue-400"
+            />
+          </div>
+
+          {/* Employee List */}
+          <div className="space-y-3">
+            {filteredEmployees.length > 0 ? (
+              filteredEmployees.map((employee) => (
+                <div
+                  key={employee.id}
+                  onClick={() => setSelectedEmployee(employee)}
+                  className={`flex items-center gap-4 p-5 rounded-lg border-2 cursor-pointer transition-all ${
+                    selectedEmployee?.id === employee.id
+                      ? "border-blue-600 bg-blue-50"
+                      : "border-[#E5E7EB] bg-white hover:shadow-md hover:border-[#D1D5DB]"
+                  }`}
+                >
+                  {/* Avatar */}
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 text-white flex items-center justify-center font-semibold text-sm">
+                      {getInitials(employee.firstName, employee.lastName)}
+                    </div>
+                  </div>
+
+                  {/* Employee Info */}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-baseline gap-2 mb-1">
+                      <p className="font-bold text-[16px] text-[#111827]">
+                        {employee.firstName} {employee.lastName}
+                      </p>
+                      <p className="text-[14px] text-[#9CA3AF]">{employee.id}</p>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <p className="text-[14px] text-[#6B7280]">{employee.role}</p>
+                      <span className="text-[#D1D5DB]">•</span>
+                      <p className="text-[14px] text-[#6B7280]">{employee.department}</p>
+                    </div>
+                  </div>
+
+                  {/* Selection Indicator */}
+                  {selectedEmployee?.id === employee.id && (
+                    <div className="flex-shrink-0">
+                      <div className="w-5 h-5 rounded-full bg-blue-600 border-2 border-white flex items-center justify-center">
+                        <svg
+                          className="w-3 h-3 text-white"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={3}
+                            d="M5 13l4 4L19 7"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))
+            ) : (
+              <div className="text-center py-8 text-[#9CA3AF]">No employees found.</div>
+            )}
+          </div>
+        </div>
+
+        {/* Action Buttons */}
+        <div className="flex items-center justify-between">
+          <Button
+            variant="outline"
+            onClick={() => navigate("/")}
+            className="px-6 py-2"
+          >
+            Cancel
+          </Button>
+          <Button
+            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2"
+            disabled={!selectedEmployee}
+          >
+            Next: Employee Details
+          </Button>
+        </div>
+      </div>
+    </section>
+  );
+}
