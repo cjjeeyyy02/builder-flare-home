@@ -178,6 +178,7 @@ export default function NewOffboarding() {
           <Button
             className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2"
             disabled={!selectedEmployee}
+            onClick={handleContinue}
           >
             Next: Employee Details
           </Button>
