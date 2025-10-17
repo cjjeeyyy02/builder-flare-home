@@ -513,8 +513,8 @@ export default function ViewDetails() {
               </div>
 
               {/* Document List - Scrollable Container */}
-              <div className="border border-[#E5E7EB] rounded-lg overflow-y-auto" style={{ maxHeight: "500px" }}>
-                <div className="space-y-4 p-4">
+              <div className="border border-[#E5E7EB] rounded-lg overflow-y-auto" style={{ maxHeight: "400px" }}>
+                <div className="space-y-2 p-3">
                   {filteredDocuments.length > 0 ? (
                     filteredDocuments.map((doc) => {
                       const isSelected = selectedForExport.includes(doc.id);
