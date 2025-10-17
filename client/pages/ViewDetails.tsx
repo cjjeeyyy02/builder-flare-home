@@ -397,33 +397,33 @@ export default function ViewDetails() {
               </div>
 
               {/* Comments List */}
-              <div className="space-y-4 mb-6">
+              <div className="space-y-2 mb-6">
                 {caseComments.map((comment) => (
-                  <div key={comment.id} className="bg-white border border-[#E5E7EB] rounded-lg p-4 hover:shadow-sm transition-shadow group">
-                    <div className="flex gap-3">
+                  <div key={comment.id} className="bg-white border border-[#E5E7EB] rounded-lg p-3 hover:shadow-sm transition-shadow group">
+                    <div className="flex gap-2">
                       {/* Avatar */}
-                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#F3F4F6] text-[#111827] font-bold text-sm flex-shrink-0">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#F3F4F6] text-[#111827] font-bold text-xs flex-shrink-0">
                         {comment.initials}
                       </div>
 
                       {/* Comment Content */}
                       <div className="flex-1">
                         <div className="flex items-start justify-between">
-                          <div className="flex items-center gap-2">
-                            <span className="font-bold text-[#111827]">{comment.author}</span>
-                            <span className="text-xs text-[#6B7280]">{comment.role}</span>
-                            <span className="text-xs text-[#9CA3AF]">{comment.timestamp}</span>
+                          <div className="flex items-center gap-1.5">
+                            <span className="font-bold text-[12px] text-[#111827]">{comment.author}</span>
+                            <span className="text-[10px] text-[#6B7280]">{comment.role}</span>
+                            <span className="text-[10px] text-[#9CA3AF]">{comment.timestamp}</span>
                           </div>
-                          <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                            <Button variant="ghost" className="h-6 w-6 p-0 hover:bg-gray-100">
-                              <Pencil className="h-3.5 w-3.5 text-[#6B7280]" />
+                          <div className="flex items-center gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <Button variant="ghost" className="h-5 w-5 p-0 hover:bg-gray-100">
+                              <Pencil className="h-3 w-3 text-[#6B7280]" />
                             </Button>
-                            <Button variant="ghost" className="h-6 w-6 p-0 hover:bg-gray-100" onClick={() => setCaseComments(caseComments.filter(c => c.id !== comment.id))}>
-                              <Trash2 className="h-3.5 w-3.5 text-[#6B7280]" />
+                            <Button variant="ghost" className="h-5 w-5 p-0 hover:bg-gray-100" onClick={() => setCaseComments(caseComments.filter(c => c.id !== comment.id))}>
+                              <Trash2 className="h-3 w-3 text-[#6B7280]" />
                             </Button>
                           </div>
                         </div>
-                        <p className="mt-2 text-sm text-[#111827]">{comment.text}</p>
+                        <p className="mt-1 text-xs text-[#111827]">{comment.text}</p>
                       </div>
                     </div>
                   </div>
