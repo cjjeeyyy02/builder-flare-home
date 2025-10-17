@@ -549,8 +549,6 @@ export default function ViewDetails() {
                                 <span>{doc.uploader}</span>
                               </div>
 
-                              <div className="text-xs text-[#9CA3AF] mb-2">{doc.category}</div>
-                              <div className="text-xs text-[#9CA3AF]">{doc.note}</div>
                             </div>
 
                             {/* Actions */}
