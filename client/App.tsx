@@ -10,6 +10,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import ManageProfile from "./pages/ManageProfile";
 import ViewDetails from "./pages/ViewDetails";
+import NewOffboarding from "./pages/NewOffboarding";
 
 const queryClient = new QueryClient();
 
