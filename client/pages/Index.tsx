@@ -3006,13 +3006,13 @@ export default function Index() {
                           <span>{d.day}</span>
                           <span className="text-[10px] font-normal text-[#6B7280]">{d.slots.length} slots</span>
                         </div>
-                        <div className="space-y-1.5">
+                        <div className="space-y-1">
                           {d.slots.map((s) => (
                             <div
                               key={s.id}
                               draggable
                               onDragStart={() => handleDragStart(d.day, s.id)}
-                              className="rounded-[6px] border border-[#E5E7EB] bg-[#F9FAFB] px-[10px] py-[6px] text-[13px] text-[#111827] cursor-move hover:bg-[#E5E7EB] transition-colors"
+                              className="rounded-[4px] border border-[#E5E7EB] bg-[#F9FAFB] px-2 py-1 text-[11px] text-[#111827] cursor-move hover:bg-[#E5E7EB] transition-colors"
                             >
                               {s.name} - {s.time}
                             </div>
