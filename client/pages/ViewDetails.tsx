@@ -192,10 +192,6 @@ export default function ViewDetails() {
           <h1 className="text-2xl font-bold">Offboarding Details</h1>
         </div>
         <div className="flex flex-wrap items-center gap-2">
-          <Button className="bg-blue-50 hover:bg-blue-100 text-blue-600 border border-blue-200 flex items-center gap-2 px-3 py-1.5 text-sm">
-            <Pencil className="h-4 w-4" />
-            Edit Case
-          </Button>
           <Button className="bg-green-50 hover:bg-green-100 text-green-600 border border-green-200 flex items-center gap-2 px-3 py-1.5 text-sm">
             <FileDown className="h-4 w-4" />
             Export Report
