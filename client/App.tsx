@@ -32,6 +32,7 @@ const App = () => (
           <Route path="/new-offboarding-review" element={<NewOffboardingStep3 />} />
           <Route path="/exit-interview" element={<ExitInterview />} />
           <Route path="/exit-interview-step2" element={<ExitInterviewStep2 />} />
+          <Route path="/exit-interview-step3" element={<ExitInterviewStep3 />} />
           <Route path="/manage-profile/:id" element={<ManageProfile />} />
           <Route path="/view-details/:id" element={<ViewDetails />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
