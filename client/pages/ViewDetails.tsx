@@ -192,15 +192,14 @@ export default function ViewDetails() {
           <h1 className="text-2xl font-bold">Offboarding Details</h1>
         </div>
         <div className="flex flex-wrap items-center gap-2">
-          <Button className="bg-green-50 hover:bg-green-100 text-green-600 border border-green-200 flex items-center gap-2 px-3 py-1.5 text-sm">
+          <Button className="bg-white hover:bg-gray-50 text-[#6B7280] border border-[#D1D5DB] flex items-center gap-2 px-3 py-1.5 text-sm">
             <FileDown className="h-4 w-4" />
             Export Report
           </Button>
           <Button
-            className="bg-purple-50 hover:bg-purple-100 text-purple-600 border border-purple-200 flex items-center gap-2 px-3 py-1.5 text-sm"
+            className="bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-2 px-3 py-1.5 text-sm"
             onClick={() => navigate("/exit-interview")}
           >
-            <LogOut className="h-4 w-4" />
             Exit Interview
           </Button>
         </div>
