@@ -3,7 +3,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/local/tab
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useParams, useNavigate } from "react-router-dom";
-import { Mail, MapPin, Clipboard, Plus, Pencil, CheckCircle, Calendar, Trash2, Send, Search, Download, Eye, FileText, File } from "lucide-react";
+import { Mail, MapPin, Clipboard, Plus, Pencil, CheckCircle, Calendar, Trash2, Send, Search, Download, Eye, FileText, File, Edit, FileDown, LogOut } from "lucide-react";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { Toggle } from "@/components/ui/toggle";
 
