@@ -13,6 +13,7 @@ import ViewDetails from "./pages/ViewDetails";
 import NewOffboarding from "./pages/NewOffboarding";
 import NewOffboardingStep2 from "./pages/NewOffboardingStep2";
 import NewOffboardingStep3 from "./pages/NewOffboardingStep3";
+import ExitInterview from "./pages/ExitInterview";
 
 const queryClient = new QueryClient();
 
