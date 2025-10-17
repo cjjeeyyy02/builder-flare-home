@@ -1061,10 +1061,10 @@ export default function Index() {
   const [expandedEmployee, setExpandedEmployee] = useState<string | null>(null);
   type WeeklyRow = { empId: string; name: string; mon: string; tue: string; wed: string; thu: string; fri: string; sat: string; sun: string; scheduled: string; worked: string };
   const WEEKLY_DATA: WeeklyRow[] = [
-    { empId: "E-1001", name: "Alex Chen", mon: "0.0h / 8h", tue: "0.0h / 8h", wed: "9.0h / 8h", thu: "0.0h / 8h", fri: "0.0h / 8h", sat: "0.0h / 0h", sun: "0.0h / 0h", scheduled: "40h", worked: "9.0h" },
-    { empId: "E-1002", name: "Maria Gomez", mon: "0.0h / 8h", tue: "0.0h / 8h", wed: "8.6h / 8h", thu: "0.0h / 8h", fri: "0.0h / 8h", sat: "0.0h / 0h", sun: "0.0h / 0h", scheduled: "40h", worked: "8.6h" },
-    { empId: "E-1003", name: "Jordan Lee", mon: "0.0h / 8h", tue: "0.0h / 8h", wed: "8.9h / 8h", thu: "0.0h / 8h", fri: "0.0h / 8h", sat: "0.0h / 0h", sun: "0.0h / 0h", scheduled: "40h", worked: "8.9h" },
-    { empId: "E-1004", name: "Priya Patel", mon: "0.0h / 8h", tue: "0.0h / 8h", wed: "0.0h / 8h", thu: "0.0h / 8h", fri: "0.0h / 8h", sat: "0.0h / 0h", sun: "0.0h / 0h", scheduled: "40h", worked: "0.0h" },
+    { empId: "E-1001", name: "Alex Chen", mon: "0.0h", tue: "0.0h", wed: "9.0h", thu: "0.0h", fri: "0.0h", sat: "0.0h", sun: "0.0h", scheduled: "40h", worked: "9.0h" },
+    { empId: "E-1002", name: "Maria Gomez", mon: "0.0h", tue: "0.0h", wed: "8.6h", thu: "0.0h", fri: "0.0h", sat: "0.0h", sun: "0.0h", scheduled: "40h", worked: "8.6h" },
+    { empId: "E-1003", name: "Jordan Lee", mon: "0.0h", tue: "0.0h", wed: "8.9h", thu: "0.0h", fri: "0.0h", sat: "0.0h", sun: "0.0h", scheduled: "40h", worked: "8.9h" },
+    { empId: "E-1004", name: "Priya Patel", mon: "0.0h", tue: "0.0h", wed: "0.0h", thu: "0.0h", fri: "0.0h", sat: "0.0h", sun: "0.0h", scheduled: "40h", worked: "0.0h" },
   ];
   const todaySlash = useMemo(() => {
     const d = new Date();
