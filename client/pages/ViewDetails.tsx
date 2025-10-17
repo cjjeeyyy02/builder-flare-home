@@ -762,6 +762,44 @@ export default function ViewDetails() {
                 <p className="text-sm text-[#6B7280]">Manage system access, security clearances, and device returns.</p>
               </div>
 
+              {/* System Access Overview Section */}
+              <div className="mb-8">
+                <h4 className="font-semibold text-[16px] text-[#111827] mb-2">System Access Overview</h4>
+                <p className="text-sm text-[#6B7280] mb-4">Monitor and manage access across all systems.</p>
+                <div className="space-y-4">
+                  {[
+                    { key: "email", name: "Email (Google Workspace)" },
+                    { key: "slack", name: "Slack" },
+                    { key: "github", name: "GitHub" },
+                    { key: "jira", name: "Jira" },
+                    { key: "confluence", name: "Confluence" },
+                  ].map((system) => (
+                    <div
+                      key={system.key}
+                      className="flex items-center justify-between p-4 border border-[#E5E7EB] rounded-lg bg-white shadow-sm hover:shadow-md transition-shadow"
+                    >
+                      <div className="flex-1">
+                        <h5 className="font-bold text-[#111827]">{system.name}</h5>
+                        <p className="text-sm text-[#9CA3AF]">Access active</p>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <span className="text-sm font-medium text-[#6B7280]">Revoke</span>
+                        <Toggle
+                          pressed={systemAccess[system.key as keyof typeof systemAccess]}
+                          onPressedChange={(pressed) =>
+                            setSystemAccess({
+                              ...systemAccess,
+                              [system.key]: pressed,
+                            })
+                          }
+                          className="bg-[#E5E7EB] data-[state=on]:bg-red-500"
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
               {/* System Access Section */}
               <div className="mb-6">
                 <h4 className="font-semibold text-[16px] text-[#111827] mb-4">System Access</h4>
