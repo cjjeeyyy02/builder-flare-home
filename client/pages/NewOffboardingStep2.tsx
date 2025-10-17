@@ -105,7 +105,7 @@ export default function NewOffboardingStep2() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               {/* Avatar */}
-              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 text-white flex items-center justify-center font-semibold text-lg">
+              <div className="w-14 h-14 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold text-lg">
                 {getInitials(selectedEmployee.firstName, selectedEmployee.lastName)}
               </div>
 

@@ -126,7 +126,7 @@ export default function NewOffboardingStep3() {
           <div className="pb-6 mb-6 border-b border-[#E5E7EB]">
             <h3 className="text-[16px] font-semibold text-[#111827] mb-4">Employee Information</h3>
             <div className="flex items-center gap-4">
-              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 text-white flex items-center justify-center font-semibold text-lg">
+              <div className="w-14 h-14 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold text-lg">
                 {getInitials(exitData.employee.firstName, exitData.employee.lastName)}
               </div>
               <div>
