@@ -732,7 +732,7 @@ export default function ViewDetails() {
               </div>
 
               {/* Access Cards */}
-              <div className="space-y-3">
+              <div className="space-y-2">
                 {[
                   { name: "Email (Google Workspace)", key: "email" },
                   { name: "Source Control (GitHub)", key: "github" },
