@@ -134,10 +134,9 @@ export default function ViewDetails() {
 
   const [systemAccess, setSystemAccess] = useState({
     email: false,
-    slack: false,
     github: false,
-    jira: false,
-    confluence: false,
+    bamboo: false,
+    netsuite: false,
   });
 
   const timelineEvents = [
