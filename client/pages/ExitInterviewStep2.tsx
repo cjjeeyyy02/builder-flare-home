@@ -32,10 +32,6 @@ export default function ExitInterviewStep2() {
     "Definitely Not",
   ];
 
-  const handleRatingChange = (key: string, value: number) => {
-    setRatings({ ...ratings, [key]: value });
-  };
-
   return (
     <section className="min-h-screen bg-[#F9FAFB] px-6 py-6">
       <div className="w-full max-w-6xl mx-auto">
