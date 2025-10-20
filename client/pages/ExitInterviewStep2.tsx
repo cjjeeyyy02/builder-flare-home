@@ -11,16 +11,6 @@ export default function ExitInterviewStep2() {
   const [recommendation, setRecommendation] = useState("");
   const [futureReturn, setFutureReturn] = useState("");
 
-  const ratingItems = [
-    { key: "jobSatisfaction", label: "Overall Job Satisfaction" },
-    { key: "workLifeBalance", label: "Work-Life Balance" },
-    { key: "managementSupport", label: "Management Support" },
-    { key: "careerDevelopment", label: "Career Development Opportunities" },
-    { key: "compensation", label: "Compensation and Benefits" },
-    { key: "workEnvironment", label: "Work Environment" },
-    { key: "teamCollaboration", label: "Team Collaboration" },
-  ];
-
   const leaveReasons = [
     "Better compensation package",
     "Career advancement opportunity",
