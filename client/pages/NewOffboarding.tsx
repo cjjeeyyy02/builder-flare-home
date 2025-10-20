@@ -48,35 +48,35 @@ export default function NewOffboarding() {
           </div>
 
           {/* Progress Indicator */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1">
             {/* Step 1 */}
             <div className="flex flex-col items-center">
-              <div className="w-7 h-7 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold text-xs">
+              <div className="w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold text-[10px]">
                 1
               </div>
-              <p className="text-[10px] text-[#6B7280] mt-0.5">Select</p>
+              <p className="text-[9px] text-[#6B7280] mt-0.5">Select</p>
             </div>
 
             {/* Connector */}
-            <div className="w-6 h-0.5 bg-[#D1D5DB]" />
+            <div className="w-2 h-0.5 bg-[#D1D5DB]" />
 
             {/* Step 2 */}
             <div className="flex flex-col items-center">
-              <div className="w-7 h-7 rounded-full bg-[#D1D5DB] text-[#9CA3AF] flex items-center justify-center font-semibold text-xs">
+              <div className="w-5 h-5 rounded-full bg-[#D1D5DB] text-[#9CA3AF] flex items-center justify-center font-semibold text-[10px]">
                 2
               </div>
-              <p className="text-[10px] text-[#9CA3AF] mt-0.5">Details</p>
+              <p className="text-[9px] text-[#9CA3AF] mt-0.5">Details</p>
             </div>
 
             {/* Connector */}
-            <div className="w-6 h-0.5 bg-[#D1D5DB]" />
+            <div className="w-2 h-0.5 bg-[#D1D5DB]" />
 
             {/* Step 3 */}
             <div className="flex flex-col items-center">
-              <div className="w-7 h-7 rounded-full bg-[#D1D5DB] text-[#9CA3AF] flex items-center justify-center font-semibold text-xs">
+              <div className="w-5 h-5 rounded-full bg-[#D1D5DB] text-[#9CA3AF] flex items-center justify-center font-semibold text-[10px]">
                 3
               </div>
-              <p className="text-[10px] text-[#9CA3AF] mt-0.5">Review</p>
+              <p className="text-[9px] text-[#9CA3AF] mt-0.5">Review</p>
             </div>
           </div>
         </div>
