@@ -1065,6 +1065,21 @@ export default function Index() {
     });
   }, [search, position, status]);
 
+  // Offboarding table filtered list
+  const filteredOffboarding = useMemo(() => {
+    return EMPLOYEES.filter((e) => {
+      const matchesSearch =
+        !offboardingSearch.trim() ||
+        [e.firstName, e.lastName, e.id]
+          .join(" ")
+          .toLowerCase()
+          .includes(offboardingSearch.toLowerCase());
+      const matchesDept =
+        !offboardingDepartment || e.department === offboardingDepartment;
+      return matchesSearch && matchesDept;
+    });
+  }, [offboardingSearch, offboardingDepartment, offboardingStage]);
+
   // Pagination for Employee Records table
   const pageSize = 10;
   const [page, setPage] = useState(0);
