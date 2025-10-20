@@ -147,11 +147,22 @@ export default function ViewDetails() {
     netsuite: false,
   });
 
+  const formatDateOnly = (dateString: string) => {
+    const date = new Date(dateString);
+    return (
+      String(date.getMonth() + 1).padStart(2, "0") +
+      "/" +
+      String(date.getDate()).padStart(2, "0") +
+      "/" +
+      date.getFullYear()
+    );
+  };
+
   const timelineEvents = [
     {
       id: "te1",
       title: "Case Created",
-      timestamp: "December 15, 2023 at 9:30 AM",
+      timestamp: "12/15/2023",
       description: "Offboarding case initiated for Sarah Johnson",
       status: "completed",
       dotColor: "#22C55E",
@@ -159,7 +170,7 @@ export default function ViewDetails() {
     {
       id: "te2",
       title: "HR Documentation Completed",
-      timestamp: "January 4, 2024 at 2:15 PM",
+      timestamp: "01/04/2024",
       description: "Employee records updated and termination letter generated",
       status: "completed",
       dotColor: "#3B82F6",
@@ -167,7 +178,7 @@ export default function ViewDetails() {
     {
       id: "te3",
       title: "IT Asset Collection In Progress",
-      timestamp: "January 8, 2024 at 10:00 AM",
+      timestamp: "01/08/2024",
       description: "Asset collection meeting scheduled with IT team",
       status: "in-progress",
       dotColor: "#F59E0B",
