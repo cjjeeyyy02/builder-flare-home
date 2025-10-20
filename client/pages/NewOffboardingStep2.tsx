@@ -128,39 +128,27 @@ export default function NewOffboardingStep2() {
             <p className="text-[12px] text-[#6B7280] mb-4">Provide details about the employee's departure.</p>
 
             {/* Form Fields */}
-            <div className="space-y-4">
-              {/* Exit Type - Full Width */}
-              <div>
-                <label className="block text-[12px] font-semibold text-[#111827] mb-1.5">
-                  Exit Type <span className="text-red-500">*</span>
-                </label>
-                <select
-                  value={exitType}
-                  onChange={(e) => setExitType(e.target.value)}
-                  className="w-full rounded-[8px] border border-[#E5E7EB] bg-white px-3 py-2 text-[13px] text-[#111827] focus:outline-none focus:border-blue-400"
-                >
-                  <option value="Resignation">Resignation</option>
-                  <option value="Termination">Termination</option>
-                  <option value="Retirement">Retirement</option>
-                  <option value="Layoff">Layoff</option>
-                  <option value="End of Contract">End of Contract</option>
-                </select>
-                <p className="text-[11px] text-[#6B7280] mt-1">Employee voluntarily leaving</p>
-              </div>
-
-              {/* Two Column Layout */}
-              <div className="grid grid-cols-2 gap-4">
-                {/* Last Working Day */}
+            {/* Two Column Form Layout */}
+            <div className="grid grid-cols-2 gap-4 mb-4">
+              {/* Left Column */}
+              <div className="space-y-4">
+                {/* Exit Type */}
                 <div>
                   <label className="block text-[12px] font-semibold text-[#111827] mb-1.5">
-                    Last Working Day <span className="text-red-500">*</span>
+                    Exit Type <span className="text-red-500">*</span>
                   </label>
-                  <input
-                    type="date"
-                    value={lastWorkingDay}
-                    onChange={(e) => setLastWorkingDay(e.target.value)}
+                  <select
+                    value={exitType}
+                    onChange={(e) => setExitType(e.target.value)}
                     className="w-full rounded-[8px] border border-[#E5E7EB] bg-white px-3 py-2 text-[13px] text-[#111827] focus:outline-none focus:border-blue-400"
-                  />
+                  >
+                    <option value="Resignation">Resignation</option>
+                    <option value="Termination">Termination</option>
+                    <option value="Retirement">Retirement</option>
+                    <option value="Layoff">Layoff</option>
+                    <option value="End of Contract">End of Contract</option>
+                  </select>
+                  <p className="text-[11px] text-[#6B7280] mt-1">Employee voluntarily leaving</p>
                 </div>
 
                 {/* Effective Date */}
@@ -175,11 +163,38 @@ export default function NewOffboardingStep2() {
                     className="w-full rounded-[8px] border border-[#E5E7EB] bg-white px-3 py-2 text-[13px] text-[#111827] focus:outline-none focus:border-blue-400"
                   />
                 </div>
+
+                {/* Last Working Day */}
+                <div>
+                  <label className="block text-[12px] font-semibold text-[#111827] mb-1.5">
+                    Last Working Day <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="date"
+                    value={lastWorkingDay}
+                    onChange={(e) => setLastWorkingDay(e.target.value)}
+                    className="w-full rounded-[8px] border border-[#E5E7EB] bg-white px-3 py-2 text-[13px] text-[#111827] focus:outline-none focus:border-blue-400"
+                  />
+                </div>
               </div>
 
-              {/* Two Column Layout */}
-              <div className="grid grid-cols-2 gap-4">
-                {/* Notice Period */}
+              {/* Right Column */}
+              <div className="space-y-4">
+                {/* Reason for Departure */}
+                <div>
+                  <label className="block text-[12px] font-semibold text-[#111827] mb-1.5">
+                    Reason for Departure
+                  </label>
+                  <textarea
+                    value={reason}
+                    onChange={(e) => setReason(e.target.value)}
+                    placeholder="Enter reason..."
+                    rows={4}
+                    className="w-full rounded-[8px] border border-[#E5E7EB] bg-white px-3 py-2 text-[13px] text-[#111827] focus:outline-none focus:border-blue-400 resize-none"
+                  />
+                </div>
+
+                {/* Notice Period Given */}
                 <div>
                   <label className="block text-[12px] font-semibold text-[#111827] mb-1.5">
                     Notice Period Given
@@ -196,23 +211,13 @@ export default function NewOffboardingStep2() {
                     <option value="3 Months">3 Months</option>
                   </select>
                 </div>
-
-                {/* Reason for Departure */}
-                <div>
-                  <label className="block text-[12px] font-semibold text-[#111827] mb-1.5">
-                    Reason for Departure
-                  </label>
-                  <textarea
-                    value={reason}
-                    onChange={(e) => setReason(e.target.value)}
-                    placeholder="Enter reason..."
-                    rows={2}
-                    className="w-full rounded-[8px] border border-[#E5E7EB] bg-white px-3 py-2 text-[13px] text-[#111827] focus:outline-none focus:border-blue-400 resize-none"
-                  />
-                </div>
               </div>
+            </div>
 
-              {/* Checkboxes */}
+            {/* Checkboxes */}
+            <div className="space-y-4">
+
+              {/* Checkboxes Section */}
               <div className="space-y-3 pt-3 border-t border-[#E5E7EB]">
                 <label className="flex items-center gap-2 cursor-pointer">
                   <input
