@@ -65,35 +65,35 @@ export default function NewOffboardingStep2() {
           </div>
 
           {/* Progress Indicator */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1">
             {/* Step 1 */}
             <div className="flex flex-col items-center">
-              <div className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold text-sm">
+              <div className="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold text-xs">
                 1
               </div>
-              <p className="text-xs text-[#6B7280] mt-1">Select</p>
+              <p className="text-[10px] text-[#6B7280] mt-0.5">Select</p>
             </div>
 
             {/* Connector */}
-            <div className="w-6 h-0.5 bg-blue-600" />
+            <div className="w-3 h-0.5 bg-blue-600" />
 
             {/* Step 2 */}
             <div className="flex flex-col items-center">
-              <div className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold text-sm">
+              <div className="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold text-xs">
                 2
               </div>
-              <p className="text-xs text-[#6B7280] mt-1">Details</p>
+              <p className="text-[10px] text-[#6B7280] mt-0.5">Details</p>
             </div>
 
             {/* Connector */}
-            <div className="w-6 h-0.5 bg-[#D1D5DB]" />
+            <div className="w-3 h-0.5 bg-[#D1D5DB]" />
 
             {/* Step 3 */}
             <div className="flex flex-col items-center">
-              <div className="w-8 h-8 rounded-full bg-[#D1D5DB] text-[#9CA3AF] flex items-center justify-center font-semibold text-sm">
+              <div className="w-6 h-6 rounded-full bg-[#D1D5DB] text-[#9CA3AF] flex items-center justify-center font-semibold text-xs">
                 3
               </div>
-              <p className="text-xs text-[#9CA3AF] mt-1 whitespace-nowrap">Review</p>
+              <p className="text-[10px] text-[#9CA3AF] mt-0.5 whitespace-nowrap">Review</p>
             </div>
           </div>
         </div>
