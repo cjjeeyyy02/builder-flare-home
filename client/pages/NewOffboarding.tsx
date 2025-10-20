@@ -112,6 +112,7 @@ export default function NewOffboarding() {
                     <th className="px-4 py-3 text-left font-semibold text-[#6B7280] text-xs">Department</th>
                     <th className="px-4 py-3 text-left font-semibold text-[#6B7280] text-xs">Position</th>
                     <th className="px-4 py-3 text-left font-semibold text-[#6B7280] text-xs">Status</th>
+                    {selectedEmployee && <th className="px-4 py-3 text-center font-semibold text-[#6B7280] text-xs">Confirm</th>}
                   </tr>
                 </thead>
                 <tbody>
