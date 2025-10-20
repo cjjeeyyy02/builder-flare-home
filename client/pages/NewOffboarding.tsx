@@ -83,8 +83,8 @@ export default function NewOffboarding() {
 
         {/* Content Section */}
         <div className="bg-white rounded-lg p-5 mb-4 shadow-sm border border-[#E5E7EB]">
-          <h2 className="text-[16px] font-semibold text-[#111827] mb-1">Select Employee to Offboard</h2>
-          <p className="text-[12px] text-[#6B7280] mb-4">
+          <h2 className="text-[16px] font-semibold text-black mb-1">Select Employee to Offboard</h2>
+          <p className="text-[12px] text-black mb-4">
             Search and select the employee who will be leaving the organization
           </p>
 
