@@ -162,19 +162,19 @@ export default function ExitInterviewForm() {
           {/* Left Column */}
           <div className="space-y-4">
             {/* Overall Job Satisfaction Card */}
-            <div className="bg-white rounded-lg p-6 border border-[#E5E7EB] shadow-sm" style={{ boxShadow: "0px 1px 3px rgba(0,0,0,0.05)" }}>
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="text-[16px] font-semibold text-[#111827]">Overall Job Satisfaction</h3>
+            <div className="bg-white rounded-lg p-4 border border-[#E5E7EB] shadow-sm" style={{ boxShadow: "0px 1px 3px rgba(0,0,0,0.05)" }}>
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-[14px] font-semibold text-[#111827]">Overall Job Satisfaction</h3>
                 <button
                   onClick={() => toggleEditMode("jobSatisfaction")}
-                  className="p-2 hover:bg-[#F3F4F6] rounded-lg transition-colors"
+                  className="p-1.5 hover:bg-[#F3F4F6] rounded-lg transition-colors"
                   title="Edit"
                 >
                   <Pencil className="h-4 w-4 text-[#6B7280] hover:text-[#111827]" />
                 </button>
               </div>
 
-              <div className="space-y-5">
+              <div className="space-y-3">
                 {satisfactionItems.map((item) => (
                   <div key={item.key}>
                     <label className="block text-[13px] font-medium text-[#111827] mb-3">{item.label}</label>
