@@ -106,12 +106,12 @@ export default function NewOffboarding() {
               <table className="w-full text-sm">
                 <thead className="bg-[#F3F4F6] border-b border-[#E5E7EB] sticky top-0">
                   <tr>
-                    <th className="px-4 py-3 text-left font-semibold text-black text-xs uppercase">Employee ID</th>
-                    <th className="px-4 py-3 text-left font-semibold text-black text-xs uppercase">Employee Name</th>
-                    <th className="px-4 py-3 text-left font-semibold text-black text-xs uppercase">Department</th>
-                    <th className="px-4 py-3 text-left font-semibold text-black text-xs uppercase">Position</th>
-                    <th className="px-4 py-3 text-left font-semibold text-black text-xs uppercase">Status</th>
-                    {selectedEmployee && <th className="px-4 py-3 text-center font-semibold text-black text-xs uppercase">Confirm</th>}
+                    <th className="px-4 py-3 text-left font-semibold text-xs uppercase">Employee ID</th>
+                    <th className="px-4 py-3 text-left font-semibold text-xs uppercase">Employee Name</th>
+                    <th className="px-4 py-3 text-left font-semibold text-xs uppercase">Department</th>
+                    <th className="px-4 py-3 text-left font-semibold text-xs uppercase">Position</th>
+                    <th className="px-4 py-3 text-left font-semibold text-xs uppercase">Status</th>
+                    {selectedEmployee && <th className="px-4 py-3 text-center font-semibold text-xs uppercase">Confirm</th>}
                   </tr>
                 </thead>
                 <tbody>
