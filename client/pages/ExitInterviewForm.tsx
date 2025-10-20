@@ -177,7 +177,7 @@ export default function ExitInterviewForm() {
               <div className="space-y-3">
                 {satisfactionItems.map((item) => (
                   <div key={item.key}>
-                    <label className="block text-[13px] font-medium text-[#111827] mb-3">{item.label}</label>
+                    <label className="block text-[12px] font-medium text-[#111827] mb-2">{item.label}</label>
                     <div className="flex items-center gap-4">
                       {[1, 2, 3, 4, 5].map((rating) => (
                         <div key={rating} className="flex items-center">
