@@ -397,17 +397,17 @@ export default function ExitInterviewForm() {
             Back
           </Button>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <Button
               variant="outline"
               onClick={handleSaveDraft}
-              className="px-4 py-2.5 text-sm border-[#D1D5DB]"
+              className="px-4 py-2 text-sm border-[#D1D5DB]"
             >
               Save Draft
             </Button>
 
             <Button
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 text-sm font-medium"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 text-sm font-medium"
               onClick={handleSubmit}
             >
               Submit Interview
