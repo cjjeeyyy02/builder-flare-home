@@ -424,12 +424,11 @@ export default function ViewDetails() {
                     <div key={task.id} className="bg-white border border-[#E5E7EB] rounded-lg p-3">
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
-                          <div className="flex items-center gap-2 mb-1.5">
+                          <div className="flex items-center gap-2 mb-2">
                             <h4 className="font-bold text-[13px] text-[#111827]">{task.title}</h4>
                             <span className="rounded-full bg-[#F3F4F6] px-1.5 py-0.5 text-[10px] font-medium text-[#6B7280]">{task.department}</span>
                             <span className={`rounded-full px-1.5 py-0.5 text-[10px] font-medium ${priorityColors[task.priority]}`}>{task.priority}</span>
                           </div>
-                          <p className="text-xs text-[#6B7280] mb-2">{task.description}</p>
                           <div className="flex flex-wrap gap-2 text-[11px]">
                             <div><span className="text-[#6B7280]">Assigned To:</span> <span className="font-medium text-[#111827]">{task.assignedTo}</span></div>
                             <div className="flex items-center gap-0.5"><Calendar className="h-3 w-3 text-[#6B7280]" /> <span className="text-[#6B7280]">Due:</span> <span className="font-medium text-[#111827]">{task.dueDate}</span></div>
