@@ -1373,7 +1373,7 @@ export default function Index() {
       const top = scored.slice(0, 3);
       const topLines = top.map(
         (x, i) =>
-          `${i + 1}. ${x.e.firstName} ${x.e.lastName} – ${x.e.role}, ${x.e.department} • ${getYearsExperience(x.e)} yrs • Matches: ${x.matches.join(", ")}`,
+          `${i + 1}. ${x.e.firstName} ${x.e.lastName} ��� ${x.e.role}, ${x.e.department} • ${getYearsExperience(x.e)} yrs • Matches: ${x.matches.join(", ")}`,
       );
       const allLines = scored.map(
         (x) =>
@@ -1814,9 +1814,11 @@ export default function Index() {
                       className="rounded border border-input bg-background px-3 py-2 text-sm text-muted-foreground"
                     >
                       <option value="" className="text-muted-foreground">Offboarding Stage</option>
-                      <option value="planned">Planned</option>
-                      <option value="in-progress">In Progress</option>
-                      <option value="completed">Completed</option>
+                      <option value="HR Documentation Update">HR Documentation Update</option>
+                      <option value="IT Asset Collection">IT Asset Collection</option>
+                      <option value="Exit Interview Scheduling">Exit Interview Scheduling</option>
+                      <option value="Access Revocation">Access Revocation</option>
+                      <option value="Post-Exit Follow-Up">Post-Exit Follow-Up</option>
                     </select>
                   </div>
 
