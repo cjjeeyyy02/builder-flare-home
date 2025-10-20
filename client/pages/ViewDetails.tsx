@@ -545,17 +545,40 @@ export default function ViewDetails() {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex gap-3 items-center mb-6 justify-end">
+              <div className="flex gap-2 items-center mb-6 justify-end">
                 <Button
-                  className="bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-2"
+                  className="bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-1.5 px-3 py-1.5 text-sm"
+                  onClick={() => document.getElementById('file-upload')?.click()}
                 >
-                  <Plus className="h-4 w-4" />
-                  Upload Document
+                  <Plus className="h-3.5 w-3.5" />
+                  Upload
                 </Button>
+
+                <input
+                  id="file-upload"
+                  type="file"
+                  multiple
+                  className="hidden"
+                  onChange={(e) => {
+                    const files = e.target.files;
+                    if (files && files.length > 0) {
+                      const newDocs = Array.from(files).map((file, index) => ({
+                        id: `doc-${Date.now()}-${index}`,
+                        name: file.name,
+                        type: file.name.endsWith('.pdf') ? 'PDF' : 'Other',
+                        size: `${(file.size / 1024).toFixed(2)} KB`,
+                        uploadedDate: new Date().toISOString().split('T')[0],
+                      }));
+                      setDocuments([...documents, ...newDocs]);
+                      alert(`Successfully uploaded ${files.length} file(s)`);
+                      e.target.value = '';
+                    }
+                  }}
+                />
 
                 <Button
                   variant={isExportMode ? "default" : "outline"}
-                  className={`flex items-center gap-2 ${isExportMode ? "bg-blue-600 hover:bg-blue-700 text-white" : ""}`}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 text-sm ${isExportMode ? "bg-blue-600 hover:bg-blue-700 text-white" : ""}`}
                   onClick={() => {
                     if (isExportMode && selectedForExport.length > 0) {
                       alert(`Downloading ${selectedForExport.length} file(s)...`);
@@ -566,7 +589,7 @@ export default function ViewDetails() {
                     }
                   }}
                 >
-                  <Download className="h-4 w-4" />
+                  <Download className="h-3.5 w-3.5" />
                   {isExportMode ? `Download (${selectedForExport.length})` : "Export"}
                 </Button>
 
