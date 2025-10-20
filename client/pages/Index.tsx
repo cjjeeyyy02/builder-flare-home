@@ -1897,7 +1897,7 @@ export default function Index() {
                             )}
                           </TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">
-                            <span className="text-muted-foreground">IT Asset Collection</span>
+                            IT Asset Collection
                           </TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">
                             {e.departureDate ? (
