@@ -489,7 +489,7 @@ function OrgListView() {
             onClick={() => setMode("list")}
             className="h-8 rounded-lg px-4 text-xs font-medium bg-white text-[#111827] border border-[#d1d5db] hover:bg-gray-50"
           >
-            ���� Back
+            ��� Back
           </Button>
         </div>
       )}
@@ -1773,6 +1773,8 @@ export default function Index() {
                 label="Overdue Items"
                 value={overdueItems}
                 icon={<AlertTriangle className="h-5 w-5" />}
+                colorClass="text-red-600"
+                bgColorClass="bg-red-100 text-red-600"
               />
             </section>
 
