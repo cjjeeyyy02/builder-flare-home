@@ -14,6 +14,7 @@ import NewOffboarding from "./pages/NewOffboarding";
 import NewOffboardingStep2 from "./pages/NewOffboardingStep2";
 import NewOffboardingStep3 from "./pages/NewOffboardingStep3";
 import ExitInterview from "./pages/ExitInterview";
+import ExitInterviewForm from "./pages/ExitInterviewForm";
 
 const queryClient = new QueryClient();
 
