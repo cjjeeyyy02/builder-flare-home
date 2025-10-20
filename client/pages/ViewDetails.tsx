@@ -239,7 +239,18 @@ export default function ViewDetails() {
             <div className="flex flex-col gap-2 pt-1">
               <div>
                 <div className="text-[11px] font-medium text-[#6B7280]">Stage</div>
-                <div className="text-[12px] font-semibold text-[#111827]">Exit Interview</div>
+                <select
+                  value={stage}
+                  onChange={(e) => setStage(e.target.value)}
+                  className="w-full rounded border border-[#E5E7EB] bg-white px-2 py-1 text-[12px] font-semibold text-[#111827] focus:outline-none focus:border-blue-400"
+                >
+                  <option value="IT Asset Collection">IT Asset Collection</option>
+                  <option value="Exit Interview">Exit Interview</option>
+                  <option value="Access Revocation">Access Revocation</option>
+                  <option value="Final Payroll">Final Payroll</option>
+                  <option value="Knowledge Transfer">Knowledge Transfer</option>
+                  <option value="Completed">Completed</option>
+                </select>
               </div>
               <div>
                 <div className="flex items-center justify-between mb-0.5">
