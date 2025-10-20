@@ -22,8 +22,8 @@ export default function ExitInterview() {
             <ArrowLeft className="h-5 w-5 text-[#6B7280]" />
           </Button>
           <div>
-            <h1 className="text-[28px] font-semibold text-[#111827] mb-2">Exit Interview</h1>
-            <p className="text-[14px] text-[#6B7280]">Collect feedback and insights from departing employees</p>
+            <h1 className="text-[18px] font-semibold text-[#111827] mb-2">Exit Interview</h1>
+            <p className="text-[12px] text-[#6B7280]">Collect feedback and insights from departing employees</p>
           </div>
         </div>
 
