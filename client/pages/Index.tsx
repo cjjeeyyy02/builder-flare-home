@@ -1790,17 +1790,27 @@ export default function Index() {
                     <input
                       type="text"
                       placeholder="Search Employee ID, Name"
+                      value={offboardingSearch}
+                      onChange={(e) => setOffboardingSearch(e.target.value)}
                       className="rounded border border-input bg-background px-3 py-2 text-sm"
                     />
-                    <select className="rounded border border-input bg-background px-3 py-2 text-sm">
+                    <select
+                      value={offboardingDepartment}
+                      onChange={(e) => setOffboardingDepartment(e.target.value)}
+                      className="rounded border border-input bg-background px-3 py-2 text-sm"
+                    >
                       <option value="">Department</option>
-                      <option value="engineering">Engineering</option>
-                      <option value="product">Product</option>
-                      <option value="design">Design</option>
-                      <option value="analytics">Analytics</option>
-                      <option value="hr">Human Resources</option>
+                      <option value="Engineering">Engineering</option>
+                      <option value="Product">Product</option>
+                      <option value="Design">Design</option>
+                      <option value="Analytics">Analytics</option>
+                      <option value="Human Resources">Human Resources</option>
                     </select>
-                    <select className="rounded border border-input bg-background px-3 py-2 text-sm">
+                    <select
+                      value={offboardingStage}
+                      onChange={(e) => setOffboardingStage(e.target.value)}
+                      className="rounded border border-input bg-background px-3 py-2 text-sm"
+                    >
                       <option value="">Offboarding Stage</option>
                       <option value="planned">Planned</option>
                       <option value="in-progress">In Progress</option>
