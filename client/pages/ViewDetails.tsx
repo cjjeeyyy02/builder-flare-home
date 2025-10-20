@@ -556,13 +556,45 @@ export default function ViewDetails() {
                   </Button>
 
                   <Button
-                    variant="outline"
-                    className="flex items-center gap-2"
-                    onClick={() => setShowExportModal(true)}
+                    variant={isExportMode ? "default" : "outline"}
+                    className={`flex items-center gap-2 ${isExportMode ? "bg-blue-600 hover:bg-blue-700 text-white" : ""}`}
+                    onClick={() => {
+                      if (isExportMode && selectedForExport.length > 0) {
+                        alert(`Downloading ${selectedForExport.length} file(s)...`);
+                        setSelectedForExport([]);
+                        setIsExportMode(false);
+                      } else {
+                        setIsExportMode(!isExportMode);
+                      }
+                    }}
                   >
                     <Download className="h-4 w-4" />
-                    Export
+                    {isExportMode ? `Download (${selectedForExport.length})` : "Export"}
                   </Button>
+
+                  {isExportMode && selectedForExport.length < filteredDocuments.length && (
+                    <Button
+                      variant="outline"
+                      className="flex items-center gap-2"
+                      onClick={() => {
+                        setSelectedForExport(filteredDocuments.map(d => d.id));
+                      }}
+                    >
+                      Select All
+                    </Button>
+                  )}
+
+                  {isExportMode && selectedForExport.length > 0 && (
+                    <Button
+                      variant="outline"
+                      className="flex items-center gap-2"
+                      onClick={() => {
+                        setSelectedForExport([]);
+                      }}
+                    >
+                      Clear
+                    </Button>
+                  )}
                 </div>
               </div>
 
