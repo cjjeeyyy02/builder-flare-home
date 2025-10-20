@@ -131,6 +131,16 @@ export default function NewOffboarding() {
                       <td className="px-4 py-3 text-[13px] text-[#6B7280]">{employee.department}</td>
                       <td className="px-4 py-3 text-[13px] text-[#6B7280]">{employee.role}</td>
                       <td className="px-4 py-3 text-[13px] text-[#6B7280]">{employee.status}</td>
+                      {selectedEmployee?.id === employee.id && (
+                        <td className="px-4 py-3 text-center">
+                          <input
+                            type="checkbox"
+                            checked={true}
+                            readOnly
+                            className="w-4 h-4 accent-blue-600 cursor-pointer"
+                          />
+                        </td>
+                      )}
                     </tr>
                   ))}
                 </tbody>
