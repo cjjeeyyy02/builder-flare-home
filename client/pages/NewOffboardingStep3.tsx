@@ -78,35 +78,35 @@ export default function NewOffboardingStep3() {
           </div>
 
           {/* Progress Indicator */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-1">
             {/* Step 1 */}
             <div className="flex flex-col items-center">
-              <div className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold text-sm">
+              <div className="w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold text-[10px]">
                 1
               </div>
-              <p className="text-xs text-[#6B7280] mt-1">Select</p>
+              <p className="text-[9px] text-[#6B7280] mt-0.5">Select</p>
             </div>
 
             {/* Connector */}
-            <div className="w-8 h-0.5 bg-blue-600" />
+            <div className="w-2 h-0.5 bg-blue-600" />
 
             {/* Step 2 */}
             <div className="flex flex-col items-center">
-              <div className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold text-sm">
+              <div className="w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold text-[10px]">
                 2
               </div>
-              <p className="text-xs text-[#6B7280] mt-1">Details</p>
+              <p className="text-[9px] text-[#6B7280] mt-0.5">Details</p>
             </div>
 
             {/* Connector */}
-            <div className="w-8 h-0.5 bg-blue-600" />
+            <div className="w-2 h-0.5 bg-blue-600" />
 
             {/* Step 3 */}
             <div className="flex flex-col items-center">
-              <div className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold text-sm">
+              <div className="w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold text-[10px]">
                 3
               </div>
-              <p className="text-xs text-[#6B7280] mt-1 whitespace-nowrap">Review & Submit</p>
+              <p className="text-[9px] text-[#6B7280] mt-0.5 whitespace-nowrap">Review</p>
             </div>
           </div>
         </div>
