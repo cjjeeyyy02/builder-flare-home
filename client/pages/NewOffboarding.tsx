@@ -44,7 +44,6 @@ export default function NewOffboarding() {
             </Button>
             <div>
               <h1 className="text-[20px] font-semibold text-[#111827]">Initiate Offboarding</h1>
-              <p className="text-[13px] text-[#6B7280]">Select Employee</p>
             </div>
           </div>
 
