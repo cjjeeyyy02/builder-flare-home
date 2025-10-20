@@ -42,6 +42,21 @@ export default function ExitInterviewForm() {
 
   const [additionalComments, setAdditionalComments] = useState("");
 
+  // Edit modes for sections
+  const [editMode, setEditMode] = useState({
+    jobSatisfaction: false,
+    exitSurvey: false,
+    detailedFeedback: false,
+    decisionFactors: false,
+  });
+
+  const toggleEditMode = (section: keyof typeof editMode) => {
+    setEditMode({
+      ...editMode,
+      [section]: !editMode[section],
+    });
+  };
+
   const satisfactionItems = [
     { key: "workLifeBalance", label: "Work-Life Balance" },
     { key: "managementSupport", label: "Management Support" },
