@@ -13,10 +13,10 @@ export default function ExitInterview() {
     <section className="min-h-screen bg-[#F9FAFB] px-6 py-8">
       <div className="w-full">
         {/* Header Section with Back Button */}
-        <div className="mb-8 flex items-center gap-4">
+        <div className="mb-8">
           <Button
             variant="ghost"
-            className="h-10 w-10 p-0 hover:bg-[#E5E7EB]"
+            className="h-10 w-10 p-0 hover:bg-[#E5E7EB] mb-2"
             onClick={() => navigate("/")}
           >
             <ArrowLeft className="h-5 w-5 text-[#6B7280]" />
