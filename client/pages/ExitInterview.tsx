@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Clipboard, Mail, MapPin } from "lucide-react";
+import { Card } from "@/components/ui/card";
 
 export default function ExitInterview() {
   const navigate = useNavigate();
