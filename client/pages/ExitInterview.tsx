@@ -151,48 +151,48 @@ export default function ExitInterview() {
         </div>
 
         {/* Interview Setup Card */}
-        <div className="bg-white rounded-lg p-6 border border-[#E5E7EB] shadow-sm" style={{ boxShadow: "0px 1px 3px rgba(0,0,0,0.05)" }}>
-          <h3 className="text-[16px] font-semibold text-[#111827] mb-2">Interview Setup</h3>
-          <p className="text-[13px] text-[#6B7280] mb-6">Configure the exit interview details</p>
+        <div className="bg-white rounded-lg p-4 border border-[#E5E7EB] shadow-sm" style={{ boxShadow: "0px 1px 3px rgba(0,0,0,0.05)" }}>
+          <h3 className="text-[14px] font-semibold text-[#111827] mb-1">Interview Setup</h3>
+          <p className="text-[12px] text-[#6B7280] mb-4">Configure the exit interview details</p>
 
           {/* Form Fields */}
-          <div className="grid grid-cols-2 gap-6 mb-8">
+          <div className="grid grid-cols-2 gap-4 mb-4">
             {/* Interview Date */}
             <div>
-              <label className="block text-[13px] font-semibold text-[#111827] mb-2">
+              <label className="block text-[12px] font-semibold text-[#111827] mb-1.5">
                 Interview Date <span className="text-red-500">*</span>
               </label>
               <input
                 type="date"
                 value={interviewDate}
                 onChange={(e) => setInterviewDate(e.target.value)}
-                className="w-full rounded-lg border border-[#E5E7EB] bg-white px-3 py-2.5 text-[13px] text-[#111827] focus:outline-none focus:border-blue-400"
+                className="w-full rounded-lg border border-[#E5E7EB] bg-white px-3 py-2 text-[12px] text-[#111827] focus:outline-none focus:border-blue-400"
               />
             </div>
 
             {/* Interviewer */}
             <div>
-              <label className="block text-[13px] font-semibold text-[#111827] mb-2">
+              <label className="block text-[12px] font-semibold text-[#111827] mb-1.5">
                 Interviewer <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
                 value={interviewer}
                 onChange={(e) => setInterviewer(e.target.value)}
-                className="w-full rounded-lg border border-[#E5E7EB] bg-white px-3 py-2.5 text-[13px] text-[#111827] focus:outline-none focus:border-blue-400"
+                className="w-full rounded-lg border border-[#E5E7EB] bg-white px-3 py-2 text-[12px] text-[#111827] focus:outline-none focus:border-blue-400"
               />
             </div>
           </div>
 
           {/* Interview Mode */}
-          <div className="mb-8">
-            <label className="block text-[13px] font-semibold text-[#111827] mb-2">
+          <div className="mb-4">
+            <label className="block text-[12px] font-semibold text-[#111827] mb-1.5">
               Interview Mode <span className="text-red-500">*</span>
             </label>
             <select
               value={interviewMode}
               onChange={(e) => setInterviewMode(e.target.value)}
-              className="w-full rounded-lg border border-[#E5E7EB] bg-white px-3 py-2.5 text-[13px] text-[#111827] focus:outline-none focus:border-blue-400"
+              className="w-full rounded-lg border border-[#E5E7EB] bg-white px-3 py-2 text-[12px] text-[#111827] focus:outline-none focus:border-blue-400"
             >
               <option value="Video Call">Video Call</option>
               <option value="Phone Call">Phone Call</option>
@@ -204,7 +204,7 @@ export default function ExitInterview() {
           {/* Action Button */}
           <div className="flex justify-end">
             <Button
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 text-sm font-medium"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 text-sm font-medium"
               onClick={() => navigate("/exit-interview-form")}
             >
               Continue to Interview
