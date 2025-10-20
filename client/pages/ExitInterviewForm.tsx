@@ -267,30 +267,30 @@ export default function ExitInterviewForm() {
           </div>
 
           {/* Right Column */}
-          <div className="space-y-6">
+          <div className="space-y-4">
             {/* Exit Survey Questions Card */}
-            <div className="bg-white rounded-lg p-6 border border-[#E5E7EB] shadow-sm" style={{ boxShadow: "0px 1px 3px rgba(0,0,0,0.05)" }}>
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="text-[16px] font-semibold text-[#111827]">Exit Survey Questions</h3>
+            <div className="bg-white rounded-lg p-4 border border-[#E5E7EB] shadow-sm" style={{ boxShadow: "0px 1px 3px rgba(0,0,0,0.05)" }}>
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-[14px] font-semibold text-[#111827]">Exit Survey Questions</h3>
                 <button
                   onClick={() => toggleEditMode("exitSurvey")}
-                  className="p-2 hover:bg-[#F3F4F6] rounded-lg transition-colors"
+                  className="p-1.5 hover:bg-[#F3F4F6] rounded-lg transition-colors"
                   title="Edit"
                 >
                   <Pencil className="h-4 w-4 text-[#6B7280] hover:text-[#111827]" />
                 </button>
               </div>
 
-              <div className="space-y-5">
+              <div className="space-y-3">
                 {/* Question 1 */}
                 <div>
-                  <label className="block text-[13px] font-semibold text-[#111827] mb-2">
+                  <label className="block text-[12px] font-semibold text-[#111827] mb-1.5">
                     Primary reason for leaving? <span className="text-red-500">*</span>
                   </label>
                   <select
                     value={reasonForLeaving}
                     onChange={(e) => setReasonForLeaving(e.target.value)}
-                    className="w-full rounded-lg border border-[#E5E7EB] bg-white px-3 py-2.5 text-[13px] text-[#111827] focus:outline-none focus:border-blue-400"
+                    className="w-full rounded-lg border border-[#E5E7EB] bg-white px-3 py-2 text-[12px] text-[#111827] focus:outline-none focus:border-blue-400"
                   >
                     <option value="">Select a reason</option>
                     {leaveReasons.map((reason) => (
@@ -303,13 +303,13 @@ export default function ExitInterviewForm() {
 
                 {/* Question 2 */}
                 <div>
-                  <label className="block text-[13px] font-semibold text-[#111827] mb-2">
+                  <label className="block text-[12px] font-semibold text-[#111827] mb-1.5">
                     Recommend company? <span className="text-red-500">*</span>
                   </label>
                   <select
                     value={recommendation}
                     onChange={(e) => setRecommendation(e.target.value)}
-                    className="w-full rounded-lg border border-[#E5E7EB] bg-white px-3 py-2.5 text-[13px] text-[#111827] focus:outline-none focus:border-blue-400"
+                    className="w-full rounded-lg border border-[#E5E7EB] bg-white px-3 py-2 text-[12px] text-[#111827] focus:outline-none focus:border-blue-400"
                   >
                     <option value="">Select an option</option>
                     {recommendationOptions.map((option) => (
@@ -322,13 +322,13 @@ export default function ExitInterviewForm() {
 
                 {/* Question 3 */}
                 <div>
-                  <label className="block text-[13px] font-semibold text-[#111827] mb-2">
+                  <label className="block text-[12px] font-semibold text-[#111827] mb-1.5">
                     Return in future? <span className="text-red-500">*</span>
                   </label>
                   <select
                     value={futureReturn}
                     onChange={(e) => setFutureReturn(e.target.value)}
-                    className="w-full rounded-lg border border-[#E5E7EB] bg-white px-3 py-2.5 text-[13px] text-[#111827] focus:outline-none focus:border-blue-400"
+                    className="w-full rounded-lg border border-[#E5E7EB] bg-white px-3 py-2 text-[12px] text-[#111827] focus:outline-none focus:border-blue-400"
                   >
                     <option value="">Select an option</option>
                     <option value="Yes">Yes</option>
@@ -340,20 +340,20 @@ export default function ExitInterviewForm() {
             </div>
 
             {/* Decision Factors Card */}
-            <div className="bg-white rounded-lg p-6 border border-[#E5E7EB] shadow-sm" style={{ boxShadow: "0px 1px 3px rgba(0,0,0,0.05)" }}>
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="text-[16px] font-semibold text-[#111827]">Decision Factors</h3>
+            <div className="bg-white rounded-lg p-4 border border-[#E5E7EB] shadow-sm" style={{ boxShadow: "0px 1px 3px rgba(0,0,0,0.05)" }}>
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-[14px] font-semibold text-[#111827]">Decision Factors</h3>
                 <button
                   onClick={() => toggleEditMode("decisionFactors")}
-                  className="p-2 hover:bg-[#F3F4F6] rounded-lg transition-colors"
+                  className="p-1.5 hover:bg-[#F3F4F6] rounded-lg transition-colors"
                   title="Edit"
                 >
                   <Pencil className="h-4 w-4 text-[#6B7280] hover:text-[#111827]" />
                 </button>
               </div>
-              <p className="text-[13px] text-[#6B7280] mb-4">Select the factors that influenced your decision to leave:</p>
+              <p className="text-[11px] text-[#6B7280] mb-3">Select the factors that influenced your decision to leave:</p>
 
-              <div className="space-y-3">
+              <div className="space-y-2">
                 {decisionFactorsList.map((factor) => (
                   <div key={factor.key} className="flex items-center">
                     <input
@@ -363,7 +363,7 @@ export default function ExitInterviewForm() {
                       onChange={() => handleDecisionFactorChange(factor.key)}
                       className="h-4 w-4 rounded border-[#D1D5DB] text-blue-600 cursor-pointer"
                     />
-                    <label htmlFor={`factor-${factor.key}`} className="ml-3 text-[13px] text-[#111827] cursor-pointer">
+                    <label htmlFor={`factor-${factor.key}`} className="ml-2.5 text-[12px] text-[#111827] cursor-pointer">
                       {factor.label}
                     </label>
                   </div>
@@ -372,29 +372,29 @@ export default function ExitInterviewForm() {
             </div>
 
             {/* Additional Comments Card */}
-            <div className="bg-white rounded-lg p-6 border border-[#E5E7EB] shadow-sm" style={{ boxShadow: "0px 1px 3px rgba(0,0,0,0.05)" }}>
-              <h3 className="text-[16px] font-semibold text-[#111827] mb-2">Additional Comments</h3>
-              <p className="text-[13px] text-[#6B7280] mb-4">Is there anything else you'd like to share?</p>
+            <div className="bg-white rounded-lg p-4 border border-[#E5E7EB] shadow-sm" style={{ boxShadow: "0px 1px 3px rgba(0,0,0,0.05)" }}>
+              <h3 className="text-[14px] font-semibold text-[#111827] mb-1">Additional Comments</h3>
+              <p className="text-[11px] text-[#6B7280] mb-3">Is there anything else you'd like to share?</p>
 
               <textarea
                 value={additionalComments}
                 onChange={(e) => setAdditionalComments(e.target.value)}
                 placeholder="Share any additional thoughts or feedback…"
-                rows={5}
-                className="w-full rounded-lg border border-[#E5E7EB] bg-white px-3 py-2.5 text-[13px] text-[#111827] placeholder-[#9CA3AF] focus:outline-none focus:border-blue-400 resize-none"
+                rows={3}
+                className="w-full rounded-lg border border-[#E5E7EB] bg-white px-3 py-2 text-[12px] text-[#111827] placeholder-[#9CA3AF] focus:outline-none focus:border-blue-400 resize-none"
               />
             </div>
           </div>
         </div>
 
         {/* Footer Buttons */}
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center justify-between gap-3 mt-4">
           <Button
             variant="outline"
             onClick={() => navigate("/exit-interview")}
-            className="px-4 py-2.5 text-sm border-[#D1D5DB]"
+            className="px-4 py-2 text-sm border-[#D1D5DB]"
           >
-            Back to Ratings
+            Back
           </Button>
 
           <div className="flex items-center gap-4">
