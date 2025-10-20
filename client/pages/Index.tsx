@@ -1897,9 +1897,14 @@ export default function Index() {
                             )}
                           </TableCell>
                           <TableCell className="px-2 py-1 text-xs leading-tight">
-                            <div className="w-16 rounded bg-gray-200">
-                              <div className="h-2 w-[65%] rounded bg-blue-600" />
-                            </div>
+                            <span className="text-muted-foreground">IT Asset Collection</span>
+                          </TableCell>
+                          <TableCell className="px-2 py-1 text-xs leading-tight">
+                            {e.departureDate ? (
+                              e.departureDate
+                            ) : (
+                              <span className="text-muted-foreground">—</span>
+                            )}
                           </TableCell>
                           <TableCell className="px-2 py-1 text-center text-xs leading-tight">
                             <RowActions employee={e} />
