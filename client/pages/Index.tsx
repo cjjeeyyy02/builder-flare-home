@@ -489,7 +489,7 @@ function OrgListView() {
             onClick={() => setMode("list")}
             className="h-8 rounded-lg px-4 text-xs font-medium bg-white text-[#111827] border border-[#d1d5db] hover:bg-gray-50"
           >
-            ��� Back
+            ���� Back
           </Button>
         </div>
       )}
@@ -2441,20 +2441,24 @@ function MetricCard({
   label,
   value,
   icon,
+  colorClass = "text-brand",
+  bgColorClass = "bg-brand/10 text-brand",
 }: {
   label: string;
   value: number;
   icon: React.ReactNode;
+  colorClass?: string;
+  bgColorClass?: string;
 }) {
   return (
     <Card className="flex items-center justify-between rounded-xl border p-4 shadow-sm">
       <div>
         <div className="text-xs font-bold text-muted-foreground">{label}</div>
         <div className="mt-1 text-2xl font-semibold text-foreground">
-          <span className="text-brand">{value}</span>
+          <span className={colorClass}>{value}</span>
         </div>
       </div>
-      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand/10 text-brand">
+      <div className={`flex h-10 w-10 items-center justify-center rounded-full ${bgColorClass}`}>
         {icon}
       </div>
     </Card>
