@@ -128,6 +128,7 @@ export default function ViewDetails() {
   const [showExportModal, setShowExportModal] = useState(false);
   const [selectedForExport, setSelectedForExport] = useState<string[]>([]);
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
+  const [stage, setStage] = useState("Exit Interview");
   const [viewDocument, setViewDocument] = useState<string | null>(null);
 
   const [timelineFilter, setTimelineFilter] = useState("All Events");
