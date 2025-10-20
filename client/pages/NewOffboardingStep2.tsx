@@ -102,35 +102,24 @@ export default function NewOffboardingStep2() {
         <div className="bg-white rounded-[12px] p-6 shadow-sm border border-[#E5E7EB] mb-8">
           <h3 className="text-[14px] font-bold text-[#111827] mb-4">Selected Employee</h3>
 
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              {/* Avatar */}
-              <div className="w-14 h-14 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold text-lg">
-                {getInitials(selectedEmployee.firstName, selectedEmployee.lastName)}
-              </div>
-
-              {/* Employee Info */}
-              <div>
-                <p className="font-bold text-[16px] text-[#111827]">
-                  {selectedEmployee.firstName} {selectedEmployee.lastName}
-                </p>
-                <p className="text-[14px] text-[#6B7280] mb-1">
-                  {selectedEmployee.role} • {selectedEmployee.department}
-                </p>
-                <p className="text-[13px] text-[#9CA3AF]">
-                  {selectedEmployee.id} • {selectedEmployee.email}
-                </p>
-              </div>
+          <div className="flex items-center gap-4">
+            {/* Avatar */}
+            <div className="w-14 h-14 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold text-lg">
+              {getInitials(selectedEmployee.firstName, selectedEmployee.lastName)}
             </div>
 
-            {/* Change Employee Button */}
-            <Button
-              variant="outline"
-              className="px-4 py-2 border-[#D1D5DB]"
-              onClick={() => navigate("/new-offboarding")}
-            >
-              Change Employee
-            </Button>
+            {/* Employee Info */}
+            <div>
+              <p className="font-bold text-[16px] text-[#111827]">
+                {selectedEmployee.firstName} {selectedEmployee.lastName}
+              </p>
+              <p className="text-[14px] text-[#6B7280] mb-1">
+                {selectedEmployee.role} • {selectedEmployee.department}
+              </p>
+              <p className="text-[13px] text-[#9CA3AF]">
+                {selectedEmployee.id} • {selectedEmployee.email}
+              </p>
+            </div>
           </div>
         </div>
 
