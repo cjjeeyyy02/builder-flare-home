@@ -178,7 +178,7 @@ export default function NewOffboarding() {
             disabled={!selectedEmployee}
             onClick={handleContinue}
           >
-            Next: Employee Details
+            Initiate Offboarding
           </Button>
         </div>
       </div>
