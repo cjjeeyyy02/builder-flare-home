@@ -1850,10 +1850,13 @@ export default function Index() {
                           Position
                         </TableHead>
                         <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
+                          Exit Type
+                        </TableHead>
+                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
                           Stage
                         </TableHead>
                         <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
-                          Progress
+                          Exit Date
                         </TableHead>
                         <TableHead className="px-2 py-1 text-center text-xs font-semibold uppercase leading-tight">
                           Action
