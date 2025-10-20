@@ -105,13 +105,6 @@ export default function NewOffboardingStep3() {
 
         {/* Employee Information Section */}
         <div className="mb-8">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-[15px] font-semibold text-[#111827]">Employee Information</h2>
-            <button className="text-[13px] text-[#DC2626] hover:text-[#991B1B] font-medium cursor-pointer">
-              Remove
-            </button>
-          </div>
-
           <div className="bg-white rounded-[12px] shadow-sm border border-[#E5E7EB] p-6">
             <div className="flex items-start gap-4">
               {/* Avatar */}
