@@ -1034,6 +1034,11 @@ export default function Index() {
   const [dcDeptSel, setDcDeptSel] = useState<string>("all");
   const [dcExpiry, setDcExpiry] = useState<string>("");
 
+  // Offboarding filters
+  const [offboardingSearch, setOffboardingSearch] = useState("");
+  const [offboardingDepartment, setOffboardingDepartment] = useState("");
+  const [offboardingStage, setOffboardingStage] = useState("");
+
   const totalActive = EMPLOYEES.filter((e) => e.status === "Active").length;
   const onLeave = EMPLOYEES.filter((e) => e.status === "On Leave").length;
   const newHiresThisMonth = 0;
