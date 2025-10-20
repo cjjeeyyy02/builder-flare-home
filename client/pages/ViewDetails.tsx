@@ -396,10 +396,10 @@ export default function ViewDetails() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Button
-                    className="bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-2"
+                    className="bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-1.5 px-3 py-1.5 text-sm"
                     onClick={() => setShowAddTaskModal(true)}
                   >
-                    <Plus className="h-4 w-4" />
+                    <Plus className="h-3.5 w-3.5" />
                     Add Task
                   </Button>
                 </div>
