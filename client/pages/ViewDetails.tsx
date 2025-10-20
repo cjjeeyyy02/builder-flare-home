@@ -185,6 +185,31 @@ export default function ViewDetails() {
     return matchesSearch && matchesFilter;
   });
 
+  const handleAddTask = () => {
+    if (!newTaskTitle.trim()) {
+      alert("Please enter a task title");
+      return;
+    }
+    const newTask = {
+      id: `ot${Math.random()}`,
+      title: newTaskTitle,
+      department: newTaskDepartment,
+      priority: newTaskPriority,
+      description: "",
+      assignedTo: newTaskAssignee || "Unassigned",
+      dueDate: newTaskDueDate || "Not set",
+      completedDate: null,
+      status: "Pending" as const,
+    };
+    setShowAddTaskModal(false);
+    setNewTaskTitle("");
+    setNewTaskDepartment("HR");
+    setNewTaskPriority("Medium");
+    setNewTaskAssignee("");
+    setNewTaskDueDate("");
+    alert(`Task "${newTask.title}" added successfully!`);
+  };
+
   return (
     <section className="mx-auto max-w-6xl px-4 py-6">
       <div className="flex items-start justify-between gap-4">
