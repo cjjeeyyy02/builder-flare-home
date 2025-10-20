@@ -681,60 +681,6 @@ export default function ViewDetails() {
             </div>
           </TabsContent>
 
-          {/* Export Modal */}
-          {showExportModal && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-              <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4">
-                <h3 className="text-lg font-bold text-[#111827] mb-4">Export Documents</h3>
-                <p className="text-sm text-[#6B7280] mb-4">Select documents to download/export:</p>
-
-                <div className="space-y-3 mb-6 max-h-64 overflow-y-auto">
-                  {documents.map((doc) => (
-                    <div key={doc.id} className="flex items-center">
-                      <input
-                        type="checkbox"
-                        id={`export-${doc.id}`}
-                        checked={selectedForExport.includes(doc.id)}
-                        onChange={(e) => {
-                          if (e.target.checked) {
-                            setSelectedForExport([...selectedForExport, doc.id]);
-                          } else {
-                            setSelectedForExport(selectedForExport.filter((id) => id !== doc.id));
-                          }
-                        }}
-                        className="h-4 w-4 rounded border-[#E5E7EB] text-blue-600 cursor-pointer"
-                      />
-                      <label htmlFor={`export-${doc.id}`} className="ml-3 text-sm text-[#111827] cursor-pointer">
-                        {doc.name}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="flex gap-3 justify-end">
-                  <Button
-                    variant="outline"
-                    onClick={() => {
-                      setShowExportModal(false);
-                      setSelectedForExport([]);
-                    }}
-                  >
-                    Cancel
-                  </Button>
-                  <Button
-                    className="bg-blue-600 hover:bg-blue-700 text-white"
-                    onClick={() => {
-                      setShowExportModal(false);
-                      setSelectedForExport([]);
-                    }}
-                  >
-                    Export {selectedForExport.length > 0 ? `(${selectedForExport.length})` : ""}
-                  </Button>
-                </div>
-              </div>
-            </div>
-          )}
-
           {/* View Document Modal */}
           {viewDocument && (
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
