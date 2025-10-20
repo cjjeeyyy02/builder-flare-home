@@ -11,10 +11,10 @@ export default function ExitInterview() {
   const [interviewMode, setInterviewMode] = useState("Video Call");
 
   return (
-    <section className="min-h-screen bg-[#F9FAFB] px-6 py-8">
+    <section className="min-h-screen bg-[#F9FAFB] px-6 py-4">
       <div className="w-full">
         {/* Header Section with Back Button */}
-        <div className="mb-8">
+        <div className="mb-4">
           <Button
             variant="ghost"
             className="h-10 w-10 p-0 hover:bg-[#E5E7EB] mb-2"
@@ -23,13 +23,13 @@ export default function ExitInterview() {
             <ArrowLeft className="h-5 w-5 text-[#6B7280]" />
           </Button>
           <div>
-            <h1 className="text-[18px] font-semibold text-[#111827] mb-2">Exit Interview</h1>
-            <p className="text-[12px] text-[#6B7280]">Collect feedback and insights from departing employees</p>
+            <h1 className="text-[16px] font-semibold text-[#111827] mb-1">Exit Interview</h1>
+            <p className="text-[11px] text-[#6B7280]">Collect feedback and insights from departing employees</p>
           </div>
         </div>
 
         {/* Employee Information Card */}
-        <div className="mt-6 mb-6">
+        <div className="mt-4 mb-4">
           <Card className="bg-white rounded-lg p-6 border" style={{ borderColor: "#E5E7EB", boxShadow: "0px 2px 6px rgba(0,0,0,0.05)", fontFamily: 'Poppins, sans-serif' }}>
             {/* Personal Info Row */}
             <div className="flex items-center gap-3 pb-4 border-b" style={{ borderColor: "#E5E7EB" }}>
