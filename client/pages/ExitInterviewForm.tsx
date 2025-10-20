@@ -160,7 +160,7 @@ export default function ExitInterviewForm() {
         {/* Two Column Layout */}
         <div className="grid grid-cols-2 gap-4 mb-4">
           {/* Left Column */}
-          <div className="space-y-6">
+          <div className="space-y-4">
             {/* Overall Job Satisfaction Card */}
             <div className="bg-white rounded-lg p-6 border border-[#E5E7EB] shadow-sm" style={{ boxShadow: "0px 1px 3px rgba(0,0,0,0.05)" }}>
               <div className="flex items-center justify-between mb-6">
