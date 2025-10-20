@@ -6,13 +6,6 @@ import { ArrowLeft } from "lucide-react";
 export default function ExitInterviewStep3() {
   const navigate = useNavigate();
 
-  // Feedback states
-  const [enjoyedMost, setEnjoyedMost] = useState("");
-  const [enjoyedLeast, setEnjoyedLeast] = useState("");
-  const [improvements, setImprovements] = useState("");
-  const [managerRelationship, setManagerRelationship] = useState("");
-  const [newRole, setNewRole] = useState("");
-
   // Decision factors
   const [decisionFactors, setDecisionFactors] = useState({
     salary: false,
