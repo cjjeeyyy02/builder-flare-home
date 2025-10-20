@@ -75,52 +75,8 @@ export default function ExitInterviewStep2() {
           </div>
         </div>
 
-        {/* Two Column Layout */}
-        <div className="grid grid-cols-2 gap-4 mb-4">
-          {/* Left Column - Rating Sliders Card */}
-          <div className="bg-white rounded-lg p-4 border border-[#E5E7EB] shadow-sm" style={{ boxShadow: "0px 1px 3px rgba(0,0,0,0.05)" }}>
-            <h3 className="text-[14px] font-semibold text-[#111827] mb-4">Employee Satisfaction Rating</h3>
-
-            <div className="space-y-4">
-              {ratingItems.map((item) => (
-                <div key={item.key}>
-                  <div className="flex items-center justify-between mb-2">
-                    <label className="text-[12px] font-medium text-[#111827]">{item.label}</label>
-                    <div className="flex gap-1">
-                      <span className="text-[11px] text-[#6B7280] font-medium">
-                        {ratings[item.key as keyof typeof ratings]}
-                      </span>
-                      <span className="text-[11px] text-[#9CA3AF]">
-                        {ratings[item.key as keyof typeof ratings] === 1 && "Very Poor"}
-                        {ratings[item.key as keyof typeof ratings] === 2 && "Poor"}
-                        {ratings[item.key as keyof typeof ratings] === 3 && "Neutral"}
-                        {ratings[item.key as keyof typeof ratings] === 4 && "Good"}
-                        {ratings[item.key as keyof typeof ratings] === 5 && "Excellent"}
-                      </span>
-                    </div>
-                  </div>
-                  <input
-                    type="range"
-                    min="1"
-                    max="5"
-                    value={ratings[item.key as keyof typeof ratings]}
-                    onChange={(e) => handleRatingChange(item.key, parseInt(e.target.value))}
-                    className="w-full h-1.5 bg-[#E5E7EB] rounded-lg appearance-none cursor-pointer"
-                    style={{
-                      accentColor: "#3B82F6",
-                    }}
-                  />
-                  <div className="flex justify-between mt-1">
-                    <span className="text-[10px] text-[#9CA3AF]">Very Poor</span>
-                    <span className="text-[10px] text-[#9CA3AF]">Excellent</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Right Column - Survey Questions Card */}
-          <div className="bg-white rounded-lg p-4 border border-[#E5E7EB] shadow-sm" style={{ boxShadow: "0px 1px 3px rgba(0,0,0,0.05)" }}>
+        {/* Survey Questions Card */}
+        <div className="bg-white rounded-lg p-4 border border-[#E5E7EB] shadow-sm mb-4" style={{ boxShadow: "0px 1px 3px rgba(0,0,0,0.05)" }}>
             <h3 className="text-[14px] font-semibold text-[#111827] mb-4">Exit Survey Questions</h3>
 
             {/* Question 1 */}
@@ -184,8 +140,7 @@ export default function ExitInterviewStep2() {
                   </div>
                 ))}
               </div>
-            </div>
-          </div>
+        </div>
         </div>
 
         {/* Action Buttons */}
