@@ -67,7 +67,7 @@ export default function NewOffboardingStep3() {
       <div className="w-full px-6 py-6">
         {/* Header Section */}
         <div className="flex items-center justify-between mb-8">
-          <div className="flex items-center gap-4">
+          <div>
             <Button
               variant="ghost"
               className="h-10 w-10 p-0 hover:bg-[#E5E7EB]"
@@ -75,9 +75,6 @@ export default function NewOffboardingStep3() {
             >
               <ArrowLeft className="h-5 w-5 text-[#6B7280]" />
             </Button>
-            <div>
-              <h1 className="text-[24px] font-semibold text-[#111827]">Initiate Offboarding</h1>
-            </div>
           </div>
 
           {/* Progress Indicator */}
