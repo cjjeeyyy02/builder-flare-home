@@ -115,13 +115,12 @@ export default function NewOffboardingStep3() {
         <div className="bg-white rounded-[12px] p-6 shadow-sm border border-[#E5E7EB] mb-8">
           {/* Section 1 – Review Offboarding Details */}
           <div className="mb-8">
-            <h2 className="text-[24px] font-semibold text-[#111827] mb-2">Review Offboarding Details</h2>
-            <p className="text-[16px] font-medium text-[#6B7280]">Please review all information before submitting.</p>
+            <h2 className="text-[16px] font-semibold text-[#111827] mb-2">Review Offboarding Details</h2>
+            <p className="text-[13px] text-[#6B7280]">Please review all information before submitting.</p>
           </div>
 
           {/* Section 2 – Employee Information */}
           <div className="pb-6 mb-6 border-b border-[#E5E7EB]">
-            <h3 className="text-[16px] font-semibold text-[#111827] mb-4">Employee Information</h3>
             <div className="flex items-start gap-4">
               <div className="w-14 h-14 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold text-lg flex-shrink-0">
                 {getInitials(exitData.employee.firstName, exitData.employee.lastName)}
