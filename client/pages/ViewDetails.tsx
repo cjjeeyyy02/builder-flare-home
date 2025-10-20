@@ -534,68 +534,55 @@ export default function ViewDetails() {
                 <p className="text-xs text-[#6B7280]">Manage documents related to offboarding.</p>
               </div>
 
-              {/* Search and Action Buttons */}
-              <div className="flex gap-3 items-center mb-6 justify-between">
-                <div className="w-48 relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-[#9CA3AF]" />
-                  <input
-                    type="text"
-                    placeholder="Search documents..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full rounded border border-[#E5E7EB] bg-white pl-10 pr-3 py-2 text-sm placeholder-[#9CA3AF] focus:outline-none focus:border-blue-400"
-                  />
-                </div>
+              {/* Action Buttons */}
+              <div className="flex gap-3 items-center mb-6 justify-end">
+                <Button
+                  className="bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-2"
+                >
+                  <Plus className="h-4 w-4" />
+                  Upload Document
+                </Button>
 
-                <div className="flex gap-3 items-center">
-                  <Button
-                    className="bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-2"
-                  >
-                    <Plus className="h-4 w-4" />
-                    Upload Document
-                  </Button>
+                <Button
+                  variant={isExportMode ? "default" : "outline"}
+                  className={`flex items-center gap-2 ${isExportMode ? "bg-blue-600 hover:bg-blue-700 text-white" : ""}`}
+                  onClick={() => {
+                    if (isExportMode && selectedForExport.length > 0) {
+                      alert(`Downloading ${selectedForExport.length} file(s)...`);
+                      setSelectedForExport([]);
+                      setIsExportMode(false);
+                    } else {
+                      setIsExportMode(!isExportMode);
+                    }
+                  }}
+                >
+                  <Download className="h-4 w-4" />
+                  {isExportMode ? `Download (${selectedForExport.length})` : "Export"}
+                </Button>
 
+                {isExportMode && selectedForExport.length < filteredDocuments.length && (
                   <Button
-                    variant={isExportMode ? "default" : "outline"}
-                    className={`flex items-center gap-2 ${isExportMode ? "bg-blue-600 hover:bg-blue-700 text-white" : ""}`}
+                    variant="outline"
+                    className="flex items-center gap-2"
                     onClick={() => {
-                      if (isExportMode && selectedForExport.length > 0) {
-                        alert(`Downloading ${selectedForExport.length} file(s)...`);
-                        setSelectedForExport([]);
-                        setIsExportMode(false);
-                      } else {
-                        setIsExportMode(!isExportMode);
-                      }
+                      setSelectedForExport(filteredDocuments.map(d => d.id));
                     }}
                   >
-                    <Download className="h-4 w-4" />
-                    {isExportMode ? `Download (${selectedForExport.length})` : "Export"}
+                    Select All
                   </Button>
+                )}
 
-                  {isExportMode && selectedForExport.length < filteredDocuments.length && (
-                    <Button
-                      variant="outline"
-                      className="flex items-center gap-2"
-                      onClick={() => {
-                        setSelectedForExport(filteredDocuments.map(d => d.id));
-                      }}
-                    >
-                      Select All
-                    </Button>
-                  )}
-
-                  {isExportMode && selectedForExport.length > 0 && (
-                    <Button
-                      variant="outline"
-                      className="flex items-center gap-2"
-                      onClick={() => {
-                        setSelectedForExport([]);
-                      }}
-                    >
-                      Clear
-                    </Button>
-                  )}
-                </div>
+                {isExportMode && selectedForExport.length > 0 && (
+                  <Button
+                    variant="outline"
+                    className="flex items-center gap-2"
+                    onClick={() => {
+                      setSelectedForExport([]);
+                    }}
+                  >
+                    Clear
+                  </Button>
+                )}
               </div>
 
               {/* Document List - Scrollable Container */}
