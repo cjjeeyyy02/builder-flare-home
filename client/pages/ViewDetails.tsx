@@ -128,7 +128,7 @@ export default function ViewDetails() {
   const [showExportModal, setShowExportModal] = useState(false);
   const [selectedForExport, setSelectedForExport] = useState<string[]>([]);
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
-  const [stage, setStage] = useState("Exit Interview");
+  const [stage, setStage] = useState("HR Documentation Update");
   const [showAddTaskModal, setShowAddTaskModal] = useState(false);
   const [newTaskTitle, setNewTaskTitle] = useState("");
   const [newTaskDepartment, setNewTaskDepartment] = useState("HR");
