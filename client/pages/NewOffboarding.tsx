@@ -101,63 +101,49 @@ export default function NewOffboarding() {
             />
           </div>
 
-          {/* Employee List */}
-          <div className="space-y-2 max-h-96 overflow-y-auto">
+          {/* Employee Table */}
+          <div className="overflow-x-auto max-h-96 overflow-y-auto border border-[#E5E7EB] rounded-lg">
             {filteredEmployees.length > 0 ? (
-              filteredEmployees.map((employee) => (
-                <div
-                  key={employee.id}
-                  onClick={() => setSelectedEmployee(employee)}
-                  className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition-all ${
-                    selectedEmployee?.id === employee.id
-                      ? "border-blue-600 bg-blue-50"
-                      : "border-[#E5E7EB] bg-white hover:shadow-sm hover:border-[#D1D5DB]"
-                  }`}
-                >
-                  {/* Avatar */}
-                  <div className="flex-shrink-0">
-                    <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold text-xs">
-                      {getInitials(employee.firstName, employee.lastName)}
-                    </div>
-                  </div>
-
-                  {/* Employee Info */}
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-baseline gap-2 mb-0.5">
-                      <p className="font-semibold text-[13px] text-[#111827]">
-                        {employee.firstName} {employee.lastName}
-                      </p>
-                      <p className="text-[11px] text-[#9CA3AF]">{employee.id}</p>
-                    </div>
-                    <div className="flex items-center gap-2 text-[11px] text-[#6B7280]">
-                      <p>{employee.role}</p>
-                      <span>•</span>
-                      <p>{employee.department}</p>
-                    </div>
-                  </div>
-
-                  {/* Selection Indicator */}
-                  {selectedEmployee?.id === employee.id && (
-                    <div className="flex-shrink-0">
-                      <div className="w-5 h-5 rounded-full bg-blue-600 border-2 border-white flex items-center justify-center">
-                        <svg
-                          className="w-2.5 h-2.5 text-white"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={3}
-                            d="M5 13l4 4L19 7"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              ))
+              <table className="w-full text-sm">
+                <thead className="bg-[#F3F4F6] border-b border-[#E5E7EB] sticky top-0">
+                  <tr>
+                    <th className="px-4 py-3 text-left font-semibold text-[#6B7280] text-xs">Employee ID</th>
+                    <th className="px-4 py-3 text-left font-semibold text-[#6B7280] text-xs">Employee Name</th>
+                    <th className="px-4 py-3 text-left font-semibold text-[#6B7280] text-xs">Department</th>
+                    <th className="px-4 py-3 text-left font-semibold text-[#6B7280] text-xs">Position</th>
+                    <th className="px-4 py-3 text-left font-semibold text-[#6B7280] text-xs">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredEmployees.map((employee) => (
+                    <tr
+                      key={employee.id}
+                      onClick={() => setSelectedEmployee(employee)}
+                      className={`border-b border-[#E5E7EB] cursor-pointer transition-all ${
+                        selectedEmployee?.id === employee.id
+                          ? "bg-blue-50 border-blue-600"
+                          : "hover:bg-[#F9FAFB]"
+                      }`}
+                    >
+                      <td className="px-4 py-3 text-[13px] text-[#111827] font-medium">{employee.id}</td>
+                      <td className="px-4 py-3 text-[13px] text-[#111827]">{employee.firstName} {employee.lastName}</td>
+                      <td className="px-4 py-3 text-[13px] text-[#6B7280]">{employee.department}</td>
+                      <td className="px-4 py-3 text-[13px] text-[#6B7280]">{employee.role}</td>
+                      <td className="px-4 py-3 text-[13px]">
+                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                          employee.status === "Active"
+                            ? "bg-green-100 text-green-800"
+                            : employee.status === "On Leave"
+                            ? "bg-yellow-100 text-yellow-800"
+                            : "bg-gray-100 text-gray-800"
+                        }`}>
+                          {employee.status}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             ) : (
               <div className="text-center py-6 text-[12px] text-[#9CA3AF]">No employees found.</div>
             )}
