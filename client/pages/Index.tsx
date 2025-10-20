@@ -2290,15 +2290,15 @@ export default function Index() {
                     placeholder="Search documents..."
                     className="h-8 w-56 text-xs"
                   />
-                  <Select value={dcDept} onValueChange={setDcDept}>
+                  <Select value={dcCategory2} onValueChange={setDcCategory2}>
                     <SelectTrigger className="h-8 w-40 text-xs">
-                      <SelectValue placeholder="All Departments" />
+                      <SelectValue placeholder="All Categories" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="all">All Departments</SelectItem>
-                      {departments.map((d) => (
-                        <SelectItem key={d} value={d.toLowerCase()}>
-                          {d}
+                      <SelectItem value="all">All Categories</SelectItem>
+                      {docCategories.map((c) => (
+                        <SelectItem key={c.value} value={c.value}>
+                          {c.label}
                         </SelectItem>
                       ))}
                     </SelectContent>
