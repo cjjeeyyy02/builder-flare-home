@@ -129,17 +129,7 @@ export default function NewOffboarding() {
                       <td className="px-4 py-3 text-[13px] text-[#111827]">{employee.firstName} {employee.lastName}</td>
                       <td className="px-4 py-3 text-[13px] text-[#6B7280]">{employee.department}</td>
                       <td className="px-4 py-3 text-[13px] text-[#6B7280]">{employee.role}</td>
-                      <td className="px-4 py-3 text-[13px]">
-                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                          employee.status === "Active"
-                            ? "bg-green-100 text-green-800"
-                            : employee.status === "On Leave"
-                            ? "bg-yellow-100 text-yellow-800"
-                            : "bg-gray-100 text-gray-800"
-                        }`}>
-                          {employee.status}
-                        </span>
-                      </td>
+                      <td className="px-4 py-3 text-[13px] text-[#6B7280]">{employee.status}</td>
                     </tr>
                   ))}
                 </tbody>
