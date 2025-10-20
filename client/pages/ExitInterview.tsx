@@ -30,27 +30,27 @@ export default function ExitInterview() {
 
         {/* Employee Information Card */}
         <div className="mt-4 mb-4">
-          <Card className="bg-white rounded-lg p-6 border" style={{ borderColor: "#E5E7EB", boxShadow: "0px 2px 6px rgba(0,0,0,0.05)", fontFamily: 'Poppins, sans-serif' }}>
+          <Card className="bg-white rounded-lg p-4 border" style={{ borderColor: "#E5E7EB", boxShadow: "0px 2px 6px rgba(0,0,0,0.05)", fontFamily: 'Poppins, sans-serif' }}>
             {/* Personal Info Row */}
-            <div className="flex items-center gap-3 pb-4 border-b" style={{ borderColor: "#E5E7EB" }}>
-              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-600 text-white font-bold text-sm flex-shrink-0">SJ</div>
+            <div className="flex items-center gap-3 pb-3 border-b" style={{ borderColor: "#E5E7EB" }}>
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-white font-bold text-xs flex-shrink-0">SJ</div>
               <div className="flex-1">
-                <div className="flex flex-col gap-1">
+                <div className="flex flex-col gap-0.5">
                   <div>
-                    <div className="text-[15px] font-semibold text-[#111827]">Sarah Johnson</div>
-                    <div className="text-[12px] text-[#6B7280]">Senior Developer</div>
+                    <div className="text-[13px] font-semibold text-[#111827]">Sarah Johnson</div>
+                    <div className="text-[11px] text-[#6B7280]">Senior Developer</div>
                   </div>
-                  <div className="flex flex-wrap gap-3 text-[11px]">
-                    <div className="flex items-center gap-1.5 text-[#6B7280]">
-                      <Clipboard className="h-3.5 w-3.5" />
+                  <div className="flex flex-wrap gap-2 text-[10px]">
+                    <div className="flex items-center gap-1 text-[#6B7280]">
+                      <Clipboard className="h-3 w-3" />
                       <span>EMP001</span>
                     </div>
-                    <div className="flex items-center gap-1.5 text-[#6B7280]">
-                      <Mail className="h-3.5 w-3.5" />
+                    <div className="flex items-center gap-1 text-[#6B7280]">
+                      <Mail className="h-3 w-3" />
                       <span>sarah.johnson@ai2aim.com</span>
                     </div>
-                    <div className="flex items-center gap-1.5 text-[#6B7280]">
-                      <MapPin className="h-3.5 w-3.5" />
+                    <div className="flex items-center gap-1 text-[#6B7280]">
+                      <MapPin className="h-3 w-3" />
                       <span>New York, NY</span>
                     </div>
                   </div>
@@ -58,12 +58,12 @@ export default function ExitInterview() {
               </div>
 
               {/* Stage and Progress */}
-              <div className="flex flex-col gap-2 pt-1">
+              <div className="flex flex-col gap-1.5 pt-0.5">
                 <div>
-                  <div className="text-[11px] font-medium text-[#6B7280]">Stage</div>
+                  <div className="text-[10px] font-medium text-[#6B7280] mb-0.5">Stage</div>
                   <select
                     defaultValue="HR Documentation Update"
-                    className="w-full rounded border border-[#E5E7EB] bg-white px-2 py-1 text-[12px] font-semibold text-[#111827] focus:outline-none focus:border-blue-400"
+                    className="w-full rounded border border-[#E5E7EB] bg-white px-2 py-0.5 text-[11px] font-semibold text-[#111827] focus:outline-none focus:border-blue-400"
                   >
                     <option value="HR Documentation Update">HR Documentation Update</option>
                     <option value="IT Asset Collection">IT Asset Collection</option>
@@ -74,22 +74,22 @@ export default function ExitInterview() {
                 </div>
                 <div>
                   <div className="flex items-center justify-between mb-0.5">
-                    <div className="text-[11px] font-medium text-[#6B7280]">Progress</div>
-                    <div className="text-[12px] font-semibold text-[#111827]">65%</div>
+                    <div className="text-[10px] font-medium text-[#6B7280]">Progress</div>
+                    <div className="text-[11px] font-semibold text-[#111827]">65%</div>
                   </div>
-                  <div className="h-1.5 w-full rounded-[8px] bg-[#E5E7EB]">
-                    <div className="h-1.5 w-[65%] rounded-[8px] bg-[#3B82F6]" />
+                  <div className="h-1 w-full rounded-[8px] bg-[#E5E7EB]">
+                    <div className="h-1 w-[65%] rounded-[8px] bg-[#3B82F6]" />
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Offboarding Summary Grid */}
-            <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3 w-full">
+            <div className="mt-2 grid grid-cols-1 md:grid-cols-3 gap-2 w-full">
               {/* Exit Details Card */}
-              <div className="border border-[#E5E7EB] rounded-lg p-3 bg-white">
-                <div className="text-[13px] font-semibold text-[#111827] mb-2">Exit Details</div>
-                <div className="space-y-1.5 text-[11px]">
+              <div className="border border-[#E5E7EB] rounded-lg p-2 bg-white">
+                <div className="text-[12px] font-semibold text-[#111827] mb-1">Exit Details</div>
+                <div className="space-y-1 text-[10px]">
                   <div>
                     <div className="text-[#6B7280] font-medium">Type</div>
                     <div className="text-[#111827] font-semibold">Resignation</div>
@@ -110,9 +110,9 @@ export default function ExitInterview() {
               </div>
 
               {/* Employment Info Card */}
-              <div className="border border-[#E5E7EB] rounded-lg p-3 bg-white">
-                <div className="text-[13px] font-semibold text-[#111827] mb-2">Employment Info</div>
-                <div className="space-y-1.5 text-[11px]">
+              <div className="border border-[#E5E7EB] rounded-lg p-2 bg-white">
+                <div className="text-[12px] font-semibold text-[#111827] mb-1">Employment Info</div>
+                <div className="space-y-1 text-[10px]">
                   <div>
                     <div className="text-[#6B7280] font-medium">Department</div>
                     <div className="text-[#111827] font-semibold">Engineering</div>
@@ -129,9 +129,9 @@ export default function ExitInterview() {
               </div>
 
               {/* Case Info Card */}
-              <div className="border border-[#E5E7EB] rounded-lg p-3 bg-white">
-                <div className="text-[13px] font-semibold text-[#111827] mb-2">Case Info</div>
-                <div className="space-y-1.5 text-[11px]">
+              <div className="border border-[#E5E7EB] rounded-lg p-2 bg-white">
+                <div className="text-[12px] font-semibold text-[#111827] mb-1">Case Info</div>
+                <div className="space-y-1 text-[10px]">
                   <div>
                     <div className="text-[#6B7280] font-medium">Assigned To</div>
                     <div className="text-[#111827] font-semibold">HR Team</div>
