@@ -137,8 +137,8 @@ export default function ExitInterviewForm() {
             <ArrowLeft className="h-5 w-5 text-[#6B7280]" />
           </Button>
           <div>
-            <h1 className="text-[28px] font-semibold text-[#111827] mb-2">Exit Interview – Step 3 (Interview Feedback)</h1>
-            <p className="text-[14px] text-[#6B7280]">Provide your feedback and insights</p>
+            <h1 className="text-[18px] font-semibold text-[#111827] mb-2">Job Satisfaction Assessment</h1>
+            <p className="text-[12px] text-[#6B7280]">Provide your feedback and insights</p>
           </div>
         </div>
 
