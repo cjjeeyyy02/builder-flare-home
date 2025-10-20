@@ -1861,7 +1861,7 @@ export default function Index() {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {pageItems.map((e, idx) => (
+                      {filteredOffboarding.map((e, idx) => (
                         <TableRow
                           key={e.id}
                           className={cn("hover:bg-transparent")}
