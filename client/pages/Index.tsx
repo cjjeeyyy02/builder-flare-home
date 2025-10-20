@@ -2532,7 +2532,7 @@ export default function Index() {
                           {d.department}
                         </TableCell>
                         <TableCell className="px-2 py-1 text-xs leading-tight">
-                          {d.type}
+                          {docCategories.find((c) => c.value === d.category)?.label || d.category}
                         </TableCell>
                         <TableCell className="px-2 py-1 text-xs leading-tight">
                           {d.uploadDate}
