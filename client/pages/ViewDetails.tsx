@@ -613,13 +613,28 @@ export default function ViewDetails() {
                           className="bg-white border border-[#E5E7EB] rounded-lg p-2.5 hover:shadow-sm transition-shadow group"
                         >
                           <div className="flex items-start gap-2">
-                            {/* Icon */}
-                            <div
-                              className="flex h-8 w-8 items-center justify-center rounded flex-shrink-0"
-                              style={{ backgroundColor: `${typeColor}20`, color: typeColor }}
-                            >
-                              {getIcon()}
-                            </div>
+                            {/* Checkbox or Icon */}
+                            {isExportMode ? (
+                              <input
+                                type="checkbox"
+                                checked={isSelected}
+                                onChange={(e) => {
+                                  if (e.target.checked) {
+                                    setSelectedForExport([...selectedForExport, doc.id]);
+                                  } else {
+                                    setSelectedForExport(selectedForExport.filter((id) => id !== doc.id));
+                                  }
+                                }}
+                                className="h-4 w-4 mt-1 rounded border-[#E5E7EB] text-blue-600 cursor-pointer flex-shrink-0"
+                              />
+                            ) : (
+                              <div
+                                className="flex h-8 w-8 items-center justify-center rounded flex-shrink-0"
+                                style={{ backgroundColor: `${typeColor}20`, color: typeColor }}
+                              >
+                                {getIcon()}
+                              </div>
+                            )}
 
                             {/* Content */}
                             <div className="flex-1">
@@ -636,22 +651,24 @@ export default function ViewDetails() {
                             </div>
 
                             {/* Actions */}
-                            <div className="flex items-center gap-1 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
-                              <Button
-                                variant="ghost"
-                                className="h-6 w-6 p-0 hover:bg-gray-100"
-                                onClick={() => setViewDocument(doc.id)}
-                              >
-                                <Eye className="h-3.5 w-3.5 text-[#6B7280]" />
-                              </Button>
-                              <Button
-                                variant="ghost"
-                                className="h-6 w-6 p-0 hover:bg-gray-100"
-                                onClick={() => setDeleteConfirm(doc.id)}
-                              >
-                                <Trash2 className="h-3.5 w-3.5 text-[#6B7280]" />
-                              </Button>
-                            </div>
+                            {!isExportMode && (
+                              <div className="flex items-center gap-1 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <Button
+                                  variant="ghost"
+                                  className="h-6 w-6 p-0 hover:bg-gray-100"
+                                  onClick={() => setViewDocument(doc.id)}
+                                >
+                                  <Eye className="h-3.5 w-3.5 text-[#6B7280]" />
+                                </Button>
+                                <Button
+                                  variant="ghost"
+                                  className="h-6 w-6 p-0 hover:bg-gray-100"
+                                  onClick={() => setDeleteConfirm(doc.id)}
+                                >
+                                  <Trash2 className="h-3.5 w-3.5 text-[#6B7280]" />
+                                </Button>
+                              </div>
+                            )}
                           </div>
                         </div>
                       );
