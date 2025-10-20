@@ -203,7 +203,16 @@ export default function ExitInterviewForm() {
 
             {/* Detailed Feedback Card */}
             <div className="bg-white rounded-lg p-6 border border-[#E5E7EB] shadow-sm" style={{ boxShadow: "0px 1px 3px rgba(0,0,0,0.05)" }}>
-              <h3 className="text-[16px] font-semibold text-[#111827] mb-6">Detailed Feedback</h3>
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-[16px] font-semibold text-[#111827]">Detailed Feedback</h3>
+                <button
+                  onClick={() => toggleEditMode("detailedFeedback")}
+                  className="p-2 hover:bg-[#F3F4F6] rounded-lg transition-colors"
+                  title="Edit"
+                >
+                  <Pencil className="h-4 w-4 text-[#6B7280] hover:text-[#111827]" />
+                </button>
+              </div>
 
               <div className="space-y-5">
                 {/* Q1 */}
