@@ -14,7 +14,9 @@ export default function NewOffboardingStep2() {
       <section className="min-h-screen bg-[#F9FAFB] flex items-center justify-center">
         <div className="text-center">
           <p className="text-[#6B7280] mb-4">No employee selected</p>
-          <Button onClick={() => navigate("/new-offboarding")}>Back to Step 1</Button>
+          <Button onClick={() => navigate("/new-offboarding")}>
+            Back to Step 1
+          </Button>
         </div>
       </section>
     );
@@ -60,7 +62,9 @@ export default function NewOffboardingStep2() {
               <ArrowLeft className="h-5 w-5 text-[#6B7280]" />
             </Button>
             <div>
-              <h1 className="text-[24px] font-semibold text-[#111827]">Initiate Offboarding</h1>
+              <h1 className="text-[24px] font-semibold text-[#111827]">
+                Initiate Offboarding
+              </h1>
             </div>
           </div>
 
@@ -93,7 +97,9 @@ export default function NewOffboardingStep2() {
               <div className="w-6 h-6 rounded-full bg-[#D1D5DB] text-[#9CA3AF] flex items-center justify-center font-semibold text-xs">
                 3
               </div>
-              <p className="text-[10px] text-[#9CA3AF] mt-0.5 whitespace-nowrap">Review</p>
+              <p className="text-[10px] text-[#9CA3AF] mt-0.5 whitespace-nowrap">
+                Review
+              </p>
             </div>
           </div>
         </div>
@@ -102,12 +108,17 @@ export default function NewOffboardingStep2() {
         <div className="bg-white rounded-[12px] p-6 shadow-sm border border-[#E5E7EB]">
           {/* Selected Employee Card - Minimized */}
           <div className="bg-[#F9FAFB] rounded-[8px] p-3 mb-6 border border-[#E5E7EB]">
-            <h3 className="text-[12px] font-bold text-[#111827] mb-2">Selected Employee</h3>
+            <h3 className="text-[12px] font-bold text-[#111827] mb-2">
+              Selected Employee
+            </h3>
 
             <div className="flex items-center gap-2">
               {/* Avatar */}
               <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
-                {getInitials(selectedEmployee.firstName, selectedEmployee.lastName)}
+                {getInitials(
+                  selectedEmployee.firstName,
+                  selectedEmployee.lastName,
+                )}
               </div>
 
               {/* Employee Info */}
@@ -124,8 +135,12 @@ export default function NewOffboardingStep2() {
 
           {/* Exit Details Form */}
           <div className="mb-6">
-            <h3 className="text-[14px] font-semibold text-[#111827] mb-1">Exit Details</h3>
-            <p className="text-[12px] text-[#6B7280] mb-4">Provide details about the employee's departure.</p>
+            <h3 className="text-[14px] font-semibold text-[#111827] mb-1">
+              Exit Details
+            </h3>
+            <p className="text-[12px] text-[#6B7280] mb-4">
+              Provide details about the employee's departure.
+            </p>
 
             {/* Form Fields */}
             {/* Two Column Form Layout */}
@@ -148,7 +163,9 @@ export default function NewOffboardingStep2() {
                     <option value="Layoff">Layoff</option>
                     <option value="End of Contract">End of Contract</option>
                   </select>
-                  <p className="text-[11px] text-[#6B7280] mt-1">Employee voluntarily leaving</p>
+                  <p className="text-[11px] text-[#6B7280] mt-1">
+                    Employee voluntarily leaving
+                  </p>
                 </div>
 
                 {/* Effective Date */}
@@ -221,7 +238,9 @@ export default function NewOffboardingStep2() {
                       onChange={(e) => setEligibleForRehire(e.target.checked)}
                       className="w-4 h-4 rounded border-[#D1D5DB] text-blue-600 cursor-pointer"
                     />
-                    <span className="text-[12px] text-[#111827]">Employee is eligible for rehire</span>
+                    <span className="text-[12px] text-[#111827]">
+                      Employee is eligible for rehire
+                    </span>
                   </label>
 
                   <div>
@@ -232,9 +251,13 @@ export default function NewOffboardingStep2() {
                         onChange={(e) => setUrgentProcessing(e.target.checked)}
                         className="w-4 h-4 rounded border-[#D1D5DB] text-blue-600 cursor-pointer"
                       />
-                      <span className="text-[12px] text-[#111827]">Urgent processing required</span>
+                      <span className="text-[12px] text-[#111827]">
+                        Urgent processing required
+                      </span>
                     </label>
-                    <p className="text-[11px] text-[#6B7280] ml-6">This will expedite all offboarding tasks.</p>
+                    <p className="text-[11px] text-[#6B7280] ml-6">
+                      This will expedite all offboarding tasks.
+                    </p>
                   </div>
                 </div>
               </div>

@@ -1078,11 +1078,16 @@ export default function Index() {
         !offboardingDepartment || e.department === offboardingDepartment;
       const matchesStage =
         !offboardingStage ||
-        (offboardingStage === "HR Documentation Update" && e.department === "Human Resources") ||
-        (offboardingStage === "IT Asset Collection" && e.department === "Engineering") ||
-        (offboardingStage === "Exit Interview Scheduling" && e.status === "Active") ||
-        (offboardingStage === "Access Revocation" && e.department === "Engineering") ||
-        (offboardingStage === "Post-Exit Follow-Up" && e.departureType === "Resignation");
+        (offboardingStage === "HR Documentation Update" &&
+          e.department === "Human Resources") ||
+        (offboardingStage === "IT Asset Collection" &&
+          e.department === "Engineering") ||
+        (offboardingStage === "Exit Interview Scheduling" &&
+          e.status === "Active") ||
+        (offboardingStage === "Access Revocation" &&
+          e.department === "Engineering") ||
+        (offboardingStage === "Post-Exit Follow-Up" &&
+          e.departureType === "Resignation");
       return matchesSearch && matchesDept && matchesStage;
     });
   }, [offboardingSearch, offboardingDepartment, offboardingStage]);
@@ -1758,629 +1763,633 @@ export default function Index() {
           </p>
         </header>
 
+        <div className="mt-5">
+          <section className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            <MetricCard
+              label="Active Offboarding"
+              value={activeOffboarding}
+              icon={<LogOut className="h-5 w-5" />}
+            />
+            <MetricCard
+              label="Pending Approvals"
+              value={pendingApprovals}
+              icon={<Clock className="h-5 w-5" />}
+            />
+            <MetricCard
+              label="Completed This Month"
+              value={completedThisMonth}
+              icon={<CheckCircle className="h-5 w-5" />}
+            />
+            <MetricCard
+              label="Overdue Items"
+              value={overdueItems}
+              icon={<AlertTriangle className="h-5 w-5" />}
+              colorClass="text-red-600"
+              bgColorClass="bg-red-100 text-red-600"
+            />
+          </section>
 
-          <div className="mt-5">
-            <section className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              <MetricCard
-                label="Active Offboarding"
-                value={activeOffboarding}
-                icon={<LogOut className="h-5 w-5" />}
-              />
-              <MetricCard
-                label="Pending Approvals"
-                value={pendingApprovals}
-                icon={<Clock className="h-5 w-5" />}
-              />
-              <MetricCard
-                label="Completed This Month"
-                value={completedThisMonth}
-                icon={<CheckCircle className="h-5 w-5" />}
-              />
-              <MetricCard
-                label="Overdue Items"
-                value={overdueItems}
-                icon={<AlertTriangle className="h-5 w-5" />}
-                colorClass="text-red-600"
-                bgColorClass="bg-red-100 text-red-600"
-              />
-            </section>
-
-
-
-            {view === "table" ? (
-              <section className="mt-6">
-                <div className="mb-4">
-                  <h2 className="text-lg font-bold">Recent Offboardings</h2>
-                  <p className="text-sm text-muted-foreground">Track ongoing and recent employee departures.</p>
-                </div>
-
-                <div className="mb-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-                  <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-2">
-                    <input
-                      type="text"
-                      placeholder="Search Employee ID, Name"
-                      value={offboardingSearch}
-                      onChange={(e) => setOffboardingSearch(e.target.value)}
-                      className="rounded border border-input bg-background px-3 py-2 text-sm"
-                    />
-                    <select
-                      value={offboardingDepartment}
-                      onChange={(e) => setOffboardingDepartment(e.target.value)}
-                      className="rounded border border-input bg-background px-3 py-2 text-sm text-muted-foreground"
-                    >
-                      <option value="" className="text-muted-foreground">Department</option>
-                      <option value="Engineering">Engineering</option>
-                      <option value="Product">Product</option>
-                      <option value="Design">Design</option>
-                      <option value="Analytics">Analytics</option>
-                      <option value="Human Resources">Human Resources</option>
-                    </select>
-                    <select
-                      value={offboardingStage}
-                      onChange={(e) => setOffboardingStage(e.target.value)}
-                      className="rounded border border-input bg-background px-3 py-2 text-sm text-muted-foreground"
-                    >
-                      <option value="" className="text-muted-foreground">Offboarding Stage</option>
-                      <option value="HR Documentation Update">HR Documentation Update</option>
-                      <option value="IT Asset Collection">IT Asset Collection</option>
-                      <option value="Exit Interview Scheduling">Exit Interview Scheduling</option>
-                      <option value="Access Revocation">Access Revocation</option>
-                      <option value="Post-Exit Follow-Up">Post-Exit Follow-Up</option>
-                    </select>
-                  </div>
-
-                  <div className="flex gap-2">
-                    <Button
-                      className="bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-2"
-                      onClick={() => navigate("/new-offboarding")}
-                    >
-                      <Plus className="h-4 w-4 text-blue-400" />
-                      New Offboarding
-                    </Button>
-                    <Button variant="outline" className="flex items-center gap-2">
-                      <Download className="h-4 w-4" />
-                      Export
-                    </Button>
-                  </div>
-                </div>
-
-                <div className="overflow-hidden rounded-lg border">
-                  <Table className="text-xs leading-tight">
-                    <TableHeader>
-                      <TableRow className="hover:bg-transparent">
-                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
-                          Employee ID
-                        </TableHead>
-                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
-          Employee Name
-        </TableHead>
-                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
-                          Department
-                        </TableHead>
-                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
-                          Position
-                        </TableHead>
-                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
-                          Exit Type
-                        </TableHead>
-                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
-                          Stage
-                        </TableHead>
-                        <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
-                          Exit Date
-                        </TableHead>
-                        <TableHead className="px-2 py-1 text-center text-xs font-semibold uppercase leading-tight">
-                          Action
-                        </TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {filteredOffboarding.map((e, idx) => (
-                        <TableRow
-                          key={e.id}
-                          className={cn("hover:bg-transparent")}
-                        >
-                          <TableCell className="px-2 py-1 text-xs leading-tight font-medium text-foreground/90">
-                            {e.id}
-                          </TableCell>
-                          <TableCell className="px-2 py-1 text-xs leading-tight">
-                            <div className="flex items-center gap-2">
-                              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#1E4DD8] text-white font-semibold text-[10px]">
-                                {(e.firstName?.[0] || "").toUpperCase()}
-                                {(e.lastName?.[0] || "").toUpperCase()}
-                              </div>
-                              <span className="text-xs font-semibold text-foreground">
-                                {e.firstName} {e.lastName}
-                              </span>
-                            </div>
-                          </TableCell>
-                          <TableCell className="px-2 py-1 text-xs leading-tight">
-                            {e.department}
-                          </TableCell>
-                          <TableCell className="px-2 py-1 text-xs leading-tight">
-                            {e.role}
-                          </TableCell>
-                          <TableCell className="px-2 py-1 text-xs leading-tight">
-                            {e.departureType ? (
-                              e.departureType
-                            ) : (
-                              <span className="text-muted-foreground">—</span>
-                            )}
-                          </TableCell>
-                          <TableCell className="px-2 py-1 text-xs leading-tight">
-                            IT Asset Collection
-                          </TableCell>
-                          <TableCell className="px-2 py-1 text-xs leading-tight">
-                            {e.departureDate ? (
-                              e.departureDate
-                            ) : (
-                              <span className="text-muted-foreground">—</span>
-                            )}
-                          </TableCell>
-                          <TableCell className="px-2 py-1 text-center text-xs leading-tight">
-                            <RowActions employee={e} />
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                  <div className="flex items-center justify-end gap-2 border-t px-2 py-2 text-xs">
-                    <span className="text-muted-foreground">
-                      {start + 1}-{end} of {filtered.length}
-                    </span>
-                    <Button
-                      variant="outline"
-                      className="h-7 w-7 rounded-md p-0"
-                      onClick={() => setPage((p) => Math.max(0, p - 1))}
-                      disabled={page === 0}
-                      aria-label="Previous page"
-                    >
-                      <ChevronLeft className="h-4 w-4" />
-                    </Button>
-                    <Button
-                      variant="outline"
-                      className="h-7 w-7 rounded-md p-0"
-                      onClick={() =>
-                        setPage((p) => Math.min(totalPages - 1, p + 1))
-                      }
-                      disabled={page >= totalPages - 1}
-                      aria-label="Next page"
-                    >
-                      <ChevronRight className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </div>
-              </section>
-            ) : (
-              <section className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                {filtered.map((e) => (
-                  <div
-                    key={e.id}
-                    className="bg-white rounded-[12px] py-4 px-5"
-                    style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.1)" }}
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1E4DD8] text-white font-semibold text-[14px]">
-                          {(e.firstName?.[0] || "").toUpperCase()}
-                          {(e.lastName?.[0] || "").toUpperCase()}
-                        </div>
-                        <div>
-                          <div className="flex items-center gap-2">
-                            <div className="text-[16px] font-bold text-[#1A1A1A]">
-                              {e.firstName} {e.lastName}
-                            </div>
-                            <span className="rounded-[8px] bg-[#F0F4FF] px-2 py-[2px] text-[#3B5BDB] text-[12px] font-medium">
-                              {e.status}
-                            </span>
-                          </div>
-                          <div className="text-[11px] text-muted-foreground">
-                            ID: {e.id}
-                          </div>
-                        </div>
-                      </div>
-                      <RowActions employee={e} />
-                    </div>
-                    <div className="mt-3 grid grid-cols-2 gap-2 text-sm">
-                      <div>
-                        <div className="text-[11px] text-muted-foreground">
-                          Position
-                        </div>
-                        <div className="truncate text-foreground">{e.role}</div>
-                      </div>
-                      <div>
-                        <div className="text-[11px] text-muted-foreground">
-                          Department
-                        </div>
-                        <div className="truncate text-foreground">
-                          {e.department}
-                        </div>
-                      </div>
-                      <div>
-                        <div className="text-[11px] text-muted-foreground">
-                          Joined Date
-                        </div>
-                        <div className="text-foreground">{e.joiningDate}</div>
-                      </div>
-                      <div className="col-span-2">
-                        {(() => {
-                          const skills = getSkills(e);
-                          if (!skills.length)
-                            return (
-                              <span className="text-xs text-muted-foreground">
-                                Skills: —
-                              </span>
-                            );
-                          const shown = skills.slice(0, 3);
-                          return (
-                            <div className="flex flex-wrap items-center gap-1 text-[11px]">
-                              <span className="text-muted-foreground">
-                                Skills:
-                              </span>
-                              {shown.map((s) => (
-                                <Badge
-                                  key={s}
-                                  variant="secondary"
-                                  className="px-1.5 py-0 text-[10px]"
-                                >
-                                  {s}
-                                </Badge>
-                              ))}
-                              {skills.length > 3 && (
-                                <span className="text-muted-foreground">
-                                  +{skills.length - 3} more
-                                </span>
-                              )}
-                            </div>
-                          );
-                        })()}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </section>
-            )}
-          </div>
-
-            {false && (
-            <div className="rounded-2xl border bg-card p-4 shadow-sm">
-              <div className="mb-3 flex items-center justify-between gap-3">
-                <div className="flex items-center gap-2">
-                  <Input
-                    value={dcSearch}
-                    onChange={(e) => setDcSearch(e.target.value)}
-                    placeholder="Search documents..."
-                    className="h-8 w-56 text-xs"
-                  />
-                </div>
-                <div className="flex items-center gap-2">
-                  <Button
-                    type="button"
-                    onClick={() => setDcUploadOpen(true)}
-                    className="h-8 gap-1 px-2 text-xs bg-blue-600 text-white hover:bg-blue-700"
-                  >
-                    <Upload className="h-4 w-4" />{" "}
-                    {currentRole === "employee"
-                      ? "Upload My Document"
-                      : "Upload Document"}
-                  </Button>
-                  <Button
-                    type="button"
-                    onClick={() => {
-                      if (!dcSelecting) {
-                        setDcSelecting(true);
-                      } else {
-                        exportDocsCSV();
-                        setDcSelecting(false);
-                        setSelectedDocIds(new Set());
-                      }
-                    }}
-                    variant="outline"
-                    className="h-8 rounded-md px-3 text-xs bg-white text-[#374151] border border-[#d1d5db] hover:bg-gray-50 gap-1"
-                  >
-                    <Download className="mr-1.5 h-4 w-4" /> Export
-                  </Button>
-                </div>
+          {view === "table" ? (
+            <section className="mt-6">
+              <div className="mb-4">
+                <h2 className="text-lg font-bold">Recent Offboardings</h2>
+                <p className="text-sm text-muted-foreground">
+                  Track ongoing and recent employee departures.
+                </p>
               </div>
 
-              <Dialog open={dcUploadOpen} onOpenChange={setDcUploadOpen}>
-                <DialogContent>
-                  <DialogHeader>
-                    <DialogTitle>Upload Document</DialogTitle>
-                  </DialogHeader>
-                  <div className="grid gap-3 py-2">
-                    <div className="grid gap-1.5">
-                      <Label className="text-xs font-semibold">
-                        Select File
-                      </Label>
-                      <Input
-                        type="file"
-                        accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,image/*"
-                        onChange={(e) => setDcFile(e.target.files?.[0] || null)}
-                      />
-                    </div>
-                    <div className="grid gap-1.5">
-                      <Label className="text-xs font-semibold">
-                        Document Title
-                      </Label>
-                      <Input
-                        value={dcTitle}
-                        onChange={(e) => setDcTitle(e.target.value)}
-                        placeholder="Descriptive title"
-                      />
-                    </div>
-                    <div className="grid gap-1.5 sm:grid-cols-2 sm:gap-3">
-                      <div className="grid gap-1.5">
-                        <Label className="text-xs font-semibold">
-                          Document Category
-                        </Label>
-                        <Select
-                          value={dcCategory}
-                          onValueChange={setDcCategory}
-                        >
-                          <SelectTrigger className="h-9">
-                            <SelectValue placeholder="Select category" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {docCategories.map((c) => (
-                              <SelectItem key={c.value} value={c.value}>
-                                {c.label}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      <div className="grid gap-1.5">
-                        <Label className="text-xs font-semibold">
-                          Department
-                        </Label>
-                        <Select value={dcDeptSel} onValueChange={setDcDeptSel}>
-                          <SelectTrigger className="h-9">
-                            <SelectValue placeholder="Select department" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="all">All Departments</SelectItem>
-                            {departments.map((d) => (
-                              <SelectItem key={d} value={d.toLowerCase()}>
-                                {d}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    </div>
-                    <div className="grid gap-1.5 sm:max-w-xs">
-                      <Label className="text-xs font-semibold">
-                        Expiration Date (optional)
-                      </Label>
-                      <Input
-                        type="date"
-                        value={dcExpiry}
-                        onChange={(e) => setDcExpiry(e.target.value)}
-                        placeholder="dd/mm/yyyy"
-                      />
-                    </div>
-                  </div>
-                  <DialogFooter>
-                    <Button
-                      variant="outline"
-                      onClick={() => setDcUploadOpen(false)}
-                    >
-                      Cancel
-                    </Button>
-                    <Button onClick={submitUpload}>Save</Button>
-                  </DialogFooter>
-                </DialogContent>
-              </Dialog>
-
-              <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-                <div className="flex flex-wrap items-center gap-1 text-xs">
-                  {docCategories.map((c) => (
-                    <Button
-                      key={c.value}
-                      variant={dcCategory2 === c.value ? "default" : "outline"}
-                      className={cn(
-                        "h-7 px-2 text-xs",
-                        dcCategory2 === c.value
-                          ? "bg-brand text-brand-foreground border-transparent"
-                          : "",
-                      )}
-                      onClick={() => setDcCategory2(c.value)}
-                    >
-                      {c.label}
-                    </Button>
-                  ))}
+              <div className="mb-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-2">
+                  <input
+                    type="text"
+                    placeholder="Search Employee ID, Name"
+                    value={offboardingSearch}
+                    onChange={(e) => setOffboardingSearch(e.target.value)}
+                    className="rounded border border-input bg-background px-3 py-2 text-sm"
+                  />
+                  <select
+                    value={offboardingDepartment}
+                    onChange={(e) => setOffboardingDepartment(e.target.value)}
+                    className="rounded border border-input bg-background px-3 py-2 text-sm text-muted-foreground"
+                  >
+                    <option value="" className="text-muted-foreground">
+                      Department
+                    </option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="Product">Product</option>
+                    <option value="Design">Design</option>
+                    <option value="Analytics">Analytics</option>
+                    <option value="Human Resources">Human Resources</option>
+                  </select>
+                  <select
+                    value={offboardingStage}
+                    onChange={(e) => setOffboardingStage(e.target.value)}
+                    className="rounded border border-input bg-background px-3 py-2 text-sm text-muted-foreground"
+                  >
+                    <option value="" className="text-muted-foreground">
+                      Offboarding Stage
+                    </option>
+                    <option value="HR Documentation Update">
+                      HR Documentation Update
+                    </option>
+                    <option value="IT Asset Collection">
+                      IT Asset Collection
+                    </option>
+                    <option value="Exit Interview Scheduling">
+                      Exit Interview Scheduling
+                    </option>
+                    <option value="Access Revocation">Access Revocation</option>
+                    <option value="Post-Exit Follow-Up">
+                      Post-Exit Follow-Up
+                    </option>
+                  </select>
                 </div>
-                <div className="flex flex-wrap items-center gap-2">
-                  <Select value={dcDept} onValueChange={setDcDept}>
-                    <SelectTrigger className="h-8 w-40 text-xs">
-                      <SelectValue placeholder="All Departments" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">All Departments</SelectItem>
-                      {departments.map((d) => (
-                        <SelectItem key={d} value={d.toLowerCase()}>
-                          {d}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  <Select value={dcDocType} onValueChange={setDcDocType}>
-                    <SelectTrigger className="h-8 w-36 text-xs">
-                      <SelectValue placeholder="All Types" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">All Types</SelectItem>
-                      {docTypes.map((t) => (
-                        <SelectItem key={t} value={t.toLowerCase()}>
-                          {t}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  <Select value={dcDateFilter} onValueChange={setDcDateFilter}>
-                    <SelectTrigger className="h-8 w-36 text-xs">
-                      <SelectValue placeholder="Date" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="any">Any Date</SelectItem>
-                      <SelectItem value="30">Last 30 days</SelectItem>
-                      <SelectItem value="90">Last 90 days</SelectItem>
-                      <SelectItem value="365">Last year</SelectItem>
-                    </SelectContent>
-                  </Select>
+
+                <div className="flex gap-2">
+                  <Button
+                    className="bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-2"
+                    onClick={() => navigate("/new-offboarding")}
+                  >
+                    <Plus className="h-4 w-4 text-blue-400" />
+                    New Offboarding
+                  </Button>
+                  <Button variant="outline" className="flex items-center gap-2">
+                    <Download className="h-4 w-4" />
+                    Export
+                  </Button>
                 </div>
               </div>
 
               <div className="overflow-hidden rounded-lg border">
                 <Table className="text-xs leading-tight">
                   <TableHeader>
-                    <TableRow>
-                      {dcSelecting && (
-                        <TableHead className="w-8 px-2 py-1">
-                          {(() => {
-                            const ids = sortedDocs.map((d) => d.id);
-                            const all =
-                              ids.length > 0 &&
-                              ids.every((id) => selectedDocIds.has(id));
-                            const some = ids.some((id) =>
-                              selectedDocIds.has(id),
-                            );
-                            const checked: boolean | "indeterminate" = all
-                              ? true
-                              : some
-                                ? "indeterminate"
-                                : false;
-                            return (
-                              <Checkbox
-                                aria-label="Select all documents"
-                                checked={checked}
-                                onCheckedChange={(v) => {
-                                  setSelectedDocIds((prev) => {
-                                    const next = new Set(prev);
-                                    if (v === true) {
-                                      ids.forEach((id) => next.add(id));
-                                    } else {
-                                      ids.forEach((id) => next.delete(id));
-                                    }
-                                    return next;
-                                  });
-                                }}
-                              />
-                            );
-                          })()}
-                        </TableHead>
-                      )}
-                      {docColumns.map((col) => (
-                        <TableHead
-                          key={col.key as string}
-                          className="px-2 py-1 text-xs font-semibold uppercase leading-tight"
-                        >
-                          <button
-                            className="inline-flex items-center gap-1"
-                            onClick={() => handleSort(col.key)}
-                          >
-                            <span>{col.label}</span>
-                            <ArrowUpDown className="h-3.5 w-3.5 opacity-60" />
-                          </button>
-                        </TableHead>
-                      ))}
-                      <TableHead className="px-2 py-1 text-right text-xs font-semibold uppercase leading-tight">
-                        Actions
+                    <TableRow className="hover:bg-transparent">
+                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
+                        Employee ID
+                      </TableHead>
+                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
+                        Employee Name
+                      </TableHead>
+                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
+                        Department
+                      </TableHead>
+                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
+                        Position
+                      </TableHead>
+                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
+                        Exit Type
+                      </TableHead>
+                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
+                        Stage
+                      </TableHead>
+                      <TableHead className="px-2 py-1 text-xs font-semibold uppercase leading-tight">
+                        Exit Date
+                      </TableHead>
+                      <TableHead className="px-2 py-1 text-center text-xs font-semibold uppercase leading-tight">
+                        Action
                       </TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {sortedDocs.map((d) => (
-                      <TableRow key={d.id} className="hover:bg-transparent">
-                        {dcSelecting && (
-                          <TableCell className="px-2 py-1">
-                            <Checkbox
-                              aria-label={`Select ${d.title}`}
-                              checked={selectedDocIds.has(d.id)}
-                              onCheckedChange={(v) => {
-                                setSelectedDocIds((prev) => {
-                                  const next = new Set(prev);
-                                  if (v === true) next.add(d.id);
-                                  else next.delete(d.id);
-                                  return next;
-                                });
-                              }}
-                            />
-                          </TableCell>
-                        )}
-                        <TableCell className="px-2 py-1 text-xs leading-tight">
-                          {d.title}
+                    {filteredOffboarding.map((e, idx) => (
+                      <TableRow
+                        key={e.id}
+                        className={cn("hover:bg-transparent")}
+                      >
+                        <TableCell className="px-2 py-1 text-xs leading-tight font-medium text-foreground/90">
+                          {e.id}
                         </TableCell>
                         <TableCell className="px-2 py-1 text-xs leading-tight">
-                          {d.department}
-                        </TableCell>
-                        <TableCell className="px-2 py-1 text-xs leading-tight">
-                          {d.type}
-                        </TableCell>
-                        <TableCell className="px-2 py-1 text-xs leading-tight">
-                          {d.uploadDate}
-                        </TableCell>
-                        <TableCell className="px-2 py-1 text-xs leading-tight">
-                          {d.expirationDate ?? "—"}
-                        </TableCell>
-                        <TableCell className="px-2 py-1 text-xs leading-tight">
-                          {d.uploadedBy}
-                        </TableCell>
-                        <TableCell className="px-2 py-1 text-right text-xs leading-tight">
-                          <div className="flex items-center justify-end">
-                            <DropdownMenu>
-                              <DropdownMenuTrigger asChild>
-                                <Button
-                                  variant="ghost"
-                                  className="h-7 w-7 p-0"
-                                  aria-label={`Actions for ${d.title}`}
-                                >
-                                  <EllipsisVertical className="h-4 w-4" />
-                                </Button>
-                              </DropdownMenuTrigger>
-                              <DropdownMenuContent align="end" className="w-40">
-                                <DropdownMenuItem
-                                  onClick={() =>
-                                    toast({
-                                      title: "View",
-                                      description: d.title,
-                                    })
-                                  }
-                                >
-                                  View
-                                </DropdownMenuItem>
-                                <DropdownMenuItem
-                                  onClick={() =>
-                                    toast({
-                                      title: "Edit",
-                                      description: d.title,
-                                    })
-                                  }
-                                >
-                                  Edit
-                                </DropdownMenuItem>
-                                <DropdownMenuItem
-                                  onClick={() =>
-                                    toast({
-                                      title: "Delete",
-                                      description: d.title,
-                                    })
-                                  }
-                                >
-                                  Delete
-                                </DropdownMenuItem>
-                              </DropdownMenuContent>
-                            </DropdownMenu>
+                          <div className="flex items-center gap-2">
+                            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#1E4DD8] text-white font-semibold text-[10px]">
+                              {(e.firstName?.[0] || "").toUpperCase()}
+                              {(e.lastName?.[0] || "").toUpperCase()}
+                            </div>
+                            <span className="text-xs font-semibold text-foreground">
+                              {e.firstName} {e.lastName}
+                            </span>
                           </div>
+                        </TableCell>
+                        <TableCell className="px-2 py-1 text-xs leading-tight">
+                          {e.department}
+                        </TableCell>
+                        <TableCell className="px-2 py-1 text-xs leading-tight">
+                          {e.role}
+                        </TableCell>
+                        <TableCell className="px-2 py-1 text-xs leading-tight">
+                          {e.departureType ? (
+                            e.departureType
+                          ) : (
+                            <span className="text-muted-foreground">—</span>
+                          )}
+                        </TableCell>
+                        <TableCell className="px-2 py-1 text-xs leading-tight">
+                          IT Asset Collection
+                        </TableCell>
+                        <TableCell className="px-2 py-1 text-xs leading-tight">
+                          {e.departureDate ? (
+                            e.departureDate
+                          ) : (
+                            <span className="text-muted-foreground">—</span>
+                          )}
+                        </TableCell>
+                        <TableCell className="px-2 py-1 text-center text-xs leading-tight">
+                          <RowActions employee={e} />
                         </TableCell>
                       </TableRow>
                     ))}
                   </TableBody>
                 </Table>
+                <div className="flex items-center justify-end gap-2 border-t px-2 py-2 text-xs">
+                  <span className="text-muted-foreground">
+                    {start + 1}-{end} of {filtered.length}
+                  </span>
+                  <Button
+                    variant="outline"
+                    className="h-7 w-7 rounded-md p-0"
+                    onClick={() => setPage((p) => Math.max(0, p - 1))}
+                    disabled={page === 0}
+                    aria-label="Previous page"
+                  >
+                    <ChevronLeft className="h-4 w-4" />
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="h-7 w-7 rounded-md p-0"
+                    onClick={() =>
+                      setPage((p) => Math.min(totalPages - 1, p + 1))
+                    }
+                    disabled={page >= totalPages - 1}
+                    aria-label="Next page"
+                  >
+                    <ChevronRight className="h-4 w-4" />
+                  </Button>
+                </div>
+              </div>
+            </section>
+          ) : (
+            <section className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {filtered.map((e) => (
+                <div
+                  key={e.id}
+                  className="bg-white rounded-[12px] py-4 px-5"
+                  style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.1)" }}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1E4DD8] text-white font-semibold text-[14px]">
+                        {(e.firstName?.[0] || "").toUpperCase()}
+                        {(e.lastName?.[0] || "").toUpperCase()}
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <div className="text-[16px] font-bold text-[#1A1A1A]">
+                            {e.firstName} {e.lastName}
+                          </div>
+                          <span className="rounded-[8px] bg-[#F0F4FF] px-2 py-[2px] text-[#3B5BDB] text-[12px] font-medium">
+                            {e.status}
+                          </span>
+                        </div>
+                        <div className="text-[11px] text-muted-foreground">
+                          ID: {e.id}
+                        </div>
+                      </div>
+                    </div>
+                    <RowActions employee={e} />
+                  </div>
+                  <div className="mt-3 grid grid-cols-2 gap-2 text-sm">
+                    <div>
+                      <div className="text-[11px] text-muted-foreground">
+                        Position
+                      </div>
+                      <div className="truncate text-foreground">{e.role}</div>
+                    </div>
+                    <div>
+                      <div className="text-[11px] text-muted-foreground">
+                        Department
+                      </div>
+                      <div className="truncate text-foreground">
+                        {e.department}
+                      </div>
+                    </div>
+                    <div>
+                      <div className="text-[11px] text-muted-foreground">
+                        Joined Date
+                      </div>
+                      <div className="text-foreground">{e.joiningDate}</div>
+                    </div>
+                    <div className="col-span-2">
+                      {(() => {
+                        const skills = getSkills(e);
+                        if (!skills.length)
+                          return (
+                            <span className="text-xs text-muted-foreground">
+                              Skills: —
+                            </span>
+                          );
+                        const shown = skills.slice(0, 3);
+                        return (
+                          <div className="flex flex-wrap items-center gap-1 text-[11px]">
+                            <span className="text-muted-foreground">
+                              Skills:
+                            </span>
+                            {shown.map((s) => (
+                              <Badge
+                                key={s}
+                                variant="secondary"
+                                className="px-1.5 py-0 text-[10px]"
+                              >
+                                {s}
+                              </Badge>
+                            ))}
+                            {skills.length > 3 && (
+                              <span className="text-muted-foreground">
+                                +{skills.length - 3} more
+                              </span>
+                            )}
+                          </div>
+                        );
+                      })()}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </section>
+          )}
+        </div>
+
+        {false && (
+          <div className="rounded-2xl border bg-card p-4 shadow-sm">
+            <div className="mb-3 flex items-center justify-between gap-3">
+              <div className="flex items-center gap-2">
+                <Input
+                  value={dcSearch}
+                  onChange={(e) => setDcSearch(e.target.value)}
+                  placeholder="Search documents..."
+                  className="h-8 w-56 text-xs"
+                />
+              </div>
+              <div className="flex items-center gap-2">
+                <Button
+                  type="button"
+                  onClick={() => setDcUploadOpen(true)}
+                  className="h-8 gap-1 px-2 text-xs bg-blue-600 text-white hover:bg-blue-700"
+                >
+                  <Upload className="h-4 w-4" />{" "}
+                  {currentRole === "employee"
+                    ? "Upload My Document"
+                    : "Upload Document"}
+                </Button>
+                <Button
+                  type="button"
+                  onClick={() => {
+                    if (!dcSelecting) {
+                      setDcSelecting(true);
+                    } else {
+                      exportDocsCSV();
+                      setDcSelecting(false);
+                      setSelectedDocIds(new Set());
+                    }
+                  }}
+                  variant="outline"
+                  className="h-8 rounded-md px-3 text-xs bg-white text-[#374151] border border-[#d1d5db] hover:bg-gray-50 gap-1"
+                >
+                  <Download className="mr-1.5 h-4 w-4" /> Export
+                </Button>
               </div>
             </div>
-            )}
+
+            <Dialog open={dcUploadOpen} onOpenChange={setDcUploadOpen}>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Upload Document</DialogTitle>
+                </DialogHeader>
+                <div className="grid gap-3 py-2">
+                  <div className="grid gap-1.5">
+                    <Label className="text-xs font-semibold">Select File</Label>
+                    <Input
+                      type="file"
+                      accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,image/*"
+                      onChange={(e) => setDcFile(e.target.files?.[0] || null)}
+                    />
+                  </div>
+                  <div className="grid gap-1.5">
+                    <Label className="text-xs font-semibold">
+                      Document Title
+                    </Label>
+                    <Input
+                      value={dcTitle}
+                      onChange={(e) => setDcTitle(e.target.value)}
+                      placeholder="Descriptive title"
+                    />
+                  </div>
+                  <div className="grid gap-1.5 sm:grid-cols-2 sm:gap-3">
+                    <div className="grid gap-1.5">
+                      <Label className="text-xs font-semibold">
+                        Document Category
+                      </Label>
+                      <Select value={dcCategory} onValueChange={setDcCategory}>
+                        <SelectTrigger className="h-9">
+                          <SelectValue placeholder="Select category" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {docCategories.map((c) => (
+                            <SelectItem key={c.value} value={c.value}>
+                              {c.label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className="grid gap-1.5">
+                      <Label className="text-xs font-semibold">
+                        Department
+                      </Label>
+                      <Select value={dcDeptSel} onValueChange={setDcDeptSel}>
+                        <SelectTrigger className="h-9">
+                          <SelectValue placeholder="Select department" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="all">All Departments</SelectItem>
+                          {departments.map((d) => (
+                            <SelectItem key={d} value={d.toLowerCase()}>
+                              {d}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+                  <div className="grid gap-1.5 sm:max-w-xs">
+                    <Label className="text-xs font-semibold">
+                      Expiration Date (optional)
+                    </Label>
+                    <Input
+                      type="date"
+                      value={dcExpiry}
+                      onChange={(e) => setDcExpiry(e.target.value)}
+                      placeholder="dd/mm/yyyy"
+                    />
+                  </div>
+                </div>
+                <DialogFooter>
+                  <Button
+                    variant="outline"
+                    onClick={() => setDcUploadOpen(false)}
+                  >
+                    Cancel
+                  </Button>
+                  <Button onClick={submitUpload}>Save</Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+
+            <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+              <div className="flex flex-wrap items-center gap-1 text-xs">
+                {docCategories.map((c) => (
+                  <Button
+                    key={c.value}
+                    variant={dcCategory2 === c.value ? "default" : "outline"}
+                    className={cn(
+                      "h-7 px-2 text-xs",
+                      dcCategory2 === c.value
+                        ? "bg-brand text-brand-foreground border-transparent"
+                        : "",
+                    )}
+                    onClick={() => setDcCategory2(c.value)}
+                  >
+                    {c.label}
+                  </Button>
+                ))}
+              </div>
+              <div className="flex flex-wrap items-center gap-2">
+                <Select value={dcDept} onValueChange={setDcDept}>
+                  <SelectTrigger className="h-8 w-40 text-xs">
+                    <SelectValue placeholder="All Departments" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Departments</SelectItem>
+                    {departments.map((d) => (
+                      <SelectItem key={d} value={d.toLowerCase()}>
+                        {d}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <Select value={dcDocType} onValueChange={setDcDocType}>
+                  <SelectTrigger className="h-8 w-36 text-xs">
+                    <SelectValue placeholder="All Types" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Types</SelectItem>
+                    {docTypes.map((t) => (
+                      <SelectItem key={t} value={t.toLowerCase()}>
+                        {t}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <Select value={dcDateFilter} onValueChange={setDcDateFilter}>
+                  <SelectTrigger className="h-8 w-36 text-xs">
+                    <SelectValue placeholder="Date" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="any">Any Date</SelectItem>
+                    <SelectItem value="30">Last 30 days</SelectItem>
+                    <SelectItem value="90">Last 90 days</SelectItem>
+                    <SelectItem value="365">Last year</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+
+            <div className="overflow-hidden rounded-lg border">
+              <Table className="text-xs leading-tight">
+                <TableHeader>
+                  <TableRow>
+                    {dcSelecting && (
+                      <TableHead className="w-8 px-2 py-1">
+                        {(() => {
+                          const ids = sortedDocs.map((d) => d.id);
+                          const all =
+                            ids.length > 0 &&
+                            ids.every((id) => selectedDocIds.has(id));
+                          const some = ids.some((id) => selectedDocIds.has(id));
+                          const checked: boolean | "indeterminate" = all
+                            ? true
+                            : some
+                              ? "indeterminate"
+                              : false;
+                          return (
+                            <Checkbox
+                              aria-label="Select all documents"
+                              checked={checked}
+                              onCheckedChange={(v) => {
+                                setSelectedDocIds((prev) => {
+                                  const next = new Set(prev);
+                                  if (v === true) {
+                                    ids.forEach((id) => next.add(id));
+                                  } else {
+                                    ids.forEach((id) => next.delete(id));
+                                  }
+                                  return next;
+                                });
+                              }}
+                            />
+                          );
+                        })()}
+                      </TableHead>
+                    )}
+                    {docColumns.map((col) => (
+                      <TableHead
+                        key={col.key as string}
+                        className="px-2 py-1 text-xs font-semibold uppercase leading-tight"
+                      >
+                        <button
+                          className="inline-flex items-center gap-1"
+                          onClick={() => handleSort(col.key)}
+                        >
+                          <span>{col.label}</span>
+                          <ArrowUpDown className="h-3.5 w-3.5 opacity-60" />
+                        </button>
+                      </TableHead>
+                    ))}
+                    <TableHead className="px-2 py-1 text-right text-xs font-semibold uppercase leading-tight">
+                      Actions
+                    </TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {sortedDocs.map((d) => (
+                    <TableRow key={d.id} className="hover:bg-transparent">
+                      {dcSelecting && (
+                        <TableCell className="px-2 py-1">
+                          <Checkbox
+                            aria-label={`Select ${d.title}`}
+                            checked={selectedDocIds.has(d.id)}
+                            onCheckedChange={(v) => {
+                              setSelectedDocIds((prev) => {
+                                const next = new Set(prev);
+                                if (v === true) next.add(d.id);
+                                else next.delete(d.id);
+                                return next;
+                              });
+                            }}
+                          />
+                        </TableCell>
+                      )}
+                      <TableCell className="px-2 py-1 text-xs leading-tight">
+                        {d.title}
+                      </TableCell>
+                      <TableCell className="px-2 py-1 text-xs leading-tight">
+                        {d.department}
+                      </TableCell>
+                      <TableCell className="px-2 py-1 text-xs leading-tight">
+                        {d.type}
+                      </TableCell>
+                      <TableCell className="px-2 py-1 text-xs leading-tight">
+                        {d.uploadDate}
+                      </TableCell>
+                      <TableCell className="px-2 py-1 text-xs leading-tight">
+                        {d.expirationDate ?? "—"}
+                      </TableCell>
+                      <TableCell className="px-2 py-1 text-xs leading-tight">
+                        {d.uploadedBy}
+                      </TableCell>
+                      <TableCell className="px-2 py-1 text-right text-xs leading-tight">
+                        <div className="flex items-center justify-end">
+                          <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                              <Button
+                                variant="ghost"
+                                className="h-7 w-7 p-0"
+                                aria-label={`Actions for ${d.title}`}
+                              >
+                                <EllipsisVertical className="h-4 w-4" />
+                              </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end" className="w-40">
+                              <DropdownMenuItem
+                                onClick={() =>
+                                  toast({
+                                    title: "View",
+                                    description: d.title,
+                                  })
+                                }
+                              >
+                                View
+                              </DropdownMenuItem>
+                              <DropdownMenuItem
+                                onClick={() =>
+                                  toast({
+                                    title: "Edit",
+                                    description: d.title,
+                                  })
+                                }
+                              >
+                                Edit
+                              </DropdownMenuItem>
+                              <DropdownMenuItem
+                                onClick={() =>
+                                  toast({
+                                    title: "Delete",
+                                    description: d.title,
+                                  })
+                                }
+                              >
+                                Delete
+                              </DropdownMenuItem>
+                            </DropdownMenuContent>
+                          </DropdownMenu>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+          </div>
+        )}
 
         {/* Floating AI Assistant */}
         <button
@@ -2469,7 +2478,9 @@ function MetricCard({
           <span className={colorClass}>{value}</span>
         </div>
       </div>
-      <div className={`flex h-10 w-10 items-center justify-center rounded-full ${bgColorClass}`}>
+      <div
+        className={`flex h-10 w-10 items-center justify-center rounded-full ${bgColorClass}`}
+      >
         {icon}
       </div>
     </Card>
@@ -2486,7 +2497,9 @@ function RowActions({ employee }: { employee: Employee }) {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-44">
-        <DropdownMenuItem onClick={() => navigate(`/view-details/${employee.id}`)}>
+        <DropdownMenuItem
+          onClick={() => navigate(`/view-details/${employee.id}`)}
+        >
           View Details
         </DropdownMenuItem>
       </DropdownMenuContent>

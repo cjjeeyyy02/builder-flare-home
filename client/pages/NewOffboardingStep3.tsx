@@ -26,7 +26,9 @@ export default function NewOffboardingStep3() {
       <section className="min-h-screen bg-[#F9FAFB] flex items-center justify-center">
         <div className="text-center">
           <p className="text-[#6B7280] mb-4">No exit data found</p>
-          <Button onClick={() => navigate("/new-offboarding")}>Back to Step 1</Button>
+          <Button onClick={() => navigate("/new-offboarding")}>
+            Back to Step 1
+          </Button>
         </div>
       </section>
     );
@@ -61,12 +63,20 @@ export default function NewOffboardingStep3() {
             <Button
               variant="ghost"
               className="h-10 w-10 p-0 hover:bg-[#E5E7EB] mb-3"
-              onClick={() => navigate("/new-offboarding-exit-details", { state: { employee: exitData.employee } })}
+              onClick={() =>
+                navigate("/new-offboarding-exit-details", {
+                  state: { employee: exitData.employee },
+                })
+              }
             >
               <ArrowLeft className="h-5 w-5 text-[#6B7280]" />
             </Button>
-            <h1 className="text-[20px] font-semibold text-[#111827] mb-2">Review Offboarding Details</h1>
-            <p className="text-[14px] text-[#6B7280]">Please review all information before submitting.</p>
+            <h1 className="text-[20px] font-semibold text-[#111827] mb-2">
+              Review Offboarding Details
+            </h1>
+            <p className="text-[14px] text-[#6B7280]">
+              Please review all information before submitting.
+            </p>
           </div>
 
           {/* Progress Indicator - Step 3 */}
@@ -98,7 +108,9 @@ export default function NewOffboardingStep3() {
               <div className="w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold text-[10px]">
                 3
               </div>
-              <p className="text-[9px] text-[#6B7280] mt-0.5 whitespace-nowrap">Review</p>
+              <p className="text-[9px] text-[#6B7280] mt-0.5 whitespace-nowrap">
+                Review
+              </p>
             </div>
           </div>
         </div>
@@ -109,7 +121,10 @@ export default function NewOffboardingStep3() {
             <div className="flex items-start gap-4">
               {/* Avatar */}
               <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold text-[16px] flex-shrink-0">
-                {getInitials(exitData.employee.firstName, exitData.employee.lastName)}
+                {getInitials(
+                  exitData.employee.firstName,
+                  exitData.employee.lastName,
+                )}
               </div>
 
               {/* Employee Details */}
@@ -132,32 +147,54 @@ export default function NewOffboardingStep3() {
         <div className="grid grid-cols-2 gap-6 mb-8">
           {/* Left Column - Exit Details */}
           <div className="bg-white rounded-[12px] shadow-sm border border-[#E5E7EB] p-4">
-            <h3 className="text-[15px] font-semibold text-[#111827] mb-4">Exit Details</h3>
+            <h3 className="text-[15px] font-semibold text-[#111827] mb-4">
+              Exit Details
+            </h3>
 
             <div className="space-y-3">
               <div>
-                <p className="text-[12px] font-semibold text-[#6B7280] mb-1">Exit Type</p>
-                <p className="text-[13px] text-[#111827]">{exitData.exitType}</p>
+                <p className="text-[12px] font-semibold text-[#6B7280] mb-1">
+                  Exit Type
+                </p>
+                <p className="text-[13px] text-[#111827]">
+                  {exitData.exitType}
+                </p>
               </div>
 
               <div>
-                <p className="text-[12px] font-semibold text-[#6B7280] mb-1">Effective Date</p>
-                <p className="text-[13px] text-[#111827]">{exitData.effectiveDate || "Not specified"}</p>
+                <p className="text-[12px] font-semibold text-[#6B7280] mb-1">
+                  Effective Date
+                </p>
+                <p className="text-[13px] text-[#111827]">
+                  {exitData.effectiveDate || "Not specified"}
+                </p>
               </div>
 
               <div>
-                <p className="text-[12px] font-semibold text-[#6B7280] mb-1">Last Working Day</p>
-                <p className="text-[13px] text-[#111827]">{exitData.lastWorkingDay || "Not specified"}</p>
+                <p className="text-[12px] font-semibold text-[#6B7280] mb-1">
+                  Last Working Day
+                </p>
+                <p className="text-[13px] text-[#111827]">
+                  {exitData.lastWorkingDay || "Not specified"}
+                </p>
               </div>
 
               <div>
-                <p className="text-[12px] font-semibold text-[#6B7280] mb-1">Reason for Departure</p>
-                <p className="text-[13px] text-[#111827]">{exitData.reason || "Not specified"}</p>
+                <p className="text-[12px] font-semibold text-[#6B7280] mb-1">
+                  Reason for Departure
+                </p>
+                <p className="text-[13px] text-[#111827]">
+                  {exitData.reason || "Not specified"}
+                </p>
               </div>
 
               <div>
-                <p className="text-[12px] font-semibold text-[#6B7280] mb-1">Notice Period</p>
-                <p className="text-[13px] text-[#111827]">{exitData.noticePeriod}</p>
+                <p className="text-[12px] font-semibold text-[#6B7280] mb-1">
+                  Notice Period
+                </p>
+                <p className="text-[13px] text-[#111827]">
+                  {exitData.noticePeriod}
+                </p>
               </div>
 
               {exitData.eligibleForRehire && (
@@ -172,13 +209,21 @@ export default function NewOffboardingStep3() {
 
           {/* Right Column - Automated Workflow Tasks */}
           <div className="bg-white rounded-[12px] shadow-sm border border-[#E5E7EB] p-4">
-            <h3 className="text-[15px] font-semibold text-[#111827] mb-2">Automated Workflow Tasks</h3>
-            <p className="text-[13px] text-[#6B7280] mb-4">The following tasks will be automatically generated based on the exit type:</p>
+            <h3 className="text-[15px] font-semibold text-[#111827] mb-2">
+              Automated Workflow Tasks
+            </h3>
+            <p className="text-[13px] text-[#6B7280] mb-4">
+              The following tasks will be automatically generated based on the
+              exit type:
+            </p>
 
             <div className="bg-[#F0F9FF] rounded-[8px] p-3">
               <ul className="space-y-2">
                 {automatedTasks.map((task, idx) => (
-                  <li key={idx} className="flex gap-2 text-[13px] text-[#111827]">
+                  <li
+                    key={idx}
+                    className="flex gap-2 text-[13px] text-[#111827]"
+                  >
                     <span className="flex-shrink-0">•</span>
                     <span>{task}</span>
                   </li>
@@ -222,7 +267,9 @@ export default function NewOffboardingStep3() {
               Offboarding details submitted successfully.
             </h2>
             <p className="text-[13px] text-[#6B7280]">
-              The offboarding case for {exitData.employee.firstName} {exitData.employee.lastName} has been created and assigned to the HR team.
+              The offboarding case for {exitData.employee.firstName}{" "}
+              {exitData.employee.lastName} has been created and assigned to the
+              HR team.
             </p>
           </div>
         </div>

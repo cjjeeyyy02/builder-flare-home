@@ -7,7 +7,9 @@ import { EMPLOYEES, Employee } from "@/lib/data/employees";
 export default function NewOffboarding() {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedEmployee, setSelectedEmployee] = useState<Employee | null>(null);
+  const [selectedEmployee, setSelectedEmployee] = useState<Employee | null>(
+    null,
+  );
 
   const filteredEmployees = EMPLOYEES.filter((emp) => {
     const fullName = `${emp.firstName} ${emp.lastName}`.toLowerCase();
@@ -25,7 +27,9 @@ export default function NewOffboarding() {
 
   const handleContinue = () => {
     if (selectedEmployee) {
-      navigate("/new-offboarding-exit-details", { state: { employee: selectedEmployee } });
+      navigate("/new-offboarding-exit-details", {
+        state: { employee: selectedEmployee },
+      });
     }
   };
 
@@ -43,7 +47,9 @@ export default function NewOffboarding() {
               <ArrowLeft className="h-4 w-4 text-[#6B7280]" />
             </Button>
             <div>
-              <h1 className="text-[20px] font-semibold text-[#111827]">Initiate Offboarding</h1>
+              <h1 className="text-[20px] font-semibold text-[#111827]">
+                Initiate Offboarding
+              </h1>
             </div>
           </div>
 
@@ -83,7 +89,9 @@ export default function NewOffboarding() {
 
         {/* Content Section */}
         <div className="bg-white rounded-lg p-5 mb-4 shadow-sm border border-[#E5E7EB]">
-          <h2 className="text-[16px] font-semibold mb-1">Select Employee to Offboard</h2>
+          <h2 className="text-[16px] font-semibold mb-1">
+            Select Employee to Offboard
+          </h2>
           <p className="text-[12px] text-black mb-4">
             Search and select the employee who will be leaving the organization
           </p>
@@ -106,12 +114,26 @@ export default function NewOffboarding() {
               <table className="w-full text-sm">
                 <thead className="bg-[#F3F4F6] border-b border-[#E5E7EB] sticky top-0">
                   <tr>
-                    <th className="px-4 py-3 text-left font-semibold text-xs uppercase">Employee ID</th>
-                    <th className="px-4 py-3 text-left font-semibold text-xs uppercase">Employee Name</th>
-                    <th className="px-4 py-3 text-left font-semibold text-xs uppercase">Department</th>
-                    <th className="px-4 py-3 text-left font-semibold text-xs uppercase">Position</th>
-                    <th className="px-4 py-3 text-left font-semibold text-xs uppercase">Status</th>
-                    {selectedEmployee && <th className="px-4 py-3 text-center font-semibold text-xs uppercase">Confirm</th>}
+                    <th className="px-4 py-3 text-left font-semibold text-xs uppercase">
+                      Employee ID
+                    </th>
+                    <th className="px-4 py-3 text-left font-semibold text-xs uppercase">
+                      Employee Name
+                    </th>
+                    <th className="px-4 py-3 text-left font-semibold text-xs uppercase">
+                      Department
+                    </th>
+                    <th className="px-4 py-3 text-left font-semibold text-xs uppercase">
+                      Position
+                    </th>
+                    <th className="px-4 py-3 text-left font-semibold text-xs uppercase">
+                      Status
+                    </th>
+                    {selectedEmployee && (
+                      <th className="px-4 py-3 text-center font-semibold text-xs uppercase">
+                        Confirm
+                      </th>
+                    )}
                   </tr>
                 </thead>
                 <tbody>
@@ -125,11 +147,21 @@ export default function NewOffboarding() {
                           : "hover:bg-[#F9FAFB]"
                       }`}
                     >
-                      <td className="px-4 py-3 text-[13px] text-black font-medium">{employee.id}</td>
-                      <td className="px-4 py-3 text-[13px] text-black">{employee.firstName} {employee.lastName}</td>
-                      <td className="px-4 py-3 text-[13px] text-black">{employee.department}</td>
-                      <td className="px-4 py-3 text-[13px] text-black">{employee.role}</td>
-                      <td className="px-4 py-3 text-[13px] text-black">{employee.status}</td>
+                      <td className="px-4 py-3 text-[13px] text-black font-medium">
+                        {employee.id}
+                      </td>
+                      <td className="px-4 py-3 text-[13px] text-black">
+                        {employee.firstName} {employee.lastName}
+                      </td>
+                      <td className="px-4 py-3 text-[13px] text-black">
+                        {employee.department}
+                      </td>
+                      <td className="px-4 py-3 text-[13px] text-black">
+                        {employee.role}
+                      </td>
+                      <td className="px-4 py-3 text-[13px] text-black">
+                        {employee.status}
+                      </td>
                       {selectedEmployee?.id === employee.id && (
                         <td className="px-4 py-3 text-center">
                           <input
@@ -145,7 +177,9 @@ export default function NewOffboarding() {
                 </tbody>
               </table>
             ) : (
-              <div className="text-center py-6 text-[12px] text-[#9CA3AF]">No employees found.</div>
+              <div className="text-center py-6 text-[12px] text-[#9CA3AF]">
+                No employees found.
+              </div>
             )}
           </div>
         </div>

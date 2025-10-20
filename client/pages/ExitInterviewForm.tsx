@@ -152,8 +152,12 @@ export default function ExitInterviewForm() {
             <ArrowLeft className="h-5 w-5 text-[#6B7280]" />
           </Button>
           <div>
-            <h1 className="text-[16px] font-semibold text-[#111827] mb-1">Job Satisfaction Assessment</h1>
-            <p className="text-[11px] text-[#6B7280]">Provide your feedback and insights</p>
+            <h1 className="text-[16px] font-semibold text-[#111827] mb-1">
+              Job Satisfaction Assessment
+            </h1>
+            <p className="text-[11px] text-[#6B7280]">
+              Provide your feedback and insights
+            </p>
           </div>
         </div>
 
@@ -162,9 +166,14 @@ export default function ExitInterviewForm() {
           {/* Left Column */}
           <div className="space-y-4">
             {/* Overall Job Satisfaction Card */}
-            <div className="bg-white rounded-lg p-4 border border-[#E5E7EB] shadow-sm" style={{ boxShadow: "0px 1px 3px rgba(0,0,0,0.05)" }}>
+            <div
+              className="bg-white rounded-lg p-4 border border-[#E5E7EB] shadow-sm"
+              style={{ boxShadow: "0px 1px 3px rgba(0,0,0,0.05)" }}
+            >
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-[14px] font-semibold text-[#111827]">Overall Job Satisfaction</h3>
+                <h3 className="text-[14px] font-semibold text-[#111827]">
+                  Overall Job Satisfaction
+                </h3>
                 <button
                   onClick={() => toggleEditMode("jobSatisfaction")}
                   className="p-1.5 hover:bg-[#F3F4F6] rounded-lg transition-colors"
@@ -177,7 +186,9 @@ export default function ExitInterviewForm() {
               <div className="space-y-3">
                 {satisfactionItems.map((item) => (
                   <div key={item.key}>
-                    <label className="block text-[12px] font-medium text-[#111827] mb-2">{item.label}</label>
+                    <label className="block text-[12px] font-medium text-[#111827] mb-2">
+                      {item.label}
+                    </label>
                     <div className="flex items-center gap-3">
                       {[1, 2, 3, 4, 5].map((rating) => (
                         <div key={rating} className="flex items-center">
@@ -186,11 +197,20 @@ export default function ExitInterviewForm() {
                             id={`${item.key}-${rating}`}
                             name={item.key}
                             value={rating}
-                            checked={jobSatisfaction[item.key as keyof typeof jobSatisfaction] === rating}
-                            onChange={() => handleRatingChange(item.key, rating)}
+                            checked={
+                              jobSatisfaction[
+                                item.key as keyof typeof jobSatisfaction
+                              ] === rating
+                            }
+                            onChange={() =>
+                              handleRatingChange(item.key, rating)
+                            }
                             className="h-4 w-4 text-blue-600 border-[#D1D5DB] cursor-pointer"
                           />
-                          <label htmlFor={`${item.key}-${rating}`} className="ml-1.5 text-[11px] text-[#6B7280] cursor-pointer">
+                          <label
+                            htmlFor={`${item.key}-${rating}`}
+                            className="ml-1.5 text-[11px] text-[#6B7280] cursor-pointer"
+                          >
                             {rating}
                           </label>
                         </div>
@@ -202,9 +222,14 @@ export default function ExitInterviewForm() {
             </div>
 
             {/* Detailed Feedback Card */}
-            <div className="bg-white rounded-lg p-4 border border-[#E5E7EB] shadow-sm" style={{ boxShadow: "0px 1px 3px rgba(0,0,0,0.05)" }}>
+            <div
+              className="bg-white rounded-lg p-4 border border-[#E5E7EB] shadow-sm"
+              style={{ boxShadow: "0px 1px 3px rgba(0,0,0,0.05)" }}
+            >
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-[14px] font-semibold text-[#111827]">Detailed Feedback</h3>
+                <h3 className="text-[14px] font-semibold text-[#111827]">
+                  Detailed Feedback
+                </h3>
                 <button
                   onClick={() => toggleEditMode("detailedFeedback")}
                   className="p-1.5 hover:bg-[#F3F4F6] rounded-lg transition-colors"
@@ -217,7 +242,9 @@ export default function ExitInterviewForm() {
               <div className="space-y-3">
                 {/* Q1 */}
                 <div>
-                  <label className="block text-[12px] font-semibold text-[#111827] mb-1.5">What aspects of your job did you enjoy most?</label>
+                  <label className="block text-[12px] font-semibold text-[#111827] mb-1.5">
+                    What aspects of your job did you enjoy most?
+                  </label>
                   <textarea
                     value={enjoyedMost}
                     onChange={(e) => setEnjoyedMost(e.target.value)}
@@ -229,7 +256,9 @@ export default function ExitInterviewForm() {
 
                 {/* Q2 */}
                 <div>
-                  <label className="block text-[12px] font-semibold text-[#111827] mb-1.5">What aspects of your job did you enjoy least?</label>
+                  <label className="block text-[12px] font-semibold text-[#111827] mb-1.5">
+                    What aspects of your job did you enjoy least?
+                  </label>
                   <textarea
                     value={enjoyedLeast}
                     onChange={(e) => setEnjoyedLeast(e.target.value)}
@@ -241,7 +270,9 @@ export default function ExitInterviewForm() {
 
                 {/* Q3 */}
                 <div>
-                  <label className="block text-[12px] font-semibold text-[#111827] mb-1.5">What suggestions do you have for improving the company?</label>
+                  <label className="block text-[12px] font-semibold text-[#111827] mb-1.5">
+                    What suggestions do you have for improving the company?
+                  </label>
                   <textarea
                     value={improvements}
                     onChange={(e) => setImprovements(e.target.value)}
@@ -253,7 +284,10 @@ export default function ExitInterviewForm() {
 
                 {/* Q4 */}
                 <div>
-                  <label className="block text-[12px] font-semibold text-[#111827] mb-1.5">How would you rate your relationship with your direct manager?</label>
+                  <label className="block text-[12px] font-semibold text-[#111827] mb-1.5">
+                    How would you rate your relationship with your direct
+                    manager?
+                  </label>
                   <textarea
                     value={managerRelationship}
                     onChange={(e) => setManagerRelationship(e.target.value)}
@@ -269,9 +303,14 @@ export default function ExitInterviewForm() {
           {/* Right Column */}
           <div className="space-y-4">
             {/* Exit Survey Questions Card */}
-            <div className="bg-white rounded-lg p-4 border border-[#E5E7EB] shadow-sm" style={{ boxShadow: "0px 1px 3px rgba(0,0,0,0.05)" }}>
+            <div
+              className="bg-white rounded-lg p-4 border border-[#E5E7EB] shadow-sm"
+              style={{ boxShadow: "0px 1px 3px rgba(0,0,0,0.05)" }}
+            >
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-[14px] font-semibold text-[#111827]">Exit Survey Questions</h3>
+                <h3 className="text-[14px] font-semibold text-[#111827]">
+                  Exit Survey Questions
+                </h3>
                 <button
                   onClick={() => toggleEditMode("exitSurvey")}
                   className="p-1.5 hover:bg-[#F3F4F6] rounded-lg transition-colors"
@@ -285,7 +324,8 @@ export default function ExitInterviewForm() {
                 {/* Question 1 */}
                 <div>
                   <label className="block text-[12px] font-semibold text-[#111827] mb-1.5">
-                    Primary reason for leaving? <span className="text-red-500">*</span>
+                    Primary reason for leaving?{" "}
+                    <span className="text-red-500">*</span>
                   </label>
                   <select
                     value={reasonForLeaving}
@@ -340,9 +380,14 @@ export default function ExitInterviewForm() {
             </div>
 
             {/* Decision Factors Card */}
-            <div className="bg-white rounded-lg p-4 border border-[#E5E7EB] shadow-sm" style={{ boxShadow: "0px 1px 3px rgba(0,0,0,0.05)" }}>
+            <div
+              className="bg-white rounded-lg p-4 border border-[#E5E7EB] shadow-sm"
+              style={{ boxShadow: "0px 1px 3px rgba(0,0,0,0.05)" }}
+            >
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-[14px] font-semibold text-[#111827]">Decision Factors</h3>
+                <h3 className="text-[14px] font-semibold text-[#111827]">
+                  Decision Factors
+                </h3>
                 <button
                   onClick={() => toggleEditMode("decisionFactors")}
                   className="p-1.5 hover:bg-[#F3F4F6] rounded-lg transition-colors"
@@ -351,7 +396,9 @@ export default function ExitInterviewForm() {
                   <Pencil className="h-4 w-4 text-[#6B7280] hover:text-[#111827]" />
                 </button>
               </div>
-              <p className="text-[11px] text-[#6B7280] mb-3">Select the factors that influenced your decision to leave:</p>
+              <p className="text-[11px] text-[#6B7280] mb-3">
+                Select the factors that influenced your decision to leave:
+              </p>
 
               <div className="space-y-2">
                 {decisionFactorsList.map((factor) => (
@@ -359,11 +406,18 @@ export default function ExitInterviewForm() {
                     <input
                       type="checkbox"
                       id={`factor-${factor.key}`}
-                      checked={decisionFactors[factor.key as keyof typeof decisionFactors]}
+                      checked={
+                        decisionFactors[
+                          factor.key as keyof typeof decisionFactors
+                        ]
+                      }
                       onChange={() => handleDecisionFactorChange(factor.key)}
                       className="h-4 w-4 rounded border-[#D1D5DB] text-blue-600 cursor-pointer"
                     />
-                    <label htmlFor={`factor-${factor.key}`} className="ml-2.5 text-[12px] text-[#111827] cursor-pointer">
+                    <label
+                      htmlFor={`factor-${factor.key}`}
+                      className="ml-2.5 text-[12px] text-[#111827] cursor-pointer"
+                    >
                       {factor.label}
                     </label>
                   </div>
@@ -372,9 +426,16 @@ export default function ExitInterviewForm() {
             </div>
 
             {/* Additional Comments Card */}
-            <div className="bg-white rounded-lg p-4 border border-[#E5E7EB] shadow-sm" style={{ boxShadow: "0px 1px 3px rgba(0,0,0,0.05)" }}>
-              <h3 className="text-[14px] font-semibold text-[#111827] mb-1">Additional Comments</h3>
-              <p className="text-[11px] text-[#6B7280] mb-3">Is there anything else you'd like to share?</p>
+            <div
+              className="bg-white rounded-lg p-4 border border-[#E5E7EB] shadow-sm"
+              style={{ boxShadow: "0px 1px 3px rgba(0,0,0,0.05)" }}
+            >
+              <h3 className="text-[14px] font-semibold text-[#111827] mb-1">
+                Additional Comments
+              </h3>
+              <p className="text-[11px] text-[#6B7280] mb-3">
+                Is there anything else you'd like to share?
+              </p>
 
               <textarea
                 value={additionalComments}

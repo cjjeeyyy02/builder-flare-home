@@ -27,8 +27,14 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/new-offboarding" element={<NewOffboarding />} />
-          <Route path="/new-offboarding-exit-details" element={<NewOffboardingStep2 />} />
-          <Route path="/new-offboarding-review" element={<NewOffboardingStep3 />} />
+          <Route
+            path="/new-offboarding-exit-details"
+            element={<NewOffboardingStep2 />}
+          />
+          <Route
+            path="/new-offboarding-review"
+            element={<NewOffboardingStep3 />}
+          />
           <Route path="/exit-interview" element={<ExitInterview />} />
           <Route path="/exit-interview-form" element={<ExitInterviewForm />} />
           <Route path="/manage-profile/:id" element={<ManageProfile />} />
