@@ -276,12 +276,11 @@ export default function ViewDetails() {
                   onChange={(e) => setStage(e.target.value)}
                   className="w-full rounded border border-[#E5E7EB] bg-white px-2 py-1 text-[12px] font-semibold text-[#111827] focus:outline-none focus:border-blue-400"
                 >
+                  <option value="HR Documentation Update">HR Documentation Update</option>
                   <option value="IT Asset Collection">IT Asset Collection</option>
-                  <option value="Exit Interview">Exit Interview</option>
+                  <option value="Exit Interview Scheduling">Exit Interview Scheduling</option>
                   <option value="Access Revocation">Access Revocation</option>
-                  <option value="Final Payroll">Final Payroll</option>
-                  <option value="Knowledge Transfer">Knowledge Transfer</option>
-                  <option value="Completed">Completed</option>
+                  <option value="Post-Exit Follow-Up">Post-Exit Follow-Up</option>
                 </select>
               </div>
               <div>
