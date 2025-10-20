@@ -537,14 +537,15 @@ export default function ViewDetails() {
 
           <TabsContent value="documents" className="mt-4">
             <div style={{ fontFamily: 'Poppins, sans-serif' }}>
-              {/* Header Section */}
-              <div className="mb-4">
-                <h3 className="text-[14px] font-bold text-[#111827]">Document Management</h3>
-                <p className="text-xs text-[#6B7280]">Manage documents related to offboarding.</p>
-              </div>
+              {/* Header Section with Action Buttons */}
+              <div className="flex items-start justify-between mb-6">
+                <div>
+                  <h3 className="text-[14px] font-bold text-[#111827]">Document Management</h3>
+                  <p className="text-xs text-[#6B7280]">Manage documents related to offboarding.</p>
+                </div>
 
-              {/* Action Buttons */}
-              <div className="flex gap-2 items-center mb-6 justify-end">
+                {/* Action Buttons */}
+                <div className="flex gap-2 items-center">
                 <Button
                   className="bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-1.5 px-3 py-1.5 text-sm"
                   onClick={() => document.getElementById('file-upload')?.click()}
@@ -615,6 +616,7 @@ export default function ViewDetails() {
                     Clear
                   </Button>
                 )}
+              </div>
               </div>
 
               {/* Document List - Scrollable Container */}
