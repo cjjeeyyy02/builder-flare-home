@@ -359,13 +359,10 @@ export default function ViewDetails() {
                   <p className="text-xs text-[#6B7280]">Track completion of required offboarding activities.</p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <select className="rounded border border-[#E5E7EB] bg-white px-3 py-2 text-sm text-[#111827]">
-                    <option value="all">All Tasks</option>
-                    <option value="completed">Completed</option>
-                    <option value="pending">Pending</option>
-                    <option value="in-progress">In Progress</option>
-                  </select>
-                  <Button className="bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-2">
+                  <Button
+                    className="bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-2"
+                    onClick={() => setShowAddTaskModal(true)}
+                  >
                     <Plus className="h-4 w-4" />
                     Add Task
                   </Button>
