@@ -129,6 +129,12 @@ export default function ViewDetails() {
   const [selectedForExport, setSelectedForExport] = useState<string[]>([]);
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
   const [stage, setStage] = useState("Exit Interview");
+  const [showAddTaskModal, setShowAddTaskModal] = useState(false);
+  const [newTaskTitle, setNewTaskTitle] = useState("");
+  const [newTaskDepartment, setNewTaskDepartment] = useState("HR");
+  const [newTaskPriority, setNewTaskPriority] = useState("Medium");
+  const [newTaskAssignee, setNewTaskAssignee] = useState("");
+  const [newTaskDueDate, setNewTaskDueDate] = useState("");
   const [viewDocument, setViewDocument] = useState<string | null>(null);
 
   const [timelineFilter, setTimelineFilter] = useState("All Events");
