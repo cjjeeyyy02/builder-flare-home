@@ -1076,7 +1076,14 @@ export default function Index() {
           .includes(offboardingSearch.toLowerCase());
       const matchesDept =
         !offboardingDepartment || e.department === offboardingDepartment;
-      return matchesSearch && matchesDept;
+      const matchesStage =
+        !offboardingStage ||
+        (offboardingStage === "HR Documentation Update" && e.department === "Human Resources") ||
+        (offboardingStage === "IT Asset Collection" && e.department === "Engineering") ||
+        (offboardingStage === "Exit Interview Scheduling" && e.status === "Active") ||
+        (offboardingStage === "Access Revocation" && e.department === "Engineering") ||
+        (offboardingStage === "Post-Exit Follow-Up" && e.departureType === "Resignation");
+      return matchesSearch && matchesDept && matchesStage;
     });
   }, [offboardingSearch, offboardingDepartment, offboardingStage]);
 
