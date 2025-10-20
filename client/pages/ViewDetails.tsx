@@ -225,10 +225,10 @@ export default function ViewDetails() {
   return (
     <section className="mx-auto max-w-6xl px-4 py-6">
       <div className="flex items-start justify-between gap-4">
-        <div className="flex items-center gap-4">
+        <div className="flex flex-col gap-2">
           <Button
             variant="ghost"
-            className="h-10 w-10 p-0 hover:bg-[#E5E7EB]"
+            className="h-10 w-10 p-0 hover:bg-[#E5E7EB] self-start"
             onClick={() => navigate(-1)}
           >
             <ArrowLeft className="h-5 w-5 text-[#6B7280]" />
