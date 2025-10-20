@@ -28,37 +28,24 @@ export default function ExitInterview() {
         </div>
 
         {/* Employee Information Card */}
-        <div className="bg-white rounded-lg p-6 border border-[#E5E7EB] shadow-sm mb-6" style={{ boxShadow: "0px 1px 3px rgba(0,0,0,0.05)" }}>
-          <h3 className="text-[16px] font-semibold text-[#111827] mb-6">Employee Information</h3>
-
-          <div className="flex items-start gap-6">
+        <div className="bg-white rounded-[12px] shadow-sm border border-[#E5E7EB] p-6 mb-6">
+          <div className="flex items-start gap-4">
             {/* Avatar */}
-            <div className="flex-shrink-0">
-              <div className="w-16 h-16 rounded-full bg-blue-600 text-white flex items-center justify-center text-[24px] font-bold shadow-sm">
-                SJ
-              </div>
+            <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold text-[16px] flex-shrink-0">
+              SJ
             </div>
 
             {/* Employee Details */}
             <div className="flex-1">
-              <h4 className="text-[18px] font-bold text-[#111827] mb-1">Sarah Johnson</h4>
-              <p className="text-[14px] text-[#6B7280] mb-4">Senior Developer • Engineering</p>
-
-              {/* Metadata */}
-              <div className="grid grid-cols-3 gap-6">
-                <div>
-                  <p className="text-[12px] text-[#9CA3AF] font-medium mb-1">Employee ID</p>
-                  <p className="text-[13px] font-medium text-[#111827]">EMP001</p>
-                </div>
-                <div>
-                  <p className="text-[12px] text-[#9CA3AF] font-medium mb-1">Manager</p>
-                  <p className="text-[13px] font-medium text-[#111827]">John Smith</p>
-                </div>
-                <div>
-                  <p className="text-[12px] text-[#9CA3AF] font-medium mb-1">Tenure</p>
-                  <p className="text-[13px] font-medium text-[#111827]">2022-03-15 – 2024-01-15</p>
-                </div>
-              </div>
+              <p className="text-[15px] font-semibold text-[#111827] mb-1">
+                Sarah Johnson
+              </p>
+              <p className="text-[13px] text-[#6B7280] mb-2">
+                Senior Developer • Engineering
+              </p>
+              <p className="text-[13px] text-[#9CA3AF]">
+                EMP001
+              </p>
             </div>
           </div>
         </div>
