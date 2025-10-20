@@ -530,7 +530,7 @@ export default function ViewDetails() {
               {/* Header Section */}
               <div className="mb-4">
                 <h3 className="text-[14px] font-bold text-[#111827]">Document Management</h3>
-                <p className="text-xs text-[#6B7280]">Manage documents related to offboarding case #1.</p>
+                <p className="text-xs text-[#6B7280]">Manage documents related to offboarding.</p>
               </div>
 
               {/* Search and Action Buttons */}
