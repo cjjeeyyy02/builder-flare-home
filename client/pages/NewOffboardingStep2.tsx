@@ -211,35 +211,31 @@ export default function NewOffboardingStep2() {
                     <option value="3 Months">3 Months</option>
                   </select>
                 </div>
-              </div>
-            </div>
 
-            {/* Checkboxes */}
-            <div className="space-y-4">
-
-              {/* Checkboxes Section */}
-              <div className="space-y-3 pt-3 border-t border-[#E5E7EB]">
-                <label className="flex items-center gap-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={eligibleForRehire}
-                    onChange={(e) => setEligibleForRehire(e.target.checked)}
-                    className="w-4 h-4 rounded border-[#D1D5DB] text-blue-600 cursor-pointer"
-                  />
-                  <span className="text-[12px] text-[#111827]">Employee is eligible for rehire</span>
-                </label>
-
-                <div>
+                {/* Checkboxes */}
+                <div className="space-y-3 pt-3 border-t border-[#E5E7EB]">
                   <label className="flex items-center gap-2 cursor-pointer">
                     <input
                       type="checkbox"
-                      checked={urgentProcessing}
-                      onChange={(e) => setUrgentProcessing(e.target.checked)}
+                      checked={eligibleForRehire}
+                      onChange={(e) => setEligibleForRehire(e.target.checked)}
                       className="w-4 h-4 rounded border-[#D1D5DB] text-blue-600 cursor-pointer"
                     />
-                    <span className="text-[12px] text-[#111827]">Urgent processing required</span>
+                    <span className="text-[12px] text-[#111827]">Employee is eligible for rehire</span>
                   </label>
-                  <p className="text-[11px] text-[#6B7280] ml-6">This will expedite all offboarding tasks.</p>
+
+                  <div>
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={urgentProcessing}
+                        onChange={(e) => setUrgentProcessing(e.target.checked)}
+                        className="w-4 h-4 rounded border-[#D1D5DB] text-blue-600 cursor-pointer"
+                      />
+                      <span className="text-[12px] text-[#111827]">Urgent processing required</span>
+                    </label>
+                    <p className="text-[11px] text-[#6B7280] ml-6">This will expedite all offboarding tasks.</p>
+                  </div>
                 </div>
               </div>
             </div>
