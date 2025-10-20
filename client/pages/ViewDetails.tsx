@@ -840,6 +840,101 @@ export default function ViewDetails() {
           </TabsContent>
         </Tabs>
       </div>
+
+      {/* Add Task Modal */}
+      {showAddTaskModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+          <div className="bg-white rounded-lg p-6 shadow-lg max-w-md w-full mx-4">
+            <h2 className="text-[18px] font-semibold text-[#111827] mb-4">Add New Task</h2>
+
+            <div className="space-y-4">
+              <div>
+                <label className="block text-[13px] font-semibold text-[#111827] mb-2">Task Title</label>
+                <input
+                  type="text"
+                  value={newTaskTitle}
+                  onChange={(e) => setNewTaskTitle(e.target.value)}
+                  placeholder="Enter task title"
+                  className="w-full rounded border border-[#E5E7EB] bg-white px-3 py-2 text-[13px] text-[#111827] focus:outline-none focus:border-blue-400"
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-[13px] font-semibold text-[#111827] mb-2">Department</label>
+                  <select
+                    value={newTaskDepartment}
+                    onChange={(e) => setNewTaskDepartment(e.target.value)}
+                    className="w-full rounded border border-[#E5E7EB] bg-white px-3 py-2 text-[13px] text-[#111827] focus:outline-none focus:border-blue-400"
+                  >
+                    <option value="HR">HR</option>
+                    <option value="IT">IT</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Security">Security</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-[13px] font-semibold text-[#111827] mb-2">Priority</label>
+                  <select
+                    value={newTaskPriority}
+                    onChange={(e) => setNewTaskPriority(e.target.value)}
+                    className="w-full rounded border border-[#E5E7EB] bg-white px-3 py-2 text-[13px] text-[#111827] focus:outline-none focus:border-blue-400"
+                  >
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-[13px] font-semibold text-[#111827] mb-2">Assigned To</label>
+                <input
+                  type="text"
+                  value={newTaskAssignee}
+                  onChange={(e) => setNewTaskAssignee(e.target.value)}
+                  placeholder="Enter assignee name"
+                  className="w-full rounded border border-[#E5E7EB] bg-white px-3 py-2 text-[13px] text-[#111827] focus:outline-none focus:border-blue-400"
+                />
+              </div>
+
+              <div>
+                <label className="block text-[13px] font-semibold text-[#111827] mb-2">Due Date</label>
+                <input
+                  type="date"
+                  value={newTaskDueDate}
+                  onChange={(e) => setNewTaskDueDate(e.target.value)}
+                  className="w-full rounded border border-[#E5E7EB] bg-white px-3 py-2 text-[13px] text-[#111827] focus:outline-none focus:border-blue-400"
+                />
+              </div>
+            </div>
+
+            <div className="flex gap-2 mt-6">
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setShowAddTaskModal(false);
+                  setNewTaskTitle("");
+                  setNewTaskDepartment("HR");
+                  setNewTaskPriority("Medium");
+                  setNewTaskAssignee("");
+                  setNewTaskDueDate("");
+                }}
+                className="flex-1 px-4 py-2 border-[#D1D5DB]"
+              >
+                Cancel
+              </Button>
+              <Button
+                className="flex-1 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2"
+                onClick={handleAddTask}
+              >
+                Add Task
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
