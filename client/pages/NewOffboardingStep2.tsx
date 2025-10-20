@@ -47,8 +47,8 @@ export default function NewOffboardingStep2() {
   };
 
   return (
-    <section className="min-h-screen bg-[#F9FAFB] flex items-center justify-center p-4">
-      <div className="w-full max-w-5xl">
+    <section className="w-screen h-screen bg-[#F9FAFB] overflow-auto">
+      <div className="w-full px-6 py-6">
         {/* Header Section */}
         <div className="flex items-start justify-between mb-6">
           <div>
