@@ -1797,9 +1797,9 @@ export default function Index() {
                     <select
                       value={offboardingDepartment}
                       onChange={(e) => setOffboardingDepartment(e.target.value)}
-                      className="rounded border border-input bg-background px-3 py-2 text-sm"
+                      className="rounded border border-input bg-background px-3 py-2 text-sm text-muted-foreground"
                     >
-                      <option value="">Department</option>
+                      <option value="" className="text-muted-foreground">Department</option>
                       <option value="Engineering">Engineering</option>
                       <option value="Product">Product</option>
                       <option value="Design">Design</option>
@@ -1809,9 +1809,9 @@ export default function Index() {
                     <select
                       value={offboardingStage}
                       onChange={(e) => setOffboardingStage(e.target.value)}
-                      className="rounded border border-input bg-background px-3 py-2 text-sm"
+                      className="rounded border border-input bg-background px-3 py-2 text-sm text-muted-foreground"
                     >
-                      <option value="">Offboarding Stage</option>
+                      <option value="" className="text-muted-foreground">Offboarding Stage</option>
                       <option value="planned">Planned</option>
                       <option value="in-progress">In Progress</option>
                       <option value="completed">Completed</option>
