@@ -195,7 +195,7 @@ export default function NewOffboardingStep3() {
           </div>
 
           {/* Section 4 – Automated Workflow Tasks */}
-          <div>
+          <div className="mb-4">
             <h3 className="text-[13px] font-semibold text-[#111827] mb-1">Automated Workflow Tasks</h3>
             <p className="text-[11px] text-[#6B7280] mb-2">The following tasks will be automatically generated based on the exit type:</p>
 
@@ -210,23 +210,23 @@ export default function NewOffboardingStep3() {
               </ul>
             </div>
           </div>
-        </div>
 
-        {/* Footer Buttons */}
-        <div className="flex items-center justify-between gap-2">
-          <Button
-            variant="outline"
-            onClick={() => navigate("/new-offboarding-exit-details", { state: { employee: exitData.employee } })}
-            className="px-4 py-2 border-[#D1D5DB] text-[12px]"
-          >
-            Back to Edit
-          </Button>
-          <Button
-            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 text-[12px]"
-            onClick={handleSubmit}
-          >
-            Submit Offboarding Request
-          </Button>
+          {/* Footer Buttons - Inside Container */}
+          <div className="flex items-center justify-between gap-2 border-t border-[#E5E7EB] pt-4">
+            <Button
+              variant="outline"
+              onClick={() => navigate("/new-offboarding-exit-details", { state: { employee: exitData.employee } })}
+              className="px-3 py-1.5 border-[#D1D5DB] text-[11px]"
+            >
+              Back to Edit
+            </Button>
+            <Button
+              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-1.5 text-[11px]"
+              onClick={handleSubmit}
+            >
+              Submit Offboarding Request
+            </Button>
+          </div>
         </div>
       </div>
 
