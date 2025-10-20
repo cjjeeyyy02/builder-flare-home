@@ -249,7 +249,7 @@ export default function NewOffboardingStep2() {
             className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2"
             onClick={handleContinue}
           >
-            Continue to Review
+            Continue
           </Button>
         </div>
       </div>
