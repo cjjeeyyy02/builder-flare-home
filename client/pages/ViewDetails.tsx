@@ -577,7 +577,7 @@ export default function ViewDetails() {
                       return (
                         <div
                           key={doc.id}
-                          className="bg-white border border-[#E5E7EB] rounded-lg p-2.5 hover:shadow-sm transition-shadow"
+                          className="bg-white border border-[#E5E7EB] rounded-lg p-2.5 hover:shadow-sm transition-shadow group"
                         >
                           <div className="flex items-start gap-2">
                             {/* Icon */}
@@ -603,7 +603,7 @@ export default function ViewDetails() {
                             </div>
 
                             {/* Actions */}
-                            <div className="flex items-center gap-1 flex-shrink-0">
+                            <div className="flex items-center gap-1 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
                               <Button
                                 variant="ghost"
                                 className="h-6 w-6 p-0 hover:bg-gray-100"
