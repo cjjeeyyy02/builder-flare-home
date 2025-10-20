@@ -189,7 +189,7 @@ export default function ViewDetails() {
           >
             <ArrowLeft className="h-5 w-5 text-[#6B7280]" />
           </Button>
-          <h1 className="text-2xl font-bold">Offboarding Details</h1>
+          <h1 className="text-base font-semibold">Offboarding Details</h1>
         </div>
         <div className="flex flex-wrap items-center gap-2">
           <Button className="bg-white hover:bg-gray-50 text-[#6B7280] border border-[#D1D5DB] flex items-center gap-2 px-3 py-1.5 text-sm">
