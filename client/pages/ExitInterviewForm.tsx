@@ -178,7 +178,7 @@ export default function ExitInterviewForm() {
                 {satisfactionItems.map((item) => (
                   <div key={item.key}>
                     <label className="block text-[12px] font-medium text-[#111827] mb-2">{item.label}</label>
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-3">
                       {[1, 2, 3, 4, 5].map((rating) => (
                         <div key={rating} className="flex items-center">
                           <input
@@ -190,7 +190,7 @@ export default function ExitInterviewForm() {
                             onChange={() => handleRatingChange(item.key, rating)}
                             className="h-4 w-4 text-blue-600 border-[#D1D5DB] cursor-pointer"
                           />
-                          <label htmlFor={`${item.key}-${rating}`} className="ml-2 text-[12px] text-[#6B7280] cursor-pointer">
+                          <label htmlFor={`${item.key}-${rating}`} className="ml-1.5 text-[11px] text-[#6B7280] cursor-pointer">
                             {rating}
                           </label>
                         </div>
