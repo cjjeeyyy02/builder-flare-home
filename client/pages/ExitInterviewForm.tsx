@@ -222,44 +222,44 @@ export default function ExitInterviewForm() {
                     value={enjoyedMost}
                     onChange={(e) => setEnjoyedMost(e.target.value)}
                     placeholder="Share your thoughts..."
-                    rows={3}
-                    className="w-full rounded-lg border border-[#E5E7EB] bg-white px-3 py-2.5 text-[13px] text-[#111827] placeholder-[#9CA3AF] focus:outline-none focus:border-blue-400 resize-none"
+                    rows={2}
+                    className="w-full rounded-lg border border-[#E5E7EB] bg-white px-3 py-2 text-[12px] text-[#111827] placeholder-[#9CA3AF] focus:outline-none focus:border-blue-400 resize-none"
                   />
                 </div>
 
                 {/* Q2 */}
                 <div>
-                  <label className="block text-[13px] font-semibold text-[#111827] mb-2">What aspects of your job did you enjoy least?</label>
+                  <label className="block text-[12px] font-semibold text-[#111827] mb-1.5">What aspects of your job did you enjoy least?</label>
                   <textarea
                     value={enjoyedLeast}
                     onChange={(e) => setEnjoyedLeast(e.target.value)}
                     placeholder="Share your thoughts..."
-                    rows={3}
-                    className="w-full rounded-lg border border-[#E5E7EB] bg-white px-3 py-2.5 text-[13px] text-[#111827] placeholder-[#9CA3AF] focus:outline-none focus:border-blue-400 resize-none"
+                    rows={2}
+                    className="w-full rounded-lg border border-[#E5E7EB] bg-white px-3 py-2 text-[12px] text-[#111827] placeholder-[#9CA3AF] focus:outline-none focus:border-blue-400 resize-none"
                   />
                 </div>
 
                 {/* Q3 */}
                 <div>
-                  <label className="block text-[13px] font-semibold text-[#111827] mb-2">What suggestions do you have for improving the company?</label>
+                  <label className="block text-[12px] font-semibold text-[#111827] mb-1.5">What suggestions do you have for improving the company?</label>
                   <textarea
                     value={improvements}
                     onChange={(e) => setImprovements(e.target.value)}
                     placeholder="Share your suggestions..."
-                    rows={3}
-                    className="w-full rounded-lg border border-[#E5E7EB] bg-white px-3 py-2.5 text-[13px] text-[#111827] placeholder-[#9CA3AF] focus:outline-none focus:border-blue-400 resize-none"
+                    rows={2}
+                    className="w-full rounded-lg border border-[#E5E7EB] bg-white px-3 py-2 text-[12px] text-[#111827] placeholder-[#9CA3AF] focus:outline-none focus:border-blue-400 resize-none"
                   />
                 </div>
 
                 {/* Q4 */}
                 <div>
-                  <label className="block text-[13px] font-semibold text-[#111827] mb-2">How would you rate your relationship with your direct manager?</label>
+                  <label className="block text-[12px] font-semibold text-[#111827] mb-1.5">How would you rate your relationship with your direct manager?</label>
                   <textarea
                     value={managerRelationship}
                     onChange={(e) => setManagerRelationship(e.target.value)}
                     placeholder="Share your thoughts..."
-                    rows={3}
-                    className="w-full rounded-lg border border-[#E5E7EB] bg-white px-3 py-2.5 text-[13px] text-[#111827] placeholder-[#9CA3AF] focus:outline-none focus:border-blue-400 resize-none"
+                    rows={2}
+                    className="w-full rounded-lg border border-[#E5E7EB] bg-white px-3 py-2 text-[12px] text-[#111827] placeholder-[#9CA3AF] focus:outline-none focus:border-blue-400 resize-none"
                   />
                 </div>
               </div>
