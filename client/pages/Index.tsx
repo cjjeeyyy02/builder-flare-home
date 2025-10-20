@@ -2412,23 +2412,6 @@ export default function Index() {
               </Dialog>
 
               <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-                <div className="flex flex-wrap items-center gap-1 text-xs">
-                  {docCategories.map((c) => (
-                    <Button
-                      key={c.value}
-                      variant={dcCategory2 === c.value ? "default" : "outline"}
-                      className={cn(
-                        "h-7 px-2 text-xs",
-                        dcCategory2 === c.value
-                          ? "bg-brand text-brand-foreground border-transparent"
-                          : "",
-                      )}
-                      onClick={() => setDcCategory2(c.value)}
-                    >
-                      {c.label}
-                    </Button>
-                  ))}
-                </div>
                 <div className="flex flex-wrap items-center gap-2">
                   <Select value={dcDept} onValueChange={setDcDept}>
                     <SelectTrigger className="h-8 w-40 text-xs">
