@@ -2282,7 +2282,7 @@ export default function Index() {
           </TabsContent>
           <TabsContent value="docs" className="mt-6">
             <div className="rounded-2xl border bg-card p-4 shadow-sm">
-              <div className="mb-3 flex items-center justify-between gap-3">
+              <div className="mb-3 flex items-center justify-between gap-3 flex-wrap">
                 <div className="flex items-center gap-2">
                   <Input
                     value={dcSearch}
@@ -2290,6 +2290,43 @@ export default function Index() {
                     placeholder="Search documents..."
                     className="h-8 w-56 text-xs"
                   />
+                  <Select value={dcDept} onValueChange={setDcDept}>
+                    <SelectTrigger className="h-8 w-40 text-xs">
+                      <SelectValue placeholder="All Departments" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Departments</SelectItem>
+                      {departments.map((d) => (
+                        <SelectItem key={d} value={d.toLowerCase()}>
+                          {d}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <Select value={dcDocType} onValueChange={setDcDocType}>
+                    <SelectTrigger className="h-8 w-36 text-xs">
+                      <SelectValue placeholder="All Types" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Types</SelectItem>
+                      {docTypes.map((t) => (
+                        <SelectItem key={t} value={t.toLowerCase()}>
+                          {t}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <Select value={dcDateFilter} onValueChange={setDcDateFilter}>
+                    <SelectTrigger className="h-8 w-36 text-xs">
+                      <SelectValue placeholder="Date" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="any">Any Date</SelectItem>
+                      <SelectItem value="30">Last 30 days</SelectItem>
+                      <SelectItem value="90">Last 90 days</SelectItem>
+                      <SelectItem value="365">Last year</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
                 <div className="flex items-center gap-2">
                   <Button
