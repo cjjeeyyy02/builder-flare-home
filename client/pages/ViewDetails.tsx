@@ -135,6 +135,7 @@ export default function ViewDetails() {
   const [newTaskPriority, setNewTaskPriority] = useState("Medium");
   const [newTaskAssignee, setNewTaskAssignee] = useState("");
   const [newTaskDueDate, setNewTaskDueDate] = useState("");
+  const [isExportMode, setIsExportMode] = useState(false);
   const [viewDocument, setViewDocument] = useState<string | null>(null);
 
   const [timelineFilter, setTimelineFilter] = useState("All Events");
