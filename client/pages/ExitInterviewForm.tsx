@@ -140,10 +140,10 @@ export default function ExitInterviewForm() {
   };
 
   return (
-    <section className="min-h-screen bg-[#F9FAFB] px-6 py-8">
+    <section className="min-h-screen bg-[#F9FAFB] px-6 py-4">
       <div className="w-full max-w-7xl mx-auto">
         {/* Header Section with Back Button */}
-        <div className="mb-8">
+        <div className="mb-4">
           <Button
             variant="ghost"
             className="h-10 w-10 p-0 hover:bg-[#E5E7EB] mb-2"
@@ -152,13 +152,13 @@ export default function ExitInterviewForm() {
             <ArrowLeft className="h-5 w-5 text-[#6B7280]" />
           </Button>
           <div>
-            <h1 className="text-[18px] font-semibold text-[#111827] mb-2">Job Satisfaction Assessment</h1>
-            <p className="text-[12px] text-[#6B7280]">Provide your feedback and insights</p>
+            <h1 className="text-[16px] font-semibold text-[#111827] mb-1">Job Satisfaction Assessment</h1>
+            <p className="text-[11px] text-[#6B7280]">Provide your feedback and insights</p>
           </div>
         </div>
 
         {/* Two Column Layout */}
-        <div className="grid grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-2 gap-4 mb-4">
           {/* Left Column */}
           <div className="space-y-6">
             {/* Overall Job Satisfaction Card */}
