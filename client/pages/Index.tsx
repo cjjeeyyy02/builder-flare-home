@@ -1746,7 +1746,7 @@ export default function Index() {
           </div>
           {/* Desktop horizontal tab navigation */}
           <div className="hidden sm:block w-full bg-[#f8f9fa] rounded-lg p-3 mb-5">
-            <div className="flex gap-3 justify-center">
+            <div className="flex gap-3 justify-start">
               <button
                 onClick={() => setTab("records")}
                 className={cn(
