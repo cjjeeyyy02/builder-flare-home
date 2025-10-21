@@ -1745,15 +1745,15 @@ export default function Index() {
             </Select>
           </div>
           {/* Desktop horizontal tab navigation */}
-          <div className="hidden sm:block w-fit bg-[#f8f9fa] rounded-lg p-1.5 mb-4">
-            <div className="flex gap-0 justify-start bg-white rounded-md border border-[#e0e0e0]">
+          <div className="hidden sm:block w-fit mb-4">
+            <div className="flex gap-0 justify-start border border-[#d1d5db] rounded-md overflow-hidden">
               <button
                 onClick={() => setTab("records")}
                 className={cn(
-                  "px-3 py-1.5 font-medium text-xs transition-all duration-200 ease-out whitespace-nowrap border-r border-[#e0e0e0]",
+                  "px-3 py-1.5 font-medium text-xs transition-all duration-200 ease-out whitespace-nowrap",
                   tab === "records"
                     ? "bg-[#1A73E8] text-white"
-                    : "bg-white text-[#333333] hover:bg-[#f2f2f2]"
+                    : "bg-white text-[#333333] hover:bg-gray-50"
                 )}
               >
                 Employee Records
@@ -1761,10 +1761,10 @@ export default function Index() {
               <button
                 onClick={() => setTab("org")}
                 className={cn(
-                  "px-3 py-1.5 font-medium text-xs transition-all duration-200 ease-out whitespace-nowrap border-r border-[#e0e0e0]",
+                  "px-3 py-1.5 font-medium text-xs transition-all duration-200 ease-out whitespace-nowrap border-l border-[#d1d5db]",
                   tab === "org"
                     ? "bg-[#1A73E8] text-white"
-                    : "bg-white text-[#333333] hover:bg-[#f2f2f2]"
+                    : "bg-white text-[#333333] hover:bg-gray-50"
                 )}
               >
                 Organizational Chart
@@ -1772,10 +1772,10 @@ export default function Index() {
               <button
                 onClick={() => setTab("docs")}
                 className={cn(
-                  "px-3 py-1.5 font-medium text-xs transition-all duration-200 ease-out whitespace-nowrap",
+                  "px-3 py-1.5 font-medium text-xs transition-all duration-200 ease-out whitespace-nowrap border-l border-[#d1d5db]",
                   tab === "docs"
                     ? "bg-[#1A73E8] text-white"
-                    : "bg-white text-[#333333] hover:bg-[#f2f2f2]"
+                    : "bg-white text-[#333333] hover:bg-gray-50"
                 )}
               >
                 Document Center
