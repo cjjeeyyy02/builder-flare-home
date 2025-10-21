@@ -1745,15 +1745,15 @@ export default function Index() {
             </Select>
           </div>
           {/* Desktop horizontal tab navigation */}
-          <div className="hidden sm:block w-full bg-[#f8f9fa] rounded-lg p-1.5 mb-4">
-            <div className="flex gap-2 justify-start">
+          <div className="hidden sm:block w-fit bg-[#f8f9fa] rounded-lg p-1.5 mb-4">
+            <div className="flex gap-0 justify-start bg-white rounded-md border border-[#e0e0e0]">
               <button
                 onClick={() => setTab("records")}
                 className={cn(
-                  "px-3 py-1.5 rounded-[12px] font-medium text-xs transition-all duration-200 ease-out whitespace-nowrap",
+                  "px-3 py-1.5 font-medium text-xs transition-all duration-200 ease-out whitespace-nowrap border-r border-[#e0e0e0]",
                   tab === "records"
-                    ? "bg-[#1A73E8] text-white border-none"
-                    : "bg-white text-[#333333] border border-[#e0e0e0] hover:bg-[#f2f2f2]"
+                    ? "bg-[#1A73E8] text-white"
+                    : "bg-white text-[#333333] hover:bg-[#f2f2f2]"
                 )}
               >
                 Employee Records
@@ -1761,10 +1761,10 @@ export default function Index() {
               <button
                 onClick={() => setTab("org")}
                 className={cn(
-                  "px-3 py-1.5 rounded-[12px] font-medium text-xs transition-all duration-200 ease-out whitespace-nowrap",
+                  "px-3 py-1.5 font-medium text-xs transition-all duration-200 ease-out whitespace-nowrap border-r border-[#e0e0e0]",
                   tab === "org"
-                    ? "bg-[#1A73E8] text-white border-none"
-                    : "bg-white text-[#333333] border border-[#e0e0e0] hover:bg-[#f2f2f2]"
+                    ? "bg-[#1A73E8] text-white"
+                    : "bg-white text-[#333333] hover:bg-[#f2f2f2]"
                 )}
               >
                 Organizational Chart
@@ -1772,10 +1772,10 @@ export default function Index() {
               <button
                 onClick={() => setTab("docs")}
                 className={cn(
-                  "px-3 py-1.5 rounded-[12px] font-medium text-xs transition-all duration-200 ease-out whitespace-nowrap",
+                  "px-3 py-1.5 font-medium text-xs transition-all duration-200 ease-out whitespace-nowrap",
                   tab === "docs"
-                    ? "bg-[#1A73E8] text-white border-none"
-                    : "bg-white text-[#333333] border border-[#e0e0e0] hover:bg-[#f2f2f2]"
+                    ? "bg-[#1A73E8] text-white"
+                    : "bg-white text-[#333333] hover:bg-[#f2f2f2]"
                 )}
               >
                 Document Center
