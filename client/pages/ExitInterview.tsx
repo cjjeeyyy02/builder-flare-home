@@ -290,7 +290,7 @@ export default function ExitInterview() {
           {/* Action Button */}
           <div className="flex justify-end">
             <Button
-              className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 text-sm font-medium"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 text-xs font-medium"
               onClick={() => navigate("/exit-interview-form")}
             >
               Continue to Interview
