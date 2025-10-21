@@ -1750,7 +1750,7 @@ export default function Index() {
               <button
                 onClick={() => setTab("records")}
                 className={cn(
-                  "px-5 py-2.5 rounded-[12px] font-medium text-sm transition-all duration-200 ease-out whitespace-nowrap",
+                  "px-3 py-1.5 rounded-[12px] font-medium text-xs transition-all duration-200 ease-out whitespace-nowrap",
                   tab === "records"
                     ? "bg-[#1A73E8] text-white border-none"
                     : "bg-white text-[#333333] border border-[#e0e0e0] hover:bg-[#f2f2f2]"
@@ -1761,7 +1761,7 @@ export default function Index() {
               <button
                 onClick={() => setTab("org")}
                 className={cn(
-                  "px-5 py-2.5 rounded-[12px] font-medium text-sm transition-all duration-200 ease-out whitespace-nowrap",
+                  "px-3 py-1.5 rounded-[12px] font-medium text-xs transition-all duration-200 ease-out whitespace-nowrap",
                   tab === "org"
                     ? "bg-[#1A73E8] text-white border-none"
                     : "bg-white text-[#333333] border border-[#e0e0e0] hover:bg-[#f2f2f2]"
@@ -1772,7 +1772,7 @@ export default function Index() {
               <button
                 onClick={() => setTab("docs")}
                 className={cn(
-                  "px-5 py-2.5 rounded-[12px] font-medium text-sm transition-all duration-200 ease-out whitespace-nowrap",
+                  "px-3 py-1.5 rounded-[12px] font-medium text-xs transition-all duration-200 ease-out whitespace-nowrap",
                   tab === "docs"
                     ? "bg-[#1A73E8] text-white border-none"
                     : "bg-white text-[#333333] border border-[#e0e0e0] hover:bg-[#f2f2f2]"
