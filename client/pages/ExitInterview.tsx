@@ -218,54 +218,73 @@ export default function ExitInterview() {
           <h3 className="text-[14px] font-semibold text-[#111827] mb-1">
             Interview Setup
           </h3>
-          <p className="text-[12px] text-[#6B7280] mb-4">
+          <p className="text-[12px] text-[#6B7280] mb-3">
             Configure the exit interview details
           </p>
 
-          {/* Form Fields */}
-          <div className="grid grid-cols-2 gap-4 mb-4">
-            {/* Interview Date */}
-            <div>
-              <label className="block text-[12px] font-semibold text-[#111827] mb-1.5">
-                Interview Date <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="date"
-                value={interviewDate}
-                onChange={(e) => setInterviewDate(e.target.value)}
-                className="w-full rounded-lg border border-[#E5E7EB] bg-white px-3 py-2 text-[12px] text-[#111827] focus:outline-none focus:border-blue-400"
-              />
+          {/* Form Fields - Two Column Layout */}
+          <div className="grid grid-cols-2 gap-3 mb-4">
+            {/* Left Column */}
+            <div className="space-y-3">
+              {/* Interview Date */}
+              <div>
+                <label className="block text-[12px] font-semibold text-[#111827] mb-1">
+                  Interview Date <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="date"
+                  value={interviewDate}
+                  onChange={(e) => setInterviewDate(e.target.value)}
+                  className="w-full rounded-lg border border-[#E5E7EB] bg-white px-3 py-2 text-[12px] text-[#111827] focus:outline-none focus:border-blue-400"
+                />
+              </div>
+
+              {/* Interview Mode */}
+              <div>
+                <label className="block text-[12px] font-semibold text-[#111827] mb-1">
+                  Interview Mode <span className="text-red-500">*</span>
+                </label>
+                <select
+                  value={interviewMode}
+                  onChange={(e) => setInterviewMode(e.target.value)}
+                  className="w-full rounded-lg border border-[#E5E7EB] bg-white px-3 py-2 text-[12px] text-[#111827] focus:outline-none focus:border-blue-400"
+                >
+                  <option value="Video Call">Video Call</option>
+                  <option value="Phone Call">Phone Call</option>
+                  <option value="In-Person">In-Person</option>
+                  <option value="Email">Email</option>
+                </select>
+              </div>
             </div>
 
-            {/* Interviewer */}
-            <div>
-              <label className="block text-[12px] font-semibold text-[#111827] mb-1.5">
-                Interviewer <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                value={interviewer}
-                onChange={(e) => setInterviewer(e.target.value)}
-                className="w-full rounded-lg border border-[#E5E7EB] bg-white px-3 py-2 text-[12px] text-[#111827] focus:outline-none focus:border-blue-400"
-              />
-            </div>
-          </div>
+            {/* Right Column */}
+            <div className="space-y-3">
+              {/* Interviewer */}
+              <div>
+                <label className="block text-[12px] font-semibold text-[#111827] mb-1">
+                  Interviewer <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  value={interviewer}
+                  onChange={(e) => setInterviewer(e.target.value)}
+                  className="w-full rounded-lg border border-[#E5E7EB] bg-white px-3 py-2 text-[12px] text-[#111827] focus:outline-none focus:border-blue-400"
+                />
+              </div>
 
-          {/* Interview Mode */}
-          <div className="mb-4">
-            <label className="block text-[12px] font-semibold text-[#111827] mb-1.5">
-              Interview Mode <span className="text-red-500">*</span>
-            </label>
-            <select
-              value={interviewMode}
-              onChange={(e) => setInterviewMode(e.target.value)}
-              className="w-full rounded-lg border border-[#E5E7EB] bg-white px-3 py-2 text-[12px] text-[#111827] focus:outline-none focus:border-blue-400"
-            >
-              <option value="Video Call">Video Call</option>
-              <option value="Phone Call">Phone Call</option>
-              <option value="In-Person">In-Person</option>
-              <option value="Email">Email</option>
-            </select>
+              {/* Interview Duration */}
+              <div>
+                <label className="block text-[12px] font-semibold text-[#111827] mb-1">
+                  Interview Duration <span className="text-red-500">*</span>
+                </label>
+                <select className="w-full rounded-lg border border-[#E5E7EB] bg-white px-3 py-2 text-[12px] text-[#111827] focus:outline-none focus:border-blue-400">
+                  <option value="30 minutes">30 minutes</option>
+                  <option value="45 minutes">45 minutes</option>
+                  <option value="60 minutes">60 minutes</option>
+                  <option value="90 minutes">90 minutes</option>
+                </select>
+              </div>
+            </div>
           </div>
 
           {/* Action Button */}
