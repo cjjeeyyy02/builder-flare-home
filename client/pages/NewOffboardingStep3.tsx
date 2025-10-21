@@ -58,7 +58,7 @@ export default function NewOffboardingStep3() {
     <section className="min-h-screen bg-[#F9FAFB] px-6 py-8">
       <div className="w-full max-w-6xl mx-auto">
         {/* Header with Back Button */}
-        <div className="flex items-start justify-between mb-8">
+        <div className="flex items-start justify-between mb-4">
           <div>
             <Button
               variant="ghost"
@@ -116,7 +116,7 @@ export default function NewOffboardingStep3() {
         </div>
 
         {/* Employee Information Section */}
-        <div className="mb-8">
+        <div className="mb-4">
           <div className="bg-white rounded-[12px] shadow-sm border border-[#E5E7EB] p-6">
             <div className="flex items-start gap-4">
               {/* Avatar */}
@@ -144,7 +144,7 @@ export default function NewOffboardingStep3() {
         </div>
 
         {/* Exit Details and Automated Workflow Tasks - Two Column Grid */}
-        <div className="grid grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-2 gap-3 mb-8">
           {/* Left Column - Exit Details */}
           <div className="bg-white rounded-[12px] shadow-sm border border-[#E5E7EB] p-4">
             <h3 className="text-[15px] font-semibold text-[#111827] mb-4">
