@@ -1744,41 +1744,44 @@ export default function Index() {
               </SelectContent>
             </Select>
           </div>
-          {/* Desktop single-row tabs */}
-          <TabsList className="hidden sm:block w-full">
-            <div className="flex flex-nowrap items-center gap-2">
-              <TabsTrigger
-                value="records"
+          {/* Desktop horizontal tab navigation */}
+          <div className="hidden sm:block w-full bg-[#f8f9fa] rounded-lg p-3 mb-5">
+            <div className="flex gap-3 justify-center">
+              <button
+                onClick={() => setTab("records")}
                 className={cn(
-                  "flex-1 rounded-[12px] px-4 py-2 text-sm transition-colors",
-                  "data-[state=active]:bg-[#3B82F6] data-[state=active]:text-white data-[state=active]:font-bold",
-                  "data-[state=inactive]:bg-transparent data-[state=inactive]:text-black data-[state=inactive]:font-medium data-[state=inactive]:hover:bg-[#E0F2FE]",
+                  "px-5 py-2.5 rounded-[12px] font-medium text-sm transition-all duration-200 ease-out whitespace-nowrap",
+                  tab === "records"
+                    ? "bg-[#1A73E8] text-white border-none"
+                    : "bg-white text-[#333333] border border-[#e0e0e0] hover:bg-[#f2f2f2]"
                 )}
               >
                 Employee Records
-              </TabsTrigger>
-              <TabsTrigger
-                value="org"
+              </button>
+              <button
+                onClick={() => setTab("org")}
                 className={cn(
-                  "flex-1 rounded-[12px] px-4 py-2 text-sm transition-colors",
-                  "data-[state=active]:bg-[#3B82F6] data-[state=active]:text-white data-[state=active]:font-bold",
-                  "data-[state=inactive]:bg-transparent data-[state=inactive]:text-black data-[state=inactive]:font-medium data-[state=inactive]:hover:bg-[#E0F2FE]",
+                  "px-5 py-2.5 rounded-[12px] font-medium text-sm transition-all duration-200 ease-out whitespace-nowrap",
+                  tab === "org"
+                    ? "bg-[#1A73E8] text-white border-none"
+                    : "bg-white text-[#333333] border border-[#e0e0e0] hover:bg-[#f2f2f2]"
                 )}
               >
                 Organizational Chart
-              </TabsTrigger>
-              <TabsTrigger
-                value="docs"
+              </button>
+              <button
+                onClick={() => setTab("docs")}
                 className={cn(
-                  "flex-1 rounded-[12px] px-4 py-2 text-sm transition-colors",
-                  "data-[state=active]:bg-[#3B82F6] data-[state=active]:text-white data-[state=active]:font-bold",
-                  "data-[state=inactive]:bg-transparent data-[state=inactive]:text-black data-[state=inactive]:font-medium data-[state=inactive]:hover:bg-[#E0F2FE]",
+                  "px-5 py-2.5 rounded-[12px] font-medium text-sm transition-all duration-200 ease-out whitespace-nowrap",
+                  tab === "docs"
+                    ? "bg-[#1A73E8] text-white border-none"
+                    : "bg-white text-[#333333] border border-[#e0e0e0] hover:bg-[#f2f2f2]"
                 )}
               >
                 Document Center
-              </TabsTrigger>
+              </button>
             </div>
-          </TabsList>
+          </div>
 
           <TabsContent value="records" className="mt-5">
             <section className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
