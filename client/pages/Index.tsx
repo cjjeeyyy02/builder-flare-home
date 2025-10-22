@@ -1753,7 +1753,7 @@ export default function Index() {
                   "px-3 py-1.5 font-medium text-xs transition-all duration-200 ease-out whitespace-nowrap",
                   tab === "records"
                     ? "bg-[#1A73E8] text-white"
-                    : "bg-white text-[#333333] hover:bg-gray-50"
+                    : "bg-white text-[#333333] hover:bg-gray-50",
                 )}
               >
                 Employee Records
@@ -1764,7 +1764,7 @@ export default function Index() {
                   "px-3 py-1.5 font-medium text-xs transition-all duration-200 ease-out whitespace-nowrap border-l border-[#d1d5db]",
                   tab === "org"
                     ? "bg-[#1A73E8] text-white"
-                    : "bg-white text-[#333333] hover:bg-gray-50"
+                    : "bg-white text-[#333333] hover:bg-gray-50",
                 )}
               >
                 Organizational Chart
@@ -1775,7 +1775,7 @@ export default function Index() {
                   "px-3 py-1.5 font-medium text-xs transition-all duration-200 ease-out whitespace-nowrap border-l border-[#d1d5db]",
                   tab === "docs"
                     ? "bg-[#1A73E8] text-white"
-                    : "bg-white text-[#333333] hover:bg-gray-50"
+                    : "bg-white text-[#333333] hover:bg-gray-50",
                 )}
               >
                 Document Center
@@ -1970,16 +1970,16 @@ export default function Index() {
                                 <SelectValue placeholder="Select employment type" />
                               </SelectTrigger>
                               <SelectContent>
-                                <SelectItem value="full-time">Full-Time</SelectItem>
+                                <SelectItem value="full-time">
+                                  Full-Time
+                                </SelectItem>
                                 <SelectItem value="part-time">
                                   Part-Time
                                 </SelectItem>
                                 <SelectItem value="contract">
                                   Contract
                                 </SelectItem>
-                                <SelectItem value="intern">
-                                  Intern
-                                </SelectItem>
+                                <SelectItem value="intern">Intern</SelectItem>
                               </SelectContent>
                             </Select>
                           </div>
@@ -2003,15 +2003,9 @@ export default function Index() {
                             </SelectTrigger>
                             <SelectContent>
                               <SelectItem value="standard">Standard</SelectItem>
-                              <SelectItem value="flexible">
-                                Flexible
-                              </SelectItem>
-                              <SelectItem value="shift">
-                                Shift-Based
-                              </SelectItem>
-                              <SelectItem value="remote">
-                                Remote
-                              </SelectItem>
+                              <SelectItem value="flexible">Flexible</SelectItem>
+                              <SelectItem value="shift">Shift-Based</SelectItem>
+                              <SelectItem value="remote">Remote</SelectItem>
                             </SelectContent>
                           </Select>
                         </div>
@@ -2560,7 +2554,8 @@ export default function Index() {
                           {d.department}
                         </TableCell>
                         <TableCell className="px-2 py-1 text-xs leading-tight">
-                          {docCategories.find((c) => c.value === d.category)?.label || d.category}
+                          {docCategories.find((c) => c.value === d.category)
+                            ?.label || d.category}
                         </TableCell>
                         <TableCell className="px-2 py-1 text-xs leading-tight">
                           {d.uploadDate}
