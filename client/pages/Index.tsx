@@ -1963,19 +1963,22 @@ export default function Index() {
                         <div className="grid gap-1.5 sm:grid-cols-2 sm:gap-3">
                           <div className="grid gap-1.5">
                             <Label className="text-xs font-semibold">
-                              Status
+                              Employment Type
                             </Label>
                             <Select>
                               <SelectTrigger className="h-9">
-                                <SelectValue placeholder="Select status" />
+                                <SelectValue placeholder="Select employment type" />
                               </SelectTrigger>
                               <SelectContent>
-                                <SelectItem value="active">Active</SelectItem>
-                                <SelectItem value="on leave">
-                                  On Leave
+                                <SelectItem value="full-time">Full-Time</SelectItem>
+                                <SelectItem value="part-time">
+                                  Part-Time
                                 </SelectItem>
-                                <SelectItem value="inactive">
-                                  Inactive
+                                <SelectItem value="contract">
+                                  Contract
+                                </SelectItem>
+                                <SelectItem value="intern">
+                                  Intern
                                 </SelectItem>
                               </SelectContent>
                             </Select>
@@ -1989,6 +1992,28 @@ export default function Index() {
                             </Label>
                             <Input id="emp-join" type="date" />
                           </div>
+                        </div>
+                        <div className="grid gap-1.5">
+                          <Label className="text-xs font-semibold">
+                            Scheduled Type
+                          </Label>
+                          <Select>
+                            <SelectTrigger className="h-9">
+                              <SelectValue placeholder="Select scheduled type" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="standard">Standard</SelectItem>
+                              <SelectItem value="flexible">
+                                Flexible
+                              </SelectItem>
+                              <SelectItem value="shift">
+                                Shift-Based
+                              </SelectItem>
+                              <SelectItem value="remote">
+                                Remote
+                              </SelectItem>
+                            </SelectContent>
+                          </Select>
                         </div>
                       </div>
                       <DialogFooter>
